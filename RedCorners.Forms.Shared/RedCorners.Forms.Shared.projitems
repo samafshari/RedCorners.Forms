@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>021442b0-5e22-4c6f-8062-ff8c0bb5ea20</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>RedCorners.Forms</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)gradienth.png" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)gradienth2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)AppBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)BindableModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Colors.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\HasValueConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\FormsExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\LogExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\MessagingExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Signals.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PageCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PopCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Systems\LogSystem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Systems\MessagingSystem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Systems\NotchSystem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\AliveContentPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\AliveContentView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\HorizontalShadowView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\ImageButtonView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\ItemsStack.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\ListView2.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\MultiComponentLabel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\WorkerPage.cs" />
+  </ItemGroup>
+</Project>

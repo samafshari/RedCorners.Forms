@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<rf:AliveContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:views="clr-namespace:RedCorners.Demo.Views"
+    xmlns:rf="clr-namespace:RedCorners.Forms;assembly=RedCorners.Forms"
+    x:Class="RedCorners.Demo.Views.MainPage">
+
+    <StackLayout>
+        <Button Text="Test Modal">
+            <Button.Command>
+                <rf:PageCommand IsModal="True">
+                    <rf:AliveContentPage>
+                        <Grid>
+                            <Button Text="Pop" HorizontalOptions="Center" VerticalOptions="Center">
+                                <Button.Command>
+                                    <rf:PopCommand FireOnce="False" FireDelay="1000" />
+                                </Button.Command>
+                            </Button>
+                        </Grid>
+                    </rf:AliveContentPage>
+                </rf:PageCommand>
+            </Button.Command>
+        </Button>
+
+        <Button Text="Show Modal From Page">
+            <Button.Command>
+                <rf:PageCommand IsModal="True">
+                    <rf:PageCommand.Page>
+                        <views:CounterPage />
+                    </rf:PageCommand.Page>
+                </rf:PageCommand>
+            </Button.Command>
+        </Button>
+        
+        <Button Text="Show Modal From Type">
+            <Button.Command>
+                <rf:PageCommand IsModal="True" PageType="{Type views:CounterPage}" />
+            </Button.Command>
+        </Button>
+    </StackLayout>
+
+</rf:AliveContentPage>

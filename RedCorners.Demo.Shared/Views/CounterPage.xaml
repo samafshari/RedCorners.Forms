@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<rf:AliveContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:rf="clr-namespace:RedCorners.Forms;assembly=RedCorners.Forms"
+    xmlns:vm="clr-namespace:RedCorners.Demo.ViewModels"
+    x:Class="RedCorners.Demo.Views.CounterPage">
+    <rf:AliveContentPage.BindingContext>
+        <vm:CounterViewModel />
+    </rf:AliveContentPage.BindingContext>
+    <StackLayout>
+        <Label Text="Count:"
+               FontAttributes="Bold"
+            VerticalOptions="CenterAndExpand" 
+            HorizontalOptions="CenterAndExpand" />
+        <Label Text="{Binding Count}"
+            VerticalOptions="CenterAndExpand" 
+            HorizontalOptions="CenterAndExpand" />
+        <Button Text="Count" Command="{Binding CountCommand}" />
+        <Button Text="Pop">
+            <Button.Command>
+                <rf:PopCommand FireOnce="False" />
+            </Button.Command>
+        </Button>
+    </StackLayout>
+</rf:AliveContentPage>
