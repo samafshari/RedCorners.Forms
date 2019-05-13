@@ -12,7 +12,7 @@ using RedCorners.Forms;
 using System.Windows;
 #endif
 
-namespace RedCorners
+namespace RedCorners.Forms
 {
     [AttributeUsage(AttributeTargets.All)]
     public class ManualUpdate : Attribute { }

@@ -129,12 +129,12 @@ namespace RedCorners.Forms
             TriggerStart();
         }
 
-        public virtual void Start()
+        public virtual void OnStart()
         {
 
         }
 
-        public virtual void Stop()
+        public virtual void OnStop()
         {
 
         }
@@ -145,7 +145,7 @@ namespace RedCorners.Forms
             if (!isStarted)
             {
                 isStarted = true;
-                Start();
+                OnStart();
             }
         }
 
@@ -154,7 +154,7 @@ namespace RedCorners.Forms
             if (isStarted)
             {
                 isStarted = false;
-                Stop();
+                OnStop();
             }
         }
 
