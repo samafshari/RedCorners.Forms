@@ -150,21 +150,21 @@ namespace RedCorners.Forms
         {
             // Handle when your app starts
             IsResumed = true;
-            Signals.AppStart.Send();
+            Signals.AppStart.Signal();
         }
 
         protected override void OnSleep()
         {
             // Handle when your app sleeps
             IsResumed = false;
-            Signals.AppSleep.Send();
+            Signals.AppSleep.Signal();
         }
 
         protected override void OnResume()
         {
             // Handle when your app resumes
             IsResumed = true;
-            Signals.AppResume.Send();
+            Signals.AppResume.Signal();
         }
     }
 }

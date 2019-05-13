@@ -25,8 +25,8 @@ namespace RedCorners.Forms
                 if (Page == null)
                     throw new Exception("PageType did not construct a Page!");
             }
-            if (IsModal) Signals.ShowModalPage.Send(Page);
-            else Signals.ShowPage.Send(Page);
+            if (IsModal) Signals.ShowModalPage.Signal(Page);
+            else Signals.ShowPage.Signal(Page);
         }
 
         public static BindableProperty PageProperty = BindableProperty.Create(

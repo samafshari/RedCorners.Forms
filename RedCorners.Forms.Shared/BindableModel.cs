@@ -142,7 +142,7 @@ namespace RedCorners
 
         public virtual Command GoBackCommand => new Command(() =>
         {
-            Signals.RunOnUI.Send<Action>(() => OnBack());
+            Signals.RunOnUI.Signal<Action>(() => OnBack());
         });
 
         protected bool backed = false;
@@ -157,9 +157,9 @@ namespace RedCorners
         {
             if (IsModal)
             {
-                Signals.PopModal.Send();
+                Signals.PopModal.Signal();
             }
-            else Signals.ShowFirstPage.Send();
+            else Signals.ShowFirstPage.Signal();
             return true;
         }
 

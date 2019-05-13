@@ -23,7 +23,7 @@ namespace RedCorners.Demo
                 Console.WriteLine(message);
             });
 
-            LooseMessages.Ping.Send("Hello, World!");
+            LooseMessages.Ping.Signal("Hello, World!");
         }
 
         public override Page GetFirstPage() => new Views.MainPage();
