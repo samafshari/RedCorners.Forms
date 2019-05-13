@@ -38,16 +38,25 @@ namespace RedCorners.Forms
             set => SetValue(FireDelayProperty, value);
         }
 
-        bool ICommand.CanExecute(object parameter) => !executed;
+        bool CanExecute(object parameter)
+        {
+            if (executed && FireOnce) return false;
+            if (!FireOnce && FireDelay > 0 && (DateTimeOffset.Now - lastFire).TotalMilliseconds < FireDelay) return false;
+            return true;
+        }
 
         void ICommand.Execute(object parameter)
         {
-            if (executed && FireOnce) return;
-            if (!FireOnce && FireDelay > 0 && (DateTimeOffset.Now - lastFire).TotalMilliseconds < FireDelay) return;
+            if (!CanExecute(parameter)) return;
             executed = true;
             CanExecuteChanged?.Invoke(this, null);
             lastFire = DateTimeOffset.Now;
             Signals.PopModal.Send();
+        }
+
+        bool ICommand.CanExecute(object parameter)
+        {
+            return CanExecute(parameter);
         }
     }
 }

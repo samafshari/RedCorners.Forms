@@ -17,7 +17,14 @@
             VerticalOptions="CenterAndExpand" 
             HorizontalOptions="CenterAndExpand" />
         <Button Text="Count" Command="{Binding CountCommand}" />
-        <Button Text="Pop">
+        
+        <Button Text="Pop (FireOnce)">
+            <Button.Command>
+                <rf:PopCommand FireOnce="True" />
+            </Button.Command>
+        </Button>
+        
+        <Button Text="Pop (FireDelay = 1000.0)">
             <Button.Command>
                 <rf:PopCommand FireOnce="False" />
             </Button.Command>

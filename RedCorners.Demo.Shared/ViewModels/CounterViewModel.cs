@@ -26,5 +26,24 @@ namespace RedCorners.Demo.ViewModels
             Console.WriteLine($"OnUnbind: {bindable.GetType().FullName}");
             base.OnUnbind(bindable);
         }
+
+        public override void OnStart()
+        {
+            base.OnStart();
+            Console.WriteLine($"OnStart");
+
+        }
+
+        public override void OnStop()
+        {
+            Console.WriteLine($"OnStop");
+            base.OnStop();
+        }
+
+        public override void OnAppeared(ContentPage page)
+        {
+            base.OnAppeared(page);
+            Console.WriteLine($"OnAppeared: {page.GetType().FullName}");
+        }
     }
 }
