@@ -14,5 +14,17 @@ namespace RedCorners.Demo.ViewModels
             Count++;
             UpdateProperties();
         });
+
+        public override void OnBind(BindableObject bindable)
+        {
+            base.OnBind(bindable);
+            Console.WriteLine($"OnBind: {bindable.GetType().FullName}");
+        }
+
+        public override void OnUnbind(BindableObject bindable)
+        {
+            Console.WriteLine($"OnUnbind: {bindable.GetType().FullName}");
+            base.OnUnbind(bindable);
+        }
     }
 }

@@ -85,10 +85,10 @@ namespace RedCorners.Forms
                 {
                     if (lastContext != null && lastContext.TryGetTarget(out var lastVm))
                     {
-                        lastVm.Stop();
+                        lastVm.OnStop();
                     }
                     isStarted = true;
-                    vm.Start();
+                    vm.OnStart();
                     lastContext = new WeakReference<BindableModel>(vm);
                 }
 
@@ -129,7 +129,7 @@ namespace RedCorners.Forms
             if (isStarted && BindingContext is BindableModel vm)
             {
                 isStarted = false;
-                vm.Stop();
+                vm.OnStop();
                 lastContext = null;
             }
 
@@ -150,15 +150,22 @@ namespace RedCorners.Forms
 
         protected override void OnBindingContextChanged()
         {
-            if (!isStarted && BindingContext is BindableModel vm)
+            BindableModel lastVm = null;
+            if (lastContext != null && lastContext.TryGetTarget(out lastVm))
             {
-                if (lastContext != null && lastContext.TryGetTarget(out var lastVm))
+                lastVm.OnUnbind(this);
+            }
+
+            if (BindingContext is BindableModel vm)
+            {
+                vm.OnBind(this);
+                if (!isStarted)
                 {
-                    lastVm.Stop();
+                    lastVm?.OnStop();
+                    isStarted = true;
+                    vm.OnStart();
+                    lastContext = new WeakReference<BindableModel>(vm);
                 }
-                isStarted = true;
-                vm.Start();
-                lastContext = new WeakReference<BindableModel>(vm);
             }
 
             base.OnBindingContextChanged();

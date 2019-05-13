@@ -171,7 +171,7 @@ namespace RedCorners
         /// <summary>
         /// Call from the View to activate the view model
         /// </summary>
-        public virtual void Start()
+        public virtual void OnStart()
         {
             backed = false;
         }
@@ -179,7 +179,17 @@ namespace RedCorners
         /// <summary>
         /// Call from the view to deactivate the view model
         /// </summary>
-        public virtual void Stop()
+        public virtual void OnStop()
+        {
+
+        }
+
+        public virtual void OnBind(BindableObject bindable)
+        {
+
+        }
+
+        public virtual void OnUnbind(BindableObject bindable)
         {
 
         }

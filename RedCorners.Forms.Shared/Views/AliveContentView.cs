@@ -181,5 +181,18 @@ namespace RedCorners.Forms
             }
             return true;
         }
+
+        WeakReference<BindableModel> lastContext = null;
+        protected override void OnBindingContextChanged()
+        {
+            base.OnBindingContextChanged();
+            if (lastContext != null && lastContext.TryGetTarget(out var lastVm))
+                lastVm?.OnUnbind(this);
+            if (BindingContext is BindableModel vm)
+            {
+                vm.OnBind(this);
+                lastContext = new WeakReference<BindableModel>(vm);
+            }
+        }
     }
 }
