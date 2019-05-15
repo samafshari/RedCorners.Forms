@@ -18,12 +18,29 @@ namespace RedCorners.Forms.Systems
 
         NotchSystem() { }
 
+        public Thickness? OverridePadding { get; set; } = null;
+        public Thickness ExtraPadding { get; private set; } = new Thickness();
+
+        Thickness GetOverridePadding() =>
+            SumPadding(OverridePadding ?? new Thickness(0, 0, 0, 0),
+            ExtraPadding);
+
+        Thickness SumPadding(Thickness t1, Thickness t2) =>
+            new Thickness(
+                left: t1.Left + t2.Left,
+                top: t1.Top + t2.Top,
+                right: t1.Right + t2.Right,
+                bottom: t1.Bottom + t2.Bottom);
+
 #if __IOS__
         float? top = null;
         float? bottom = null;
 
         public Thickness GetPageMargin()
         {
+            if (OverridePadding.HasValue)
+                return GetOverridePadding();
+
             if (top == null)
             {
                 Device.BeginInvokeOnMainThread(() =>
@@ -38,23 +55,24 @@ namespace RedCorners.Forms.Systems
                     }
                 });
             }
-            return new Thickness(0, HasNotch ? 40 : 20, 0, bottom.GetValueOrDefault());
+            return SumPadding(
+                new Thickness(0, HasNotch ? 40 : 20, 0, bottom.GetValueOrDefault()),
+                ExtraPadding);
         }
 
-        public Thickness TopMargin => new Thickness(0, HasNotch ? 40 : 20, 0, 0);
+        public GridLength BottomHeight => new GridLength((bottom ?? 0) + ExtraPadding.Bottom);
 
-        public GridLength BottomHeight => new GridLength(bottom ?? 0);
-
-        public bool HasWindowInformation => top.HasValue;
+        public bool HasWindowInformation => top.HasValue || OverridePadding.HasValue;
 #else
-        public Thickness TopMargin => new Thickness(0, 0, 0, 0);
         public bool HasWindowInformation => true;
-        public GridLength BottomHeight => new GridLength(0);
+        public GridLength BottomHeight => new GridLength(ExtraPadding.Bottom);
 
-        public Thickness GetPageMargin() => new Thickness(0, 0, 0, 0);
+        public Thickness GetPageMargin() => GetOverridePadding();
 #endif
 
-        public Thickness BottomMargin => new Thickness(0, 0, 0, BottomHeight.Value);
+        public Thickness TopMargin => new Thickness(0, GetPageMargin().Top, 0, 0);
+
+        public Thickness BottomMargin => new Thickness(0, 0, 0, GetPageMargin().Bottom);
 
         public bool HasNotch
         {
