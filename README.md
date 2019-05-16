@@ -13,18 +13,18 @@ NuGet: [https://www.nuget.org/packages/RedCorners.Forms](https://www.nuget.org/p
 <table>
 <tr>
 <td>
-![Alt text](Screenshots/1.png?raw=true "Title")
+<img src="Screenshots/1.png?raw=true" />
 </td>
 <td>
-![Alt text](Screenshots/2.png?raw=true "Title")
+<img src="Screenshots/2.png?raw=true" />
 </td>
 </tr>
 <tr>
 <td>
-![Alt text](Screenshots/3.png?raw=true "Title")
+<img src="Screenshots/3.png?raw=true" />
 </td>
 <td>
-![Alt text](Screenshots/4.png?raw=true "Title")
+<img src="Screenshots/4.png?raw=true" />
 </td>
 </tr>
 </table>
