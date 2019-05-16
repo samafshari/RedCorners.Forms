@@ -67,7 +67,7 @@ namespace RedCorners.Forms.Systems
         public bool HasWindowInformation => true;
         public GridLength BottomHeight => new GridLength(ExtraPadding.Bottom);
 
-        public Thickness GetPageMargin() => SumPadding(new Thickness(0, 25, 0, 0), GetOverridePadding());
+        public Thickness GetPageMargin() => SumPadding(OverridePadding ?? new Thickness(0, 25, 0, 0), ExtraPadding);
 #endif
 
         public Thickness TopMargin => new Thickness(0, GetPageMargin().Top, 0, 0);
