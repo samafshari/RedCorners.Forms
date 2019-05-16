@@ -26,13 +26,28 @@
     <Compile Include="$(MSBuildThisFileDirectory)Systems\LogSystem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Systems\MessagingSystem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Systems\NotchSystem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Values.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\AliveContentPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\AliveContentView.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Views\HorizontalShadowView.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Views\ImageButtonView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\HorizontalShadow.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\ImageButton.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\ItemsStack.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\ListView2.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\MultiComponentLabel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Sidebar.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\WorkerPage.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\Sidebar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="E:\Projects\RedCorners.Forms\RedCorners.Forms.Shared\Views\Sidebar.xaml.cs">
+      <DependentUpon>Sidebar.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 </Project>

@@ -5,9 +5,9 @@ using Xamarin.Forms;
 
 namespace RedCorners.Forms
 {
-    public class ImageButtonView : Grid
+    public class ImageButton : Grid
     {
-        public ImageButtonView()
+        public ImageButton()
         {
             var image = new Image
             {
@@ -37,19 +37,19 @@ namespace RedCorners.Forms
         public static readonly BindableProperty SourceProperty = BindableProperty.Create(
             propertyName: "Source",
             returnType: typeof(ImageSource),
-            declaringType: typeof(ImageButtonView),
+            declaringType: typeof(ImageButton),
             defaultValue: null);
 
         public object Command { get; set; }
         public static readonly BindableProperty CommandProperty = BindableProperty.Create(
             "Command",
             typeof(object),
-            typeof(ImageButtonView),
+            typeof(ImageButton),
             null,
             BindingMode.TwoWay,
             propertyChanged: (bindable, oldValue, newValue) =>
             {
-                var view = bindable as ImageButtonView;
+                var view = bindable as ImageButton;
                 view.Command = newValue;
             });
 

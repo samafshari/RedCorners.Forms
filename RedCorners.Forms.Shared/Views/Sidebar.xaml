@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<rf:AliveContentView
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:rf="clr-namespace:RedCorners.Forms"
+    x:Class="RedCorners.Forms.Sidebar"
+    HorizontalOptions="Fill"
+    VerticalOptions="Fill"
+    IsVisible="{Binding IsSidebarOpen, Mode=TwoWay}">
+    <rf:AliveContentView.Content>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition x:Name="colLeft" />
+                <ColumnDefinition x:Name="colRight" />
+            </Grid.ColumnDefinitions>
+        
+            <Button 
+                x:Name="btnDismiss" 
+                HorizontalOptions="Fill" 
+                VerticalOptions="Fill" 
+                BackgroundColor="Transparent"
+                Grid.Column="0" 
+                Grid.ColumnSpan="2" />
+            <rf:AliveContentView
+                x:Name="content"
+                HorizontalOptions="Fill"
+                VerticalOptions="Fill" />
+        </Grid>
+    </rf:AliveContentView.Content>
+</rf:AliveContentView>

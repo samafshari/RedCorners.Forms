@@ -6,11 +6,11 @@ using System.Reflection;
 
 namespace RedCorners.Forms
 {
-    public class HorizontalShadowView : Image
+    public class HorizontalShadow : Image
     {
-        public HorizontalShadowView()
+        public HorizontalShadow()
         {
-            Source = ImageSource.FromResource("RedCorners.Forms.gradienth.png", typeof(HorizontalShadowView).GetTypeInfo().Assembly);
+            Source = ImageSource.FromResource("RedCorners.Forms.gradienth.png", typeof(HorizontalShadow).GetTypeInfo().Assembly);
             Aspect = Aspect.Fill;
             HorizontalOptions = LayoutOptions.FillAndExpand;
             HeightRequest = 10;
@@ -20,12 +20,12 @@ namespace RedCorners.Forms
         }
     }
 
-    public class HorizontalShadowView2 : HorizontalShadowView
+    public class HorizontalShadowView2 : HorizontalShadow
     {
         public HorizontalShadowView2()
         {
             VerticalOptions = LayoutOptions.End;
-            Source = ImageSource.FromResource("RedCorners.Forms.gradienth2.png", typeof(HorizontalShadowView).GetTypeInfo().Assembly);
+            Source = ImageSource.FromResource("RedCorners.Forms.gradienth2.png", typeof(HorizontalShadow).GetTypeInfo().Assembly);
         }
     }
 }

@@ -4,40 +4,91 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:views="clr-namespace:RedCorners.Demo.Views"
     xmlns:rf="clr-namespace:RedCorners.Forms;assembly=RedCorners.Forms"
+    xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:vm="clr-namespace:RedCorners.Demo.ViewModels"
+    FixBottomPadding="False"
+    FixTopPadding="False"
+    UIStatusBarStyle="Default"
+    AndroidTranslucentStatus="{Binding AndroidTranslucentStatus}"
+    AndroidStatusBarColor="{Binding AndroidStatusBarColor}"
     x:Class="RedCorners.Demo.Views.MainPage">
+    <rf:AliveContentPage.BindingContext>
+        <vm:MainViewModel />
+    </rf:AliveContentPage.BindingContext>
 
-    <StackLayout>
-        <Button Text="Test Modal">
-            <Button.Command>
-                <rf:PageCommand IsModal="True">
-                    <rf:AliveContentPage>
-                        <Grid>
-                            <Button Text="Pop" HorizontalOptions="Center" VerticalOptions="Center">
-                                <Button.Command>
-                                    <rf:PopCommand FireOnce="False" FireDelay="1000" />
-                                </Button.Command>
-                            </Button>
-                        </Grid>
-                    </rf:AliveContentPage>
-                </rf:PageCommand>
-            </Button.Command>
-        </Button>
+    <Grid>
+        <rf:AliveContentView FixTopPadding="True" BackgroundColor="Transparent">
+            <StackLayout>
 
-        <Button Text="Show Modal From Page">
-            <Button.Command>
-                <rf:PageCommand IsModal="True">
-                    <rf:PageCommand.Page>
-                        <views:CounterPage />
-                    </rf:PageCommand.Page>
-                </rf:PageCommand>
-            </Button.Command>
-        </Button>
+                <ff:CachedImage
+                    HorizontalOptions="Fill"
+                    HeightRequest="300"
+                    Aspect="AspectFill"
+                    Source="{Binding BackgroundImage}" />
+                
+                <Button Text="Test Modal">
+                    <Button.Command>
+                        <rf:PageCommand IsModal="True">
+                            <rf:AliveContentPage>
+                                <Grid>
+                                    <Button Text="Pop" HorizontalOptions="Center" VerticalOptions="Center">
+                                        <Button.Command>
+                                            <rf:PopCommand FireOnce="False" FireDelay="1000" />
+                                        </Button.Command>
+                                    </Button>
+                                </Grid>
+                            </rf:AliveContentPage>
+                        </rf:PageCommand>
+                    </Button.Command>
+                </Button>
+
+                <Button Text="Show Modal From Page">
+                    <Button.Command>
+                        <rf:PageCommand IsModal="True">
+                            <rf:PageCommand.Page>
+                                <views:CounterPage />
+                            </rf:PageCommand.Page>
+                        </rf:PageCommand>
+                    </Button.Command>
+                </Button>
+
+                <Button Text="Show Modal From Type">
+                    <Button.Command>
+                        <rf:PageCommand IsModal="True" PageType="{Type views:CounterPage}" />
+                    </Button.Command>
+                </Button>
+
+                <Button Text="Show Sidebar" Command="{Binding ShowSidebarCommand}" />
+
+                <Grid>
+                    <Label Text="AndroidTranslucentStatus" />
+                    <Switch HorizontalOptions="End" IsToggled="{Binding AndroidTranslucentStatus}" />
+                </Grid>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0" Text="Blue" Command="{Binding BlueStatusBarCommand}" />
+                    <Button Grid.Column="1" Text="Green" Command="{Binding GreenStatusBarCommand}" />
+                </Grid>
+            </StackLayout>
+        </rf:AliveContentView>
         
-        <Button Text="Show Modal From Type">
-            <Button.Command>
-                <rf:PageCommand IsModal="True" PageType="{Type views:CounterPage}" />
-            </Button.Command>
-        </Button>
-    </StackLayout>
-
+        <rf:Sidebar Side="Right">
+            <Frame
+                HasShadow="True"
+                HorizontalOptions="Fill"
+                VerticalOptions="Fill"
+                BackgroundColor="#333333"
+                Padding="{Static rf:Values.PageMargin}"
+                CornerRadius="0">
+                <Grid>
+                    <Label Text="Menu" TextColor="White" FontSize="Large" />
+                </Grid>
+            </Frame>
+        </rf:Sidebar>
+    </Grid>
+    
 </rf:AliveContentPage>

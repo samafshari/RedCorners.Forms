@@ -7,8 +7,8 @@
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TemplateGuid>{c9e5eea5-ca05-42a1-839b-61506e0a37df}</TemplateGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>RedCorners.Demo.Droid</RootNamespace>
-    <AssemblyName>RedCorners.Demo.Android</AssemblyName>
+    <RootNamespace>RedCorners.Demo</RootNamespace>
+    <AssemblyName>RedCorners.Demo</AssemblyName>
     <AndroidApplication>True</AndroidApplication>
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
     <AndroidResgenClass>Resource</AndroidResgenClass>
@@ -51,6 +51,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Xamarin.FFImageLoading">
+      <Version>2.4.9.961</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.FFImageLoading.Forms">
+      <Version>2.4.9.961</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.Forms" Version="3.6.0.344457" />
     <PackageReference Include="Xamarin.Android.Support.Design" Version="28.0.0.1" />
     <PackageReference Include="Xamarin.Android.Support.v7.AppCompat" Version="28.0.0.1" />
@@ -94,9 +100,9 @@
     <Folder Include="Resources\drawable\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\RedCorners.Forms\RedCorners.Forms.csproj">
-      <Project>{7fc6cb6c-edd0-4b27-9af7-b1facc330ea3}</Project>
-      <Name>RedCorners.Forms</Name>
+    <ProjectReference Include="..\..\RedCorners.Forms.Droid\RedCorners.Forms.Droid.csproj">
+      <Project>{c0d002e0-8a8b-4ff7-9aa1-336531905f97}</Project>
+      <Name>RedCorners.Forms.Droid</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="..\..\RedCorners.Demo.Shared\RedCorners.Demo.Shared.projitems" Label="Shared" />

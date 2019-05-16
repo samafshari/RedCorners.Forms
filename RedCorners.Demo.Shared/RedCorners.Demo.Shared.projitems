@@ -15,6 +15,7 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Models\LooseMessages.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\CounterViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\CounterPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
