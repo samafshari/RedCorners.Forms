@@ -6,29 +6,25 @@ using Xamarin.Forms;
 using System.Linq;
 using System.Runtime.CompilerServices;
 
-#if __ANDROID__
-using Android.OS;
-using Android.Views;
-#endif
-
 namespace RedCorners.Forms
 {
+    public enum UIStatusBarStyles
+    {
+        Default = 0,
+        //BlackTranslucent = 1,
+        LightContent = 1,
+        BlackOpaque = 2
+    }
+
     public class AliveContentPage : ContentPage
     {
-        public enum UIStatusBarStyles
-        {
-            Default = 0,
-            BlackTranslucent = 1,
-            LightContent = 1,
-            BlackOpaque = 2
-        }
-
         bool isStarted = false;
         WeakReference<BindableModel> lastContext = null;
 
         public event EventHandler OnAppeared;
         public event EventHandler OnDisappeared;
-        public Action UpdateAndroidStuff;
+
+        public Action PlatformUpdate;
 
         public bool FixTopPadding
         {
@@ -58,6 +54,12 @@ namespace RedCorners.Forms
         {
             get => (bool)GetValue(AndroidTranslucentStatusProperty);
             set => SetValue(AndroidTranslucentStatusProperty, value);
+        }
+
+        public bool AndroidLayoutInScreen
+        {
+            get => (bool)GetValue(AndroidLayoutInScreenProperty);
+            set => SetValue(AndroidLayoutInScreenProperty, value);
         }
 
         bool isPaddingFixed;
@@ -91,9 +93,7 @@ namespace RedCorners.Forms
             typeof(AliveContentPage),
             UIStatusBarStyles.LightContent,
             BindingMode.TwoWay,
-            propertyChanged: (bindable, oldVal, newVal) =>
-            {
-            });
+            propertyChanged: UpdateSettings);
 
         public static BindableProperty AndroidStatusBarColorProperty = BindableProperty.Create(
             nameof(AndroidStatusBarColor),
@@ -101,7 +101,7 @@ namespace RedCorners.Forms
             typeof(AliveContentPage),
             Color.Black,
             BindingMode.TwoWay,
-            propertyChanged: UpdateAndroidSettings);
+            propertyChanged: UpdateSettings);
 
         public static BindableProperty AndroidTranslucentStatusProperty = BindableProperty.Create(
             nameof(AndroidTranslucentStatus),
@@ -109,11 +109,19 @@ namespace RedCorners.Forms
             typeof(AliveContentPage),
             true,
             BindingMode.TwoWay,
-            propertyChanged: UpdateAndroidSettings);
+            propertyChanged: UpdateSettings);
 
-        static void UpdateAndroidSettings(BindableObject bindable, object oldVal, object newVal)
+        public static BindableProperty AndroidLayoutInScreenProperty = BindableProperty.Create(
+            nameof(AndroidLayoutInScreen),
+            typeof(bool),
+            typeof(AliveContentPage),
+            true,
+            BindingMode.TwoWay,
+            propertyChanged: UpdateSettings);
+
+        static void UpdateSettings(BindableObject bindable, object oldVal, object newVal)
         {
-            (bindable as AliveContentPage)?.UpdateAndroidStuff?.Invoke();
+            (bindable as AliveContentPage)?.PlatformUpdate?.Invoke();
         }
 
         public AliveContentPage()

@@ -17,6 +17,26 @@ namespace RedCorners.Demo.ViewModels
             set => SetProperty(ref _androidTranslucentStatus, value);
         }
 
+        bool _androidLayoutInScreen = false;
+        public bool AndroidLayoutInScreen
+        {
+            get => _androidLayoutInScreen;
+            set => SetProperty(ref _androidLayoutInScreen, value);
+        }
+
+        bool _lightContent = true;
+        public bool LightContent
+        {
+            get => _lightContent;
+            set
+            {
+                _lightContent = value;
+                UpdateProperties();
+            }
+        }
+
+        public UIStatusBarStyles UIStatusBarStyle => LightContent ? UIStatusBarStyles.LightContent : UIStatusBarStyles.Default;
+
         Color _androidStatusBarColor = Color.Red;
         public Color AndroidStatusBarColor
         {
@@ -29,6 +49,7 @@ namespace RedCorners.Demo.ViewModels
         {
             get => _side;
         }
+
         public bool IsRight
         {
             get => _side == Sides.Right;

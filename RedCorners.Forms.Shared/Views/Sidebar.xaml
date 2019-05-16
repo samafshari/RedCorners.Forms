@@ -8,7 +8,7 @@
     VerticalOptions="Fill"
     IsVisible="{Binding IsSidebarOpen, Mode=TwoWay}">
     <rf:AliveContentView.Content>
-        <Grid>
+        <Grid x:Name="mainGrid">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition x:Name="colLeft" />
                 <ColumnDefinition x:Name="colRight" />

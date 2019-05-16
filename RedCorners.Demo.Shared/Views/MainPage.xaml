@@ -8,7 +8,8 @@
     xmlns:vm="clr-namespace:RedCorners.Demo.ViewModels"
     FixBottomPadding="False"
     FixTopPadding="False"
-    UIStatusBarStyle="LightContent"
+    UIStatusBarStyle="{Binding UIStatusBarStyle}"
+    AndroidLayoutInScreen="{Binding AndroidLayoutInScreen}"
     AndroidTranslucentStatus="{Binding AndroidTranslucentStatus}"
     AndroidStatusBarColor="{Binding AndroidStatusBarColor}"
     x:Class="RedCorners.Demo.Views.MainPage">
@@ -58,6 +59,16 @@
                 <Button Text="Show Sidebar" Command="{Binding ShowSidebarCommand}" />
 
                 <Grid Padding="2" BackgroundColor="#99000000">
+                    <Label Text="LightContent" TextColor="White" VerticalOptions="Center" />
+                    <Switch HorizontalOptions="End" IsToggled="{Binding LightContent}" />
+                </Grid>
+                
+                <Grid Padding="2" BackgroundColor="#99000000">
+                    <Label Text="AndroidLayoutInScreen" TextColor="White" VerticalOptions="Center" />
+                    <Switch HorizontalOptions="End" IsToggled="{Binding AndroidLayoutInScreen}" />
+                </Grid>
+                
+                <Grid Padding="2" BackgroundColor="#99000000">
                     <Label Text="AndroidTranslucentStatus" TextColor="White" VerticalOptions="Center" />
                     <Switch HorizontalOptions="End" IsToggled="{Binding AndroidTranslucentStatus}" />
                 </Grid>
@@ -83,7 +94,7 @@
                 HasShadow="True"
                 HorizontalOptions="Fill"
                 VerticalOptions="Fill"
-                BackgroundColor="#333333"
+                BackgroundColor="#77000000"
                 Padding="{Static rf:Values.PageMargin}"
                 CornerRadius="0">
                 <Grid Padding="10">

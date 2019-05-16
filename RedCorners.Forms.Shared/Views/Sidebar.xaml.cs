@@ -68,6 +68,11 @@ namespace RedCorners.Forms
             set => SetValue(DoesSlideProperty, value);
         }
 
+        public bool IsSwipeEnabled
+        {
+            get => (bool)GetValue(IsSwipeEnabledProperty);
+            set => SetValue(IsSwipeEnabledProperty, value);
+        }
 
         public static readonly BindableProperty BodyProperty = BindableProperty.Create(
             propertyName: nameof(Body),
@@ -142,6 +147,17 @@ namespace RedCorners.Forms
             {
             });
 
+        public static readonly BindableProperty IsSwipeEnabledProperty = BindableProperty.Create(
+            propertyName: nameof(IsSwipeEnabled),
+            returnType: typeof(bool),
+            declaringType: typeof(Sidebar),
+            defaultValue: true,
+            defaultBindingMode: BindingMode.TwoWay,
+            propertyChanged: (bindable, oldVal, newVal) =>
+            {
+            });
+
+        SwipeGestureRecognizer swipeRight = null, swipeLeft = null;
         public Sidebar()
         {
             InitializeComponent();
@@ -150,6 +166,35 @@ namespace RedCorners.Forms
             var tap = new TapGestureRecognizer();
             tap.Tapped += BtnDismiss_Clicked;
             btnDismiss.GestureRecognizers.Add(tap);
+        }
+
+        protected override void OnParentSet()
+        {
+            base.OnParentSet();
+            if (Parent is View view && swipeRight == null)
+            {
+                swipeRight = new SwipeGestureRecognizer();
+                swipeRight.Swiped += Swipe_Swiped;
+                swipeRight.Direction = SwipeDirection.Right;
+                view.GestureRecognizers.Add(swipeRight);
+
+                swipeLeft = new SwipeGestureRecognizer();
+                swipeLeft.Swiped += Swipe_Swiped;
+                swipeLeft.Direction = SwipeDirection.Left;
+                view.GestureRecognizers.Add(swipeLeft);
+            }
+
+            UpdateLayout();
+        }
+
+        private void Swipe_Swiped(object sender, SwipedEventArgs e)
+        {
+            if (!IsSwipeEnabled) return;
+            if (IsVisible) return;
+
+            if ((Side == Sides.Right && e.Direction == SwipeDirection.Left) ||
+                (Side == Sides.Left && e.Direction == SwipeDirection.Right))
+                IsVisible = true;
         }
 
         private void BtnDismiss_Clicked(object sender, EventArgs e)
@@ -163,16 +208,26 @@ namespace RedCorners.Forms
             {
                 colLeft.Width = ContentWidth;
                 colRight.Width = GridLength.Star;
+
                 Grid.SetColumn(content, 0);
             }
             else
             {
                 colLeft.Width = GridLength.Star;
                 colRight.Width = ContentWidth;
+
                 Grid.SetColumn(content, 1);
             }
 
             content.Content = Body;
+        }
+
+        protected override void InvalidateLayout()
+        {
+            mainGrid.Children.Remove(content);
+            UpdateLayout();
+            mainGrid.Children.Add(content);
+            UpdateChildrenLayout();
         }
 
         bool oldVisible = false;
@@ -196,11 +251,14 @@ namespace RedCorners.Forms
             if (!DoesSlide) return;
             var baseView = (Parent as View) ?? this;
             var baseWidth = baseView.Width;
+            if (Width > 0) baseWidth = Width;
             var translation = ContentWidth.IsStar ?
                (baseWidth * (1.0f / ContentWidth.Value)) :
                ContentWidth.Value;
             if (Side == Sides.Left) translation *= -1;
             content.TranslationX = translation;
+
+            Console.WriteLine($"BaseWidth: {baseWidth}, Translation: {translation}, Side: {Side}");
         }
 
         void OpenSlide()

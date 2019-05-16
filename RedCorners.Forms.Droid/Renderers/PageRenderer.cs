@@ -31,7 +31,7 @@ namespace RedCorners.Forms.Renderers
             if (e.NewElement is AliveContentPage page)
             {
                 UpdateAndroidStuff();
-                page.UpdateAndroidStuff = UpdateAndroidStuff;
+                page.PlatformUpdate = UpdateAndroidStuff;
             }
         }
 
@@ -43,8 +43,16 @@ namespace RedCorners.Forms.Renderers
                 var page = Element as AliveContentPage;
                 if (activity != null)
                 {
-                    activity.Window.DecorView.SetFitsSystemWindows(true);
-                    activity.Window.AddFlags(WindowManagerFlags.LayoutInScreen);
+                    if (page.AndroidLayoutInScreen)
+                    {
+                        activity.Window.DecorView.SetFitsSystemWindows(true);
+                        activity.Window.AddFlags(WindowManagerFlags.LayoutInScreen);
+                    }
+                    else
+                    {
+                        activity.Window.DecorView.SetFitsSystemWindows(false);
+                        activity.Window.ClearFlags(WindowManagerFlags.LayoutInScreen);
+                    }
 
                     if (page.AndroidTranslucentStatus)
                         activity.Window.AddFlags(WindowManagerFlags.TranslucentStatus);
@@ -53,8 +61,7 @@ namespace RedCorners.Forms.Renderers
 
                     activity.Window.SetStatusBarColor(page.AndroidStatusBarColor.ToAndroid());
 
-                    ForceLayout();
-                    page.ForceLayout();
+                    UpdateLayout();
                 }
             }
         }
