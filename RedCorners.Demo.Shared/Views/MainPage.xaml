@@ -58,7 +58,7 @@
 
                 <Button Text="Show Sidebar" Command="{Binding ShowSidebarCommand}" />
 
-                <Grid Padding="2" BackgroundColor="#99000000">
+                <Grid Padding="2" BackgroundColor="#EE000000">
                     <Label Text="LightContent" TextColor="White" VerticalOptions="Center" />
                     <Switch HorizontalOptions="End" IsToggled="{Binding LightContent}" />
                 </Grid>
@@ -94,12 +94,14 @@
                 HasShadow="True"
                 HorizontalOptions="Fill"
                 VerticalOptions="Fill"
-                BackgroundColor="#77000000"
+                BackgroundColor="#BB000000"
                 Padding="{Static rf:Values.PageMargin}"
                 CornerRadius="0">
-                <Grid Padding="10">
-                    <Label Text="Menu" TextColor="White" FontSize="Large" />
-                </Grid>
+                <StackLayout Padding="10" Spacing="20">
+                    <ff:CachedImage Source="http://ooze.redcorners.com/redcorners_forms_logo.png" HorizontalOptions="Center" HeightRequest="128" WidthRequest="128" />
+                    <Label Text="RedCorners.Forms" TextColor="White" FontSize="Large" HorizontalTextAlignment="Center" HorizontalOptions="Center" />
+                    <BoxView HeightRequest="1" HorizontalOptions="Fill" BackgroundColor="White" />
+                </StackLayout>
             </Frame>
         </rf:Sidebar>
     </Grid>
