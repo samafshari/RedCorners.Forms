@@ -60,12 +60,6 @@ namespace RedCorners.Forms
             set => SetValue(AndroidTranslucentStatusProperty, value);
         }
 
-        //public bool AndroidLayoutInScreen
-        //{
-        //    get => (bool)GetValue(AndroidLayoutInScreenProperty);
-        //    set => SetValue(AndroidLayoutInScreenProperty, value);
-        //}
-
         bool isPaddingFixed;
         Thickness originalPadding;
 
@@ -116,14 +110,6 @@ namespace RedCorners.Forms
             true,
             BindingMode.TwoWay,
             propertyChanged: UpdateAndroidSettings);
-
-        //public static BindableProperty AndroidLayoutInScreenProperty = BindableProperty.Create(
-        //    nameof(AndroidLayoutInScreen),
-        //    typeof(bool),
-        //    typeof(AliveContentPage),
-        //    true,
-        //    BindingMode.TwoWay,
-        //    propertyChanged: UpdateAndroidSettings);
 
         static void UpdateAndroidSettings(BindableObject bindable, object oldVal, object newVal)
         {

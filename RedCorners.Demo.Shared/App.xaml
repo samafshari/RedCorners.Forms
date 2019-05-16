@@ -4,6 +4,10 @@
              xmlns:rf="clr-namespace:RedCorners.Forms;assembly=RedCorners.Forms"
              x:Class="RedCorners.Demo.App">
     <Application.Resources>
-
+        <ResourceDictionary>
+            <Style TargetType="Button">
+                <Setter Property="Visual" Value="Material" />
+            </Style>
+        </ResourceDictionary>
     </Application.Resources>
 </rf:AppBase>

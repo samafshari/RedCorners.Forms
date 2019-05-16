@@ -8,7 +8,7 @@
     xmlns:vm="clr-namespace:RedCorners.Demo.ViewModels"
     FixBottomPadding="False"
     FixTopPadding="False"
-    UIStatusBarStyle="Default"
+    UIStatusBarStyle="LightContent"
     AndroidTranslucentStatus="{Binding AndroidTranslucentStatus}"
     AndroidStatusBarColor="{Binding AndroidStatusBarColor}"
     x:Class="RedCorners.Demo.Views.MainPage">
@@ -17,15 +17,12 @@
     </rf:AliveContentPage.BindingContext>
 
     <Grid>
+        <ff:CachedImage
+            Aspect="AspectFill"
+            Source="{Binding BackgroundImage}" />
+        
         <rf:AliveContentView FixTopPadding="True" BackgroundColor="Transparent">
-            <StackLayout>
-
-                <ff:CachedImage
-                    HorizontalOptions="Fill"
-                    HeightRequest="300"
-                    Aspect="AspectFill"
-                    Source="{Binding BackgroundImage}" />
-                
+            <StackLayout Padding="10">
                 <Button Text="Test Modal">
                     <Button.Command>
                         <rf:PageCommand IsModal="True">
@@ -60,11 +57,16 @@
 
                 <Button Text="Show Sidebar" Command="{Binding ShowSidebarCommand}" />
 
-                <Grid>
-                    <Label Text="AndroidTranslucentStatus" />
+                <Grid Padding="2" BackgroundColor="#99000000">
+                    <Label Text="AndroidTranslucentStatus" TextColor="White" VerticalOptions="Center" />
                     <Switch HorizontalOptions="End" IsToggled="{Binding AndroidTranslucentStatus}" />
                 </Grid>
 
+                <Grid Padding="2" BackgroundColor="#99000000">
+                    <Label Text="IsRight" TextColor="White" VerticalOptions="Center" />
+                    <Switch HorizontalOptions="End" IsToggled="{Binding IsRight}" />
+                </Grid>
+                
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
@@ -76,7 +78,7 @@
             </StackLayout>
         </rf:AliveContentView>
         
-        <rf:Sidebar Side="Right">
+        <rf:Sidebar Side="{Binding Side}">
             <Frame
                 HasShadow="True"
                 HorizontalOptions="Fill"
@@ -84,7 +86,7 @@
                 BackgroundColor="#333333"
                 Padding="{Static rf:Values.PageMargin}"
                 CornerRadius="0">
-                <Grid>
+                <Grid Padding="10">
                     <Label Text="Menu" TextColor="White" FontSize="Large" />
                 </Grid>
             </Frame>

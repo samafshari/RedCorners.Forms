@@ -44,6 +44,31 @@ namespace RedCorners.Forms
             set => SetValue(BackgroundColorProperty, value);
         }
 
+        public uint FadeDuration
+        {
+            get => (uint)GetValue(FadeDurationProperty);
+            set => SetValue(FadeDurationProperty, value);
+        }
+
+        public bool DoesFadeIn
+        {
+            get => (bool)GetValue(DoesFadeInProperty);
+            set => SetValue(DoesFadeInProperty, value);
+        }
+
+        public uint SlideDuration
+        {
+            get => (uint)GetValue(SlideDurationProperty);
+            set => SetValue(SlideDurationProperty, value);
+        }
+
+        public bool DoesSlide
+        {
+            get => (bool)GetValue(DoesSlideProperty);
+            set => SetValue(DoesSlideProperty, value);
+        }
+
+
         public static readonly BindableProperty BodyProperty = BindableProperty.Create(
             propertyName: nameof(Body),
             returnType: typeof(View),
@@ -77,11 +102,54 @@ namespace RedCorners.Forms
                 (bindable as Sidebar)?.UpdateLayout();
             });
 
+        public static readonly BindableProperty FadeDurationProperty = BindableProperty.Create(
+            propertyName: nameof(FadeDuration),
+            returnType: typeof(uint),
+            declaringType: typeof(Sidebar),
+            defaultValue: (uint)100,
+            defaultBindingMode: BindingMode.TwoWay,
+            propertyChanged: (bindable, oldVal, newVal) =>
+            {
+            });
+
+        public static readonly BindableProperty DoesFadeInProperty = BindableProperty.Create(
+            propertyName: nameof(DoesFadeIn),
+            returnType: typeof(bool),
+            declaringType: typeof(Sidebar),
+            defaultValue: true,
+            defaultBindingMode: BindingMode.TwoWay,
+            propertyChanged: (bindable, oldVal, newVal) =>
+            {
+            });
+
+        public static readonly BindableProperty SlideDurationProperty = BindableProperty.Create(
+            propertyName: nameof(SlideDuration),
+            returnType: typeof(uint),
+            declaringType: typeof(Sidebar),
+            defaultValue: (uint)250,
+            defaultBindingMode: BindingMode.TwoWay,
+            propertyChanged: (bindable, oldVal, newVal) =>
+            {
+            });
+
+        public static readonly BindableProperty DoesSlideProperty = BindableProperty.Create(
+            propertyName: nameof(DoesSlide),
+            returnType: typeof(bool),
+            declaringType: typeof(Sidebar),
+            defaultValue: true,
+            defaultBindingMode: BindingMode.TwoWay,
+            propertyChanged: (bindable, oldVal, newVal) =>
+            {
+            });
+
         public Sidebar()
         {
             InitializeComponent();
             UpdateLayout();
-            btnDismiss.Clicked += BtnDismiss_Clicked;
+
+            var tap = new TapGestureRecognizer();
+            tap.Tapped += BtnDismiss_Clicked;
+            btnDismiss.GestureRecognizers.Add(tap);
         }
 
         private void BtnDismiss_Clicked(object sender, EventArgs e)
@@ -115,8 +183,52 @@ namespace RedCorners.Forms
             if (propertyName == nameof(IsVisible))
             {
                 oldVisible = IsVisible;
-                if (!IsVisible) Opacity = 0;
+                if (!IsVisible)
+                {
+                    Opacity = 0;
+                    CloseSlide();
+                }
             }
+        }
+
+        void CloseSlide()
+        {
+            if (!DoesSlide) return;
+            var baseView = (Parent as View) ?? this;
+            var baseWidth = baseView.Width;
+            var translation = ContentWidth.IsStar ?
+               (baseWidth * (1.0f / ContentWidth.Value)) :
+               ContentWidth.Value;
+            if (Side == Sides.Left) translation *= -1;
+            content.TranslationX = translation;
+        }
+
+        void OpenSlide()
+        {
+            if (!DoesSlide)
+            {
+                content.TranslationX = 0;
+                return;
+            }
+
+            content.TranslateTo(0, 0, SlideDuration);
+        }
+
+        void FadeIn()
+        {
+            if (!DoesFadeIn)
+            {
+                Opacity = 1;
+                return;
+            }
+
+            Opacity = 0.1;
+            this.FadeTo(1.0, FadeDuration);
+        }
+
+        void FadeOut()
+        {
+            Opacity = 0;
         }
 
         protected override void OnPropertyChanged([CallerMemberName] string propertyName = null)
@@ -127,11 +239,12 @@ namespace RedCorners.Forms
             {
                 if (!oldVisible && IsVisible)
                 {
-                    Opacity = 0;
-                    this.FadeTo(1.0, 100);
+                    FadeIn();
+                    CloseSlide();
+                    OpenSlide();
                 }
                 else if (!IsVisible)
-                    Opacity = 0;
+                    FadeOut();
             }
         }
     }

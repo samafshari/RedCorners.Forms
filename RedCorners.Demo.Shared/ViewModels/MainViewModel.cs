@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;
 using System.Reflection;
+using static RedCorners.Forms.Sidebar;
 
 namespace RedCorners.Demo.ViewModels
 {
@@ -21,6 +22,21 @@ namespace RedCorners.Demo.ViewModels
         {
             get => _androidStatusBarColor;
             set => SetProperty(ref _androidStatusBarColor, value);
+        }
+
+        Sides _side = Sides.Right;
+        public Sides Side
+        {
+            get => _side;
+        }
+        public bool IsRight
+        {
+            get => _side == Sides.Right;
+            set
+            {
+                _side = value ? Sides.Right : Sides.Left;
+                UpdateProperties();
+            }
         }
 
         public Command BlueStatusBarCommand => new Command(() => AndroidStatusBarColor = Color.FromHex("#770000FF"));

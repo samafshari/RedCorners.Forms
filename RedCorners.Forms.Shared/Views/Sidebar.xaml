@@ -14,7 +14,7 @@
                 <ColumnDefinition x:Name="colRight" />
             </Grid.ColumnDefinitions>
         
-            <Button 
+            <Grid 
                 x:Name="btnDismiss" 
                 HorizontalOptions="Fill" 
                 VerticalOptions="Fill" 

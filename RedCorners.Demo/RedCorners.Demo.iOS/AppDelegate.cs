@@ -4,6 +4,7 @@ using System.Linq;
 using FFImageLoading.Forms.Platform;
 using Foundation;
 using UIKit;
+using Xamarin.Forms;
 
 namespace RedCorners.Demo.iOS
 {
@@ -23,6 +24,7 @@ namespace RedCorners.Demo.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
+            FormsMaterial.Init();
             CachedImageRenderer.Init();
 
             LoadApplication(new App());

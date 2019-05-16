@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>RedCorners.Forms</id>
-    <version>4.7.3-beta</version>
+    <version>4.7.4-beta</version>
     <title>RedCorners.Forms</title>
     <authors>Saeed Afshari and NeatCapital OÜ</authors>
     <owners>NeatCapital OÜ</owners>
@@ -19,6 +19,10 @@
           <dependency id="Xamarin.Forms" version="3.6.0.344457" />
           <dependency id="RedCorners" version="4.1.1" />
       </group>
+	  
+	  <group targetFramework="MonoAndroid80">
+          <dependency id="Xamarin.Android.Support.v7.AppCompat" version="28.0.0.1" />
+      </group>
     </dependencies>
     
     <license type="file">license.txt</license>
@@ -32,7 +36,7 @@
       target="lib\win\RedCorners.Forms.dll" />
 	  
 	<file 
-      src="RedCorners.Forms\bin\Release\netstandard2.0\RedCorners.Forms.dll" 
+      src="RedCorners.Forms.Droid\bin\Release\RedCorners.Forms.dll" 
       target="lib\MonoAndroid80\RedCorners.Forms.dll" />
 	  
     <file 
