@@ -10,6 +10,25 @@ In a Xamarin.Forms solution with a Shared Project structure, install the NuGet s
 
 NuGet: [https://www.nuget.org/packages/RedCorners.Forms](https://www.nuget.org/packages/RedCorners.Forms)
 
+<table>
+<tr>
+<td>
+<img src="Screenshots/1.png?raw=true" />
+</td>
+<td>
+<img src="Screenshots/2.png?raw=true" />
+</td>
+</tr>
+<tr>
+<td>
+<img src="Screenshots/3.png?raw=true" />
+</td>
+<td>
+<img src="Screenshots/4.png?raw=true" />
+</td>
+</tr>
+</table>
+
 ### Dependencies
 
 RedCorners.Forms depends on the following packages for both platforms:
