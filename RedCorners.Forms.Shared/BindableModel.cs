@@ -51,7 +51,8 @@ namespace RedCorners.Forms
             }
         }
 
-        public Command ShowSidebarCommand => new Command(() => IsSidebarOpen = true);
+        public virtual Command ShowSidebarCommand => new Command(() => IsSidebarOpen = true);
+        public virtual Command HideSidebarCommand => new Command(() => IsSidebarOpen = false);
 
         [ManualUpdate] public bool IsFailed => Status == TaskStatuses.Fail;
         [ManualUpdate] public bool IsFinished => Status == TaskStatuses.Success;

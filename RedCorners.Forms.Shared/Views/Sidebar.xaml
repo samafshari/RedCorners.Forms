@@ -13,14 +13,20 @@
                 <ColumnDefinition x:Name="colLeft" />
                 <ColumnDefinition x:Name="colRight" />
             </Grid.ColumnDefinitions>
-        
+
+            <Grid.RowDefinitions>
+                <RowDefinition x:Name="rowTop" />
+                <RowDefinition x:Name="rowBottom" />
+            </Grid.RowDefinitions>
             <Grid 
                 x:Name="btnDismiss" 
                 HorizontalOptions="Fill" 
                 VerticalOptions="Fill" 
                 BackgroundColor="Transparent"
                 Grid.Column="0" 
-                Grid.ColumnSpan="2" />
+                Grid.Row="0"
+                Grid.ColumnSpan="2"
+                Grid.RowSpan="2" />
             <rf:AliveContentView
                 x:Name="content"
                 HorizontalOptions="Fill"

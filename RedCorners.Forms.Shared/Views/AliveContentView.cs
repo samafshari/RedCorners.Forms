@@ -23,9 +23,6 @@ namespace RedCorners.Forms
             set => SetValue(FixBottomPaddingProperty, value);
         }
 
-        bool isPaddingFixed;
-        Thickness originalPadding;
-
         public static BindableProperty FixTopPaddingProperty = BindableProperty.Create(
             nameof(FixTopPadding),
             typeof(bool),
@@ -48,31 +45,23 @@ namespace RedCorners.Forms
                 (bindable as AliveContentView).AdjustPadding();
             });
 
+        Thickness? originalPadding;
+
         void AdjustPadding()
         {
-            if (FixTopPadding)
+            if (originalPadding == null)
             {
-                if (!isPaddingFixed)
-                {
-                    originalPadding = Padding;
-                    isPaddingFixed = true;
-
-                }
-
-                Padding = NotchSystem.Instance.TopMargin;
-            }
-            else if (isPaddingFixed)
-            {
-                Padding = originalPadding;
-                isPaddingFixed = false;
+                originalPadding = Padding;
             }
 
-            if (FixBottomPadding && NotchSystem.Instance.HasNotch)
-            {
-                var padding = Padding;
-                padding.Bottom = NotchSystem.Instance.BottomMargin.Bottom + 10;
-                Padding = padding;
-            }
+            var pageMargin = NotchSystem.Instance.GetPageMargin();
+            var top = FixTopPadding ? pageMargin.Top : originalPadding.Value.Top;
+            var bottom = FixBottomPadding ? pageMargin.Bottom : originalPadding.Value.Bottom;
+            Padding = new Thickness(
+                originalPadding.Value.Left,
+                top,
+                originalPadding.Value.Right,
+                bottom);
         }
 
         void TryHook(AliveContentPage page)

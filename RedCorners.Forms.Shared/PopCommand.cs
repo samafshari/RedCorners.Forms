@@ -16,7 +16,7 @@ namespace RedCorners.Forms
             nameof(FireOnce),
             typeof(bool),
             typeof(PopCommand),
-            defaultValue: true,
+            defaultValue: false,
             defaultBindingMode: BindingMode.TwoWay);
 
         public bool FireOnce

@@ -44,25 +44,39 @@ namespace RedCorners.Demo.ViewModels
             set => SetProperty(ref _androidStatusBarColor, value);
         }
 
-        Sides _side = Sides.Right;
-        public Sides Side
+        SidebarSides _side = SidebarSides.Right;
+        public SidebarSides Side
         {
             get => _side;
+            set => SetProperty(ref _side, value);
         }
 
-        public bool IsRight
+        bool _isFullSize = false;
+        public bool IsFullSize
         {
-            get => _side == Sides.Right;
-            set
-            {
-                _side = value ? Sides.Right : Sides.Left;
-                UpdateProperties();
-            }
+            get => _isFullSize;
+            set => SetProperty(ref _isFullSize, value);
         }
 
+        GridLength _contentSize = GridLength.Star;
+        public GridLength ContentSize
+        {
+            get => _contentSize;
+            set => SetProperty(ref _contentSize, value);
+        }
         public Command BlueStatusBarCommand => new Command(() => AndroidStatusBarColor = Color.FromHex("#770000FF"));
         public Command GreenStatusBarCommand => new Command(() => AndroidStatusBarColor = Color.FromHex("#7700FF00"));
 
         public ImageSource BackgroundImage => "https://images.pexels.com/photos/163822/color-umbrella-red-yellow-163822.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260";
+
+        public Command<string> PlaceSidebarCommand => new Command<string>(side =>
+        {
+            if (Enum.TryParse<SidebarSides>(side, out var s))
+                Side = s;
+        });
+
+        public Command AutoSizeCommand => new Command(() => ContentSize = GridLength.Auto);
+        public Command Star2Command => new Command(() => ContentSize = new GridLength(2, GridUnitType.Star));
+        public Command Absolute200Command => new Command(() => ContentSize = new GridLength(200, GridUnitType.Absolute));
     }
 }

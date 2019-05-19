@@ -58,7 +58,7 @@
 
                 <Button Text="Show Sidebar" Command="{Binding ShowSidebarCommand}" />
 
-                <Grid Padding="2" BackgroundColor="#EE000000">
+                <Grid Padding="2" BackgroundColor="#99000000">
                     <Label Text="LightContent" TextColor="White" VerticalOptions="Center" />
                     <Switch HorizontalOptions="End" IsToggled="{Binding LightContent}" />
                 </Grid>
@@ -73,11 +73,6 @@
                     <Switch HorizontalOptions="End" IsToggled="{Binding AndroidTranslucentStatus}" />
                 </Grid>
 
-                <Grid Padding="2" BackgroundColor="#99000000">
-                    <Label Text="IsRight" TextColor="White" VerticalOptions="Center" />
-                    <Switch HorizontalOptions="End" IsToggled="{Binding IsRight}" />
-                </Grid>
-                
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
@@ -88,8 +83,8 @@
                 </Grid>
             </StackLayout>
         </rf:AliveContentView>
-        
-        <rf:Sidebar Side="{Binding Side}">
+
+        <rf:Sidebar Side="{Binding Side}" ContentSize="{Binding ContentSize}" IsFullSize="{Binding IsFullSize}">
             <Frame
                 HasShadow="True"
                 HorizontalOptions="Fill"
@@ -101,6 +96,27 @@
                     <ff:CachedImage Source="http://ooze.redcorners.com/redcorners_forms_logo.png" HorizontalOptions="Center" HeightRequest="128" WidthRequest="128" />
                     <Label Text="RedCorners.Forms" TextColor="White" FontSize="Large" HorizontalTextAlignment="Center" HorizontalOptions="Center" />
                     <BoxView HeightRequest="1" HorizontalOptions="Fill" BackgroundColor="White" />
+                    <Button Text="Hide Sidebar" Command="{Binding HideSidebarCommand}" />
+
+                    <Button Text="Left" Command="{Binding PlaceSidebarCommand}" CommandParameter="Left" />
+                    <Button Text="Right" Command="{Binding PlaceSidebarCommand}" CommandParameter="Right" />
+                    <Button Text="Top" Command="{Binding PlaceSidebarCommand}" CommandParameter="Top" />
+                    <Button Text="Bottom" Command="{Binding PlaceSidebarCommand}" CommandParameter="Bottom" />
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Button Grid.Column="0" Text="Auto" Command="{Binding AutoSizeCommand}" />
+                        <Button Grid.Column="1" Text="2*" Command="{Binding Star2Command}" />
+                        <Button Grid.Column="2" Text="200" Command="{Binding Absolute200Command}" />
+                    </Grid>
+                    <Grid>
+                        <Label Text="IsFullSize" VerticalOptions="Center" TextColor="White" />
+                        <Switch IsToggled="{Binding IsFullSize}" HorizontalOptions="End" />
+                    </Grid>
                 </StackLayout>
             </Frame>
         </rf:Sidebar>

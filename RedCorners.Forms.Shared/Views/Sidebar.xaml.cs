@@ -10,32 +10,34 @@ using Xamarin.Forms.Xaml;
 
 namespace RedCorners.Forms
 {
+    public enum SidebarSides
+    {
+        Left,
+        Right,
+        Top,
+        Bottom
+    }
+
     [ContentProperty("Body")]
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Sidebar 
     {
-        public enum Sides
-        {
-            Left,
-            Right
-        }
-
         public View Body
         {
             get => (View)GetValue(BodyProperty);
             set => SetValue(BodyProperty, value);
         }
 
-        public Sides Side
+        public SidebarSides Side
         {
-            get => (Sides)GetValue(SideProperty);
+            get => (SidebarSides)GetValue(SideProperty);
             set => SetValue(SideProperty, value);
         }
 
-        public GridLength ContentWidth
+        public GridLength ContentSize
         {
-            get => (GridLength)GetValue(ContentWidthProperty);
-            set => SetValue(ContentWidthProperty, value);
+            get => (GridLength)GetValue(ContentSizeProperty);
+            set => SetValue(ContentSizeProperty, value);
         }
 
         public new Color BackgroundColor
@@ -74,6 +76,12 @@ namespace RedCorners.Forms
             set => SetValue(IsSwipeEnabledProperty, value);
         }
 
+        public bool IsFullSize
+        {
+            get => (bool)GetValue(IsFullSizeProperty);
+            set => SetValue(IsFullSizeProperty, value);
+        }
+
         public static readonly BindableProperty BodyProperty = BindableProperty.Create(
             propertyName: nameof(Body),
             returnType: typeof(View),
@@ -87,17 +95,17 @@ namespace RedCorners.Forms
 
         public static readonly BindableProperty SideProperty = BindableProperty.Create(
             propertyName: nameof(Side),
-            returnType: typeof(Sides),
+            returnType: typeof(SidebarSides),
             declaringType: typeof(Sidebar),
-            defaultValue: Sides.Left,
+            defaultValue: SidebarSides.Left,
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
                 (bindable as Sidebar)?.UpdateLayout();
             });
 
-        public static readonly BindableProperty ContentWidthProperty = BindableProperty.Create(
-            propertyName: nameof(ContentWidth),
+        public static readonly BindableProperty ContentSizeProperty = BindableProperty.Create(
+            propertyName: nameof(ContentSize),
             returnType: typeof(GridLength),
             declaringType: typeof(Sidebar),
             defaultValue: new GridLength(3, GridUnitType.Star),
@@ -157,7 +165,20 @@ namespace RedCorners.Forms
             {
             });
 
-        SwipeGestureRecognizer swipeRight = null, swipeLeft = null;
+        public static readonly BindableProperty IsFullSizeProperty = BindableProperty.Create(
+            propertyName: nameof(IsFullSize),
+            returnType: typeof(bool),
+            declaringType: typeof(Sidebar),
+            defaultValue: false,
+            defaultBindingMode: BindingMode.TwoWay,
+            propertyChanged: (bindable, oldVal, newVal) =>
+            {
+                (bindable as Sidebar)?.UpdateLayout();
+            });
+
+        SwipeGestureRecognizer swipeRight = null, swipeLeft = null, swipeUp = null, swipeDown = null;
+        SwipeGestureRecognizer swipeRightIn = null, swipeLeftIn = null, swipeUpIn = null, swipeDownIn = null;
+
         public Sidebar()
         {
             InitializeComponent();
@@ -182,6 +203,37 @@ namespace RedCorners.Forms
                 swipeLeft.Swiped += Swipe_Swiped;
                 swipeLeft.Direction = SwipeDirection.Left;
                 view.GestureRecognizers.Add(swipeLeft);
+
+                swipeUp = new SwipeGestureRecognizer();
+                swipeUp.Swiped += Swipe_Swiped;
+                swipeUp.Direction = SwipeDirection.Up;
+                view.GestureRecognizers.Add(swipeUp);
+
+                swipeDown = new SwipeGestureRecognizer();
+                swipeDown.Swiped += Swipe_Swiped;
+                swipeDown.Direction = SwipeDirection.Down;
+                view.GestureRecognizers.Add(swipeDown);
+
+                // IN
+                swipeRightIn = new SwipeGestureRecognizer();
+                swipeRightIn.Swiped += SwipeIn_Swiped;
+                swipeRightIn.Direction = SwipeDirection.Right;
+                GestureRecognizers.Add(swipeRightIn);
+
+                swipeLeftIn = new SwipeGestureRecognizer();
+                swipeLeftIn.Swiped += SwipeIn_Swiped;
+                swipeLeftIn.Direction = SwipeDirection.Left;
+                GestureRecognizers.Add(swipeLeftIn);
+
+                swipeUpIn = new SwipeGestureRecognizer();
+                swipeUpIn.Swiped += SwipeIn_Swiped;
+                swipeUpIn.Direction = SwipeDirection.Up;
+                GestureRecognizers.Add(swipeUpIn);
+
+                swipeDownIn = new SwipeGestureRecognizer();
+                swipeDownIn.Swiped += SwipeIn_Swiped;
+                swipeDownIn.Direction = SwipeDirection.Down;
+                GestureRecognizers.Add(swipeDownIn);
             }
 
             UpdateLayout();
@@ -192,9 +244,23 @@ namespace RedCorners.Forms
             if (!IsSwipeEnabled) return;
             if (IsVisible) return;
 
-            if ((Side == Sides.Right && e.Direction == SwipeDirection.Left) ||
-                (Side == Sides.Left && e.Direction == SwipeDirection.Right))
+            if ((Side == SidebarSides.Right && e.Direction == SwipeDirection.Left) ||
+                (Side == SidebarSides.Left && e.Direction == SwipeDirection.Right) ||
+                (Side == SidebarSides.Top && e.Direction == SwipeDirection.Down) ||
+                (Side == SidebarSides.Bottom && e.Direction == SwipeDirection.Up))
                 IsVisible = true;
+        }
+
+        private void SwipeIn_Swiped(object sender, SwipedEventArgs e)
+        {
+            if (!IsSwipeEnabled) return;
+            if (!IsVisible) return;
+
+            if ((Side == SidebarSides.Right && e.Direction == SwipeDirection.Right) ||
+                (Side == SidebarSides.Left && e.Direction == SwipeDirection.Left) ||
+                (Side == SidebarSides.Top && e.Direction == SwipeDirection.Up) ||
+                (Side == SidebarSides.Bottom && e.Direction == SwipeDirection.Down))
+                SetValue(IsVisibleProperty, false);
         }
 
         private void BtnDismiss_Clicked(object sender, EventArgs e)
@@ -204,19 +270,50 @@ namespace RedCorners.Forms
 
         void UpdateLayout()
         {
-            if (Side == Sides.Left)
-            {
-                colLeft.Width = ContentWidth;
-                colRight.Width = GridLength.Star;
+            var contentSide = IsFullSize ? GridLength.Star : ContentSize;
+            var otherSide = IsFullSize ? new GridLength(0) : GridLength.Star;
 
-                Grid.SetColumn(content, 0);
+            if (Side == SidebarSides.Right || Side == SidebarSides.Left)
+            {
+                Grid.SetRow(content, 0);
+                Grid.SetRowSpan(content, 2);
+                Grid.SetColumnSpan(content, 1);
+
+                if (Side == SidebarSides.Left)
+                {
+                    colLeft.Width = contentSide;
+                    colRight.Width = otherSide;
+
+                    Grid.SetColumn(content, 0);
+                }
+                else
+                {
+                    colLeft.Width = otherSide;
+                    colRight.Width = contentSide;
+
+                    Grid.SetColumn(content, 1);
+                }
             }
             else
             {
-                colLeft.Width = GridLength.Star;
-                colRight.Width = ContentWidth;
+                Grid.SetColumn(content, 0);
+                Grid.SetColumnSpan(content, 2);
+                Grid.SetRowSpan(content, 1);
 
-                Grid.SetColumn(content, 1);
+                if (Side == SidebarSides.Top)
+                {
+                    rowTop.Height = contentSide;
+                    rowBottom.Height = otherSide;
+
+                    Grid.SetRow(content, 0);
+                }
+                else
+                {
+                    rowTop.Height = otherSide;
+                    rowBottom.Height = contentSide;
+
+                    Grid.SetRow(content, 1);
+                }
             }
 
             content.Content = Body;
@@ -250,15 +347,30 @@ namespace RedCorners.Forms
         {
             if (!DoesSlide) return;
             var baseView = (Parent as View) ?? this;
-            var baseWidth = baseView.Width;
-            if (Width > 0) baseWidth = Width;
-            var translation = ContentWidth.IsStar ?
-               (baseWidth * (1.0f / ContentWidth.Value)) :
-               ContentWidth.Value;
-            if (Side == Sides.Left) translation *= -1;
-            content.TranslationX = translation;
+            var h = (Side == SidebarSides.Left || Side == SidebarSides.Right);
+            var baseSize =  h ? baseView.Width : baseView.Height;
+            if (Width > 0) baseSize = h ? Width : Height;
+            double translation;
+            if (h)
+            {
+                if (IsFullSize) translation = baseSize;
+                else if (ContentSize.IsAuto) translation = content.Width;
+                else if (ContentSize.IsStar) translation = baseSize / ContentSize.Value;
+                else translation = ContentSize.Value;
+                if (Side == SidebarSides.Left) translation *= -1;
+                content.TranslationX = translation;
+            }
+            else
+            {
+                if (IsFullSize) translation = baseSize;
+                else if (ContentSize.IsAuto) translation = content.Height;
+                else if (ContentSize.IsStar) translation = baseSize / ContentSize.Value;
+                else translation = ContentSize.Value;
+                if (Side == SidebarSides.Top) translation *= -1;
+                content.TranslationY = translation;
+            }
 
-            Console.WriteLine($"BaseWidth: {baseWidth}, Translation: {translation}, Side: {Side}");
+            Console.WriteLine($"BaseSize: {baseSize}, Translation: {translation}, Side: {Side}");
         }
 
         void OpenSlide()
@@ -266,6 +378,7 @@ namespace RedCorners.Forms
             if (!DoesSlide)
             {
                 content.TranslationX = 0;
+                content.TranslationY = 0;
                 return;
             }
 
