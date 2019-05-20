@@ -9,31 +9,15 @@ RedCorners.Forms brings some neat utilities to your Xamarin.Forms applications
 In a Xamarin.Forms solution with a Shared Project structure, install the NuGet separately on your iOS and Android projects. **Note: This is not intended to be installed on a .NET Standard Xamarin Forms project.**
 
 NuGet: [https://www.nuget.org/packages/RedCorners.Forms](https://www.nuget.org/packages/RedCorners.Forms)
+Sidebar Video: [https://www.youtube.com/watch?v=NPyZ_N5LcoU&feature=youtu.be](https://www.youtube.com/watch?v=NPyZ_N5LcoU&feature=youtu.be)
 
-<table>
-<tr>
-<td>
-<img src="Screenshots/1.png?raw=true" />
-</td>
-<td>
-<img src="Screenshots/2.png?raw=true" />
-</td>
-</tr>
-<tr>
-<td>
-<img src="Screenshots/3.png?raw=true" />
-</td>
-<td>
-<img src="Screenshots/4.png?raw=true" />
-</td>
-</tr>
-</table>
+<img src="Screenshots/5.png?raw=true" />
 
 ### Dependencies
 
 RedCorners.Forms depends on the following packages for both platforms:
-- RedCorners (4.1.1)
-- Xamarin.Forms (3.6.0.344457)
+- RedCorners 
+- Xamarin.Forms 
 
 On Android, it depends on:
 - Xamarin.Android.Support.v7.AppCompat (28.0.0.1)

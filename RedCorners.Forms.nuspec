@@ -17,7 +17,7 @@
     <dependencies>
       <group targetFramework="netstandard2.0">
           <dependency id="Xamarin.Forms" version="3.6.0.344457" />
-          <dependency id="RedCorners" version="4.1.1" />
+          <dependency id="RedCorners" version="4.1.2" />
       </group>
 	  
 	  <group targetFramework="MonoAndroid80">
