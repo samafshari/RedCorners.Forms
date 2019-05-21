@@ -11,7 +11,7 @@ In a Xamarin.Forms solution with a Shared Project structure, install the NuGet s
 NuGet: [https://www.nuget.org/packages/RedCorners.Forms](https://www.nuget.org/packages/RedCorners.Forms)
 Sidebar Video: [https://www.youtube.com/watch?v=NPyZ_N5LcoU&feature=youtu.be](https://www.youtube.com/watch?v=NPyZ_N5LcoU&feature=youtu.be)
 
-<img src="Screenshots/5.png?raw=true" />
+![](Screenshots/5.gif?raw=true)
 
 ### Dependencies
 
