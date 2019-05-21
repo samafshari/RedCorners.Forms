@@ -207,5 +207,11 @@ namespace RedCorners.Forms
         {
 
         }
+
+        public bool IsIOS => Device.RuntimePlatform == Device.iOS;
+        public bool IsAndroid => Device.RuntimePlatform == Device.Android;
+
+        public bool IsTablet => Device.Idiom == TargetIdiom.Tablet;
+        public bool IsPhone => Device.Idiom == TargetIdiom.Phone;
     }
 }

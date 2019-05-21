@@ -146,6 +146,7 @@ namespace RedCorners.Forms
             base.OnAppearing();
 
             AdjustPadding();
+            PlatformUpdate?.Invoke();
 
             if (BindingContext is BindableModel vm)
             {
@@ -166,7 +167,7 @@ namespace RedCorners.Forms
 
         Thickness? originalPadding;
 
-        void AdjustPadding()
+        public void AdjustPadding()
         {
             if (originalPadding == null)
             {
@@ -181,6 +182,9 @@ namespace RedCorners.Forms
                 top,
                 originalPadding.Value.Right,
                 bottom);
+
+            foreach (var child in GetAliveChildren())
+                child.AdjustPadding();
         }
 
         protected override void OnDisappearing()
@@ -201,8 +205,7 @@ namespace RedCorners.Forms
         {
             if (propertyName == nameof(Content))
             {
-                var children = GetAliveChildren().ToList();
-                foreach (var item in children)
+                foreach (var item in GetAliveChildren())
                 {
                     item.HookToAlivePage(this);
                 }

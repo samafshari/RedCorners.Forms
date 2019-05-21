@@ -12,7 +12,9 @@
     AndroidLayoutInScreen="{Binding AndroidLayoutInScreen}"
     AndroidTranslucentStatus="{Binding AndroidTranslucentStatus}"
     AndroidStatusBarColor="{Binding AndroidStatusBarColor}"
-    x:Class="RedCorners.Demo.Views.MainPage">
+    x:Class="RedCorners.Demo.Views.MainPage"
+    x:Name="me"
+    BackgroundColor="Black">
     <rf:AliveContentPage.BindingContext>
         <vm:MainViewModel />
     </rf:AliveContentPage.BindingContext>
@@ -20,68 +22,86 @@
     <Grid>
         <ff:CachedImage
             Aspect="AspectFill"
+            Opacity="0.8"
             Source="{Binding BackgroundImage}" />
         
-        <rf:AliveContentView FixTopPadding="True" BackgroundColor="Transparent">
-            <StackLayout Padding="10">
-                <Button Text="Test Modal">
-                    <Button.Command>
-                        <rf:PageCommand IsModal="True">
-                            <rf:AliveContentPage>
-                                <Grid>
-                                    <Button Text="Pop" HorizontalOptions="Center" VerticalOptions="Center">
-                                        <Button.Command>
-                                            <rf:PopCommand FireOnce="False" FireDelay="1000" />
-                                        </Button.Command>
-                                    </Button>
-                                </Grid>
-                            </rf:AliveContentPage>
-                        </rf:PageCommand>
-                    </Button.Command>
-                </Button>
+        <rf:AliveContentView FixTopPadding="True" FixBottomPadding="True" BackgroundColor="Transparent">
+            <Grid>
+                <StackLayout Padding="10">
+                    <Button Text="Test Modal">
+                        <Button.Command>
+                            <rf:PageCommand IsModal="True">
+                                <rf:AliveContentPage>
+                                    <Grid>
+                                        <Button Text="Pop" HorizontalOptions="Center" VerticalOptions="Center">
+                                            <Button.Command>
+                                                <rf:PopCommand FireOnce="False" FireDelay="1000" />
+                                            </Button.Command>
+                                        </Button>
+                                    </Grid>
+                                </rf:AliveContentPage>
+                            </rf:PageCommand>
+                        </Button.Command>
+                    </Button>
 
-                <Button Text="Show Modal From Page">
-                    <Button.Command>
-                        <rf:PageCommand IsModal="True">
-                            <rf:PageCommand.Page>
-                                <views:CounterPage />
-                            </rf:PageCommand.Page>
-                        </rf:PageCommand>
-                    </Button.Command>
-                </Button>
+                    <Button Text="Show Modal From Page">
+                        <Button.Command>
+                            <rf:PageCommand IsModal="True">
+                                <rf:PageCommand.Page>
+                                    <views:CounterPage />
+                                </rf:PageCommand.Page>
+                            </rf:PageCommand>
+                        </Button.Command>
+                    </Button>
 
-                <Button Text="Show Modal From Type">
-                    <Button.Command>
-                        <rf:PageCommand IsModal="True" PageType="{Type views:CounterPage}" />
-                    </Button.Command>
-                </Button>
+                    <Button Text="Show Modal From Type">
+                        <Button.Command>
+                            <rf:PageCommand IsModal="True" PageType="{Type views:CounterPage}" />
+                        </Button.Command>
+                    </Button>
 
-                <Button Text="Show Sidebar" Command="{Binding ShowSidebarCommand}" />
+                    <Button Text="Show Sidebar" Command="{Binding ShowSidebarCommand}" />
 
-                <Grid Padding="2" BackgroundColor="#99000000">
-                    <Label Text="LightContent" TextColor="White" VerticalOptions="Center" />
-                    <Switch HorizontalOptions="End" IsToggled="{Binding LightContent}" />
-                </Grid>
-                
-                <Grid Padding="2" BackgroundColor="#99000000">
-                    <Label Text="AndroidLayoutInScreen" TextColor="White" VerticalOptions="Center" />
-                    <Switch HorizontalOptions="End" IsToggled="{Binding AndroidLayoutInScreen}" />
-                </Grid>
-                
-                <Grid Padding="2" BackgroundColor="#99000000">
-                    <Label Text="AndroidTranslucentStatus" TextColor="White" VerticalOptions="Center" />
-                    <Switch HorizontalOptions="End" IsToggled="{Binding AndroidTranslucentStatus}" />
-                </Grid>
+                    <Grid Padding="2" BackgroundColor="#99000000">
+                        <Grid.Resources>
+                            <ResourceDictionary>
+                                <Style TargetType="Label">
+                                    <Setter Property="TextColor" Value="White" />
+                                    <Setter Property="VerticalOptions" Value="Center" />
+                                </Style>
+                                <Style TargetType="Switch">
+                                    <Setter Property="HorizontalOptions" Value="End" />
+                                </Style>
+                            </ResourceDictionary>
+                        </Grid.Resources>
+                        <Label Grid.Row="0" IsVisible="{Binding IsIOS}" Text="LightContent" />
+                        <Switch Grid.Row="0" IsVisible="{Binding IsIOS}" IsToggled="{Binding LightContent}" />
 
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <Button Grid.Column="0" Text="Blue" Command="{Binding BlueStatusBarCommand}" />
-                    <Button Grid.Column="1" Text="Green" Command="{Binding GreenStatusBarCommand}" />
-                </Grid>
-            </StackLayout>
+                        <Label Grid.Row="0" IsVisible="{Binding IsAndroid}" Text="AndroidTranslucentStatus" />
+                        <Switch Grid.Row="0" IsVisible="{Binding IsAndroid}" IsToggled="{Binding AndroidTranslucentStatus}" />
+
+                        <Label Grid.Row="1" IsVisible="{Binding IsAndroid}" Text="AndroidLayoutInScreen" />
+                        <Switch Grid.Row="1" IsVisible="{Binding IsAndroid}" IsToggled="{Binding AndroidLayoutInScreen}" />
+                        
+                        <Label Grid.Row="2" IsVisible="{Binding IsAndroid}" Text="Dummy" />
+                        <Switch Grid.Row="2" IsVisible="{Binding IsAndroid}" />
+                    </Grid>
+
+                    <Label BindingContext="{x:Reference me}" Text="{Binding Padding}" />
+                    
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Button Grid.Column="0" Text="Blue" Command="{Binding BlueStatusBarCommand}" />
+                        <Button Grid.Column="1" Text="Green" Command="{Binding GreenStatusBarCommand}" />
+                    </Grid>
+                </StackLayout>
+
+                <BoxView HeightRequest="2" BackgroundColor="White" HorizontalOptions="Fill" VerticalOptions="Start" />
+                <BoxView HeightRequest="2" BackgroundColor="White" HorizontalOptions="Fill" VerticalOptions="End" />
+            </Grid>
         </rf:AliveContentView>
 
         <rf:Sidebar Side="{Binding Side}" ContentSize="{Binding ContentSize}" IsFullSize="{Binding IsFullSize}">

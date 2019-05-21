@@ -13,6 +13,7 @@ namespace RedCorners.Forms
         ShowModalPage, // Page
         AppStart,
         AppSleep,
-        AppResume
+        AppResume,
+        AndroidSafeInsetsUpdate, // Thickness
     }
 }

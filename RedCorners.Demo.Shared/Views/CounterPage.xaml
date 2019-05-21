@@ -4,7 +4,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:rf="clr-namespace:RedCorners.Forms;assembly=RedCorners.Forms"
     xmlns:vm="clr-namespace:RedCorners.Demo.ViewModels"
-    x:Class="RedCorners.Demo.Views.CounterPage">
+    x:Class="RedCorners.Demo.Views.CounterPage"
+    AndroidTranslucentStatus="False"
+    AndroidStatusBarColor="Black">
     <rf:AliveContentPage.BindingContext>
         <vm:CounterViewModel />
     </rf:AliveContentPage.BindingContext>

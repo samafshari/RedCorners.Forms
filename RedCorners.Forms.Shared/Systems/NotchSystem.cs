@@ -16,7 +16,14 @@ namespace RedCorners.Forms.Systems
     {
         public static NotchSystem Instance { get; private set; } = new NotchSystem();
 
-        NotchSystem() { }
+        NotchSystem() {
+#if __ANDROID__
+            Signals.AndroidSafeInsetsUpdate.Subscribe<Thickness>(this, thickness =>
+            {
+                AndroidSafeInsets = thickness;
+            });
+#endif
+        }
 
         public Thickness? OverridePadding { get; set; } = null;
         public Thickness ExtraPadding { get; private set; } = new Thickness();
@@ -60,12 +67,16 @@ namespace RedCorners.Forms.Systems
                 ExtraPadding);
         }
 
-        public GridLength BottomHeight => new GridLength((bottom ?? 0) + ExtraPadding.Bottom);
-
+        public GridLength BottomHeight => new GridLength(GetPageMargin().Bottom);
         public bool HasWindowInformation => top.HasValue || OverridePadding.HasValue;
+#elif __ANDROID__
+        Thickness AndroidSafeInsets = new Thickness();
+        public bool HasWindowInformation => true;
+        public GridLength BottomHeight => new GridLength(GetPageMargin().Bottom);
+        public Thickness GetPageMargin() => SumPadding(OverridePadding ?? AndroidSafeInsets, ExtraPadding);
 #else
         public bool HasWindowInformation => true;
-        public GridLength BottomHeight => new GridLength(ExtraPadding.Bottom);
+        public GridLength BottomHeight => new GridLength(GetPageMargin().Bottom);
 
         public Thickness GetPageMargin() => SumPadding(OverridePadding ?? new Thickness(0, 25, 0, 0), ExtraPadding);
 #endif

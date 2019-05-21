@@ -47,7 +47,7 @@ namespace RedCorners.Forms
 
         Thickness? originalPadding;
 
-        void AdjustPadding()
+        public void AdjustPadding()
         {
             if (originalPadding == null)
             {

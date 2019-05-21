@@ -8,6 +8,7 @@ using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
+using Android.Util;
 using Android.Views;
 using Android.Widget;
 using RedCorners.Forms;
@@ -63,6 +64,39 @@ namespace RedCorners.Forms.Renderers
 
                     UpdateLayout();
                 }
+
+                DisplayMetrics metrics = new DisplayMetrics();
+                activity.WindowManager.DefaultDisplay.GetMetrics(metrics);
+                var usableHeight = metrics.HeightPixels;
+                activity.WindowManager.DefaultDisplay.GetRealMetrics(metrics);
+                var height = metrics.HeightPixels;
+                var dpi = Resources.DisplayMetrics.ScaledDensity;
+
+                var softHeight = Math.Max(0, (height - usableHeight) / dpi);
+
+                var statusHeight = 25;
+
+                // U11
+                //T, !L: TOP OK BOTTOM OK
+                //!T, !L: OK OK
+                //!T, L: OK OK
+                //T, L: OK OK
+
+                //EMU
+                //T, L: KK
+                //!T, L: KK
+                //!T, !L: KK
+                //T, !L; KK
+
+                if (!page.AndroidTranslucentStatus && page.AndroidLayoutInScreen) statusHeight = 0;
+                if (page.AndroidTranslucentStatus && page.AndroidLayoutInScreen) softHeight = 0;
+                if (!page.AndroidTranslucentStatus && page.AndroidLayoutInScreen) softHeight = 0;
+                if (page.AndroidTranslucentStatus && !page.AndroidLayoutInScreen) softHeight = 0;
+
+                Signals.AndroidSafeInsetsUpdate.Signal<Thickness>(new Thickness(0, statusHeight, 0, softHeight));
+
+                page.AdjustPadding();
+                
             }
         }
 
