@@ -87,8 +87,6 @@
                         <Switch Grid.Row="2" IsVisible="{Binding IsAndroid}" />
                     </Grid>
 
-                    <Label BindingContext="{x:Reference me}" Text="{Binding Padding}" />
-                    
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />

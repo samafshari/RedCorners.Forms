@@ -38,13 +38,22 @@ namespace RedCorners.Forms.Renderers
 
         void UpdateAndroidStuff()
         {
+            // This whole flow is buggy when done on the fly,
+            // also, !T and !L doesn't go well together, so if it happens, we change it to !T and L
+
             if (Build.VERSION.SdkInt >= BuildVersionCodes.Lollipop)
             {
                 var activity = GetActivity(Context);
                 var page = Element as AliveContentPage;
+
+                var t = page.AndroidTranslucentStatus;
+                var l = page.AndroidLayoutInScreen;
+
+                if (!t && !l) l = true;
+
                 if (activity != null)
                 {
-                    if (page.AndroidLayoutInScreen)
+                    if (l)
                     {
                         activity.Window.DecorView.SetFitsSystemWindows(true);
                         activity.Window.AddFlags(WindowManagerFlags.LayoutInScreen);
@@ -55,7 +64,7 @@ namespace RedCorners.Forms.Renderers
                         activity.Window.ClearFlags(WindowManagerFlags.LayoutInScreen);
                     }
 
-                    if (page.AndroidTranslucentStatus)
+                    if (t)
                         activity.Window.AddFlags(WindowManagerFlags.TranslucentStatus);
                     else
                         activity.Window.ClearFlags(WindowManagerFlags.TranslucentStatus);
@@ -85,13 +94,15 @@ namespace RedCorners.Forms.Renderers
                 //EMU
                 //T, L: KK
                 //!T, L: KK
-                //!T, !L: KK
+                //!T, !L: NO
                 //T, !L; KK
 
-                if (!page.AndroidTranslucentStatus && page.AndroidLayoutInScreen) statusHeight = 0;
-                if (page.AndroidTranslucentStatus && page.AndroidLayoutInScreen) softHeight = 0;
-                if (!page.AndroidTranslucentStatus && page.AndroidLayoutInScreen) softHeight = 0;
-                if (page.AndroidTranslucentStatus && !page.AndroidLayoutInScreen) softHeight = 0;
+                if (!t && !l) statusHeight = 0;
+                if (!t && l) statusHeight = 0;
+
+                if (t && l) softHeight = 0;
+                if (!t && l) softHeight = 0;
+                if (t && !l) softHeight = 0;
 
                 Signals.AndroidSafeInsetsUpdate.Signal<Thickness>(new Thickness(0, statusHeight, 0, softHeight));
 
