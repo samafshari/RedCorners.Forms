@@ -1,6 +1,7 @@
-# Documentation
 
 Screenshots and more information: [https://github.com/saeedafshari/RedCorners.Forms](https://github.com/saeedafshari/RedCorners.Forms)
+
+![](https://github.com/saeedafshari/RedCorners.Forms/raw/master/Screenshots/5.gif)
 
 ## Preparing the Application
 
