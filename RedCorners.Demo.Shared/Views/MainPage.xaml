@@ -28,6 +28,17 @@
         <rf:AliveContentView FixTopPadding="True" FixBottomPadding="True" BackgroundColor="Transparent">
             <Grid>
                 <StackLayout Padding="10">
+                    <StackLayout.Resources>
+                        <ResourceDictionary>
+                            <Style TargetType="Label">
+                                <Setter Property="TextColor" Value="White" />
+                                <Setter Property="VerticalOptions" Value="Center" />
+                            </Style>
+                            <Style TargetType="Switch">
+                                <Setter Property="HorizontalOptions" Value="End" />
+                            </Style>
+                        </ResourceDictionary>
+                    </StackLayout.Resources>
                     <Button Text="Test Modal">
                         <Button.Command>
                             <rf:PageCommand IsModal="True">
@@ -62,29 +73,19 @@
 
                     <Button Text="Show Sidebar" Command="{Binding ShowSidebarCommand}" />
 
-                    <Grid Padding="2" BackgroundColor="#99000000">
-                        <Grid.Resources>
-                            <ResourceDictionary>
-                                <Style TargetType="Label">
-                                    <Setter Property="TextColor" Value="White" />
-                                    <Setter Property="VerticalOptions" Value="Center" />
-                                </Style>
-                                <Style TargetType="Switch">
-                                    <Setter Property="HorizontalOptions" Value="End" />
-                                </Style>
-                            </ResourceDictionary>
-                        </Grid.Resources>
-                        <Label Grid.Row="0" IsVisible="{Binding IsIOS}" Text="LightContent" />
-                        <Switch Grid.Row="0" IsVisible="{Binding IsIOS}" IsToggled="{Binding LightContent}" />
+                    <Grid IsVisible="{Binding IsIOS}" Padding="2" BackgroundColor="#99000000">
+                        <Label Text="LightContent" />
+                        <Switch IsToggled="{Binding LightContent}" />
+                    </Grid>
+                    <Grid IsVisible="{Binding IsAndroid}" Padding="2" BackgroundColor="#99000000">
+                        <Label Grid.Row="0" Text="AndroidTranslucentStatus" />
+                        <Switch Grid.Row="0" IsToggled="{Binding AndroidTranslucentStatus}" />
 
-                        <Label Grid.Row="0" IsVisible="{Binding IsAndroid}" Text="AndroidTranslucentStatus" />
-                        <Switch Grid.Row="0" IsVisible="{Binding IsAndroid}" IsToggled="{Binding AndroidTranslucentStatus}" />
-
-                        <Label Grid.Row="1" IsVisible="{Binding IsAndroid}" Text="AndroidLayoutInScreen" />
-                        <Switch Grid.Row="1" IsVisible="{Binding IsAndroid}" IsToggled="{Binding AndroidLayoutInScreen}" />
+                        <Label Grid.Row="1" Text="AndroidLayoutInScreen" />
+                        <Switch Grid.Row="1" IsToggled="{Binding AndroidLayoutInScreen}" />
                         
-                        <Label Grid.Row="2" IsVisible="{Binding IsAndroid}" Text="Dummy" />
-                        <Switch Grid.Row="2" IsVisible="{Binding IsAndroid}" />
+                        <Label Grid.Row="2" Text="Dummy" />
+                        <Switch Grid.Row="2" />
                     </Grid>
 
                     <Grid>
@@ -107,7 +108,7 @@
                 HasShadow="True"
                 HorizontalOptions="Fill"
                 VerticalOptions="Fill"
-                BackgroundColor="#BB000000"
+                BackgroundColor="#CC000000"
                 Padding="{Static rf:Values.PageMargin}"
                 CornerRadius="0">
                 <StackLayout Padding="10" Spacing="20">

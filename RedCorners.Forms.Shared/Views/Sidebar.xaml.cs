@@ -46,10 +46,10 @@ namespace RedCorners.Forms
             set => SetValue(BackgroundColorProperty, value);
         }
 
-        public uint FadeDuration
+        public uint FadeInDuration
         {
-            get => (uint)GetValue(FadeDurationProperty);
-            set => SetValue(FadeDurationProperty, value);
+            get => (uint)GetValue(FadeInDurationProperty);
+            set => SetValue(FadeInDurationProperty, value);
         }
 
         public bool DoesFadeIn
@@ -58,16 +58,40 @@ namespace RedCorners.Forms
             set => SetValue(DoesFadeInProperty, value);
         }
 
-        public uint SlideDuration
+        public uint SlideInDuration
         {
-            get => (uint)GetValue(SlideDurationProperty);
-            set => SetValue(SlideDurationProperty, value);
+            get => (uint)GetValue(SlideInDurationProperty);
+            set => SetValue(SlideInDurationProperty, value);
         }
 
-        public bool DoesSlide
+        public bool DoesSlideIn
         {
-            get => (bool)GetValue(DoesSlideProperty);
-            set => SetValue(DoesSlideProperty, value);
+            get => (bool)GetValue(DoesSlideInProperty);
+            set => SetValue(DoesSlideInProperty, value);
+        }
+
+        public uint FadeOutDuration
+        {
+            get => (uint)GetValue(FadeOutDurationProperty);
+            set => SetValue(FadeOutDurationProperty, value);
+        }
+
+        public bool DoesFadeOut
+        {
+            get => (bool)GetValue(DoesFadeOutProperty);
+            set => SetValue(DoesFadeOutProperty, value);
+        }
+
+        public uint SlideOutDuration
+        {
+            get => (uint)GetValue(SlideOutDurationProperty);
+            set => SetValue(SlideOutDurationProperty, value);
+        }
+
+        public bool DoesSlideOut
+        {
+            get => (bool)GetValue(DoesSlideOutProperty); 
+            set => SetValue(DoesSlideOutProperty, value);
         }
 
         public bool IsSwipeEnabled
@@ -81,6 +105,14 @@ namespace RedCorners.Forms
             get => (bool)GetValue(IsFullSizeProperty);
             set => SetValue(IsFullSizeProperty, value);
         }
+
+        public new bool IsVisible
+        {
+            get => (bool)GetValue(IsVisibleProperty);
+            set => SetValue(IsVisibleProperty, value);
+        }
+
+
 
         public static readonly BindableProperty BodyProperty = BindableProperty.Create(
             propertyName: nameof(Body),
@@ -115,11 +147,11 @@ namespace RedCorners.Forms
                 (bindable as Sidebar)?.UpdateLayout();
             });
 
-        public static readonly BindableProperty FadeDurationProperty = BindableProperty.Create(
-            propertyName: nameof(FadeDuration),
+        public static readonly BindableProperty FadeInDurationProperty = BindableProperty.Create(
+            propertyName: nameof(FadeInDuration),
             returnType: typeof(uint),
             declaringType: typeof(Sidebar),
-            defaultValue: (uint)100,
+            defaultValue: (uint)150,
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
@@ -135,18 +167,58 @@ namespace RedCorners.Forms
             {
             });
 
-        public static readonly BindableProperty SlideDurationProperty = BindableProperty.Create(
-            propertyName: nameof(SlideDuration),
+        public static readonly BindableProperty SlideInDurationProperty = BindableProperty.Create(
+            propertyName: nameof(SlideInDuration),
             returnType: typeof(uint),
             declaringType: typeof(Sidebar),
-            defaultValue: (uint)250,
+            defaultValue: (uint)350,
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
             });
 
-        public static readonly BindableProperty DoesSlideProperty = BindableProperty.Create(
-            propertyName: nameof(DoesSlide),
+        public static readonly BindableProperty DoesSlideInProperty = BindableProperty.Create(
+            propertyName: nameof(DoesSlideIn),
+            returnType: typeof(bool),
+            declaringType: typeof(Sidebar),
+            defaultValue: true,
+            defaultBindingMode: BindingMode.TwoWay,
+            propertyChanged: (bindable, oldVal, newVal) =>
+            {
+            });
+
+        public static readonly BindableProperty FadeOutDurationProperty = BindableProperty.Create(
+            propertyName: nameof(FadeOutDuration),
+            returnType: typeof(uint),
+            declaringType: typeof(Sidebar),
+            defaultValue: (uint)150,
+            defaultBindingMode: BindingMode.TwoWay,
+            propertyChanged: (bindable, oldVal, newVal) =>
+            {
+            });
+
+        public static readonly BindableProperty DoesFadeOutProperty = BindableProperty.Create(
+            propertyName: nameof(DoesFadeOut),
+            returnType: typeof(bool),
+            declaringType: typeof(Sidebar),
+            defaultValue: true,
+            defaultBindingMode: BindingMode.TwoWay,
+            propertyChanged: (bindable, oldVal, newVal) =>
+            {
+            });
+
+        public static readonly BindableProperty SlideOutDurationProperty = BindableProperty.Create(
+            propertyName: nameof(SlideInDuration),
+            returnType: typeof(uint),
+            declaringType: typeof(Sidebar),
+            defaultValue: (uint)300,
+            defaultBindingMode: BindingMode.TwoWay,
+            propertyChanged: (bindable, oldVal, newVal) =>
+            {
+            });
+
+        public static readonly BindableProperty DoesSlideOutProperty = BindableProperty.Create(
+            propertyName: nameof(DoesSlideIn),
             returnType: typeof(bool),
             declaringType: typeof(Sidebar),
             defaultValue: true,
@@ -163,6 +235,17 @@ namespace RedCorners.Forms
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
+            });
+
+        public static new readonly BindableProperty IsVisibleProperty = BindableProperty.Create(
+            propertyName: nameof(IsVisible),
+            returnType: typeof(bool),
+            declaringType: typeof(Sidebar),
+            defaultValue: false,
+            defaultBindingMode: BindingMode.TwoWay,
+            propertyChanged: (bindable, oldVal, newVal) =>
+            {
+                (bindable as Sidebar)?.UpdateVisibility((bool)oldVal, (bool)newVal);
             });
 
         public static readonly BindableProperty IsFullSizeProperty = BindableProperty.Create(
@@ -182,12 +265,15 @@ namespace RedCorners.Forms
         public Sidebar()
         {
             InitializeComponent();
+            SetVisibility(false);
             UpdateLayout();
 
             var tap = new TapGestureRecognizer();
             tap.Tapped += BtnDismiss_Clicked;
             btnDismiss.GestureRecognizers.Add(tap);
         }
+
+        void SetVisibility(bool value) => SetValue(VisualElement.IsVisibleProperty, value);
 
         protected override void OnParentSet()
         {
@@ -327,28 +413,60 @@ namespace RedCorners.Forms
             UpdateChildrenLayout();
         }
 
-        bool oldVisible = false;
-        protected override void OnPropertyChanging([CallerMemberName] string propertyName = null)
+        volatile bool isOpening = false;
+        volatile bool isClosing = false;
+        async void UpdateVisibility(bool oldVal, bool newVal)
         {
-            base.OnPropertyChanging(propertyName);
+            // If value is not updated, do nothing.
+            if (oldVal == newVal) return;
 
-            if (propertyName == nameof(IsVisible))
+            // If in the middle of another update, force roll back the value change.
+            if (isOpening || isClosing)
             {
-                oldVisible = IsVisible;
-                if (!IsVisible)
+                IsVisible = oldVal;
+                return;
+            }
+
+            // It's an open sequence
+            if (newVal)
+            {
+                SetVisibility(true);
+                var hasOpenAnimation = DoesSlideIn || DoesFadeIn;
+                if (!hasOpenAnimation)
                 {
-                    Opacity = 0;
-                    CloseSlide();
+                    Opacity = 1.0;
+                    TranslationX = 0;
+                    TranslationY = 0;
+                    return;
                 }
+
+                isOpening = true;
+                await Task.WhenAll(OpenSlideAsync(), FadeInAsync());
+                isOpening = false;
+            }
+            else
+            {
+                // It's a close sequence
+                var hasCloseAnimation = DoesSlideOut || DoesFadeOut;
+                if (!hasCloseAnimation)
+                {
+                    SetVisibility(false);
+                    return;
+                }
+
+                isClosing = true;
+                await Task.WhenAll(CloseSlideAsync(), FadeOutAsync());
+                isClosing = false;
+
+                SetVisibility(false);
             }
         }
 
-        void CloseSlide()
+        (double x, double y) GetSlideTranslations()
         {
-            if (!DoesSlide) return;
             var baseView = (Parent as View) ?? this;
             var h = (Side == SidebarSides.Left || Side == SidebarSides.Right);
-            var baseSize =  h ? baseView.Width : baseView.Height;
+            var baseSize = h ? baseView.Width : baseView.Height;
             if (Width > 0) baseSize = h ? Width : Height;
             double translation;
             if (h)
@@ -358,7 +476,7 @@ namespace RedCorners.Forms
                 else if (ContentSize.IsStar) translation = baseSize / ContentSize.Value;
                 else translation = ContentSize.Value;
                 if (Side == SidebarSides.Left) translation *= -1;
-                content.TranslationX = translation;
+                return (translation, 0);
             }
             else
             {
@@ -367,25 +485,37 @@ namespace RedCorners.Forms
                 else if (ContentSize.IsStar) translation = baseSize / ContentSize.Value;
                 else translation = ContentSize.Value;
                 if (Side == SidebarSides.Top) translation *= -1;
-                content.TranslationY = translation;
+                return (0, translation);
             }
-
-            Console.WriteLine($"BaseSize: {baseSize}, Translation: {translation}, Side: {Side}");
         }
 
-        void OpenSlide()
+        async Task OpenSlideAsync()
         {
-            if (!DoesSlide)
+            if (!DoesSlideIn)
             {
                 content.TranslationX = 0;
                 content.TranslationY = 0;
                 return;
             }
 
-            content.TranslateTo(0, 0, SlideDuration);
+            (content.TranslationX, content.TranslationY) = GetSlideTranslations();
+            await content.TranslateTo(0, 0, SlideInDuration);
         }
 
-        void FadeIn()
+        async Task CloseSlideAsync()
+        {
+            content.TranslationX = 0;
+            content.TranslationY = 0;
+
+            if (!DoesSlideOut)
+                return;
+
+            var t = GetSlideTranslations();
+            await content.TranslateTo(t.x, t.y, SlideOutDuration);
+        }
+
+
+        async Task FadeInAsync()
         {
             if (!DoesFadeIn)
             {
@@ -393,30 +523,20 @@ namespace RedCorners.Forms
                 return;
             }
 
-            Opacity = 0.1;
-            this.FadeTo(1.0, FadeDuration);
+            Opacity = 0.01;
+            await this.FadeTo(1.0, FadeInDuration);
         }
 
-        void FadeOut()
+        async Task FadeOutAsync()
         {
-            Opacity = 0;
-        }
-
-        protected override void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            base.OnPropertyChanged(propertyName);
-
-            if (propertyName == nameof(IsVisible))
+            if (!DoesFadeOut)
             {
-                if (!oldVisible && IsVisible)
-                {
-                    FadeIn();
-                    CloseSlide();
-                    OpenSlide();
-                }
-                else if (!IsVisible)
-                    FadeOut();
+                Opacity = 0;
+                return;
             }
+
+            Opacity = 1.0;
+            await this.FadeTo(0.0, FadeOutDuration);
         }
     }
 }
