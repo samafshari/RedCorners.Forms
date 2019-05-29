@@ -109,34 +109,36 @@
                 HorizontalOptions="Fill"
                 VerticalOptions="Fill"
                 BackgroundColor="#CC000000"
-                Padding="{Static rf:Values.PageMargin}"
+                Padding="0"
                 CornerRadius="0">
-                <StackLayout Padding="10" Spacing="20">
-                    <ff:CachedImage Source="http://ooze.redcorners.com/redcorners_forms_logo.png" HorizontalOptions="Center" HeightRequest="128" WidthRequest="128" />
-                    <Label Text="RedCorners.Forms" TextColor="White" FontSize="Large" HorizontalTextAlignment="Center" HorizontalOptions="Center" />
-                    <BoxView HeightRequest="1" HorizontalOptions="Fill" BackgroundColor="White" />
-                    <Button Text="Hide Sidebar" Command="{Binding HideSidebarCommand}" />
+                <ScrollView Padding="{Static rf:Values.PageMargin}">
+                    <StackLayout Padding="10">
+                        <ff:CachedImage Source="http://ooze.redcorners.com/redcorners_forms_logo.png" HorizontalOptions="Center" HeightRequest="128" WidthRequest="128" />
+                        <Label Text="RedCorners.Forms" TextColor="White" FontSize="Large" HorizontalTextAlignment="Center" HorizontalOptions="Center" />
+                        <BoxView HeightRequest="1" HorizontalOptions="Fill" BackgroundColor="White" />
+                        <Button Text="Hide Sidebar" Command="{Binding HideSidebarCommand}" />
 
-                    <Button Text="Left" Command="{Binding PlaceSidebarCommand}" CommandParameter="Left" />
-                    <Button Text="Right" Command="{Binding PlaceSidebarCommand}" CommandParameter="Right" />
-                    <Button Text="Top" Command="{Binding PlaceSidebarCommand}" CommandParameter="Top" />
-                    <Button Text="Bottom" Command="{Binding PlaceSidebarCommand}" CommandParameter="Bottom" />
+                        <Button Text="Left" Command="{Binding PlaceSidebarCommand}" CommandParameter="Left" />
+                        <Button Text="Right" Command="{Binding PlaceSidebarCommand}" CommandParameter="Right" />
+                        <Button Text="Top" Command="{Binding PlaceSidebarCommand}" CommandParameter="Top" />
+                        <Button Text="Bottom" Command="{Binding PlaceSidebarCommand}" CommandParameter="Bottom" />
 
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <Button Grid.Column="0" Text="Auto" Command="{Binding AutoSizeCommand}" />
-                        <Button Grid.Column="1" Text="2*" Command="{Binding Star2Command}" />
-                        <Button Grid.Column="2" Text="200" Command="{Binding Absolute200Command}" />
-                    </Grid>
-                    <Grid>
-                        <Label Text="IsFullSize" VerticalOptions="Center" TextColor="White" />
-                        <Switch IsToggled="{Binding IsFullSize}" HorizontalOptions="End" />
-                    </Grid>
-                </StackLayout>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Button Grid.Column="0" Text="Auto" Command="{Binding AutoSizeCommand}" />
+                            <Button Grid.Column="1" Text="2*" Command="{Binding Star2Command}" />
+                            <Button Grid.Column="2" Text="200" Command="{Binding Absolute200Command}" />
+                        </Grid>
+                        <Grid>
+                            <Label Text="IsFullSize" VerticalOptions="Center" TextColor="White" />
+                            <Switch IsToggled="{Binding IsFullSize}" HorizontalOptions="End" />
+                        </Grid>
+                    </StackLayout>
+                </ScrollView>
             </Frame>
         </rf:Sidebar>
     </Grid>
