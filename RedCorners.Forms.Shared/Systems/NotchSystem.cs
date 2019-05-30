@@ -28,7 +28,7 @@ namespace RedCorners.Forms.Systems
         public Thickness? OverridePadding { get; set; } = null;
         public Thickness ExtraPadding { get; private set; } = new Thickness();
 
-        Thickness GetOverridePadding() =>
+        public Thickness GetOverridePadding() =>
             SumPadding(OverridePadding ?? new Thickness(0, 0, 0, 0),
             ExtraPadding);
 

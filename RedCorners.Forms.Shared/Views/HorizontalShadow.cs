@@ -20,9 +20,9 @@ namespace RedCorners.Forms
         }
     }
 
-    public class HorizontalShadowView2 : HorizontalShadow
+    public class HorizontalShadow2 : HorizontalShadow
     {
-        public HorizontalShadowView2()
+        public HorizontalShadow2()
         {
             VerticalOptions = LayoutOptions.End;
             Source = ImageSource.FromResource("RedCorners.Forms.gradienth2.png", typeof(HorizontalShadow).GetTypeInfo().Assembly);

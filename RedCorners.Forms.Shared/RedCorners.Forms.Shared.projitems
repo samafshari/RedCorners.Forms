@@ -34,7 +34,13 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\ItemsStack.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\ListView2.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\MultiComponentLabel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\NeatPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\Sidebar.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Titlebar.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\WorkerPage.cs" />
@@ -46,8 +52,30 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="E:\Projects\RedCorners.Forms\RedCorners.Forms.Shared\Views\NeatPage.xaml.cs">
+      <DependentUpon>NeatPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="E:\Projects\RedCorners.Forms\RedCorners.Forms.Shared\Views\Sidebar.xaml.cs">
       <DependentUpon>Sidebar.xaml</DependentUpon>
     </Compile>
+    <Compile Update="E:\Projects\RedCorners.Forms\RedCorners.Forms.Shared\Views\Titlebar.xaml.cs">
+      <DependentUpon>Titlebar.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\Titlebar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)leftarrow.png" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)menu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\NeatPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

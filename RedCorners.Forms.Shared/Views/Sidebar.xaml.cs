@@ -112,8 +112,6 @@ namespace RedCorners.Forms
             set => SetValue(IsVisibleProperty, value);
         }
 
-
-
         public static readonly BindableProperty BodyProperty = BindableProperty.Create(
             propertyName: nameof(Body),
             returnType: typeof(View),

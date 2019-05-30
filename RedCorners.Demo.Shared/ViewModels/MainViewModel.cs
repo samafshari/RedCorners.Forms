@@ -35,6 +35,8 @@ namespace RedCorners.Demo.ViewModels
             }
         }
 
+        public override bool IsModal => false;
+
         public UIStatusBarStyles UIStatusBarStyle => LightContent ? UIStatusBarStyles.LightContent : UIStatusBarStyles.Default;
 
         Color _androidStatusBarColor = Color.Red;

@@ -4,32 +4,46 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:rf="clr-namespace:RedCorners.Forms;assembly=RedCorners.Forms"
     xmlns:vm="clr-namespace:RedCorners.Demo.ViewModels"
-    x:Class="RedCorners.Demo.Views.CounterPage"
-    AndroidTranslucentStatus="False"
-    AndroidStatusBarColor="Black">
+    FixTopPadding="False"
+    x:Class="RedCorners.Demo.Views.CounterPage">
     <rf:AliveContentPage.BindingContext>
         <vm:CounterViewModel />
     </rf:AliveContentPage.BindingContext>
-    <StackLayout>
-        <Label Text="Count:"
-               FontAttributes="Bold"
-            VerticalOptions="CenterAndExpand" 
-            HorizontalOptions="CenterAndExpand" />
-        <Label Text="{Binding Count}"
-            VerticalOptions="CenterAndExpand" 
-            HorizontalOptions="CenterAndExpand" />
-        <Button Text="Count" Command="{Binding CountCommand}" />
+    <Grid RowSpacing="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <rf:Titlebar
+            Grid.Row="0"
+            Title="Hello World"
+            BackCommand="{Binding GoBackCommand}"
+            />
+
+        <rf:HorizontalShadow Grid.Row="1" />
         
-        <Button Text="Pop (FireOnce)">
-            <Button.Command>
-                <rf:PopCommand FireOnce="True" />
-            </Button.Command>
-        </Button>
+        <StackLayout Grid.Row="1">
+            <Label Text="Count:"
+                   FontAttributes="Bold"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+            <Label Text="{Binding Count}"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+            <Button Text="Count" Command="{Binding CountCommand}" />
         
-        <Button Text="Pop (FireDelay = 1000.0)">
-            <Button.Command>
-                <rf:PopCommand FireOnce="False" />
-            </Button.Command>
-        </Button>
-    </StackLayout>
+            <Button Text="Pop (FireOnce)">
+                <Button.Command>
+                    <rf:PopCommand FireOnce="True" />
+                </Button.Command>
+            </Button>
+        
+            <Button Text="Pop (FireDelay = 1000.0)">
+                <Button.Command>
+                    <rf:PopCommand FireOnce="False" />
+                </Button.Command>
+            </Button>
+        </StackLayout>
+
+    </Grid>
 </rf:AliveContentPage>
