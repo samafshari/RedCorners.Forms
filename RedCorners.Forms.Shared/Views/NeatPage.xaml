@@ -5,9 +5,40 @@
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:rf="clr-namespace:RedCorners.Forms"
+    FixTopPadding="False"
+    FixBottomPadding="False"
     mc:Ignorable="d"
+    x:Name="me"
     x:Class="RedCorners.Forms.NeatPage">
     <rf:AliveContentPage.Content>
-        
+        <Grid RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <rf:Titlebar
+                x:Name="titlebar"
+                Grid.Row="0"
+                />
+
+            <rf:AliveContentView
+                x:Name="content"
+                Grid.Row="1"
+                HorizontalOptions="Fill"
+                VerticalOptions="Fill"
+                />
+            
+            <rf:AliveContentView
+                x:Name="sidebar"
+                InputTransparent="True"
+                HorizontalOptions="Fill"
+                VerticalOptions="Fill"
+                Grid.Row="0"
+                Grid.RowSpan="2" 
+                />
+
+            <rf:HorizontalShadow Grid.Row="1" />
+        </Grid>
     </rf:AliveContentPage.Content>
 </rf:AliveContentPage>
