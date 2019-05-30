@@ -144,7 +144,7 @@ namespace RedCorners.Forms
             propertyName: nameof(ContentMargin),
             returnType: typeof(Thickness),
             declaringType: typeof(Titlebar),
-            defaultValue: Values.TopMargin,
+            defaultValue: default(Thickness),
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {

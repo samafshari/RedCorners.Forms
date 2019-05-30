@@ -27,6 +27,8 @@
                 Grid.Row="1"
                 HorizontalOptions="Fill"
                 VerticalOptions="Fill"
+                FixBottomPadding="True"
+                FixTopPadding="False"
                 />
             
             <rf:AliveContentView
