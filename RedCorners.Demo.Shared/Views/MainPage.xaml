@@ -22,7 +22,7 @@
     <Grid>
         <ff:CachedImage
             Aspect="AspectFill"
-            Opacity="0.8"
+            Opacity="0.7"
             Source="{Binding BackgroundImage}" />
         
         <rf:AliveContentView FixTopPadding="True" FixBottomPadding="True" BackgroundColor="Transparent">

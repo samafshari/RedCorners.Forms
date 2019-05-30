@@ -264,6 +264,9 @@ namespace RedCorners.Forms
 
         public Sidebar()
         {
+            CascadeInputTransparent = true;
+            InputTransparent = true;
+
             InitializeComponent();
             SetVisibility(false);
             UpdateLayout();
@@ -273,7 +276,11 @@ namespace RedCorners.Forms
             btnDismiss.GestureRecognizers.Add(tap);
         }
 
-        void SetVisibility(bool value) => SetValue(VisualElement.IsVisibleProperty, value);
+        void SetVisibility(bool value)
+        {
+            SetValue(VisualElement.IsVisibleProperty, value);
+            InputTransparent = !value;
+        }
 
         protected override void OnParentSet()
         {
@@ -415,6 +422,8 @@ namespace RedCorners.Forms
 
         volatile bool isOpening = false;
         volatile bool isClosing = false;
+
+
         async void UpdateVisibility(bool oldVal, bool newVal)
         {
             // If value is not updated, do nothing.
