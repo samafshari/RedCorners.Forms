@@ -13,7 +13,7 @@ namespace RedCorners.Forms
         Default = 0,
         //BlackTranslucent = 1,
         LightContent = 1,
-        BlackOpaque = 2
+        BlackOpaque = 2,
     }
 
     public class AliveContentPage : ContentPage
@@ -62,6 +62,12 @@ namespace RedCorners.Forms
             set => SetValue(AndroidLayoutInScreenProperty, value);
         }
 
+        public bool UIStatusBarHidden
+        {
+            get => (bool)GetValue(UIStatusBarHiddenProperty);
+            set => SetValue(UIStatusBarHiddenProperty, value);
+        }
+
         public static BindableProperty FixTopPaddingProperty = BindableProperty.Create(
             nameof(FixTopPadding),
             typeof(bool),
@@ -89,6 +95,14 @@ namespace RedCorners.Forms
             typeof(UIStatusBarStyles),
             typeof(AliveContentPage),
             UIStatusBarStyles.LightContent,
+            BindingMode.TwoWay,
+            propertyChanged: UpdateSettings);
+
+        public static BindableProperty UIStatusBarHiddenProperty = BindableProperty.Create(
+            nameof(UIStatusBarHidden),
+            typeof(bool),
+            typeof(AliveContentPage),
+            false,
             BindingMode.TwoWay,
             propertyChanged: UpdateSettings);
 

@@ -9,7 +9,7 @@
     FixBottomPadding="False"
     mc:Ignorable="d"
     x:Name="me"
-    x:Class="RedCorners.Forms.NeatPage">
+    x:Class="RedCorners.Forms.TitledContentPage">
     <rf:AliveContentPage.Content>
         <Grid RowSpacing="0">
             <Grid.RowDefinitions>

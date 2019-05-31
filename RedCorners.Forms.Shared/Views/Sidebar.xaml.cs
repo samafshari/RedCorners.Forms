@@ -338,7 +338,7 @@ namespace RedCorners.Forms
         private void Swipe_Swiped(object sender, SwipedEventArgs e)
         {
             if (!IsSwipeEnabled) return;
-            if (!InputTransparent) return;
+            if (IsVisible) return;
 
             if ((Side == SidebarSides.Right && e.Direction == SwipeDirection.Left) ||
                 (Side == SidebarSides.Left && e.Direction == SwipeDirection.Right) ||
@@ -350,7 +350,7 @@ namespace RedCorners.Forms
         private void SwipeIn_Swiped(object sender, SwipedEventArgs e)
         {
             if (!IsSwipeEnabled) return;
-            if (InputTransparent) return;
+            if (!IsVisible) return;
 
             if ((Side == SidebarSides.Right && e.Direction == SwipeDirection.Right) ||
                 (Side == SidebarSides.Left && e.Direction == SwipeDirection.Left) ||
@@ -529,8 +529,8 @@ namespace RedCorners.Forms
             if (!DoesSlideOut)
                 return;
 
-            var t = GetSlideTranslations();
-            await content.TranslateTo(t.x, t.y, SlideOutDuration);
+            var (x, y) = GetSlideTranslations();
+            await content.TranslateTo(x, y, SlideOutDuration);
         }
 
 

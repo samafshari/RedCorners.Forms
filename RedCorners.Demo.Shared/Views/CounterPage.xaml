@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<rf:NeatPage
+<rf:TitledContentPage
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:rf="clr-namespace:RedCorners.Forms;assembly=RedCorners.Forms"
@@ -8,11 +8,12 @@
     x:Class="RedCorners.Demo.Views.CounterPage"
     Title="Counter Page"
     IsBackButtonVisible="{Binding IsModal}"
+    UIStatusBarHidden="True"
     BackCommand="{Binding GoBackCommand}">
-    <rf:NeatPage.BindingContext>
+    <rf:TitledContentPage.BindingContext>
         <vm:CounterViewModel />
-    </rf:NeatPage.BindingContext>
-    <rf:NeatPage.Body>
+    </rf:TitledContentPage.BindingContext>
+    <rf:TitledContentPage.Body>
         <StackLayout>
             <Label Text="Count:"
                     FontAttributes="Bold"
@@ -35,8 +36,8 @@
                 </Button.Command>
             </Button>
         </StackLayout>
-    </rf:NeatPage.Body>
-    <rf:NeatPage.Sidebar>
+    </rf:TitledContentPage.Body>
+    <rf:TitledContentPage.Sidebar>
         <rf:Sidebar ContentSize="2*">
             <Frame
                 HasShadow="True"
@@ -64,5 +65,5 @@
                 </ScrollView>
             </Frame>
         </rf:Sidebar>
-    </rf:NeatPage.Sidebar>
-</rf:NeatPage>
+    </rf:TitledContentPage.Sidebar>
+</rf:TitledContentPage>

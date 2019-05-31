@@ -11,7 +11,7 @@ using Xamarin.Forms.Xaml;
 namespace RedCorners.Forms
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class NeatPage
+    public partial class TitledContentPage
     {
         public View Body
         {
@@ -64,13 +64,13 @@ namespace RedCorners.Forms
         public static readonly BindableProperty BodyProperty = BindableProperty.Create(
             propertyName: nameof(Body),
             returnType: typeof(View),
-            declaringType: typeof(NeatPage),
+            declaringType: typeof(TitledContentPage),
             defaultValue: null,
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
                 Console.WriteLine("Body is changing");
-                if (bindable is NeatPage page)
+                if (bindable is TitledContentPage page)
                 {
                     page.content.Content = newVal as View;
                 }
@@ -79,24 +79,24 @@ namespace RedCorners.Forms
         public static readonly BindableProperty ButtonsProperty = BindableProperty.Create(
             propertyName: nameof(Buttons),
             returnType: typeof(View),
-            declaringType: typeof(NeatPage),
+            declaringType: typeof(TitledContentPage),
             defaultValue: null,
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
-                if (bindable is NeatPage page)
+                if (bindable is TitledContentPage page)
                     page.titlebar.Buttons = (View)newVal;
             });
 
         public static readonly BindableProperty SidebarProperty = BindableProperty.Create(
             propertyName: nameof(Sidebar),
             returnType: typeof(View),
-            declaringType: typeof(NeatPage),
+            declaringType: typeof(TitledContentPage),
             defaultValue: null,
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
-                if (bindable is NeatPage page)
+                if (bindable is TitledContentPage page)
                 {
                     page.sidebar.Content = (View)newVal;
                 }
@@ -105,60 +105,60 @@ namespace RedCorners.Forms
         public static readonly BindableProperty IsBackButtonVisibleProperty = BindableProperty.Create(
             propertyName: nameof(IsBackButtonVisible),
             returnType: typeof(bool?),
-            declaringType: typeof(NeatPage),
+            declaringType: typeof(TitledContentPage),
             defaultValue: default(bool?),
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
-                if (bindable is NeatPage page)
+                if (bindable is TitledContentPage page)
                     page.titlebar.IsBackButtonVisible = (bool?)newVal;
             });
 
         public static readonly BindableProperty BackCommandProperty = BindableProperty.Create(
             propertyName: nameof(BackCommand),
             returnType: typeof(ICommand),
-            declaringType: typeof(NeatPage),
+            declaringType: typeof(TitledContentPage),
             defaultValue: null,
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
-                if (bindable is NeatPage page)
+                if (bindable is TitledContentPage page)
                     page.titlebar.BackCommand = (ICommand)newVal;
             });
 
         public static readonly BindableProperty BackCommandParameterProperty = BindableProperty.Create(
             propertyName: nameof(BackCommandParameter),
             returnType: typeof(object),
-            declaringType: typeof(NeatPage),
+            declaringType: typeof(TitledContentPage),
             defaultValue: null,
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
-                if (bindable is NeatPage page)
+                if (bindable is TitledContentPage page)
                     page.titlebar.BackCommandParameter = newVal;
             });
 
         public static readonly BindableProperty TitleColorProperty = BindableProperty.Create(
             propertyName: nameof(TitleColor),
             returnType: typeof(Color),
-            declaringType: typeof(NeatPage),
+            declaringType: typeof(TitledContentPage),
             defaultValue: Color.FromHex("#000000"),
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
-                if (bindable is NeatPage page)
+                if (bindable is TitledContentPage page)
                     page.titlebar.BackgroundColor = (Color)newVal;
             });
 
         public static readonly BindableProperty TitleTextColorProperty = BindableProperty.Create(
             propertyName: nameof(TitleTextColor),
             returnType: typeof(Color),
-            declaringType: typeof(NeatPage),
+            declaringType: typeof(TitledContentPage),
             defaultValue: Color.White,
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
-                if (bindable is NeatPage page)
+                if (bindable is TitledContentPage page)
                     page.titlebar.TextColor = (Color)newVal;
             });
 
@@ -169,7 +169,7 @@ namespace RedCorners.Forms
                 titlebar.Title = Title;
         }
 
-        public NeatPage()
+        public TitledContentPage()
         {
             InitializeComponent();
         }

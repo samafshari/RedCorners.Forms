@@ -34,7 +34,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\ItemsStack.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\ListView2.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\MultiComponentLabel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Views\NeatPage.xaml.cs">
+    <Compile Include="$(MSBuildThisFileDirectory)Views\TitledContentPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\Sidebar.xaml.cs">
@@ -53,7 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Update="E:\Projects\RedCorners.Forms\RedCorners.Forms.Shared\Views\NeatPage.xaml.cs">
-      <DependentUpon>NeatPage.xaml</DependentUpon>
+      <DependentUpon>TitledContentPage.xaml</DependentUpon>
     </Compile>
     <Compile Update="E:\Projects\RedCorners.Forms\RedCorners.Forms.Shared\Views\Sidebar.xaml.cs">
       <DependentUpon>Sidebar.xaml</DependentUpon>
@@ -73,7 +73,7 @@
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)menu.png" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\NeatPage.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\TitledContentPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
