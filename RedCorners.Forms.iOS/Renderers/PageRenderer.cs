@@ -22,8 +22,8 @@ namespace RedCorners.Forms.Renderers
             {
                 page.PlatformUpdate = () =>
                 {
-                    UIApplication.SharedApplication.SetStatusBarHidden(page.UIStatusBarHidden, true);
-                    UIApplication.SharedApplication.SetStatusBarStyle((UIStatusBarStyle)(long)page.UIStatusBarStyle, true);
+                    UIApplication.SharedApplication.SetStatusBarHidden(page.UIStatusBarHidden, page.UIStatusBarAnimated);
+                    UIApplication.SharedApplication.SetStatusBarStyle((UIStatusBarStyle)(long)page.UIStatusBarStyle, page.UIStatusBarAnimated);
                     SetNeedsStatusBarAppearanceUpdate();
                 };
             }

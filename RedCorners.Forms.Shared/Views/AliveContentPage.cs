@@ -68,6 +68,12 @@ namespace RedCorners.Forms
             set => SetValue(UIStatusBarHiddenProperty, value);
         }
 
+        public bool UIStatusBarAnimated
+        {
+            get => (bool)GetValue(UIStatusBarAnimatedProperty);
+            set => SetValue(UIStatusBarAnimatedProperty, value);
+        }
+
         public static BindableProperty FixTopPaddingProperty = BindableProperty.Create(
             nameof(FixTopPadding),
             typeof(bool),
@@ -103,6 +109,14 @@ namespace RedCorners.Forms
             typeof(bool),
             typeof(AliveContentPage),
             false,
+            BindingMode.TwoWay,
+            propertyChanged: UpdateSettings);
+
+        public static BindableProperty UIStatusBarAnimatedProperty = BindableProperty.Create(
+            nameof(UIStatusBarAnimated),
+            typeof(bool),
+            typeof(AliveContentPage),
+            true,
             BindingMode.TwoWay,
             propertyChanged: UpdateSettings);
 
