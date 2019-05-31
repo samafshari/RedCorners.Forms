@@ -263,7 +263,6 @@ namespace RedCorners.Forms
         public Sidebar()
         {
             CascadeInputTransparent = true;
-            InputTransparent = true;
 
             InitializeComponent();
             SetVisibility(false);
@@ -277,7 +276,6 @@ namespace RedCorners.Forms
         void SetVisibility(bool value)
         {
             SetValue(VisualElement.IsVisibleProperty, value);
-            InputTransparent = !value;
         }
 
         protected override void OnParentSet()
@@ -285,6 +283,13 @@ namespace RedCorners.Forms
             base.OnParentSet();
             if (Parent is View view && swipeRight == null)
             {
+                while (true)
+                {
+                    if (view.InputTransparent && view.Parent != null && view.Parent is View)
+                        view = view.Parent as View;
+                    else break;
+                }
+
                 swipeRight = new SwipeGestureRecognizer();
                 swipeRight.Swiped += Swipe_Swiped;
                 swipeRight.Direction = SwipeDirection.Right;
@@ -333,7 +338,7 @@ namespace RedCorners.Forms
         private void Swipe_Swiped(object sender, SwipedEventArgs e)
         {
             if (!IsSwipeEnabled) return;
-            if (IsVisible) return;
+            if (!InputTransparent) return;
 
             if ((Side == SidebarSides.Right && e.Direction == SwipeDirection.Left) ||
                 (Side == SidebarSides.Left && e.Direction == SwipeDirection.Right) ||
@@ -345,7 +350,7 @@ namespace RedCorners.Forms
         private void SwipeIn_Swiped(object sender, SwipedEventArgs e)
         {
             if (!IsSwipeEnabled) return;
-            if (!IsVisible) return;
+            if (InputTransparent) return;
 
             if ((Side == SidebarSides.Right && e.Direction == SwipeDirection.Right) ||
                 (Side == SidebarSides.Left && e.Direction == SwipeDirection.Left) ||
@@ -424,15 +429,21 @@ namespace RedCorners.Forms
 
         async void UpdateVisibility(bool oldVal, bool newVal)
         {
+            InputTransparent = !newVal;
             // If value is not updated, do nothing.
-            if (oldVal == newVal) return;
+            if (oldVal == newVal)
+            {
+                return;
+            }
 
             // If in the middle of another update, force roll back the value change.
             if (isOpening || isClosing)
             {
-                IsVisible = oldVal;
-                return;
+                //IsVisible = oldVal;
+                //return;
             }
+
+            ViewExtensions.CancelAnimations(content);
 
             // It's an open sequence
             if (newVal)
@@ -506,6 +517,7 @@ namespace RedCorners.Forms
             }
 
             (content.TranslationX, content.TranslationY) = GetSlideTranslations();
+            
             await content.TranslateTo(0, 0, SlideInDuration);
         }
 

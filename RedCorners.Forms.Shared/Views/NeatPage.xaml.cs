@@ -97,7 +97,9 @@ namespace RedCorners.Forms
             propertyChanged: (bindable, oldVal, newVal) =>
             {
                 if (bindable is NeatPage page)
+                {
                     page.sidebar.Content = (View)newVal;
+                }
             });
 
         public static readonly BindableProperty IsBackButtonVisibleProperty = BindableProperty.Create(

@@ -10,6 +10,13 @@ namespace RedCorners.Demo.ViewModels
     {
         public int Count { get; set; }
 
+        bool _isModal = false;
+        public override bool IsModal
+        {
+            get => _isModal;
+            set => SetProperty(ref _isModal, value);
+        }
+
         public Command CountCommand => new Command(() =>
         {
             Count++;
@@ -46,5 +53,11 @@ namespace RedCorners.Demo.ViewModels
             base.OnAppeared(page);
             Console.WriteLine($"OnAppeared: {page.GetType().FullName}");
         }
+
+        public override Command GoBackCommand => new Command(() =>
+        {
+            if (IsModal) base.GoBackCommand.Execute(this);
+            else IsSidebarOpen = true;
+        });
     }
 }

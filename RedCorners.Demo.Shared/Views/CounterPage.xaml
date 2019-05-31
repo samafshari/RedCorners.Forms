@@ -3,9 +3,11 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:rf="clr-namespace:RedCorners.Forms;assembly=RedCorners.Forms"
+    xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
     xmlns:vm="clr-namespace:RedCorners.Demo.ViewModels"
     x:Class="RedCorners.Demo.Views.CounterPage"
     Title="Counter Page"
+    IsBackButtonVisible="{Binding IsModal}"
     BackCommand="{Binding GoBackCommand}">
     <rf:NeatPage.BindingContext>
         <vm:CounterViewModel />
@@ -34,4 +36,33 @@
             </Button>
         </StackLayout>
     </rf:NeatPage.Body>
+    <rf:NeatPage.Sidebar>
+        <rf:Sidebar ContentSize="2*">
+            <Frame
+                HasShadow="True"
+                HorizontalOptions="Fill"
+                VerticalOptions="Fill"
+                BackgroundColor="#CC000000"
+                Padding="0"
+                CornerRadius="0">
+                <ScrollView Padding="{Static rf:Values.PageMargin}">
+                    <StackLayout Padding="10">
+                        <ff:CachedImage Source="http://ooze.redcorners.com/redcorners_forms_logo.png" HorizontalOptions="Center" HeightRequest="128" WidthRequest="128" />
+                        <Label Text="RedCorners.Forms" TextColor="White" FontSize="Large" HorizontalTextAlignment="Center" HorizontalOptions="Center" />
+                        <BoxView HeightRequest="1" HorizontalOptions="Fill" BackgroundColor="White" />
+
+                        <Label Text="{Binding Count}"
+                            FontSize="Large"
+                            TextColor="White"
+                            HorizontalOptions="Center" />
+
+                        <Grid>
+                            <Label Text="Modal" FontSize="Large" TextColor="White" VerticalOptions="Center" />
+                            <Switch IsToggled="{Binding IsModal}" HorizontalOptions="End" />
+                        </Grid>
+                    </StackLayout>
+                </ScrollView>
+            </Frame>
+        </rf:Sidebar>
+    </rf:NeatPage.Sidebar>
 </rf:NeatPage>

@@ -33,9 +33,10 @@
             
             <rf:AliveContentView
                 x:Name="sidebar"
-                InputTransparent="True"
                 HorizontalOptions="Fill"
                 VerticalOptions="Fill"
+                InputTransparent="True"
+                CascadeInputTransparent="False"
                 Grid.Row="0"
                 Grid.RowSpan="2" 
                 />
