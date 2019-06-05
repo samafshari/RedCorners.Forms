@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<rf:AliveContentView 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:rf="clr-namespace:RedCorners.Forms"
+    BackgroundColor="#333333"
+    HorizontalOptions="Fill"
+    FixBottomPadding="True"
+    VerticalOptions="EndAndExpand"
+    x:Name="me"
+    mc:Ignorable="d"
+    x:Class="RedCorners.Forms.Tabbar">
+    <Grid 
+        HorizontalOptions="Fill" 
+        VerticalOptions="FillAndExpand"
+        BackgroundColor="{Binding BackgroundColor, Source={x:Reference me}, Mode=OneWay}"
+        x:Name="content">
+    </Grid>
+</rf:AliveContentView>

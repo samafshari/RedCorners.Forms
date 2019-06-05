@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace RedCorners.Forms
@@ -16,16 +17,22 @@ namespace RedCorners.Forms
                 Aspect = Aspect.AspectFit
             };
             Children.Add(image);
+
             image.BindingContext = this;
-            image.SetBinding(Image.SourceProperty, "Source");
+            image.SetBinding(Image.SourceProperty, nameof(Source));
+            image.InputTransparent = true;
 
             var tap = new TapGestureRecognizer();
-            tap.BindingContext = this;
-            tap.SetBinding(TapGestureRecognizer.CommandProperty, "Command");
-            tap.SetBinding(TapGestureRecognizer.CommandParameterProperty, "CommandParameter");
+            tap.Tapped += Tap_Tapped;
 
             GestureRecognizers.Add(tap);
             image.GestureRecognizers.Add(tap);
+        }
+
+        private void Tap_Tapped(object sender, EventArgs e)
+        {
+            if (Command?.CanExecute(CommandParameter) ?? false)
+                Command.Execute(CommandParameter);
         }
 
         public ImageSource Source
@@ -34,34 +41,72 @@ namespace RedCorners.Forms
             set => SetValue(SourceProperty, value);
         }
 
+        public ImageSource PressedSource
+        {
+            get => (ImageSource)GetValue(PressedSourceProperty);
+            set => SetValue(PressedSourceProperty, value);
+        }
+
+        public float NormalOpacity
+        {
+            get => (float)GetValue(NormalOpacityProperty);
+            set => SetValue(NormalOpacityProperty, value);
+        }
+
+        public float PressedOpacity
+        {
+            get => (float)GetValue(PressedOpacityProperty);
+            set => SetValue(PressedOpacityProperty, value);
+        }
+
+        public ICommand Command
+        {
+            get => (ICommand)GetValue(CommandProperty);
+            set => SetValue(CommandProperty, value);
+        }
+
+        public object CommandParameter
+        {
+            get => GetValue(CommandParameterProperty);
+            set => SetValue(CommandParameterProperty, value);
+        }
+
         public static readonly BindableProperty SourceProperty = BindableProperty.Create(
-            propertyName: "Source",
+            propertyName: nameof(Source),
             returnType: typeof(ImageSource),
             declaringType: typeof(ImageButton),
             defaultValue: null);
 
-        public object Command { get; set; }
+        public static readonly BindableProperty PressedSourceProperty = BindableProperty.Create(
+            propertyName: nameof(PressedSource),
+            returnType: typeof(ImageSource),
+            declaringType: typeof(ImageButton),
+            defaultValue: null);
+
+        public static readonly BindableProperty NormalOpacityProperty = BindableProperty.Create(
+            propertyName: nameof(NormalOpacity),
+            returnType: typeof(float),
+            declaringType: typeof(ImageButton),
+            defaultValue: 1.0f);
+
+        public static readonly BindableProperty PressedOpacityProperty = BindableProperty.Create(
+            propertyName: nameof(PressedOpacity),
+            returnType: typeof(float),
+            declaringType: typeof(ImageButton),
+            defaultValue: 1.0f);
+
         public static readonly BindableProperty CommandProperty = BindableProperty.Create(
-            "Command",
+            nameof(Command),
+            typeof(ICommand),
+            typeof(ImageButton),
+            null,
+            BindingMode.TwoWay);
+
+        public static readonly BindableProperty CommandParameterProperty = BindableProperty.Create(
+            nameof(Command),
             typeof(object),
             typeof(ImageButton),
             null,
-            BindingMode.TwoWay,
-            propertyChanged: (bindable, oldValue, newValue) =>
-            {
-                var view = bindable as ImageButton;
-                view.Command = newValue;
-            });
-
-        private string _commandParameter;
-        public string CommandParameter
-        {
-            get { return _commandParameter; }
-            set
-            {
-                _commandParameter = value;
-                OnPropertyChanged(nameof(CommandParameter));
-            }
-        }
+            BindingMode.TwoWay);
     }
 }
