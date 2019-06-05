@@ -17,6 +17,7 @@ namespace RedCorners.Forms
     {
         public Tabbar()
         {
+            Items = new ObservableCollection<TabbarItem>();
             InitializeComponent();
             UpdateItems();
         }
@@ -55,7 +56,7 @@ namespace RedCorners.Forms
             propertyName: nameof(Items),
             returnType: typeof(IList<TabbarItem>),
             declaringType: typeof(Tabbar),
-            defaultValue: new ObservableCollection<TabbarItem>(),
+            defaultValue: null,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
                 if (bindable is Tabbar tabbar)
