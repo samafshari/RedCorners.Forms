@@ -60,7 +60,7 @@ namespace RedCorners.Forms
             propertyName: nameof(Opacity),
             returnType: typeof(float),
             declaringType: typeof(TabbarItem),
-            defaultValue: 0.7f);
+            defaultValue: 0.5f);
 
         public static readonly BindableProperty SelectedOpacityProperty = BindableProperty.Create(
             propertyName: nameof(Opacity),

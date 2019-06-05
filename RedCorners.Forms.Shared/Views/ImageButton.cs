@@ -8,9 +8,10 @@ namespace RedCorners.Forms
 {
     public class ImageButton : Grid
     {
+        readonly Image image;
         public ImageButton()
         {
-            var image = new Image
+            image = new Image
             {
                 HorizontalOptions = LayoutOptions.Fill,
                 VerticalOptions = LayoutOptions.Fill,
@@ -21,42 +22,39 @@ namespace RedCorners.Forms
             image.BindingContext = this;
             image.SetBinding(Image.SourceProperty, nameof(Source));
             image.InputTransparent = true;
+            image.Margin = ImageMargin;
 
-            var tap = new TapGestureRecognizer();
-            tap.Tapped += Tap_Tapped;
+            Button button = new Button {
+                BindingContext = this,
+                HorizontalOptions = LayoutOptions.Fill,
+                VerticalOptions = LayoutOptions.Fill
+            };
 
-            GestureRecognizers.Add(tap);
-            image.GestureRecognizers.Add(tap);
+            button.Pressed += Button_Pressed;
+            button.Released += Button_Released;
+            button.SetBinding(Button.CommandProperty, "Command");
+            button.SetBinding(Button.CommandParameterProperty, "CommandParameter");
+            button.BackgroundColor = Color.Transparent;
+            button.Opacity = 0;
+            Children.Add(button);
         }
 
-        private void Tap_Tapped(object sender, EventArgs e)
+        private void Button_Released(object sender, EventArgs e)
         {
-            if (Command?.CanExecute(CommandParameter) ?? false)
-                Command.Execute(CommandParameter);
+            if (ReleasedCommand?.CanExecute(ReleasedCommandParameter) ?? false)
+                Command.Execute(ReleasedCommandParameter);
+        }
+
+        private void Button_Pressed(object sender, EventArgs e)
+        {
+            if (PressedCommand?.CanExecute(PressedCommandParameter) ?? false)
+                Command.Execute(PressedCommandParameter);
         }
 
         public ImageSource Source
         {
             get => (ImageSource)GetValue(SourceProperty);
             set => SetValue(SourceProperty, value);
-        }
-
-        public ImageSource PressedSource
-        {
-            get => (ImageSource)GetValue(PressedSourceProperty);
-            set => SetValue(PressedSourceProperty, value);
-        }
-
-        public float NormalOpacity
-        {
-            get => (float)GetValue(NormalOpacityProperty);
-            set => SetValue(NormalOpacityProperty, value);
-        }
-
-        public float PressedOpacity
-        {
-            get => (float)GetValue(PressedOpacityProperty);
-            set => SetValue(PressedOpacityProperty, value);
         }
 
         public ICommand Command
@@ -71,29 +69,41 @@ namespace RedCorners.Forms
             set => SetValue(CommandParameterProperty, value);
         }
 
+        public ICommand PressedCommand
+        {
+            get => (ICommand)GetValue(PressedCommandProperty);
+            set => SetValue(PressedCommandProperty, value);
+        }
+
+        public object PressedCommandParameter
+        {
+            get => GetValue(PressedCommandParameterProperty);
+            set => SetValue(PressedCommandParameterProperty, value);
+        }
+
+        public ICommand ReleasedCommand
+        {
+            get => (ICommand)GetValue(ReleasedCommandProperty);
+            set => SetValue(ReleasedCommandProperty, value);
+        }
+
+        public object ReleasedCommandParameter
+        {
+            get => GetValue(ReleasedCommandParameterProperty);
+            set => SetValue(ReleasedCommandParameterProperty, value);
+        }
+
+        public Thickness ImageMargin
+        {
+            get => (Thickness)GetValue(ImageMarginProperty);
+            set => SetValue(ImageMarginProperty, value);
+        }
+
         public static readonly BindableProperty SourceProperty = BindableProperty.Create(
             propertyName: nameof(Source),
             returnType: typeof(ImageSource),
             declaringType: typeof(ImageButton),
             defaultValue: null);
-
-        public static readonly BindableProperty PressedSourceProperty = BindableProperty.Create(
-            propertyName: nameof(PressedSource),
-            returnType: typeof(ImageSource),
-            declaringType: typeof(ImageButton),
-            defaultValue: null);
-
-        public static readonly BindableProperty NormalOpacityProperty = BindableProperty.Create(
-            propertyName: nameof(NormalOpacity),
-            returnType: typeof(float),
-            declaringType: typeof(ImageButton),
-            defaultValue: 1.0f);
-
-        public static readonly BindableProperty PressedOpacityProperty = BindableProperty.Create(
-            propertyName: nameof(PressedOpacity),
-            returnType: typeof(float),
-            declaringType: typeof(ImageButton),
-            defaultValue: 1.0f);
 
         public static readonly BindableProperty CommandProperty = BindableProperty.Create(
             nameof(Command),
@@ -103,10 +113,52 @@ namespace RedCorners.Forms
             BindingMode.TwoWay);
 
         public static readonly BindableProperty CommandParameterProperty = BindableProperty.Create(
-            nameof(Command),
+            nameof(CommandParameter),
             typeof(object),
             typeof(ImageButton),
             null,
             BindingMode.TwoWay);
+
+        public static readonly BindableProperty PressedCommandProperty = BindableProperty.Create(
+            nameof(PressedCommand),
+            typeof(ICommand),
+            typeof(ImageButton),
+            null,
+            BindingMode.TwoWay);
+
+        public static readonly BindableProperty PressedCommandParameterProperty = BindableProperty.Create(
+            nameof(PressedCommandParameter),
+            typeof(object),
+            typeof(ImageButton),
+            null,
+            BindingMode.TwoWay);
+
+        public static readonly BindableProperty ReleasedCommandProperty = BindableProperty.Create(
+            nameof(ReleasedCommand),
+            typeof(ICommand),
+            typeof(ImageButton),
+            null,
+            BindingMode.TwoWay);
+
+        public static readonly BindableProperty ReleasedCommandParameterProperty = BindableProperty.Create(
+            nameof(ReleasedCommandParameter),
+            typeof(object),
+            typeof(ImageButton),
+            null,
+            BindingMode.TwoWay);
+
+        public static readonly BindableProperty ImageMarginProperty = BindableProperty.Create(
+            nameof(ImageMargin),
+            typeof(Thickness),
+            typeof(ImageButton),
+            new Thickness(0,0),
+            BindingMode.TwoWay,
+            propertyChanged: (bindable, oldVal, newVal) =>
+            {
+                if (bindable is ImageButton butt)
+                {
+                    butt.image.Margin = (Thickness)newVal;
+                }
+            });
     }
 }

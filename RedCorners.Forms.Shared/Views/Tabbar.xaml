@@ -5,17 +5,16 @@
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:rf="clr-namespace:RedCorners.Forms"
-    BackgroundColor="#333333"
     HorizontalOptions="Fill"
-    FixBottomPadding="True"
-    VerticalOptions="EndAndExpand"
+    VerticalOptions="Fill"
     x:Name="me"
     mc:Ignorable="d"
     x:Class="RedCorners.Forms.Tabbar">
-    <Grid 
-        HorizontalOptions="Fill" 
-        VerticalOptions="FillAndExpand"
-        BackgroundColor="{Binding BackgroundColor, Source={x:Reference me}, Mode=OneWay}"
-        x:Name="content">
-    </Grid>
+    <rf:AliveContentView.Content>
+        <Grid 
+            HorizontalOptions="Fill" 
+            VerticalOptions="Fill"
+            x:Name="content">
+        </Grid>
+    </rf:AliveContentView.Content>
 </rf:AliveContentView>
