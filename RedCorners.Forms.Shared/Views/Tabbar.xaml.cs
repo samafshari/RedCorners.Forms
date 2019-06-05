@@ -70,20 +70,29 @@ namespace RedCorners.Forms
             UpdateItems();
         }
 
-        Dictionary<TabbarItem, ImageButton> map = 
-            new Dictionary<TabbarItem, ImageButton>();
         void UpdateItems()
         {
             if (Items == null) return;
             content.Children.Clear();
-            map.Clear();
+            content.ColumnDefinitions.Clear();
+
+            int c = 0;
             foreach (var item in Items)
             {
                 item.PropertyChanged -= Item_PropertyChanged;
                 item.PropertyChanged += Item_PropertyChanged;
 
-                var img = new ImageButton();
-                img.BindingContext = item;
+                var img = new ImageButton
+                {
+                    BindingContext = item
+                };
+
+                content.Children.Add(img);
+                content.ColumnDefinitions.Add(new ColumnDefinition
+                {
+                    Width = GridLength.Star
+                });
+                img.SetValue(Grid.ColumnProperty, c++);
             }
             UpdateSelectedItem();
         }
@@ -93,10 +102,21 @@ namespace RedCorners.Forms
             UpdateSelectedItem();
         }
 
-
         void UpdateSelectedItem()
         {
+            for (int i = 0; i < content.Children.Count; i++)
+            {
+                var child = content.Children[i] as ImageButton;
+                var item = child.BindingContext as TabbarItem;
+                var source = item.Image;
+                if (SelectedItem == i && item.SelectedImage != null)
+                {
+                    source = item.SelectedImage;
+                }
+                child.Source = source;
+                child.PressedSource = item.SelectedImage;
 
+            }
         } 
     }
 }
