@@ -25,6 +25,12 @@ namespace RedCorners.Forms
             set => SetValue(ItemsProperty, value);
         }
 
+        public int SelectedItem
+        {
+            get => (int)GetValue(SelectedItemProperty);
+            set => SetValue(SelectedItemProperty, value);
+        }
+
         public static readonly BindableProperty ItemsProperty = BindableProperty.Create(
             propertyName: nameof(Items),
             returnType: typeof(ObservableCollection<TabbarItem>),
@@ -46,6 +52,19 @@ namespace RedCorners.Forms
                 }
             });
 
+        public static readonly BindableProperty SelectedItemProperty = BindableProperty.Create(
+            propertyName: nameof(SelectedItem),
+            returnType: typeof(int),
+            declaringType: typeof(Tabbar),
+            defaultValue: 0,
+            propertyChanged: (bindable, oldVal, newVal) =>
+            {
+                if (bindable is Tabbar tabbar)
+                {
+                    tabbar.UpdateSelectedItem();
+                }
+            });
+
         private void Tabbar_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
             UpdateItems();
@@ -63,13 +82,21 @@ namespace RedCorners.Forms
                 item.PropertyChanged -= Item_PropertyChanged;
                 item.PropertyChanged += Item_PropertyChanged;
 
-                //TODO
+                var img = new ImageButton();
+                img.BindingContext = item;
             }
+            UpdateSelectedItem();
         }
 
         private void Item_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            //TODO
+            UpdateSelectedItem();
         }
+
+
+        void UpdateSelectedItem()
+        {
+
+        } 
     }
 }
