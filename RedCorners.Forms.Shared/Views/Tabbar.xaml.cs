@@ -148,6 +148,10 @@ namespace RedCorners.Forms
                     Command = Command,
                     PressedCommand = PressedCommand,
                     ReleasedCommand = ReleasedCommand,
+                    Text = "Item",
+                    TextColor = Color.Black,
+                    TextHeight = new GridLength(20, GridUnitType.Absolute),
+                    FontAttributes = FontAttributes.Bold
                 };
 
                 content.Children.Add(img);

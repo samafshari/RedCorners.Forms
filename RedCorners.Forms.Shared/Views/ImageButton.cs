@@ -6,25 +6,71 @@ using Xamarin.Forms;
 
 namespace RedCorners.Forms
 {
+    [Flags]
+    public enum ImageButtonStyles
+    {
+        Image,
+        Text,
+        ImageText = Image | Text
+    }
+
     public class ImageButton : Grid
     {
-        readonly Image image;
+        Image image;
+        Label label;
+
         public ImageButton()
         {
-            image = new Image
+            Build();
+        }
+
+        void Build()
+        {
+            Children.Clear();
+            RowDefinitions.Clear();
+            image = null;
+            label = null;
+
+            if (ImageButtonStyle.HasFlag(ImageButtonStyles.Image))
             {
-                HorizontalOptions = LayoutOptions.Fill,
-                VerticalOptions = LayoutOptions.Fill,
-                Aspect = Aspect.AspectFit
-            };
-            Children.Add(image);
+                image = new Image
+                {
+                    HorizontalOptions = LayoutOptions.Fill,
+                    VerticalOptions = LayoutOptions.Fill,
+                    Aspect = Aspect.AspectFit
+                };
+                Children.Add(image);
 
-            image.BindingContext = this;
-            image.SetBinding(Image.SourceProperty, nameof(Source));
-            image.InputTransparent = true;
-            image.Margin = ImageMargin;
+                image.BindingContext = this;
+                image.SetBinding(Image.SourceProperty, nameof(Source));
+                image.InputTransparent = true;
+                image.Margin = ImageMargin;
+            }
 
-            var button = new Button2 {
+            if (ImageButtonStyle.HasFlag(ImageButtonStyles.Text))
+            {
+                label = new Label
+                {
+                    HorizontalOptions = LayoutOptions.Fill,
+                    VerticalOptions = LayoutOptions.Fill,
+                    HorizontalTextAlignment = TextAlignment.Center,
+                    VerticalTextAlignment = TextAlignment.Start,
+                    MaxLines = 1,
+                    LineBreakMode = LineBreakMode.NoWrap
+                };
+
+                Children.Add(label);
+
+                label.BindingContext = this;
+                label.SetBinding(Label.TextProperty, nameof(Text));
+                label.SetBinding(Label.TextColorProperty, nameof(TextColor));
+                label.SetBinding(Label.FontSizeProperty, nameof(FontSize));
+                label.SetBinding(Label.FontFamilyProperty, nameof(FontFamily));
+                label.SetBinding(Label.FontAttributesProperty, nameof(FontAttributes));
+            }
+
+            var button = new Button2
+            {
                 BindingContext = this,
                 HorizontalOptions = LayoutOptions.Fill,
                 VerticalOptions = LayoutOptions.Fill
@@ -37,6 +83,18 @@ namespace RedCorners.Forms
             button.BackgroundColor = Color.Transparent;
             button.Opacity = 0;
             Children.Add(button);
+
+            if (ImageButtonStyle == ImageButtonStyles.ImageText)
+            {
+                button.SetValue(Grid.RowProperty, 0);
+                button.SetValue(Grid.RowSpanProperty, 2);
+
+                image.SetValue(Grid.RowProperty, 0);
+                label.SetValue(Grid.RowProperty, 1);
+
+                RowDefinitions.Add(new RowDefinition { Height = GridLength.Star });
+                RowDefinitions.Add(new RowDefinition { Height = TextHeight });
+            }
         }
 
         private void Button_Clicked(object sender, EventArgs e)
@@ -105,6 +163,48 @@ namespace RedCorners.Forms
             set => SetValue(ImageMarginProperty, value);
         }
 
+        public ImageButtonStyles ImageButtonStyle
+        {
+            get => (ImageButtonStyles)GetValue(ImageButtonStyleProperty);
+            set => SetValue(ImageButtonStyleProperty, value);
+        }
+
+        public string Text
+        {
+            get => (string)GetValue(TextProperty);
+            set => SetValue(TextProperty, value);
+        }
+
+        public Color TextColor
+        {
+            get => (Color)GetValue(TextColorProperty);
+            set => SetValue(TextColorProperty, value);
+        }
+
+        public double FontSize
+        {
+            get => (double)GetValue(FontSizeProperty);
+            set => SetValue(FontSizeProperty, value);
+        }
+
+        public string FontFamily
+        {
+            get => (string)GetValue(FontFamilyProperty);
+            set => SetValue(FontFamilyProperty, value);
+        }
+
+        public FontAttributes FontAttributes
+        {
+            get => (FontAttributes)GetValue(FontAttributesProperty);
+            set => SetValue(FontAttributesProperty, value);
+        }
+
+        public GridLength TextHeight
+        {
+            get => (GridLength)GetValue(TextHeightProperty);
+            set => SetValue(TextHeightProperty, value);
+        }
+
         public static readonly BindableProperty SourceProperty = BindableProperty.Create(
             propertyName: nameof(Source),
             returnType: typeof(ImageSource),
@@ -161,10 +261,89 @@ namespace RedCorners.Forms
             BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
+                if (bindable is ImageButton butt && butt.image != null)
+                    butt.image.Margin = (Thickness)newVal;
+            });
+
+        public static readonly BindableProperty ImageButtonStyleProperty = BindableProperty.Create(
+            nameof(ImageButtonStyle),
+            typeof(ImageButtonStyles),
+            typeof(ImageButton),
+            ImageButtonStyles.Image,
+            BindingMode.TwoWay,
+            propertyChanged: (bindable, oldVal, newVal) =>
+            {
+                if (bindable is ImageButton butt)
+                    butt.Build();
+            });
+
+        public static readonly BindableProperty TextHeightProperty = BindableProperty.Create(
+            nameof(TextHeight),
+            typeof(GridLength),
+            typeof(ImageButton),
+            GridLength.Auto,
+            BindingMode.TwoWay,
+            propertyChanged: (bindable, oldVal, newVal) =>
+            {
                 if (bindable is ImageButton butt)
                 {
-                    butt.image.Margin = (Thickness)newVal;
+                    butt.Build();
                 }
+            });
+
+        public static readonly BindableProperty TextProperty = BindableProperty.Create(
+            propertyName: nameof(Text),
+            returnType: typeof(string),
+            declaringType: typeof(ImageButton),
+            defaultValue: "",
+            defaultBindingMode: BindingMode.TwoWay,
+            propertyChanged: (bindable, oldVal, newVal) =>
+            {
+
+            });
+
+        public static readonly BindableProperty TextColorProperty = BindableProperty.Create(
+            propertyName: nameof(TextColor),
+            returnType: typeof(Color),
+            declaringType: typeof(ImageButton),
+            defaultValue: Color.White,
+            defaultBindingMode: BindingMode.TwoWay,
+            propertyChanged: (bindable, oldVal, newVal) =>
+            {
+
+            });
+
+        public static readonly BindableProperty FontSizeProperty = BindableProperty.Create(
+            propertyName: nameof(FontSize),
+            returnType: typeof(double),
+            declaringType: typeof(ImageButton),
+            defaultValue: 16.0,
+            defaultBindingMode: BindingMode.TwoWay,
+            propertyChanged: (bindable, oldVal, newVal) =>
+            {
+
+            });
+
+        public static readonly BindableProperty FontFamilyProperty = BindableProperty.Create(
+            propertyName: nameof(FontFamily),
+            returnType: typeof(string),
+            declaringType: typeof(ImageButton),
+            defaultValue: null,
+            defaultBindingMode: BindingMode.TwoWay,
+            propertyChanged: (bindable, oldVal, newVal) =>
+            {
+
+            });
+
+        public static readonly BindableProperty FontAttributesProperty = BindableProperty.Create(
+            propertyName: nameof(FontAttributes),
+            returnType: typeof(FontAttributes),
+            declaringType: typeof(ImageButton),
+            defaultValue: FontAttributes.Bold,
+            defaultBindingMode: BindingMode.TwoWay,
+            propertyChanged: (bindable, oldVal, newVal) =>
+            {
+
             });
     }
 }
