@@ -24,7 +24,7 @@ namespace RedCorners.Forms
             image.InputTransparent = true;
             image.Margin = ImageMargin;
 
-            Button button = new Button {
+            var button = new Button2 {
                 BindingContext = this,
                 HorizontalOptions = LayoutOptions.Fill,
                 VerticalOptions = LayoutOptions.Fill
@@ -32,23 +32,29 @@ namespace RedCorners.Forms
 
             button.Pressed += Button_Pressed;
             button.Released += Button_Released;
-            button.SetBinding(Button.CommandProperty, "Command");
-            button.SetBinding(Button.CommandParameterProperty, "CommandParameter");
+            button.Clicked += Button_Clicked;
+
             button.BackgroundColor = Color.Transparent;
             button.Opacity = 0;
             Children.Add(button);
         }
 
+        private void Button_Clicked(object sender, EventArgs e)
+        {
+            if (Command?.CanExecute(CommandParameter) ?? false)
+                Command.Execute(CommandParameter);
+        }
+
         private void Button_Released(object sender, EventArgs e)
         {
             if (ReleasedCommand?.CanExecute(ReleasedCommandParameter) ?? false)
-                Command.Execute(ReleasedCommandParameter);
+                ReleasedCommand.Execute(ReleasedCommandParameter);
         }
 
         private void Button_Pressed(object sender, EventArgs e)
         {
             if (PressedCommand?.CanExecute(PressedCommandParameter) ?? false)
-                Command.Execute(PressedCommandParameter);
+                PressedCommand.Execute(PressedCommandParameter);
         }
 
         public ImageSource Source

@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Renderers\Button2Renderer.cs" />
     <Compile Include="Renderers\PageRenderer.cs" />
   </ItemGroup>
   <ItemGroup>

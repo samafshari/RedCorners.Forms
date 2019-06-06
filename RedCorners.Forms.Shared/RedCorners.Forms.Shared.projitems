@@ -29,6 +29,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Values.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\AliveContentPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\AliveContentView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Button2.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\HorizontalShadow.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\ImageButton.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\ItemsStack.cs" />
