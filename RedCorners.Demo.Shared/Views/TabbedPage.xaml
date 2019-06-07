@@ -7,6 +7,11 @@
     xmlns:rf="clr-namespace:RedCorners.Forms;assembly=RedCorners.Forms"
     xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
     xmlns:vm="clr-namespace:RedCorners.Demo.ViewModels"
+    KeepScreenOn="True"
+    TabStyle="ImageText"
+    TabbarBackgroundColor="#FFFFFF"
+    BackgroundColor="#EEEEEE"
+    TabbarHeight="100"
     mc:Ignorable="d"
     x:Class="RedCorners.Demo.Views.TabbedPage">
     <rf:TabbedContentPage.BindingContext>
@@ -18,4 +23,55 @@
             Opacity="0.7"
             Source="{Binding BackgroundImage}" />
     </rf:TabbedContentPage.TabbarBackgroundView>-->
+    <rf:TabbedContentPage.Children>
+        <rf:TitledContentView
+            Icon="icon_home_on"
+            Title="Home"
+            IsBackButtonVisible="False">
+            <StackLayout>
+                <Label Text="Home" />
+            </StackLayout>
+        </rf:TitledContentView>
+
+        <rf:TitledContentView
+            Icon="icon_grid_on"
+            Title="Grid"
+            IsBackButtonVisible="False"
+            TitleColor="#0277bd">
+            <WebView Source="http://neatcapital.ee" />
+        </rf:TitledContentView>
+
+        <rf:TitledContentView
+            Icon="icon_list_on"
+            Title="List"
+            IsBackButtonVisible="False">
+            <StackLayout>
+                <Label Text="List" />
+            </StackLayout>
+        </rf:TitledContentView>
+    </rf:TabbedContentPage.Children>
+    <rf:TabbedContentPage.Overlay>
+        <rf:Sidebar ContentSize="2*">
+            <Frame
+                HasShadow="True"
+                HorizontalOptions="Fill"
+                VerticalOptions="Fill"
+                BackgroundColor="#CC000000"
+                Padding="0"
+                CornerRadius="0">
+                <ScrollView Padding="{Static rf:Values.PageMargin}">
+                    <StackLayout Padding="10">
+                        <ff:CachedImage Source="http://ooze.redcorners.com/redcorners_forms_logo.png" HorizontalOptions="Center" HeightRequest="128" WidthRequest="128" />
+                        <Label Text="RedCorners.Forms" TextColor="White" FontSize="Large" HorizontalTextAlignment="Center" HorizontalOptions="Center" />
+                        <BoxView HeightRequest="1" HorizontalOptions="Fill" BackgroundColor="White" />
+
+                        <Grid>
+                            <Label Text="Modal" FontSize="Large" TextColor="White" VerticalOptions="Center" />
+                            <Switch IsToggled="{Binding IsModal}" HorizontalOptions="End" />
+                        </Grid>
+                    </StackLayout>
+                </ScrollView>
+            </Frame>
+        </rf:Sidebar>
+    </rf:TabbedContentPage.Overlay>
 </rf:TabbedContentPage>

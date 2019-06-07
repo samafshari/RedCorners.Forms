@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace RedCorners.Forms
@@ -30,6 +31,12 @@ namespace RedCorners.Forms
             set => SetValue(SelectedIconProperty, value);
         }
 
+        public bool IsVisibleAsTab
+        {
+            get => (bool)GetValue(IsVisibleAsTabProperty);
+            set => SetValue(IsVisibleAsTabProperty, value);
+        }
+
         public bool FixTopPadding
         {
             get => (bool)GetValue(FixTopPaddingProperty);
@@ -42,6 +49,12 @@ namespace RedCorners.Forms
             set => SetValue(FixBottomPaddingProperty, value);
         }
 
+        public ICommand ShowTabCommand
+        {
+            get => (ICommand)GetValue(ShowTabCommandProperty);
+            set => SetValue(ShowTabCommandProperty, value);
+        }
+
         public static readonly BindableProperty FixTopPaddingProperty = BindableProperty.Create(
             nameof(FixTopPadding),
             typeof(bool),
@@ -52,6 +65,13 @@ namespace RedCorners.Forms
             {
                 (bindable as AliveContentView).AdjustPadding();
             });
+
+        public static readonly BindableProperty IsVisibleAsTabProperty = BindableProperty.Create(
+            nameof(IsVisibleAsTab),
+            typeof(bool),
+            typeof(AliveContentView),
+            true,
+            BindingMode.TwoWay);
 
         public static readonly BindableProperty FixBottomPaddingProperty = BindableProperty.Create(
             nameof(FixBottomPadding),
@@ -81,6 +101,13 @@ namespace RedCorners.Forms
         public static readonly BindableProperty SelectedIconProperty = BindableProperty.Create(
             nameof(SelectedIcon),
             typeof(ImageSource),
+            typeof(AliveContentView),
+            null,
+            BindingMode.TwoWay);
+
+        public static readonly BindableProperty ShowTabCommandProperty = BindableProperty.Create(
+            nameof(ShowTabCommand),
+            typeof(ICommand),
             typeof(AliveContentView),
             null,
             BindingMode.TwoWay);

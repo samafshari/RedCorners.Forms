@@ -20,15 +20,15 @@ namespace RedCorners.Forms
             set => SetValue(SelectedImageProperty, value);
         }
 
-        public float Opacity
+        public double Opacity
         {
-            get => (float)GetValue(OpacityProperty);
+            get => (double)GetValue(OpacityProperty);
             set => SetValue(OpacityProperty, value);
         }
 
-        public float SelectedOpacity
+        public double SelectedOpacity
         {
-            get => (float)GetValue(SelectedOpacityProperty);
+            get => (double)GetValue(SelectedOpacityProperty);
             set => SetValue(SelectedOpacityProperty, value);
         }
 
@@ -70,15 +70,15 @@ namespace RedCorners.Forms
 
         public static readonly BindableProperty OpacityProperty = BindableProperty.Create(
             propertyName: nameof(Opacity),
-            returnType: typeof(float),
+            returnType: typeof(double),
             declaringType: typeof(TabbarItem),
-            defaultValue: 0.5f);
+            defaultValue: 0.5);
 
         public static readonly BindableProperty SelectedOpacityProperty = BindableProperty.Create(
-            propertyName: nameof(Opacity),
-            returnType: typeof(float),
+            propertyName: nameof(SelectedOpacity),
+            returnType: typeof(double),
             declaringType: typeof(TabbarItem),
-            defaultValue: 1.0f);
+            defaultValue: 1.0);
 
         public static readonly BindableProperty CommandProperty = BindableProperty.Create(
             propertyName: nameof(Command),

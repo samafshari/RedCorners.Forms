@@ -12,7 +12,7 @@ namespace RedCorners.Forms
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     [ContentProperty("Body")]
-    public partial class TitledContentPage
+    public partial class TitledContentView
     {
         public View Body
         {
@@ -26,10 +26,10 @@ namespace RedCorners.Forms
             set => SetValue(ButtonsProperty, value);
         }
 
-        public View Sidebar
+        public View Overlay
         {
-            get => (View)GetValue(ButtonsProperty);
-            set => SetValue(ButtonsProperty, value);
+            get => (View)GetValue(OverlayProperty);
+            set => SetValue(OverlayProperty, value);
         }
 
         public bool? IsBackButtonVisible
@@ -65,13 +65,13 @@ namespace RedCorners.Forms
         public static readonly BindableProperty BodyProperty = BindableProperty.Create(
             propertyName: nameof(Body),
             returnType: typeof(View),
-            declaringType: typeof(TitledContentPage),
+            declaringType: typeof(TitledContentView),
             defaultValue: null,
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
                 Console.WriteLine("Body is changing");
-                if (bindable is TitledContentPage page)
+                if (bindable is TitledContentView page)
                 {
                     page.content.Content = newVal as View;
                 }
@@ -80,86 +80,86 @@ namespace RedCorners.Forms
         public static readonly BindableProperty ButtonsProperty = BindableProperty.Create(
             propertyName: nameof(Buttons),
             returnType: typeof(View),
-            declaringType: typeof(TitledContentPage),
+            declaringType: typeof(TitledContentView),
             defaultValue: null,
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
-                if (bindable is TitledContentPage page)
+                if (bindable is TitledContentView page)
                     page.titlebar.Buttons = (View)newVal;
             });
 
-        public static readonly BindableProperty SidebarProperty = BindableProperty.Create(
-            propertyName: nameof(Sidebar),
+        public static readonly BindableProperty OverlayProperty = BindableProperty.Create(
+            propertyName: nameof(Overlay),
             returnType: typeof(View),
-            declaringType: typeof(TitledContentPage),
+            declaringType: typeof(TitledContentView),
             defaultValue: null,
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
-                if (bindable is TitledContentPage page)
+                if (bindable is TitledContentView page)
                 {
-                    page.sidebar.Content = (View)newVal;
+                    page.overlay.Content = (View)newVal;
                 }
             });
 
         public static readonly BindableProperty IsBackButtonVisibleProperty = BindableProperty.Create(
             propertyName: nameof(IsBackButtonVisible),
             returnType: typeof(bool?),
-            declaringType: typeof(TitledContentPage),
+            declaringType: typeof(TitledContentView),
             defaultValue: default(bool?),
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
-                if (bindable is TitledContentPage page)
+                if (bindable is TitledContentView page)
                     page.titlebar.IsBackButtonVisible = (bool?)newVal;
             });
 
         public static readonly BindableProperty BackCommandProperty = BindableProperty.Create(
             propertyName: nameof(BackCommand),
             returnType: typeof(ICommand),
-            declaringType: typeof(TitledContentPage),
+            declaringType: typeof(TitledContentView),
             defaultValue: null,
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
-                if (bindable is TitledContentPage page)
+                if (bindable is TitledContentView page)
                     page.titlebar.BackCommand = (ICommand)newVal;
             });
 
         public static readonly BindableProperty BackCommandParameterProperty = BindableProperty.Create(
             propertyName: nameof(BackCommandParameter),
             returnType: typeof(object),
-            declaringType: typeof(TitledContentPage),
+            declaringType: typeof(TitledContentView),
             defaultValue: null,
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
-                if (bindable is TitledContentPage page)
+                if (bindable is TitledContentView page)
                     page.titlebar.BackCommandParameter = newVal;
             });
 
         public static readonly BindableProperty TitleColorProperty = BindableProperty.Create(
             propertyName: nameof(TitleColor),
             returnType: typeof(Color),
-            declaringType: typeof(TitledContentPage),
+            declaringType: typeof(TitledContentView),
             defaultValue: Color.FromHex("#000000"),
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
-                if (bindable is TitledContentPage page)
+                if (bindable is TitledContentView page)
                     page.titlebar.BackgroundColor = (Color)newVal;
             });
 
         public static readonly BindableProperty TitleTextColorProperty = BindableProperty.Create(
             propertyName: nameof(TitleTextColor),
             returnType: typeof(Color),
-            declaringType: typeof(TitledContentPage),
+            declaringType: typeof(TitledContentView),
             defaultValue: Color.White,
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
-                if (bindable is TitledContentPage page)
+                if (bindable is TitledContentView page)
                     page.titlebar.TextColor = (Color)newVal;
             });
 
@@ -170,7 +170,7 @@ namespace RedCorners.Forms
                 titlebar.Title = Title;
         }
 
-        public TitledContentPage()
+        public TitledContentView()
         {
             InitializeComponent();
         }

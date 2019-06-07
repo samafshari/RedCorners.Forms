@@ -14,17 +14,16 @@
         <Grid RowSpacing="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
-                <RowDefinition Height="{Binding TabbarHeight}" BindingContext="{x:Reference me}" />
+                <RowDefinition x:Name="tabbarRow" />
             </Grid.RowDefinitions>
 
-            <Grid Grid.Row="0" x:Name="content">
+            <Grid Grid.Row="0" x:Name="content" HorizontalOptions="Fill" VerticalOptions="Fill">
                 
             </Grid>
 
             <BoxView
-                Grid.Row="0"
-                BindingContext="{x:Reference me}"
-                BackgroundColor="{Binding TabbarBackgroundColor}"
+                x:Name="tabbarBox"
+                Grid.Row="1"
                 HorizontalOptions="Fill"
                 VerticalOptions="Fill"
                 InputTransparent="True" />
@@ -35,9 +34,23 @@
                 VerticalOptions="Fill"
                 x:Name="tabbarBackground" />
 
-            <rf:Tabbar Grid.Row="1" x:Name="tabbar" FixBottomPadding="True" />
+            <rf:Tabbar 
+                Grid.Row="1" 
+                x:Name="tabbar" 
+                ImageMargin="8"
+                FixBottomPadding="True" />
             
             <rf:HorizontalShadow Grid.Row="1" />
+
+            <rf:AliveContentView
+                x:Name="overlay"
+                HorizontalOptions="Fill"
+                VerticalOptions="Fill"
+                InputTransparent="True"
+                CascadeInputTransparent="False"
+                Grid.Row="0"
+                Grid.RowSpan="2" 
+                />
         </Grid>
     </rf:AliveContentPage.Content>
 </rf:AliveContentPage>

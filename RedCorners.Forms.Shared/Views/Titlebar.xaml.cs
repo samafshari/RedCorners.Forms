@@ -78,12 +78,6 @@ namespace RedCorners.Forms
             set => SetValue(BackCommandParameterProperty, value);
         }
 
-        public string Title
-        {
-            get => (string)GetValue(TitleProperty);
-            set => SetValue(TitleProperty, value);
-        }
-
         public Color TextColor
         {
             get => (Color)GetValue(TextColorProperty);
@@ -189,17 +183,6 @@ namespace RedCorners.Forms
             returnType: typeof(object),
             declaringType: typeof(Titlebar),
             defaultValue: null,
-            defaultBindingMode: BindingMode.TwoWay,
-            propertyChanged: (bindable, oldVal, newVal) =>
-            {
-
-            });
-
-        public static readonly BindableProperty TitleProperty = BindableProperty.Create(
-            propertyName: nameof(Title),
-            returnType: typeof(string),
-            declaringType: typeof(Titlebar),
-            defaultValue: "",
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {

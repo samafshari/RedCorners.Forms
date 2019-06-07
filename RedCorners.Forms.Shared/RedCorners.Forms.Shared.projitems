@@ -42,7 +42,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\TabbedContentPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\TitledContentPage.xaml.cs">
+    <Compile Include="$(MSBuildThisFileDirectory)Views\TitledContentView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\Sidebar.xaml.cs">
@@ -87,7 +87,7 @@
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)menu.png" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\TitledContentPage.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\TitledContentView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
