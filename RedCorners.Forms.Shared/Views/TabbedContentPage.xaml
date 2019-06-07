@@ -29,11 +29,6 @@
                 x:Name="tabbarContainer"
                 FixBottomPadding="True">
                 <Grid>
-                    <BoxView
-                        x:Name="tabbarBox"
-                        HorizontalOptions="Fill"
-                        VerticalOptions="Fill"
-                        InputTransparent="True" />
                     <rf:AliveContentView 
                         HorizontalOptions="Fill"
                         VerticalOptions="Fill"

@@ -10,6 +10,11 @@ namespace RedCorners.Demo.ViewModels
 {
     public class MainViewModel : BindableModel
     {
+        public MainViewModel()
+        {
+            IsModal = false;
+        }
+
         bool _androidTranslucentStatus = true;
         public bool AndroidTranslucentStatus
         {

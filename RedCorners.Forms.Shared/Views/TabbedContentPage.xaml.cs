@@ -21,7 +21,7 @@ namespace RedCorners.Forms
             UpdateTabbarBackgroundView();
             UpdateChildren();
             tabbar.SelectedItem = SelectedTab;
-            tabbarBox.BackgroundColor = BackgroundColor;
+            tabbarContainer.BackgroundColor = BackgroundColor;
             tabbar.PropertyChanged += Tabbar_PropertyChanged;
             tabbar.HeightRequest = TabbarHeightRequest;
             tabbarContainer.IsVisible = IsTabbarVisible;
@@ -184,7 +184,7 @@ namespace RedCorners.Forms
             propertyChanged: (bindable, oldVal, newVal) =>
             {
                 if (bindable is TabbedContentPage page)
-                    page.tabbarBox.BackgroundColor = (Color)newVal;
+                    page.tabbarContainer.BackgroundColor = (Color)newVal;
             });
 
         public static readonly BindableProperty IsTabbarVisibleProperty =
