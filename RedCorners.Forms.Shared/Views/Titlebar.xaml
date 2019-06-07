@@ -10,64 +10,66 @@
     x:Class="RedCorners.Forms.Titlebar"
     BackgroundColor="#333333"
     HorizontalOptions="Fill"
-    FixTopPadding="True"
     VerticalOptions="StartAndExpand">
     <Grid HorizontalOptions="Fill" VerticalOptions="FillAndExpand" BackgroundColor="{Binding BackgroundColor, Source={x:Reference me}, Mode=OneWay}">
-        <rf:AliveContentView x:Name="body" HorizontalOptions="Fill" VerticalOptions="Fill" Content="{Binding Body, Source={x:Reference me}}" />
+        <Grid HorizontalOptions="Fill" VerticalOptions="Fill">
+            <ContentView x:Name="body" Content="{Binding Body, Source={x:Reference me}}" />
+        </Grid>
+        <rf:AliveContentView FixTopPadding="True" HorizontalOptions="Fill" VerticalOptions="FillAndExpand" x:Name="contentContainer">
+            <Grid x:Name="content" 
+                  HeightRequest="{Binding ContentHeightRequest, Source={x:Reference me}, Mode=OneWay}" 
+                  Margin="{Binding ContentMargin, Source={x:Reference me}, Mode=OneWay}" 
+                  HorizontalOptions="Fill" VerticalOptions="FillAndExpand">
+                <Grid.Padding>
+                    <OnPlatform 
+					    x:TypeArguments="Thickness" 
+					    iOS="0,0,10,5" 
+					    Android="5,0,5,5" />
+                </Grid.Padding>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Grid 
+                    x:Name="controlButtons"
+                    Grid.Column="0"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="Fill"
+                    WidthRequest="42">
+                    <Image 
+                        x:Name="backImage"
+				        Aspect="AspectFit"
+				        WidthRequest="24" 
+				        HeightRequest="24" 
+				        VerticalOptions="Center" 
+				        HorizontalOptions="Start"
+				        Margin="12,0,6,0"
+                        />
+                </Grid>
 
-        <Grid x:Name="content" 
-              HeightRequest="{Binding ContentHeightRequest, Source={x:Reference me}, Mode=OneWay}" 
-              Margin="{Binding ContentMargin, Source={x:Reference me}, Mode=OneWay}" 
-              HorizontalOptions="Fill" VerticalOptions="FillAndExpand">
-            <Grid.Padding>
-                <OnPlatform 
-					x:TypeArguments="Thickness" 
-					iOS="0,0,10,5" 
-					Android="5,0,5,5" />
-            </Grid.Padding>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
-            <Grid 
-                x:Name="controlButtons"
-                Grid.Column="0"
-                HorizontalOptions="FillAndExpand"
-                VerticalOptions="Fill"
-                WidthRequest="42">
-                <Image 
-                    x:Name="backImage"
-				    Aspect="AspectFit"
-				    WidthRequest="24" 
-				    HeightRequest="24" 
-				    VerticalOptions="Center" 
-				    HorizontalOptions="Start"
-				    Margin="12,0,6,0"
+                <Label 
+                    x:Name="lblTitle"
+			        Text="{Binding Title, Source={x:Reference me}, Mode=OneWay}" 
+			        TextColor="{Binding TextColor, Source={x:Reference me}, Mode=OneWay}" 
+			        FontAttributes="{Binding FontAttributes, Source={x:Reference me}, Mode=OneWay}" 
+			        FontSize="{Binding FontSize, Source={x:Reference me}, Mode=OneWay}"
+			        VerticalOptions="Center" 
+			        HorizontalOptions="Fill"
+                    HorizontalTextAlignment="Start"
+			        LineBreakMode="TailTruncation" 
+                    Margin="0,0,10,0"
+			        Grid.Column="1" />
+
+                <rf:AliveContentView 
+                    x:Name="buttons" 
+                    Grid.Column="2" 
+                    HorizontalOptions="EndAndExpand" 
+                    VerticalOptions="Fill" 
+                    Margin="8,0,8,0" 
+                    Content="{Binding Buttons, Source={x:Reference me}}" 
                     />
             </Grid>
-            
-            <Label 
-                x:Name="lblTitle"
-			    Text="{Binding Title, Source={x:Reference me}, Mode=OneWay}" 
-			    TextColor="{Binding TextColor, Source={x:Reference me}, Mode=OneWay}" 
-			    FontAttributes="{Binding FontAttributes, Source={x:Reference me}, Mode=OneWay}" 
-			    FontSize="{Binding FontSize, Source={x:Reference me}, Mode=OneWay}"
-			    VerticalOptions="Center" 
-			    HorizontalOptions="Fill"
-                HorizontalTextAlignment="Start"
-			    LineBreakMode="TailTruncation" 
-                Margin="0,0,10,0"
-			    Grid.Column="1" />
-
-            <rf:AliveContentView 
-                x:Name="buttons" 
-                Grid.Column="2" 
-                HorizontalOptions="EndAndExpand" 
-                VerticalOptions="Fill" 
-                Margin="8,0,8,0" 
-                Content="{Binding Buttons, Source={x:Reference me}}" 
-                />
-        </Grid>
+        </rf:AliveContentView>
     </Grid>
 </rf:AliveContentView>

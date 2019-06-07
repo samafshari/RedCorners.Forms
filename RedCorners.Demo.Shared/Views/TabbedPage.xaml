@@ -28,15 +28,17 @@
         <rf:TitledContentView
             Icon="icon_home_on"
             Title="Home"
-            IsBackButtonVisible="{Binding IsModal}">
-            <StackLayout>
-                <Label Text="TabStyle" />
+            IsBackButtonVisible="{Binding IsModal}"
+            TitleBackgroundImage="https://freefrontend.com/assets/img/css-background-patterns/simple-pattern-with-css3.png">
+            <StackLayout Padding="10" Spacing="20">
+                <Label Text="TabStyle:" />
                 <rf:Tabbar
+                    HorizontalTextAlignment="Start"
                     ImageButtonStyle="Text"
                     SelectedItem="2"
                     SelectedItemChangeCommand="{Binding TabStyleChangeCommand}"
                     TextColor="Black"
-                    SelectedTextColor="DarkBlue">
+                    SelectedTextColor="#1e88e5">
                     <rf:TabbarItem Text="Image" Opacity="1.0" SelectedImage="1.0" />
                     <rf:TabbarItem Text="Text" Opacity="1.0" SelectedImage="1.0" />
                     <rf:TabbarItem Text="ImageText" Opacity="1.0" SelectedImage="1.0" />
@@ -48,8 +50,10 @@
             Icon="icon_list_on"
             Title="List"
             IsVisibleAsTab="{Binding IsTab2Visible}"
-            IsBackButtonVisible="{Binding IsModal}">
-            <StackLayout>
+            IsBackButtonVisible="{Binding IsModal}"
+            TitleColor="#c2185b">
+            
+            <StackLayout Padding="10">
                 <Label Text="List" />
             </StackLayout>
         </rf:TitledContentView>

@@ -62,6 +62,18 @@ namespace RedCorners.Forms
             set => SetValue(TitleTextColorProperty, value);
         }
 
+        public ImageSource TitleBackgroundImage
+        {
+            get => (ImageSource)GetValue(TitleBackgroundImageProperty);
+            set => SetValue(TitleBackgroundImageProperty, value);
+        }
+
+        public double TitleBackgroundImageOpacity
+        {
+            get => (double)GetValue(TitleBackgroundImageOpacityProperty);
+            set => SetValue(TitleBackgroundImageOpacityProperty, value);
+        }
+
         public static readonly BindableProperty BodyProperty = BindableProperty.Create(
             propertyName: nameof(Body),
             returnType: typeof(View),
@@ -139,6 +151,34 @@ namespace RedCorners.Forms
                     page.titlebar.BackCommandParameter = newVal;
             });
 
+        public static readonly BindableProperty TitleBackgroundImageProperty = BindableProperty.Create(
+            propertyName: nameof(TitleBackgroundImage),
+            returnType: typeof(ImageSource),
+            declaringType: typeof(TitledContentView),
+            defaultValue: null,
+            defaultBindingMode: BindingMode.TwoWay,
+            propertyChanged: (bindable, oldVal, newVal) =>
+            {
+                if (bindable is TitledContentView page)
+                {
+                    page.UpdateTitleBackgroundImage();
+                }
+            });
+
+        public static readonly BindableProperty TitleBackgroundImageOpacityProperty = BindableProperty.Create(
+            propertyName: nameof(TitleBackgroundImageOpacity),
+            returnType: typeof(double),
+            declaringType: typeof(TitledContentView),
+            defaultValue: 1.0,
+            defaultBindingMode: BindingMode.TwoWay,
+            propertyChanged: (bindable, oldVal, newVal) =>
+            {
+                if (bindable is TitledContentView page)
+                {
+                    page.UpdateTitleBackgroundImage();
+                }
+            });
+
         public static readonly BindableProperty TitleColorProperty = BindableProperty.Create(
             propertyName: nameof(TitleColor),
             returnType: typeof(Color),
@@ -173,6 +213,27 @@ namespace RedCorners.Forms
         public TitledContentView()
         {
             InitializeComponent();
+            UpdateTitleBackgroundImage();
+        }
+
+        void UpdateTitleBackgroundImage()
+        {
+            if (titlebar == null) return;
+            if (TitleBackgroundImage == null)
+            {
+                titlebar.Body = null;
+            }
+            else
+            {
+                titlebar.Body = new Image
+                {
+                    HorizontalOptions = LayoutOptions.Fill,
+                    VerticalOptions = LayoutOptions.Fill,
+                    Source = TitleBackgroundImage,
+                    Aspect = Aspect.AspectFill,
+                    Opacity = TitleBackgroundImageOpacity
+                };
+            }
         }
     }
 }

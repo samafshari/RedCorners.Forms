@@ -36,6 +36,7 @@
                     <rf:Tabbar 
                         VerticalOptions="FillAndExpand"
                         x:Name="tabbar" 
+                        VerticalTextAlignment="Center"
                         ImageMargin="8" />
                     <rf:HorizontalShadow  />
                 </Grid>
