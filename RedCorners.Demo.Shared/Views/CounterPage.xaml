@@ -13,68 +13,66 @@
     <rf:TitledContentPage.BindingContext>
         <vm:CounterViewModel />
     </rf:TitledContentPage.BindingContext>
-    <rf:TitledContentPage.Body>
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="50" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <rf:Tabbar Grid.Row="0" Orientation="Vertical">
-                <rf:TabbarItem Image="icon_home_on" />
-                <rf:TabbarItem Image="icon_grid_on" />
-                <rf:TabbarItem Image="icon_list_on" />
-                <rf:TabbarItem Image="icon_map_on" />
-                <rf:TabbarItem Image="icon_profile_on" />
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <rf:Tabbar Grid.Row="0" Orientation="Vertical">
+            <rf:TabbarItem Image="icon_home_on" />
+            <rf:TabbarItem Image="icon_grid_on" />
+            <rf:TabbarItem Image="icon_list_on" />
+            <rf:TabbarItem Image="icon_map_on" />
+            <rf:TabbarItem Image="icon_profile_on" />
+        </rf:Tabbar>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="70" />
+            </Grid.RowDefinitions>
+            <StackLayout Grid.Row="0">
+                <Label Text="Count:"
+                    FontAttributes="Bold"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+                <Label Text="{Binding Count}"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+                <Button Text="Count" Command="{Binding CountCommand}" />
+
+                <Button Text="Pop (FireOnce)">
+                    <Button.Command>
+                        <rf:PopCommand FireOnce="True" />
+                    </Button.Command>
+                </Button>
+
+                <Button Text="Pop (FireDelay = 1000.0)">
+                    <Button.Command>
+                        <rf:PopCommand FireOnce="False" />
+                    </Button.Command>
+                </Button>
+
+                <Button Text="Style: Text" Command="{Binding TextStyleCommand}" />
+                <Button Text="Style: Image" Command="{Binding ImageStyleCommand}" />
+                <Button Text="Style: ImageText" Command="{Binding ImageTextStyleCommand}" />
+
+            </StackLayout>
+            <rf:Tabbar 
+                Grid.Row="1" 
+                ImageButtonStyle="{Binding ImageButtonStyle}" 
+                TextHeight="30" 
+                TextColor="Black" 
+                Spacing="2"
+                ImageMargin="{Binding ImageMargin}"
+                VerticalTextAlignment="{Binding VerticalTextAlignment}">
+                <rf:TabbarItem Image="icon_home_on" Text="Home" />
+                <rf:TabbarItem Image="icon_grid_on" Text="Grid" />
+                <rf:TabbarItem Image="icon_list_on" Text="List" />
+                <rf:TabbarItem Image="icon_map_on" Text="Map" />
+                <rf:TabbarItem Image="icon_profile_on" Text="Profile" />
             </rf:Tabbar>
-            <Grid Grid.Column="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="70" />
-                </Grid.RowDefinitions>
-                <StackLayout Grid.Row="0">
-                    <Label Text="Count:"
-                        FontAttributes="Bold"
-                    VerticalOptions="CenterAndExpand" 
-                    HorizontalOptions="CenterAndExpand" />
-                    <Label Text="{Binding Count}"
-                    VerticalOptions="CenterAndExpand" 
-                    HorizontalOptions="CenterAndExpand" />
-                    <Button Text="Count" Command="{Binding CountCommand}" />
-
-                    <Button Text="Pop (FireOnce)">
-                        <Button.Command>
-                            <rf:PopCommand FireOnce="True" />
-                        </Button.Command>
-                    </Button>
-
-                    <Button Text="Pop (FireDelay = 1000.0)">
-                        <Button.Command>
-                            <rf:PopCommand FireOnce="False" />
-                        </Button.Command>
-                    </Button>
-
-                    <Button Text="Style: Text" Command="{Binding TextStyleCommand}" />
-                    <Button Text="Style: Image" Command="{Binding ImageStyleCommand}" />
-                    <Button Text="Style: ImageText" Command="{Binding ImageTextStyleCommand}" />
-
-                </StackLayout>
-                <rf:Tabbar 
-                    Grid.Row="1" 
-                    ImageButtonStyle="{Binding ImageButtonStyle}" 
-                    TextHeight="30" 
-                    TextColor="Black" 
-                    Spacing="2"
-                    ImageMargin="{Binding ImageMargin}"
-                    VerticalTextAlignment="{Binding VerticalTextAlignment}">
-                    <rf:TabbarItem Image="icon_home_on" Text="Home" />
-                    <rf:TabbarItem Image="icon_grid_on" Text="Grid" />
-                    <rf:TabbarItem Image="icon_list_on" Text="List" />
-                    <rf:TabbarItem Image="icon_map_on" Text="Map" />
-                    <rf:TabbarItem Image="icon_profile_on" Text="Profile" />
-                </rf:Tabbar>
-            </Grid>
         </Grid>
-    </rf:TitledContentPage.Body>
+    </Grid>
     <rf:TitledContentPage.Sidebar>
         <rf:Sidebar ContentSize="2*">
             <Frame

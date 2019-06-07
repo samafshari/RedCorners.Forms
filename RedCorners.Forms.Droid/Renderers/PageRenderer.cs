@@ -39,7 +39,7 @@ namespace RedCorners.Forms.Renderers
         void UpdateAndroidStuff()
         {
             // This whole flow is buggy when done on the fly,
-            // also, !T and !L doesn't go well together, so if it happens, we change it to !T and L
+            // also, !T and !L don't go well together, so if it happens, we change it to !T and L
 
             if (Build.VERSION.SdkInt >= BuildVersionCodes.Lollipop)
             {

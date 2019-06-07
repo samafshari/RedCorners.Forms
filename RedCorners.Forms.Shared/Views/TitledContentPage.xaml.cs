@@ -11,6 +11,7 @@ using Xamarin.Forms.Xaml;
 namespace RedCorners.Forms
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
+    [ContentProperty("Body")]
     public partial class TitledContentPage
     {
         public View Body
