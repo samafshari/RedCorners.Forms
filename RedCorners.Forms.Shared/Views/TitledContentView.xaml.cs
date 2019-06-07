@@ -231,7 +231,8 @@ namespace RedCorners.Forms
                     VerticalOptions = LayoutOptions.Fill,
                     Source = TitleBackgroundImage,
                     Aspect = Aspect.AspectFill,
-                    Opacity = TitleBackgroundImageOpacity
+                    Opacity = TitleBackgroundImageOpacity,
+                    HeightRequest = 10
                 };
             }
         }

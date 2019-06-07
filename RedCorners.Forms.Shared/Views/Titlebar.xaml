@@ -12,10 +12,8 @@
     HorizontalOptions="Fill"
     VerticalOptions="StartAndExpand">
     <Grid HorizontalOptions="Fill" VerticalOptions="FillAndExpand" BackgroundColor="{Binding BackgroundColor, Source={x:Reference me}, Mode=OneWay}">
-        <Grid HorizontalOptions="Fill" VerticalOptions="Fill">
-            <ContentView x:Name="body" Content="{Binding Body, Source={x:Reference me}}" />
-        </Grid>
-        <rf:AliveContentView FixTopPadding="True" HorizontalOptions="Fill" VerticalOptions="FillAndExpand" x:Name="contentContainer">
+        <ContentView x:Name="body" Content="{Binding Body, Source={x:Reference me}}" />
+        <rf:AliveContentView FixTopPadding="True" HorizontalOptions="Fill" VerticalOptions="Fill" x:Name="contentContainer">
             <Grid x:Name="content" 
                   HeightRequest="{Binding ContentHeightRequest, Source={x:Reference me}, Mode=OneWay}" 
                   Margin="{Binding ContentMargin, Source={x:Reference me}, Mode=OneWay}" 
