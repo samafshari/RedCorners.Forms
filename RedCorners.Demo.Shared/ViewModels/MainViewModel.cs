@@ -35,7 +35,33 @@ namespace RedCorners.Demo.ViewModels
             }
         }
 
-        public override bool IsModal => false;
+        bool _isTabbarVisible = true;
+        public bool IsTabbarVisible
+        {
+            get => _isTabbarVisible;
+            set => SetProperty(ref _isTabbarVisible, value);
+        }
+
+        bool _isTab2Visible = true;
+        public bool IsTab2Visible
+        {
+            get => _isTab2Visible;
+            set => SetProperty(ref _isTab2Visible, value);
+        }
+
+        ImageButtonStyles _tabStyle = ImageButtonStyles.ImageText;
+        public ImageButtonStyles TabStyle
+        {
+            get => _tabStyle;
+            set => SetProperty(ref _tabStyle, value);
+        }
+
+        public Command<int> TabStyleChangeCommand => new Command<int>(i =>
+        {
+            if (i == 0) TabStyle = ImageButtonStyles.Image;
+            else if (i == 1) TabStyle = ImageButtonStyles.Text;
+            else TabStyle = ImageButtonStyles.ImageText;
+        });
 
         public UIStatusBarStyles UIStatusBarStyle => LightContent ? UIStatusBarStyles.LightContent : UIStatusBarStyles.Default;
 

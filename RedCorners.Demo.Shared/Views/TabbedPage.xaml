@@ -8,10 +8,11 @@
     xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
     xmlns:vm="clr-namespace:RedCorners.Demo.ViewModels"
     KeepScreenOn="True"
-    TabStyle="ImageText"
+    TabStyle="{Binding TabStyle}"
     TabbarBackgroundColor="#FFFFFF"
     BackgroundColor="#EEEEEE"
-    TabbarHeight="100"
+    TabbarHeightRequest="70"
+    IsTabbarVisible="{Binding IsTabbarVisible}"
     mc:Ignorable="d"
     x:Class="RedCorners.Demo.Views.TabbedPage">
     <rf:TabbedContentPage.BindingContext>
@@ -27,27 +28,38 @@
         <rf:TitledContentView
             Icon="icon_home_on"
             Title="Home"
-            IsBackButtonVisible="False">
+            IsBackButtonVisible="{Binding IsModal}">
             <StackLayout>
-                <Label Text="Home" />
+                <Label Text="TabStyle" />
+                <rf:Tabbar
+                    ImageButtonStyle="Text"
+                    SelectedItem="2"
+                    SelectedItemChangeCommand="{Binding TabStyleChangeCommand}"
+                    TextColor="Black"
+                    SelectedTextColor="DarkBlue">
+                    <rf:TabbarItem Text="Image" Opacity="1.0" SelectedImage="1.0" />
+                    <rf:TabbarItem Text="Text" Opacity="1.0" SelectedImage="1.0" />
+                    <rf:TabbarItem Text="ImageText" Opacity="1.0" SelectedImage="1.0" />
+                </rf:Tabbar>
+            </StackLayout>
+        </rf:TitledContentView>
+
+        <rf:TitledContentView
+            Icon="icon_list_on"
+            Title="List"
+            IsVisibleAsTab="{Binding IsTab2Visible}"
+            IsBackButtonVisible="{Binding IsModal}">
+            <StackLayout>
+                <Label Text="List" />
             </StackLayout>
         </rf:TitledContentView>
 
         <rf:TitledContentView
             Icon="icon_grid_on"
             Title="Grid"
-            IsBackButtonVisible="False"
+            IsBackButtonVisible="{Binding IsModal}"
             TitleColor="#0277bd">
             <WebView Source="http://neatcapital.ee" />
-        </rf:TitledContentView>
-
-        <rf:TitledContentView
-            Icon="icon_list_on"
-            Title="List"
-            IsBackButtonVisible="False">
-            <StackLayout>
-                <Label Text="List" />
-            </StackLayout>
         </rf:TitledContentView>
     </rf:TabbedContentPage.Children>
     <rf:TabbedContentPage.Overlay>
@@ -67,7 +79,15 @@
 
                         <Grid>
                             <Label Text="Modal" FontSize="Large" TextColor="White" VerticalOptions="Center" />
-                            <Switch IsToggled="{Binding IsModal}" HorizontalOptions="End" />
+                            <Switch IsToggled="{Binding IsModal, Mode=TwoWay}" HorizontalOptions="End" />
+                        </Grid>
+                        <Grid>
+                            <Label Text="IsTabbarVisible" FontSize="Large" TextColor="White" VerticalOptions="Center" />
+                            <Switch IsToggled="{Binding IsTabbarVisible, Mode=TwoWay}" HorizontalOptions="End" />
+                        </Grid>
+                        <Grid>
+                            <Label Text="IsTab2Visible" FontSize="Large" TextColor="White" VerticalOptions="Center" />
+                            <Switch IsToggled="{Binding IsTab2Visible, Mode=TwoWay}" HorizontalOptions="End" />
                         </Grid>
                     </StackLayout>
                 </ScrollView>

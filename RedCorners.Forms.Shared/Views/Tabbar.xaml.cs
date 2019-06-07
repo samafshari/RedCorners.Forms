@@ -71,9 +71,9 @@ namespace RedCorners.Forms
             set => SetValue(FontAttributesProperty, value);
         }
 
-        public Color? SelectedTextColor
+        public Color SelectedTextColor
         {
-            get => (Color?)GetValue(SelectedTextColorProperty);
+            get => (Color)GetValue(SelectedTextColorProperty);
             set => SetValue(SelectedTextColorProperty, value);
         }
 
@@ -196,9 +196,9 @@ namespace RedCorners.Forms
 
         public static readonly BindableProperty SelectedTextColorProperty = BindableProperty.Create(
             propertyName: nameof(SelectedTextColor),
-            returnType: typeof(Color?),
+            returnType: typeof(Color),
             declaringType: typeof(Tabbar),
-            defaultValue: null,
+            defaultValue: Color.Default,
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: UpdateSelectedItemOnPropertyChanged);
 
@@ -397,7 +397,7 @@ namespace RedCorners.Forms
                 ViewExtensions.CancelAnimations(child);
                 child.FadeTo(pressed ? item.SelectedOpacity : item.Opacity, 100);
                 child.ImageMargin = ImageMargin;
-                child.TextColor = (pressed && SelectedTextColor.HasValue) ? SelectedTextColor.Value : TextColor;
+                child.TextColor = (pressed && SelectedTextColor != Color.Default) ? SelectedTextColor : TextColor;
                 child.FontSize = (pressed && SelectedFontSize.HasValue) ? SelectedFontSize.Value : FontSize;
                 child.FontAttributes = (pressed && SelectedFontAttributes.HasValue ? SelectedFontAttributes.Value : FontAttributes);
                 child.FontFamily = FontFamily;

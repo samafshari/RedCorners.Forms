@@ -19,11 +19,12 @@ namespace RedCorners.Forms
             Children = new ObservableCollection<AliveContentView>();
             InitializeComponent();
             UpdateTabbarBackgroundView();
-            UpdateTabbarHeight();
             UpdateChildren();
             tabbar.SelectedItem = SelectedTab;
             tabbarBox.BackgroundColor = BackgroundColor;
             tabbar.PropertyChanged += Tabbar_PropertyChanged;
+            tabbar.HeightRequest = TabbarHeightRequest;
+            tabbarContainer.IsVisible = IsTabbarVisible;
             overlay.Content = Overlay;
         }
 
@@ -39,10 +40,10 @@ namespace RedCorners.Forms
             set => SetValue(TabbarBackgroundViewProperty, value);
         }
 
-        public GridLength TabbarHeight
+        public double TabbarHeightRequest
         {
-            get => (GridLength)GetValue(TabbarHeightProperty);
-            set => SetValue(TabbarHeightProperty, value);
+            get => (double)GetValue(TabbarHeightRequestProperty);
+            set => SetValue(TabbarHeightRequestProperty, value);
         }
 
         public IList<AliveContentView> Children
@@ -79,6 +80,12 @@ namespace RedCorners.Forms
         {
             get => (View)GetValue(OverlayProperty);
             set => SetValue(OverlayProperty, value);
+        }
+
+        public bool IsTabbarVisible
+        {
+            get => (bool)GetValue(IsTabbarVisibleProperty);
+            set => SetValue(IsTabbarVisibleProperty, value);
         }
 
         public static readonly BindableProperty TabbarBackgroundViewProperty =
@@ -154,17 +161,17 @@ namespace RedCorners.Forms
             UpdateChildren();
         }
 
-        public static readonly BindableProperty TabbarHeightProperty = 
+        public static readonly BindableProperty TabbarHeightRequestProperty = 
             BindableProperty.Create(
-            nameof(TabbarHeight),
-            typeof(GridLength),
+            nameof(TabbarHeightRequest),
+            typeof(double),
             typeof(TabbedContentPage),
-            new GridLength(70),
+            70.0,
             BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
                 if (bindable is TabbedContentPage page)
-                    page.UpdateTabbarHeight();
+                    page.tabbar.HeightRequest = (double)page.TabbarHeightRequest;
             });
 
         public static readonly BindableProperty TabbarBackgroundColorProperty =
@@ -178,6 +185,19 @@ namespace RedCorners.Forms
             {
                 if (bindable is TabbedContentPage page)
                     page.tabbarBox.BackgroundColor = (Color)newVal;
+            });
+
+        public static readonly BindableProperty IsTabbarVisibleProperty =
+            BindableProperty.Create(
+            nameof(IsTabbarVisible),
+            typeof(bool),
+            typeof(TabbedContentPage),
+            true,
+            BindingMode.TwoWay,
+            propertyChanged: (bindable, oldVal, newVal) =>
+            {
+                if (bindable is TabbedContentPage page)
+                    page.tabbarContainer.IsVisible = (bool)newVal;
             });
 
         public static readonly BindableProperty TabStyleProperty =
@@ -296,6 +316,12 @@ namespace RedCorners.Forms
                 return;
 
             UpdateTabs();
+
+            if (e.PropertyName == nameof(AliveContentView.IsVisibleAsTab))
+            {
+                SelectTab();
+                UpdateActivePage();
+            }
         }
 
         void UpdateTabs()
@@ -354,10 +380,5 @@ namespace RedCorners.Forms
         {
 
         });
-
-        void UpdateTabbarHeight()
-        {
-            tabbarRow.Height = TabbarHeight;
-        }
     }
 }

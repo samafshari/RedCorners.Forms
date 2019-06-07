@@ -14,34 +14,38 @@
         <Grid RowSpacing="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
-                <RowDefinition x:Name="tabbarRow" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
             <Grid Grid.Row="0" x:Name="content" HorizontalOptions="Fill" VerticalOptions="Fill">
                 
             </Grid>
 
-            <BoxView
-                x:Name="tabbarBox"
+
+            <rf:AliveContentView
                 Grid.Row="1"
                 HorizontalOptions="Fill"
-                VerticalOptions="Fill"
-                InputTransparent="True" />
-
-            <rf:AliveContentView 
-                Grid.Row="1"
-                HorizontalOptions="Fill"
-                VerticalOptions="Fill"
-                x:Name="tabbarBackground" />
-
-            <rf:Tabbar 
-                Grid.Row="1" 
-                x:Name="tabbar" 
-                ImageMargin="8"
-                FixBottomPadding="True" />
+                VerticalOptions="FillAndExpand"
+                x:Name="tabbarContainer"
+                FixBottomPadding="True">
+                <Grid>
+                    <BoxView
+                        x:Name="tabbarBox"
+                        HorizontalOptions="Fill"
+                        VerticalOptions="Fill"
+                        InputTransparent="True" />
+                    <rf:AliveContentView 
+                        HorizontalOptions="Fill"
+                        VerticalOptions="Fill"
+                        x:Name="tabbarBackground" />
+                    <rf:Tabbar 
+                        VerticalOptions="FillAndExpand"
+                        x:Name="tabbar" 
+                        ImageMargin="8" />
+                    <rf:HorizontalShadow  />
+                </Grid>
+            </rf:AliveContentView>
             
-            <rf:HorizontalShadow Grid.Row="1" />
-
             <rf:AliveContentView
                 x:Name="overlay"
                 HorizontalOptions="Fill"
