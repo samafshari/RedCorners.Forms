@@ -74,6 +74,12 @@ namespace RedCorners.Forms
             set => SetValue(UIStatusBarAnimatedProperty, value);
         }
 
+        public bool? KeepScreenOn
+        {
+            get => (bool?)GetValue(KeepScreenOnProperty);
+            set => SetValue(KeepScreenOnProperty, value);
+        }
+
         public static BindableProperty FixTopPaddingProperty = BindableProperty.Create(
             nameof(FixTopPadding),
             typeof(bool),
@@ -141,6 +147,14 @@ namespace RedCorners.Forms
             typeof(bool),
             typeof(AliveContentPage),
             true,
+            BindingMode.TwoWay,
+            propertyChanged: UpdateSettings);
+
+        public static BindableProperty KeepScreenOnProperty = BindableProperty.Create(
+            nameof(KeepScreenOn),
+            typeof(bool?),
+            typeof(AliveContentPage),
+            (bool?)null,
             BindingMode.TwoWay,
             propertyChanged: UpdateSettings);
 

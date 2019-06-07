@@ -70,7 +70,13 @@ namespace RedCorners.Forms.Renderers
                         activity.Window.ClearFlags(WindowManagerFlags.TranslucentStatus);
 
                     activity.Window.SetStatusBarColor(page.AndroidStatusBarColor.ToAndroid());
-
+                    if (page.KeepScreenOn.HasValue)
+                    {
+                        if (page.KeepScreenOn.Value)
+                            activity.Window.AddFlags(WindowManagerFlags.KeepScreenOn);
+                        else
+                            activity.Window.ClearFlags(WindowManagerFlags.KeepScreenOn);
+                    }
                     UpdateLayout();
                 }
 

@@ -24,6 +24,8 @@ namespace RedCorners.Forms.Renderers
                 {
                     UIApplication.SharedApplication.SetStatusBarHidden(page.UIStatusBarHidden, page.UIStatusBarAnimated);
                     UIApplication.SharedApplication.SetStatusBarStyle((UIStatusBarStyle)(long)page.UIStatusBarStyle, page.UIStatusBarAnimated);
+                    if (page.KeepScreenOn.HasValue)
+                        UIApplication.SharedApplication.IdleTimerDisabled = page.KeepScreenOn.Value;
                     SetNeedsStatusBarAppearanceUpdate();
                 };
             }
