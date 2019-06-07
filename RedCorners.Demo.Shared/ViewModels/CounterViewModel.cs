@@ -17,6 +17,23 @@ namespace RedCorners.Demo.ViewModels
             set => SetProperty(ref _isModal, value);
         }
 
+        ImageButtonStyles _imageButtonStyle = ImageButtonStyles.Image;
+        public ImageButtonStyles ImageButtonStyle
+        {
+            get => _imageButtonStyle;
+            set
+            {
+                SetProperty(ref _imageButtonStyle, value);
+                RaisePropertyChanged(nameof(VerticalTextAlignment));
+            }
+        }
+
+        public TextAlignment VerticalTextAlignment => ImageButtonStyle == ImageButtonStyles.Text ? TextAlignment.Center : TextAlignment.Start;
+
+        public Command TextStyleCommand => new Command(() => ImageButtonStyle = ImageButtonStyles.Text);
+        public Command ImageStyleCommand => new Command(() => ImageButtonStyle = ImageButtonStyles.Image);
+        public Command ImageTextStyleCommand => new Command(() => ImageButtonStyle = ImageButtonStyles.ImageText);
+
         public Command CountCommand => new Command(() =>
         {
             Count++;

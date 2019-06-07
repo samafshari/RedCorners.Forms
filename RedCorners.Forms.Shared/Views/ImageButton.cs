@@ -9,8 +9,8 @@ namespace RedCorners.Forms
     [Flags]
     public enum ImageButtonStyles
     {
-        Image,
-        Text,
+        Image = 1,
+        Text = 2,
         ImageText = Image | Text
     }
 
@@ -35,16 +35,20 @@ namespace RedCorners.Forms
             {
                 image = new Image
                 {
-                    HorizontalOptions = LayoutOptions.Fill,
-                    VerticalOptions = LayoutOptions.Fill,
-                    Aspect = Aspect.AspectFit
+                    HorizontalOptions = ImageWidthRequest < 0 ? LayoutOptions.Fill : LayoutOptions.CenterAndExpand,
+                    VerticalOptions = ImageHeightRequest < 0 ? LayoutOptions.Fill : LayoutOptions.CenterAndExpand,
+                    Aspect = Aspect.AspectFit,
                 };
+
                 Children.Add(image);
 
                 image.BindingContext = this;
                 image.SetBinding(Image.SourceProperty, nameof(Source));
                 image.InputTransparent = true;
                 image.Margin = ImageMargin;
+
+                image.SetBinding(Image.HeightRequestProperty, nameof(ImageHeightRequest));
+                image.SetBinding(Image.WidthRequestProperty, nameof(ImageWidthRequest));
             }
 
             if (ImageButtonStyle.HasFlag(ImageButtonStyles.Text))
@@ -53,10 +57,9 @@ namespace RedCorners.Forms
                 {
                     HorizontalOptions = LayoutOptions.Fill,
                     VerticalOptions = LayoutOptions.Fill,
-                    HorizontalTextAlignment = TextAlignment.Center,
-                    VerticalTextAlignment = TextAlignment.Start,
                     MaxLines = 1,
-                    LineBreakMode = LineBreakMode.NoWrap
+                    LineBreakMode = LineBreakMode.NoWrap,
+                    InputTransparent = true
                 };
 
                 Children.Add(label);
@@ -67,6 +70,8 @@ namespace RedCorners.Forms
                 label.SetBinding(Label.FontSizeProperty, nameof(FontSize));
                 label.SetBinding(Label.FontFamilyProperty, nameof(FontFamily));
                 label.SetBinding(Label.FontAttributesProperty, nameof(FontAttributes));
+                label.SetBinding(Label.HorizontalTextAlignmentProperty, nameof(HorizontalTextAlignment));
+                label.SetBinding(Label.VerticalTextAlignmentProperty, nameof(VerticalTextAlignment));
             }
 
             var button = new Button2
@@ -86,14 +91,16 @@ namespace RedCorners.Forms
 
             if (ImageButtonStyle == ImageButtonStyles.ImageText)
             {
+                RowDefinitions.Add(new RowDefinition { Height = GridLength.Star });
+                RowDefinitions.Add(new RowDefinition { Height = TextHeight });
+
                 button.SetValue(Grid.RowProperty, 0);
                 button.SetValue(Grid.RowSpanProperty, 2);
 
                 image.SetValue(Grid.RowProperty, 0);
                 label.SetValue(Grid.RowProperty, 1);
 
-                RowDefinitions.Add(new RowDefinition { Height = GridLength.Star });
-                RowDefinitions.Add(new RowDefinition { Height = TextHeight });
+                //image.VerticalOptions = LayoutOptions.EndAndExpand;
             }
         }
 
@@ -205,6 +212,42 @@ namespace RedCorners.Forms
             set => SetValue(TextHeightProperty, value);
         }
 
+        public double ImageWidthRequest
+        {
+            get => (double)GetValue(ImageWidthRequestProperty);
+            set => SetValue(ImageWidthRequestProperty, value);
+        }
+
+        public double ImageHeightRequest
+        {
+            get => (double)GetValue(ImageHeightRequestProperty);
+            set => SetValue(ImageHeightRequestProperty, value);
+        }
+
+        public TextAlignment VerticalTextAlignment
+        {
+            get => (TextAlignment)GetValue(VerticalTextAlignmentProperty);
+            set => SetValue(VerticalTextAlignmentProperty, value);
+        }
+
+        public TextAlignment HorizontalTextAlignment
+        {
+            get => (TextAlignment)GetValue(HorizontalTextAlignmentProperty);
+            set => SetValue(HorizontalTextAlignmentProperty, value);
+        }
+
+        public static readonly BindableProperty VerticalTextAlignmentProperty = BindableProperty.Create(
+            propertyName: nameof(VerticalTextAlignment),
+            returnType: typeof(TextAlignment),
+            declaringType: typeof(ImageButton),
+            defaultValue: TextAlignment.Start);
+
+        public static readonly BindableProperty HorizontalTextAlignmentProperty = BindableProperty.Create(
+            propertyName: nameof(HorizontalTextAlignment),
+            returnType: typeof(TextAlignment),
+            declaringType: typeof(ImageButton),
+            defaultValue: TextAlignment.Center);
+
         public static readonly BindableProperty SourceProperty = BindableProperty.Create(
             propertyName: nameof(Source),
             returnType: typeof(ImageSource),
@@ -282,6 +325,34 @@ namespace RedCorners.Forms
             typeof(GridLength),
             typeof(ImageButton),
             GridLength.Auto,
+            BindingMode.TwoWay,
+            propertyChanged: (bindable, oldVal, newVal) =>
+            {
+                if (bindable is ImageButton butt)
+                {
+                    butt.Build();
+                }
+            });
+
+        public static readonly BindableProperty ImageHeightRequestProperty = BindableProperty.Create(
+            nameof(ImageHeightRequest),
+            typeof(double),
+            typeof(ImageButton),
+            -1.0,
+            BindingMode.TwoWay,
+            propertyChanged: (bindable, oldVal, newVal) =>
+            {
+                if (bindable is ImageButton butt)
+                {
+                    butt.Build();
+                }
+            });
+
+        public static readonly BindableProperty ImageWidthRequestProperty = BindableProperty.Create(
+            nameof(ImageWidthRequest),
+            typeof(double),
+            typeof(ImageButton),
+            -1.0,
             BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {

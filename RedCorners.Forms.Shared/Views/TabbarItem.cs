@@ -44,6 +44,18 @@ namespace RedCorners.Forms
             set => SetValue(CommandParameterProperty, value);
         }
 
+        public string Text
+        {
+            get => (string)GetValue(TextProperty);
+            set => SetValue(TextProperty, value);
+        }
+
+        public static readonly BindableProperty TextProperty = BindableProperty.Create(
+            propertyName: nameof(Text),
+            returnType: typeof(string),
+            declaringType: typeof(TabbarItem),
+            defaultValue: null);
+
         public static readonly BindableProperty ImageProperty = BindableProperty.Create(
             propertyName: nameof(Image),
             returnType: typeof(ImageSource),
