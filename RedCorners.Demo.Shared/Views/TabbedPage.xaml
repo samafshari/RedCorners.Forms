@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<rf:TabbedContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:rf="clr-namespace:RedCorners.Forms;assembly=RedCorners.Forms"
+    xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:vm="clr-namespace:RedCorners.Demo.ViewModels"
+    mc:Ignorable="d"
+    x:Class="RedCorners.Demo.Views.TabbedPage">
+    <rf:TabbedContentPage.BindingContext>
+        <vm:MainViewModel />
+    </rf:TabbedContentPage.BindingContext>
+    <!--<rf:TabbedContentPage.TabbarBackgroundView>
+        <ff:CachedImage
+            Aspect="AspectFill"
+            Opacity="0.7"
+            Source="{Binding BackgroundImage}" />
+    </rf:TabbedContentPage.TabbarBackgroundView>-->
+</rf:TabbedContentPage>

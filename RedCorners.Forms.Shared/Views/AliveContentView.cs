@@ -8,8 +8,27 @@ namespace RedCorners.Forms
 {
     public class AliveContentView : ContentView
     {
+        Thickness? originalPadding;
         bool parentWasNull = true;
         WeakReference<AliveContentPage> pagePointer = null;
+
+        public string Title
+        {
+            get => (string)GetValue(TitleProperty);
+            set => SetValue(TitleProperty, value);
+        }
+
+        public ImageSource Icon
+        {
+            get => (ImageSource)GetValue(IconProperty);
+            set => SetValue(IconProperty, value);
+        }
+
+        public ImageSource SelectedIcon
+        {
+            get => (ImageSource)GetValue(SelectedIconProperty);
+            set => SetValue(SelectedIconProperty, value);
+        }
 
         public bool FixTopPadding
         {
@@ -23,7 +42,7 @@ namespace RedCorners.Forms
             set => SetValue(FixBottomPaddingProperty, value);
         }
 
-        public static BindableProperty FixTopPaddingProperty = BindableProperty.Create(
+        public static readonly BindableProperty FixTopPaddingProperty = BindableProperty.Create(
             nameof(FixTopPadding),
             typeof(bool),
             typeof(AliveContentView),
@@ -34,7 +53,7 @@ namespace RedCorners.Forms
                 (bindable as AliveContentView).AdjustPadding();
             });
 
-        public static BindableProperty FixBottomPaddingProperty = BindableProperty.Create(
+        public static readonly BindableProperty FixBottomPaddingProperty = BindableProperty.Create(
             nameof(FixBottomPadding),
             typeof(bool),
             typeof(AliveContentView),
@@ -45,7 +64,26 @@ namespace RedCorners.Forms
                 (bindable as AliveContentView).AdjustPadding();
             });
 
-        Thickness? originalPadding;
+        public static readonly BindableProperty TitleProperty = BindableProperty.Create(
+            nameof(Title),
+            typeof(string),
+            typeof(AliveContentView),
+            "Untitled",
+            BindingMode.TwoWay);
+
+        public static readonly BindableProperty IconProperty = BindableProperty.Create(
+            nameof(Icon),
+            typeof(ImageSource),
+            typeof(AliveContentView),
+            null,
+            BindingMode.TwoWay);
+
+        public static readonly BindableProperty SelectedIconProperty = BindableProperty.Create(
+            nameof(SelectedIcon),
+            typeof(ImageSource),
+            typeof(AliveContentView),
+            null,
+            BindingMode.TwoWay);
 
         public void AdjustPadding()
         {

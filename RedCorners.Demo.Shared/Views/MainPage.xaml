@@ -71,6 +71,12 @@
                         </Button.Command>
                     </Button>
 
+                    <Button Text="Tabbed Page">
+                        <Button.Command>
+                            <rf:PageCommand IsModal="False" PageType="{Type views:TabbedPage}" />
+                        </Button.Command>
+                    </Button>
+
                     <Button Text="Show Sidebar" Command="{Binding ShowSidebarCommand}" />
 
                     <Grid IsVisible="{Binding IsIOS}" Padding="2" BackgroundColor="#99000000">

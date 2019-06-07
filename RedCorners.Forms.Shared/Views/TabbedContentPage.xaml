@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<rf:AliveContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:rf="clr-namespace:RedCorners.Forms"
+    FixTopPadding="False"
+    FixBottomPadding="False"
+    mc:Ignorable="d"
+    x:Name="me"
+    x:Class="RedCorners.Forms.TabbedContentPage">
+    <rf:AliveContentPage.Content>
+        <Grid RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="{Binding TabbarHeight}" BindingContext="{x:Reference me}" />
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" x:Name="content">
+                
+            </Grid>
+
+            <BoxView
+                Grid.Row="0"
+                BindingContext="{x:Reference me}"
+                BackgroundColor="{Binding TabbarBackgroundColor}"
+                HorizontalOptions="Fill"
+                VerticalOptions="Fill"
+                InputTransparent="True" />
+
+            <rf:AliveContentView 
+                Grid.Row="1"
+                HorizontalOptions="Fill"
+                VerticalOptions="Fill"
+                x:Name="tabbarBackground" />
+
+            <rf:Tabbar Grid.Row="1" x:Name="tabbar" FixBottomPadding="True" />
+            
+            <rf:HorizontalShadow Grid.Row="1" />
+        </Grid>
+    </rf:AliveContentPage.Content>
+</rf:AliveContentPage>

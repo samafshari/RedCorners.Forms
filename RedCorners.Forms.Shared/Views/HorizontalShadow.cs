@@ -17,6 +17,7 @@ namespace RedCorners.Forms
             Opacity = 0.2f;
             Margin = new Thickness(0);
             VerticalOptions = LayoutOptions.Start;
+            InputTransparent = true;
         }
     }
 
