@@ -78,15 +78,14 @@ namespace RedCorners.Forms
             {
                 BindingContext = this,
                 HorizontalOptions = LayoutOptions.Fill,
-                VerticalOptions = LayoutOptions.Fill
+                VerticalOptions = LayoutOptions.Fill,
+                BackgroundColor = Color.Transparent 
             };
 
             button.Pressed += Button_Pressed;
             button.Released += Button_Released;
             button.Clicked += Button_Clicked;
 
-            button.BackgroundColor = Color.Transparent;
-            button.Opacity = 0;
             Children.Add(button);
 
             if (ImageButtonStyle == ImageButtonStyles.ImageText)
