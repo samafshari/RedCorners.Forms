@@ -25,10 +25,12 @@ namespace RedCorners.Demo.ViewModels
             {
                 SetProperty(ref _imageButtonStyle, value);
                 RaisePropertyChanged(nameof(VerticalTextAlignment));
+                RaisePropertyChanged(nameof(ImageMargin));
             }
         }
 
         public TextAlignment VerticalTextAlignment => ImageButtonStyle == ImageButtonStyles.Text ? TextAlignment.Center : TextAlignment.Start;
+        public Thickness ImageMargin => ImageButtonStyle == ImageButtonStyles.Image ? new Thickness(4) : new Thickness(0);
 
         public Command TextStyleCommand => new Command(() => ImageButtonStyle = ImageButtonStyles.Text);
         public Command ImageStyleCommand => new Command(() => ImageButtonStyle = ImageButtonStyles.Image);

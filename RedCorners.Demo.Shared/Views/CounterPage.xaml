@@ -64,6 +64,7 @@
                     TextHeight="30" 
                     TextColor="Black" 
                     Spacing="2"
+                    ImageMargin="{Binding ImageMargin}"
                     VerticalTextAlignment="{Binding VerticalTextAlignment}">
                     <rf:TabbarItem Image="icon_home_on" Text="Home" />
                     <rf:TabbarItem Image="icon_grid_on" Text="Grid" />
