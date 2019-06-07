@@ -5,9 +5,9 @@
              x:Class="RedCorners.Demo.App">
     <Application.Resources>
         <ResourceDictionary>
-            <Style TargetType="Button">
+            <!--<Style TargetType="Button">
                 <Setter Property="Visual" Value="Material" />
-            </Style>
+            </Style>-->
         </ResourceDictionary>
     </Application.Resources>
 </rf:AppBase>
