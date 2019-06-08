@@ -54,6 +54,13 @@ namespace RedCorners.Demo.ViewModels
             set => SetProperty(ref _isTab2Visible, value);
         }
 
+        int _selectedIndex = 0;
+        public int SelectedIndex
+        {
+            get => _selectedIndex;
+            set => SetProperty(ref _selectedIndex, value);
+        }
+
         ImageButtonStyles _tabStyle = ImageButtonStyles.ImageText;
         public ImageButtonStyles TabStyle
         {
@@ -111,5 +118,16 @@ namespace RedCorners.Demo.ViewModels
         public Command AutoSizeCommand => new Command(() => ContentSize = GridLength.Auto);
         public Command Star2Command => new Command(() => ContentSize = new GridLength(2, GridUnitType.Star));
         public Command Absolute200Command => new Command(() => ContentSize = new GridLength(200, GridUnitType.Absolute));
+
+        public Command ShowTabCommand => new Command(() =>
+        {
+
+        }, () =>
+        {
+            App.Instance.DisplayAlert("Oops", "You are not logged in!", "OK");
+            return false;
+        });
+
+        public Command Switch2Command => new Command(() => SelectedIndex = 2);
     }
 }

@@ -20,7 +20,7 @@ namespace RedCorners.Forms
             InitializeComponent();
             UpdateTabbarBackgroundView();
             UpdateChildren();
-            tabbar.SelectedItem = SelectedTab;
+            tabbar.SelectedIndex = SelectedTab;
             tabbarContainer.BackgroundColor = BackgroundColor;
             tabbar.PropertyChanged += Tabbar_PropertyChanged;
             tabbar.HeightRequest = TabbarHeightRequest;
@@ -139,8 +139,10 @@ namespace RedCorners.Forms
             BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
+                if (oldVal == newVal) return;
                 if (bindable is TabbedContentPage page)
                     page.SelectTab();
+                Console.WriteLine($"newVal: {newVal}");
             });
 
         public static readonly BindableProperty SelectedIndexProperty =
@@ -152,6 +154,7 @@ namespace RedCorners.Forms
             BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
+                if (oldVal == newVal) return;
                 if (bindable is TabbedContentPage page)
                     page.UpdateActivePage();
             });
@@ -249,9 +252,9 @@ namespace RedCorners.Forms
 
         private void Tabbar_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == nameof(Tabbar.SelectedItem))
+            if (e.PropertyName == nameof(Tabbar.SelectedIndex))
             {
-                SelectedTab = tabbar.SelectedItem;
+                SelectedTab = tabbar.SelectedIndex;
             }
         }
 
@@ -346,6 +349,27 @@ namespace RedCorners.Forms
         {
             if (SelectedIndex < 0) return;
             if (SelectedIndex >= Children.Count()) return;
+
+            int tabId = 0;
+            for (int i = 0; i < Children.Count; i++)
+            {
+                if (SelectedIndex == i)
+                {
+                    if (Children[i].IsVisibleAsTab)
+                    {
+                        if (SelectedTab != tabId)
+                            tabbar.SelectedIndex = tabId;
+                    }
+                    else
+                    {
+                        if (SelectedTab != -1)
+                            tabbar.SelectedIndex = -1;
+                    }
+                    break;
+                }
+                if (Children[i].IsVisibleAsTab)
+                    tabId++;
+            }
 
             //Show
             Children[SelectedIndex].IsVisible = true;

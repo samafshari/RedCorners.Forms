@@ -13,6 +13,7 @@
     BackgroundColor="#EEEEEE"
     TabbarHeightRequest="70"
     IsTabbarVisible="{Binding IsTabbarVisible}"
+    SelectedIndex="{Binding SelectedIndex}"
     mc:Ignorable="d"
     x:Class="RedCorners.Demo.Views.TabbedPage">
     <rf:TabbedContentPage.BindingContext>
@@ -35,8 +36,8 @@
                 <rf:Tabbar
                     HorizontalTextAlignment="Start"
                     ImageButtonStyle="Text"
-                    SelectedItem="2"
-                    SelectedItemChangeCommand="{Binding TabStyleChangeCommand}"
+                    SelectedIndex="2"
+                    SelectedIndexChangeCommand="{Binding TabStyleChangeCommand}"
                     TextColor="Black"
                     SelectedTextColor="#1e88e5">
                     <rf:TabbarItem Text="Image" Opacity="1.0" SelectedImage="1.0" />
@@ -48,7 +49,7 @@
 
         <rf:TitledContentView
             Icon="icon_list_on"
-            Title="List"
+            Title="Timeline"
             IsVisibleAsTab="{Binding IsTab2Visible}"
             IsBackButtonVisible="{Binding IsModal}"
             TitleColor="#c2185b">
@@ -60,11 +61,16 @@
 
         <rf:TitledContentView
             Icon="icon_grid_on"
-            Title="Grid"
+            Title="Gallery"
             IsBackButtonVisible="{Binding IsModal}"
             TitleColor="#0277bd">
             <WebView Source="http://neatcapital.ee" />
         </rf:TitledContentView>
+
+        <rf:TitledContentView
+            Icon="icon_profile_on"
+            ShowTabCommand="{Binding ShowTabCommand}"
+            Title="Profile" />
     </rf:TabbedContentPage.Children>
     <rf:TabbedContentPage.Overlay>
         <rf:Sidebar ContentSize="2*">
@@ -93,6 +99,7 @@
                             <Label Text="IsTab2Visible" FontSize="Large" TextColor="White" VerticalOptions="Center" />
                             <Switch IsToggled="{Binding IsTab2Visible, Mode=TwoWay}" HorizontalOptions="End" />
                         </Grid>
+                        <Button Text="Switch2Command" Command="{Binding Switch2Command}" />
                     </StackLayout>
                 </ScrollView>
             </Frame>

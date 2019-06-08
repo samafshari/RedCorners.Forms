@@ -18,9 +18,7 @@
             </Grid.RowDefinitions>
 
             <Grid Grid.Row="0" x:Name="content" HorizontalOptions="Fill" VerticalOptions="Fill">
-                
             </Grid>
-
 
             <rf:AliveContentView
                 Grid.Row="1"

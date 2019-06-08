@@ -29,16 +29,16 @@ namespace RedCorners.Forms
             set => SetValue(ItemsProperty, value);
         }
 
-        public int SelectedItem
+        public int SelectedIndex
         {
-            get => (int)GetValue(SelectedItemProperty);
-            set => SetValue(SelectedItemProperty, value);
+            get => (int)GetValue(SelectedIndexProperty);
+            set => SetValue(SelectedIndexProperty, value);
         }
 
-        public ICommand SelectedItemChangeCommand
+        public ICommand SelectedIndexChangeCommand
         {
-            get => (ICommand)GetValue(SelectedItemChangeCommandProperty);
-            set => SetValue(SelectedItemChangeCommandProperty, value);
+            get => (ICommand)GetValue(SelectedIndexChangeCommandProperty);
+            set => SetValue(SelectedIndexChangeCommandProperty, value);
         }
 
         public Thickness ImageMargin
@@ -261,15 +261,15 @@ namespace RedCorners.Forms
             defaultValue: TextAlignment.Center,
             propertyChanged: UpdateSelectedItemOnPropertyChanged);
 
-        public static readonly BindableProperty SelectedItemProperty = BindableProperty.Create(
-            propertyName: nameof(SelectedItem),
+        public static readonly BindableProperty SelectedIndexProperty = BindableProperty.Create(
+            propertyName: nameof(SelectedIndex),
             returnType: typeof(int),
             declaringType: typeof(Tabbar),
             defaultValue: 0,
             propertyChanged: UpdateSelectedItemOnPropertyChanged);
 
-        public static readonly BindableProperty SelectedItemChangeCommandProperty = BindableProperty.Create(
-            propertyName: nameof(SelectedItemChangeCommand),
+        public static readonly BindableProperty SelectedIndexChangeCommandProperty = BindableProperty.Create(
+            propertyName: nameof(SelectedIndexChangeCommand),
             returnType: typeof(ICommand),
             declaringType: typeof(Tabbar),
             defaultValue: null);
@@ -390,7 +390,7 @@ namespace RedCorners.Forms
                 var child = content.Children[i] as ImageButton;
                 var item = child.BindingContext as TabbarItem;
                 var source = item.Image;
-                bool pressed = SelectedItem == i || pressedIndex == i;
+                bool pressed = SelectedIndex == i || pressedIndex == i;
                 if (pressed && item.SelectedImage != null)
                     source = item.SelectedImage;
                 child.Source = source;
@@ -428,9 +428,9 @@ namespace RedCorners.Forms
             var can = item.Command?.CanExecute(item.CommandParameter) ?? true;
             if (can)
             {
-                SelectedItem = i;
-                if (SelectedItemChangeCommand?.CanExecute(i) ?? false)
-                    SelectedItemChangeCommand.Execute(i);
+                SelectedIndex = i;
+                if (SelectedIndexChangeCommand?.CanExecute(i) ?? false)
+                    SelectedIndexChangeCommand.Execute(i);
                 item.Command?.Execute(item.CommandParameter);
                 UpdateSelectedItem();
             }
