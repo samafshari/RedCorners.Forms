@@ -322,7 +322,6 @@ namespace RedCorners.Forms
 
             if (e.PropertyName == nameof(AliveContentView.IsVisibleAsTab))
             {
-                SelectTab();
                 UpdateActivePage();
             }
         }

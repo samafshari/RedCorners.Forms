@@ -128,6 +128,6 @@ namespace RedCorners.Demo.ViewModels
             return false;
         });
 
-        public Command Switch2Command => new Command(() => SelectedIndex = 2);
+        public Command Switch2Command => new Command(() => SelectedIndex = 1);
     }
 }
