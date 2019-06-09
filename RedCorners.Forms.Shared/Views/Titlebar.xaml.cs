@@ -25,6 +25,8 @@ namespace RedCorners.Forms
             controlButtons.GestureRecognizers.Add(tap);
 
             UpdateToolbar();
+            contentContainer.FixTopPadding = FixTopPadding;
+            contentContainer.FixBottomPadding = FixBottomPadding;
         }
 
         private void Tap_Tapped(object sender, EventArgs e)
@@ -103,6 +105,18 @@ namespace RedCorners.Forms
         {
             get => (FontAttributes)GetValue(FontAttributesProperty);
             set => SetValue(FontAttributesProperty, value);
+        }
+
+        public new bool FixTopPadding
+        {
+            get => (bool)GetValue(FixTopPaddingProperty);
+            set => SetValue(FixTopPaddingProperty, value);
+        }
+
+        public new bool FixBottomPadding
+        {
+            get => (bool)GetValue(FixBottomPaddingProperty);
+            set => SetValue(FixBottomPaddingProperty, value);
         }
 
         public static readonly BindableProperty BackgroundProperty = BindableProperty.Create(
@@ -235,6 +249,30 @@ namespace RedCorners.Forms
             propertyChanged: (bindable, oldVal, newVal) =>
             {
 
+            });
+
+        public static new readonly BindableProperty FixTopPaddingProperty = BindableProperty.Create(
+           nameof(FixTopPadding),
+           typeof(bool),
+           typeof(Titlebar),
+           true,
+           BindingMode.TwoWay,
+           propertyChanged: (bindable, oldVal, newVal) =>
+           {
+               if (bindable is Titlebar titlebar && titlebar.contentContainer != null)
+                   titlebar.contentContainer.FixTopPadding = (bool)newVal;
+           });
+
+        public static new readonly BindableProperty FixBottomPaddingProperty = BindableProperty.Create(
+            nameof(FixBottomPadding),
+            typeof(bool),
+            typeof(Titlebar),
+            false,
+            BindingMode.TwoWay,
+            propertyChanged: (bindable, oldVal, newVal) =>
+            {
+                if (bindable is Titlebar titlebar && titlebar.contentContainer != null)
+                    titlebar.contentContainer.FixBottomPadding = (bool)newVal;
             });
 
         void UpdateBackButtonImage()

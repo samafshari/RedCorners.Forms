@@ -16,7 +16,7 @@
     x:Name="me"
     BackgroundColor="Black">
     <rf:AliveContentPage.BindingContext>
-        <vm:MainViewModel />
+        <vm:MainViewModel x:Name="vm" />
     </rf:AliveContentPage.BindingContext>
 
     <Grid>
@@ -80,6 +80,8 @@
 
                         <Button Text="Show Sidebar" Command="{Binding ShowSidebarCommand}" />
 
+                        <Button Text="Show Message" Command="{Binding MessageCommand}" CommandParameter="Message" />
+                        
                         <rf:HorizontalLine />
                         
                         <Button Text="Titlebar Demo 1">
@@ -104,7 +106,7 @@
                                     <rf:AliveContentPage FixTopPadding="False">
                                         <Grid>
                                             <rf:Titlebar
-                                                Title="Explore"
+                                                Title="Custom Background Color"
                                                 IsBackButtonVisible="True"
                                                 BackgroundColor="#c62828"
                                                 BackCommand="{Static rf:Values.PopCommand}">
@@ -115,20 +117,80 @@
                             </Button.Command>
                         </Button>
 
-                        <Button Text="Titlebar Demo 3 (Toolbar1)">
+                        <Button Text="Titlebar Demo 3 (Toolbar)">
+                            <Button.Command>
+                                <rf:PageCommand>
+                                    <rf:AliveContentPage FixTopPadding="False">
+                                        <Grid BindingContext="{Reference vm}">
+                                            <rf:Titlebar
+                                                Title="Buttoned Titlebar"
+                                                IsBackButtonVisible="True"
+                                                BackgroundColor="#c62828"
+                                                BackCommand="{Static rf:Values.PopCommand}">
+                                                <StackLayout Orientation="Horizontal" Spacing="28" VerticalOptions="Center">
+                                                    <rf:ImageButton Source="menuabout" CommandParameter="About clicked!" Command="{Binding MessageCommand}" HeightRequest="28" WidthRequest="28" />
+                                                    <rf:ImageButton Source="menumap" CommandParameter="Pin clicked!" Command="{Binding MessageCommand}" HeightRequest="28" WidthRequest="28" />
+                                                </StackLayout>
+                                            </rf:Titlebar>
+                                        </Grid>
+                                    </rf:AliveContentPage>
+                                </rf:PageCommand>
+                            </Button.Command>
+                        </Button>
+
+                        <Button Text="Titlebar Demo 4 (Bottombar)">
+                            <Button.Command>
+                                <rf:PageCommand>
+                                    <rf:AliveContentPage FixTopPadding="False">
+                                        <Grid BindingContext="{Reference vm}">
+                                            <rf:Titlebar
+                                                Title="Bottom Titlebar"
+                                                IsBackButtonVisible="True"
+                                                BackgroundColor="#c62828"
+                                                BackCommand="{Static rf:Values.PopCommand}"
+                                                FixTopPadding="False"
+                                                FixBottomPadding="True"
+                                                VerticalOptions="End">
+                                                <StackLayout Orientation="Horizontal" Spacing="28" VerticalOptions="Center">
+                                                    <rf:ImageButton Source="menuabout" CommandParameter="About clicked!" Command="{Binding MessageCommand}" HeightRequest="28" WidthRequest="28" />
+                                                    <rf:ImageButton Source="menumap" CommandParameter="Pin clicked!" Command="{Binding MessageCommand}" HeightRequest="28" WidthRequest="28" />
+                                                </StackLayout>
+                                            </rf:Titlebar>
+                                        </Grid>
+                                    </rf:AliveContentPage>
+                                </rf:PageCommand>
+                            </Button.Command>
+                        </Button>
+
+                        <Button Text="Titlebar Demo 5 (Custom Height)">
                             <Button.Command>
                                 <rf:PageCommand>
                                     <rf:AliveContentPage FixTopPadding="False">
                                         <Grid>
                                             <rf:Titlebar
-                                                Title="Explore"
+                                                Title="Bottom Titlebar"
                                                 IsBackButtonVisible="True"
                                                 BackgroundColor="#c62828"
+                                                BackCommand="{Static rf:Values.PopCommand}"
+                                                ContentHeightRequest="100" />
+                                        </Grid>
+                                    </rf:AliveContentPage>
+                                </rf:PageCommand>
+                            </Button.Command>
+                        </Button>
+
+                        <Button Text="Titlebar Demo 6 (Custom Background)">
+                            <Button.Command>
+                                <rf:PageCommand>
+                                    <rf:AliveContentPage FixTopPadding="False">
+                                        <Grid>
+                                            <rf:Titlebar
+                                                Title="Custom Background"
+                                                IsBackButtonVisible="True"
                                                 BackCommand="{Static rf:Values.PopCommand}">
-                                                <StackLayout Orientation="Horizontal" Spacing="28" VerticalOptions="Center">
-                                                    <ImageButton Source="menuabout" HeightRequest="28" WidthRequest="28" />
-                                                    <ImageButton Source="menumap" HeightRequest="28" WidthRequest="28" />
-                                                </StackLayout>
+                                                <rf:Titlebar.Background>
+                                                    <Image Source="https://freefrontend.com/assets/img/css-background-patterns/simple-pattern-with-css3.png" HorizontalOptions="Fill" VerticalOptions="Fill" Aspect="AspectFill" HeightRequest="1" />
+                                                </rf:Titlebar.Background>
                                             </rf:Titlebar>
                                         </Grid>
                                     </rf:AliveContentPage>

@@ -30,7 +30,7 @@ namespace RedCorners.Forms
             RowDefinitions.Clear();
             image = null;
             label = null;
-
+            
             if (ImageButtonStyle.HasFlag(ImageButtonStyles.Image))
             {
                 image = new Image
@@ -38,6 +38,7 @@ namespace RedCorners.Forms
                     HorizontalOptions = ImageWidthRequest < 0 ? LayoutOptions.Fill : LayoutOptions.CenterAndExpand,
                     VerticalOptions = ImageHeightRequest < 0 ? LayoutOptions.Fill : LayoutOptions.CenterAndExpand,
                     Aspect = Aspect.AspectFit,
+                    InputTransparent = true
                 };
 
                 Children.Add(image);
@@ -79,12 +80,7 @@ namespace RedCorners.Forms
                 BindingContext = this,
                 HorizontalOptions = LayoutOptions.Fill,
                 VerticalOptions = LayoutOptions.Fill,
-                BackgroundColor = Color.Transparent 
             };
-
-#if __ANDROID__
-            button.Opacity = 0;
-#endif
 
             button.Pressed += Button_Pressed;
             button.Released += Button_Released;

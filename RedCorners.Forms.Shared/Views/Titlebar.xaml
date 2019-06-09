@@ -13,18 +13,18 @@
     VerticalOptions="StartAndExpand">
     <rf:AliveContentView.Content>
         <Grid HorizontalOptions="Fill" VerticalOptions="FillAndExpand" BackgroundColor="{Binding BackgroundColor, Source={x:Reference me}, Mode=OneWay}">
-            <ContentView x:Name="body" Content="{Binding Body, Source={x:Reference me}}" />
-            <rf:AliveContentView FixTopPadding="True" HorizontalOptions="Fill" VerticalOptions="Fill" x:Name="contentContainer">
+            <ContentView x:Name="body" Content="{Binding Background, Source={x:Reference me}}" />
+            <rf:AliveContentView FixTopPadding="True" HorizontalOptions="Fill" VerticalOptions="FillAndExpand" x:Name="contentContainer">
                 <Grid x:Name="content" 
                       HeightRequest="{Binding ContentHeightRequest, Source={x:Reference me}, Mode=OneWay}" 
                       Margin="{Binding ContentMargin, Source={x:Reference me}, Mode=OneWay}" 
-                      HorizontalOptions="Fill" VerticalOptions="FillAndExpand">
-                    <Grid.Padding>
+                      HorizontalOptions="Fill" VerticalOptions="Fill">
+                    <!--<Grid.Padding>
                         <OnPlatform 
 					        x:TypeArguments="Thickness" 
 					        iOS="0,0,10,5" 
 					        Android="5,0,5,5" />
-                    </Grid.Padding>
+                    </Grid.Padding>-->
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
@@ -66,7 +66,6 @@
                         HorizontalOptions="EndAndExpand" 
                         VerticalOptions="Fill" 
                         Margin="8,0,8,0" 
-                        Content="{Binding Buttons, Source={x:Reference me}}" 
                         />
                 </Grid>
             </rf:AliveContentView>

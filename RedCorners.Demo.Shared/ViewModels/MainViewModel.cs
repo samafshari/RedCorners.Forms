@@ -107,7 +107,7 @@ namespace RedCorners.Demo.ViewModels
         public Command BlueStatusBarCommand => new Command(() => AndroidStatusBarColor = Color.FromHex("#770000FF"));
         public Command GreenStatusBarCommand => new Command(() => AndroidStatusBarColor = Color.FromHex("#7700FF00"));
 
-        public ImageSource BackgroundImage => "https://images.pexels.com/photos/163822/color-umbrella-red-yellow-163822.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260";
+        public ImageSource BackgroundImage => "https://static.vecteezy.com/system/resources/previews/000/189/810/non_2x/vector-elegant-golden-pattern-background-design.jpg";
 
         public Command<string> PlaceSidebarCommand => new Command<string>(side =>
         {
@@ -129,5 +129,7 @@ namespace RedCorners.Demo.ViewModels
         });
 
         public Command Switch2Command => new Command(() => SelectedIndex = 1);
+
+        public Command<object> MessageCommand => new Command<object>(s => App.Instance.DisplayAlert("Message", s?.ToString(), "OK"));
     }
 }
