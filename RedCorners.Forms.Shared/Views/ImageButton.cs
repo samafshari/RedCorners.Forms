@@ -82,6 +82,10 @@ namespace RedCorners.Forms
                 BackgroundColor = Color.Transparent 
             };
 
+#if __ANDROID__
+            button.Opacity = 0;
+#endif
+
             button.Pressed += Button_Pressed;
             button.Released += Button_Released;
             button.Clicked += Button_Clicked;

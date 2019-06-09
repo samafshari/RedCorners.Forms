@@ -115,7 +115,7 @@
                             </Button.Command>
                         </Button>
 
-                        <Button Text="Titlebar Demo 3 (Toolbar)">
+                        <Button Text="Titlebar Demo 3 (Toolbar1)">
                             <Button.Command>
                                 <rf:PageCommand>
                                     <rf:AliveContentPage FixTopPadding="False">
@@ -125,9 +125,9 @@
                                                 IsBackButtonVisible="True"
                                                 BackgroundColor="#c62828"
                                                 BackCommand="{Static rf:Values.PopCommand}">
-                                                <StackLayout Orientation="Horizontal" VerticalOptions="Center" Spacing="10">
-                                                    <ImageButton Source="menuabout" HeightRequest="24" WidthRequest="24" />
-                                                    <ImageButton Source="menumap" HeightRequest="24" WidthRequest="24" />
+                                                <StackLayout Orientation="Horizontal" Spacing="28" VerticalOptions="Center">
+                                                    <ImageButton Source="menuabout" HeightRequest="28" WidthRequest="28" />
+                                                    <ImageButton Source="menumap" HeightRequest="28" WidthRequest="28" />
                                                 </StackLayout>
                                             </rf:Titlebar>
                                         </Grid>
