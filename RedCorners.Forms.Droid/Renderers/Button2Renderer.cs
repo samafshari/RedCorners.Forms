@@ -19,6 +19,7 @@ namespace RedCorners.Forms.Renderers
 
         }
 
+        [Obsolete]
         public Button2Renderer() : base()
         {
 
@@ -29,8 +30,9 @@ namespace RedCorners.Forms.Renderers
             base.OnElementChanged(e);
 
             var button2 = e.NewElement as Button2;
-
+            
             var thisButton = Control as Android.Widget.Button;
+            Control.SetBackgroundColor(Android.Graphics.Color.Transparent);
             thisButton.Touch += (object sender, TouchEventArgs args) =>
             {
                 if (args.Event.Action == MotionEventActions.Down)

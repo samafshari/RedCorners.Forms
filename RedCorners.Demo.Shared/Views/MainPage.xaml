@@ -24,86 +24,143 @@
             Aspect="AspectFill"
             Opacity="0.7"
             Source="{Binding BackgroundImage}" />
-        
+
         <rf:AliveContentView FixTopPadding="True" FixBottomPadding="True" BackgroundColor="Transparent">
             <Grid>
-                <StackLayout Padding="10">
-                    <StackLayout.Resources>
-                        <ResourceDictionary>
-                            <Style TargetType="Label">
-                                <Setter Property="TextColor" Value="White" />
-                                <Setter Property="VerticalOptions" Value="Center" />
-                            </Style>
-                            <Style TargetType="Switch">
-                                <Setter Property="HorizontalOptions" Value="End" />
-                            </Style>
-                        </ResourceDictionary>
-                    </StackLayout.Resources>
-                    <Button Text="Test Modal">
-                        <Button.Command>
-                            <rf:PageCommand IsModal="True">
-                                <rf:AliveContentPage>
-                                    <Grid>
-                                        <Button Text="Pop" HorizontalOptions="Center" VerticalOptions="Center">
-                                            <Button.Command>
-                                                <rf:PopCommand FireOnce="False" FireDelay="1000" />
-                                            </Button.Command>
-                                        </Button>
-                                    </Grid>
-                                </rf:AliveContentPage>
-                            </rf:PageCommand>
-                        </Button.Command>
-                    </Button>
+                <ScrollView>
+                    <StackLayout Padding="10">
+                        <StackLayout.Resources>
+                            <ResourceDictionary>
+                                <Style TargetType="Label">
+                                    <Setter Property="TextColor" Value="White" />
+                                    <Setter Property="VerticalOptions" Value="Center" />
+                                </Style>
+                                <Style TargetType="Switch">
+                                    <Setter Property="HorizontalOptions" Value="End" />
+                                </Style>
+                            </ResourceDictionary>
+                        </StackLayout.Resources>
+                        <Button Text="Test Modal">
+                            <Button.Command>
+                                <rf:PageCommand IsModal="True">
+                                    <rf:AliveContentPage>
+                                        <Grid>
+                                            <Button Text="Pop" HorizontalOptions="Center" VerticalOptions="Center">
+                                                <Button.Command>
+                                                    <rf:PopCommand FireOnce="False" FireDelay="1000" />
+                                                </Button.Command>
+                                            </Button>
+                                        </Grid>
+                                    </rf:AliveContentPage>
+                                </rf:PageCommand>
+                            </Button.Command>
+                        </Button>
 
-                    <Button Text="Show Modal From Page">
-                        <Button.Command>
-                            <rf:PageCommand IsModal="True">
-                                <rf:PageCommand.Page>
-                                    <views:CounterPage />
-                                </rf:PageCommand.Page>
-                            </rf:PageCommand>
-                        </Button.Command>
-                    </Button>
+                        <Button Text="Show Modal From Page">
+                            <Button.Command>
+                                <rf:PageCommand IsModal="True">
+                                    <rf:PageCommand.Page>
+                                        <views:CounterPage />
+                                    </rf:PageCommand.Page>
+                                </rf:PageCommand>
+                            </Button.Command>
+                        </Button>
 
-                    <Button Text="Show Modal From Type">
-                        <Button.Command>
-                            <rf:PageCommand IsModal="True" PageType="{Type views:CounterPage}" />
-                        </Button.Command>
-                    </Button>
+                        <Button Text="Show Modal From Type">
+                            <Button.Command>
+                                <rf:PageCommand IsModal="True" PageType="{Type views:CounterPage}" />
+                            </Button.Command>
+                        </Button>
 
-                    <Button Text="Tabbed Page">
-                        <Button.Command>
-                            <rf:PageCommand IsModal="False" PageType="{Type views:TabbedPage}" />
-                        </Button.Command>
-                    </Button>
+                        <Button Text="Tabbed Page">
+                            <Button.Command>
+                                <rf:PageCommand IsModal="False" PageType="{Type views:TabbedPage}" />
+                            </Button.Command>
+                        </Button>
 
-                    <Button Text="Show Sidebar" Command="{Binding ShowSidebarCommand}" />
+                        <Button Text="Show Sidebar" Command="{Binding ShowSidebarCommand}" />
 
-                    <Grid IsVisible="{Binding IsIOS}" Padding="2" BackgroundColor="#99000000">
-                        <Label Text="LightContent" />
-                        <Switch IsToggled="{Binding LightContent}" />
-                    </Grid>
-                    <Grid IsVisible="{Binding IsAndroid}" Padding="2" BackgroundColor="#99000000">
-                        <Label Grid.Row="0" Text="AndroidTranslucentStatus" />
-                        <Switch Grid.Row="0" IsToggled="{Binding AndroidTranslucentStatus}" />
-
-                        <Label Grid.Row="1" Text="AndroidLayoutInScreen" />
-                        <Switch Grid.Row="1" IsToggled="{Binding AndroidLayoutInScreen}" />
+                        <rf:HorizontalLine />
                         
-                        <Label Grid.Row="2" Text="Dummy" />
-                        <Switch Grid.Row="2" />
-                    </Grid>
+                        <Button Text="Titlebar Demo 1">
+                            <Button.Command>
+                                <rf:PageCommand>
+                                    <rf:AliveContentPage FixTopPadding="False">
+                                        <Grid>
+                                            <rf:Titlebar
+                                                Title="Explore"
+                                                IsBackButtonVisible="True"
+                                                BackCommand="{Static rf:Values.PopCommand}">
+                                            </rf:Titlebar>
+                                        </Grid>
+                                    </rf:AliveContentPage>
+                                </rf:PageCommand>
+                            </Button.Command>
+                        </Button>
 
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <Button Grid.Column="0" Text="Blue" Command="{Binding BlueStatusBarCommand}" />
-                        <Button Grid.Column="1" Text="Green" Command="{Binding GreenStatusBarCommand}" />
-                    </Grid>
-                </StackLayout>
+                        <Button Text="Titlebar Demo 2 (BackgroundColor)">
+                            <Button.Command>
+                                <rf:PageCommand>
+                                    <rf:AliveContentPage FixTopPadding="False">
+                                        <Grid>
+                                            <rf:Titlebar
+                                                Title="Explore"
+                                                IsBackButtonVisible="True"
+                                                BackgroundColor="#c62828"
+                                                BackCommand="{Static rf:Values.PopCommand}">
+                                            </rf:Titlebar>
+                                        </Grid>
+                                    </rf:AliveContentPage>
+                                </rf:PageCommand>
+                            </Button.Command>
+                        </Button>
 
+                        <Button Text="Titlebar Demo 3 (Toolbar)">
+                            <Button.Command>
+                                <rf:PageCommand>
+                                    <rf:AliveContentPage FixTopPadding="False">
+                                        <Grid>
+                                            <rf:Titlebar
+                                                Title="Explore"
+                                                IsBackButtonVisible="True"
+                                                BackgroundColor="#c62828"
+                                                BackCommand="{Static rf:Values.PopCommand}">
+                                                <StackLayout Orientation="Horizontal" VerticalOptions="Center" Spacing="10">
+                                                    <ImageButton Source="menuabout" HeightRequest="24" WidthRequest="24" />
+                                                    <ImageButton Source="menumap" HeightRequest="24" WidthRequest="24" />
+                                                </StackLayout>
+                                            </rf:Titlebar>
+                                        </Grid>
+                                    </rf:AliveContentPage>
+                                </rf:PageCommand>
+                            </Button.Command>
+                        </Button>
+                        
+                        <Grid IsVisible="{Binding IsIOS}" Padding="2" BackgroundColor="#99000000">
+                            <Label Text="LightContent" />
+                            <Switch IsToggled="{Binding LightContent}" />
+                        </Grid>
+                        <Grid IsVisible="{Binding IsAndroid}" Padding="2" BackgroundColor="#99000000">
+                            <Label Grid.Row="0" Text="AndroidTranslucentStatus" />
+                            <Switch Grid.Row="0" IsToggled="{Binding AndroidTranslucentStatus}" />
+
+                            <Label Grid.Row="1" Text="AndroidLayoutInScreen" />
+                            <Switch Grid.Row="1" IsToggled="{Binding AndroidLayoutInScreen}" />
+
+                            <Label Grid.Row="2" Text="Dummy" />
+                            <Switch Grid.Row="2" />
+                        </Grid>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Button Grid.Column="0" Text="Blue" Command="{Binding BlueStatusBarCommand}" />
+                            <Button Grid.Column="1" Text="Green" Command="{Binding GreenStatusBarCommand}" />
+                        </Grid>
+                    </StackLayout>
+                </ScrollView>
                 <BoxView HeightRequest="2" BackgroundColor="White" HorizontalOptions="Fill" VerticalOptions="Start" />
                 <BoxView HeightRequest="2" BackgroundColor="White" HorizontalOptions="Fill" VerticalOptions="End" />
             </Grid>
@@ -148,5 +205,5 @@
             </Frame>
         </rf:Sidebar>
     </Grid>
-    
+
 </rf:AliveContentPage>

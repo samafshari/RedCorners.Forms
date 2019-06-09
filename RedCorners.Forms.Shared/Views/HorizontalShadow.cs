@@ -29,4 +29,14 @@ namespace RedCorners.Forms
             Source = ImageSource.FromResource("RedCorners.Forms.gradienth2.png", typeof(HorizontalShadow).GetTypeInfo().Assembly);
         }
     }
+
+    public class HorizontalLine : BoxView
+    {
+        public HorizontalLine()
+        {
+            HorizontalOptions = LayoutOptions.Fill;
+            HeightRequest = 1;
+            BackgroundColor = Color.White;
+        }
+    }
 }

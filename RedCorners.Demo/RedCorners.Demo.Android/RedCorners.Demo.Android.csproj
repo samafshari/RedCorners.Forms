@@ -120,6 +120,12 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-hdpi\icon_profile_on.png" />
   </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-hdpi\menuabout.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-hdpi\menumap.png" />
+  </ItemGroup>
   <Import Project="..\..\RedCorners.Demo.Shared\RedCorners.Demo.Shared.projitems" Label="Shared" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

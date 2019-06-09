@@ -98,7 +98,7 @@ namespace RedCorners.Forms
             propertyChanged: (bindable, oldVal, newVal) =>
             {
                 if (bindable is TitledContentView page)
-                    page.titlebar.Buttons = (View)newVal;
+                    page.titlebar.Toolbar = (View)newVal;
             });
 
         public static readonly BindableProperty OverlayProperty = BindableProperty.Create(
@@ -221,11 +221,11 @@ namespace RedCorners.Forms
             if (titlebar == null) return;
             if (TitleBackgroundImage == null)
             {
-                titlebar.Body = null;
+                titlebar.Background = null;
             }
             else
             {
-                titlebar.Body = new Image
+                titlebar.Background = new Image
                 {
                     HorizontalOptions = LayoutOptions.Fill,
                     VerticalOptions = LayoutOptions.Fill,

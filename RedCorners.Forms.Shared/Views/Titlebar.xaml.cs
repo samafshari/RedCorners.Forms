@@ -11,6 +11,7 @@ using Xamarin.Forms.Xaml;
 namespace RedCorners.Forms
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
+    [ContentProperty("Toolbar")]
     public partial class Titlebar 
     {
         public Titlebar()
@@ -22,6 +23,8 @@ namespace RedCorners.Forms
             var tap = new TapGestureRecognizer();
             tap.Tapped += Tap_Tapped;
             controlButtons.GestureRecognizers.Add(tap);
+
+            UpdateToolbar();
         }
 
         private void Tap_Tapped(object sender, EventArgs e)
@@ -30,16 +33,16 @@ namespace RedCorners.Forms
                 BackCommand.Execute(BackCommandParameter);
         }
 
-        public View Body
+        public View Background
         {
-            get => (View)GetValue(BodyProperty);
-            set => SetValue(BodyProperty, value);
+            get => (View)GetValue(BackgroundProperty);
+            set => SetValue(BackgroundProperty, value);
         }
 
-        public View Buttons
+        public View Toolbar
         {
-            get => (View)GetValue(ButtonsProperty);
-            set => SetValue(ButtonsProperty, value);
+            get => (View)GetValue(ToolbarProperty);
+            set => SetValue(ToolbarProperty, value);
         }
 
         public double ContentHeightRequest
@@ -102,8 +105,8 @@ namespace RedCorners.Forms
             set => SetValue(FontAttributesProperty, value);
         }
 
-        public static readonly BindableProperty BodyProperty = BindableProperty.Create(
-            propertyName: nameof(Body),
+        public static readonly BindableProperty BackgroundProperty = BindableProperty.Create(
+            propertyName: nameof(Background),
             returnType: typeof(View),
             declaringType: typeof(Titlebar),
             defaultValue: null,
@@ -112,15 +115,16 @@ namespace RedCorners.Forms
             {
             });
 
-        public static readonly BindableProperty ButtonsProperty = BindableProperty.Create(
-            propertyName: nameof(Buttons),
+        public static readonly BindableProperty ToolbarProperty = BindableProperty.Create(
+            propertyName: nameof(Toolbar),
             returnType: typeof(View),
             declaringType: typeof(Titlebar),
             defaultValue: null,
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
-
+                if (bindable is Titlebar titlebar)
+                    titlebar.UpdateToolbar();
             });
 
         public static readonly BindableProperty ContentHeightRequestProperty = BindableProperty.Create(
@@ -245,6 +249,11 @@ namespace RedCorners.Forms
                 backImage.Source = ImageSource.FromResource("RedCorners.Forms.leftarrow.png", typeof(Titlebar).GetTypeInfo().Assembly);
             else
                 backImage.Source = ImageSource.FromResource("RedCorners.Forms.menu.png", typeof(Titlebar).GetTypeInfo().Assembly);
+        }
+
+        void UpdateToolbar()
+        {
+            buttons.Content = Toolbar;
         }
     }
 }
