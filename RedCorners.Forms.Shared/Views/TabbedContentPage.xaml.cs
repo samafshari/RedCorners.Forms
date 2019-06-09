@@ -300,7 +300,6 @@ namespace RedCorners.Forms
                 }
             }
 
-            Console.WriteLine($"Children: {Children.Count} - Grid: {content.Children.Count}");
             UpdateActivePage();
         }
 

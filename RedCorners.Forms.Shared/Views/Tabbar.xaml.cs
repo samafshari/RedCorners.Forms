@@ -352,7 +352,8 @@ namespace RedCorners.Forms
                     ImageMargin = ImageMargin,
                     RowSpacing = Spacing,
                     ImageHeightRequest = ImageHeightRequest,
-                    ImageWidthRequest = ImageWidthRequest
+                    ImageWidthRequest = ImageWidthRequest,
+                    Opacity = SelectedIndex == c ? item.SelectedOpacity : item.Opacity
                 };
 
                 content.Children.Add(img);
@@ -394,8 +395,12 @@ namespace RedCorners.Forms
                 if (pressed && item.SelectedImage != null)
                     source = item.SelectedImage;
                 child.Source = source;
-                ViewExtensions.CancelAnimations(child);
-                child.FadeTo(pressed ? item.SelectedOpacity : item.Opacity, 100);
+                var targetOpacity = pressed ? item.SelectedOpacity : item.Opacity;
+                if (child.Opacity != targetOpacity)
+                {
+                    ViewExtensions.CancelAnimations(child);
+                    child.FadeTo(targetOpacity, 100);
+                }
                 child.ImageMargin = ImageMargin;
                 child.TextColor = (pressed && SelectedTextColor != Color.Default) ? SelectedTextColor : TextColor;
                 child.FontSize = (pressed && SelectedFontSize.HasValue) ? SelectedFontSize.Value : FontSize;
