@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<rf:AliveContentView 
+<rf:ContentView2 
     xmlns="http://xamarin.com/schemas/2014/forms" 
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
@@ -9,12 +9,12 @@
     VerticalOptions="Fill"
     x:Name="me"
     mc:Ignorable="d"
-    x:Class="RedCorners.Forms.Tabbar">
-    <rf:AliveContentView.Content>
+    x:Class="RedCorners.Forms.TabBar">
+    <rf:ContentView2.Content>
         <Grid 
             HorizontalOptions="Fill" 
             VerticalOptions="Fill"
             x:Name="content">
         </Grid>
-    </rf:AliveContentView.Content>
-</rf:AliveContentView>
+    </rf:ContentView2.Content>
+</rf:ContentView2>

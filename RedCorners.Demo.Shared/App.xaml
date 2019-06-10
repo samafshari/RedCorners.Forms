@@ -7,6 +7,8 @@
         <ResourceDictionary>
             <Style TargetType="Button">
                 <Setter Property="Visual" Value="Material" />
+                <Setter Property="BackgroundColor" Value="#99000000" />
+                <Setter Property="TextColor" Value="White" />
             </Style>
         </ResourceDictionary>
     </Application.Resources>

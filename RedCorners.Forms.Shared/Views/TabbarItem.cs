@@ -6,7 +6,7 @@ using Xamarin.Forms;
 
 namespace RedCorners.Forms
 {
-    public class TabbarItem : BindableObject
+    public class TabBarItem : BindableObject
     {
         public ImageSource Image
         {
@@ -53,43 +53,43 @@ namespace RedCorners.Forms
         public static readonly BindableProperty TextProperty = BindableProperty.Create(
             propertyName: nameof(Text),
             returnType: typeof(string),
-            declaringType: typeof(TabbarItem),
+            declaringType: typeof(TabBarItem),
             defaultValue: null);
 
         public static readonly BindableProperty ImageProperty = BindableProperty.Create(
             propertyName: nameof(Image),
             returnType: typeof(ImageSource),
-            declaringType: typeof(TabbarItem),
+            declaringType: typeof(TabBarItem),
             defaultValue: null);
 
         public static readonly BindableProperty SelectedImageProperty = BindableProperty.Create(
             propertyName: nameof(SelectedImage),
             returnType: typeof(ImageSource),
-            declaringType: typeof(TabbarItem),
+            declaringType: typeof(TabBarItem),
             defaultValue: null);
 
         public static readonly BindableProperty OpacityProperty = BindableProperty.Create(
             propertyName: nameof(Opacity),
             returnType: typeof(double),
-            declaringType: typeof(TabbarItem),
+            declaringType: typeof(TabBarItem),
             defaultValue: 0.5);
 
         public static readonly BindableProperty SelectedOpacityProperty = BindableProperty.Create(
             propertyName: nameof(SelectedOpacity),
             returnType: typeof(double),
-            declaringType: typeof(TabbarItem),
+            declaringType: typeof(TabBarItem),
             defaultValue: 1.0);
 
         public static readonly BindableProperty CommandProperty = BindableProperty.Create(
             propertyName: nameof(Command),
             returnType: typeof(ICommand),
-            declaringType: typeof(TabbarItem),
+            declaringType: typeof(TabBarItem),
             defaultValue: null);
 
         public static readonly BindableProperty CommandParameterProperty = BindableProperty.Create(
             propertyName: nameof(CommandParameter),
             returnType: typeof(object),
-            declaringType: typeof(TabbarItem),
+            declaringType: typeof(TabBarItem),
             defaultValue: null);
     }
 }

@@ -9,7 +9,7 @@ using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 
-[assembly: ExportRenderer(typeof(AliveContentPage), typeof(RedCorners.Forms.Renderers.PageRenderer))]
+[assembly: ExportRenderer(typeof(ContentPage2), typeof(RedCorners.Forms.Renderers.PageRenderer))]
 namespace RedCorners.Forms.Renderers
 {
     public class PageRenderer : Xamarin.Forms.Platform.iOS.PageRenderer
@@ -18,7 +18,7 @@ namespace RedCorners.Forms.Renderers
         {
             base.OnElementChanged(e);
 
-            if (e.NewElement is AliveContentPage page)
+            if (e.NewElement is ContentPage2 page)
             {
                 page.PlatformUpdate = () =>
                 {
@@ -33,13 +33,13 @@ namespace RedCorners.Forms.Renderers
         
         public override UIStatusBarStyle PreferredStatusBarStyle()
         {
-            var style = (long)((AliveContentPage)Element).UIStatusBarStyle;
+            var style = (long)((ContentPage2)Element).UIStatusBarStyle;
             return (UIStatusBarStyle)style;
         }
 
         public override bool PrefersStatusBarHidden()
         {
-            return ((AliveContentPage)Element).UIStatusBarHidden;
+            return ((ContentPage2)Element).UIStatusBarHidden;
         }
     }
 }

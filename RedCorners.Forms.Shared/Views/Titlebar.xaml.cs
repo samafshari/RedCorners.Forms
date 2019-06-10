@@ -12,9 +12,9 @@ namespace RedCorners.Forms
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     [ContentProperty("Toolbar")]
-    public partial class Titlebar 
+    public partial class TitleBar 
     {
-        public Titlebar()
+        public TitleBar()
         {
             InitializeComponent();
             UpdateBackButtonImage();
@@ -122,7 +122,7 @@ namespace RedCorners.Forms
         public static readonly BindableProperty BackgroundProperty = BindableProperty.Create(
             propertyName: nameof(Background),
             returnType: typeof(View),
-            declaringType: typeof(Titlebar),
+            declaringType: typeof(TitleBar),
             defaultValue: null,
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
@@ -132,19 +132,19 @@ namespace RedCorners.Forms
         public static readonly BindableProperty ToolbarProperty = BindableProperty.Create(
             propertyName: nameof(Toolbar),
             returnType: typeof(View),
-            declaringType: typeof(Titlebar),
+            declaringType: typeof(TitleBar),
             defaultValue: null,
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
-                if (bindable is Titlebar titlebar)
+                if (bindable is TitleBar titlebar)
                     titlebar.UpdateToolbar();
             });
 
         public static readonly BindableProperty ContentHeightRequestProperty = BindableProperty.Create(
             propertyName: nameof(ContentHeightRequest),
             returnType: typeof(double),
-            declaringType: typeof(Titlebar),
+            declaringType: typeof(TitleBar),
             defaultValue: 60.0,
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
@@ -155,7 +155,7 @@ namespace RedCorners.Forms
         public static readonly BindableProperty ContentMarginProperty = BindableProperty.Create(
             propertyName: nameof(ContentMargin),
             returnType: typeof(Thickness),
-            declaringType: typeof(Titlebar),
+            declaringType: typeof(TitleBar),
             defaultValue: default(Thickness),
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
@@ -166,29 +166,29 @@ namespace RedCorners.Forms
         public static readonly BindableProperty IsBackButtonVisibleProperty = BindableProperty.Create(
             propertyName: nameof(IsBackButtonVisible),
             returnType: typeof(bool?),
-            declaringType: typeof(Titlebar),
+            declaringType: typeof(TitleBar),
             defaultValue: default(bool?),
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
-                (bindable as Titlebar)?.UpdateBackButtonImage();
+                (bindable as TitleBar)?.UpdateBackButtonImage();
             });
 
         public static readonly BindableProperty CustomBackImageProperty = BindableProperty.Create(
             propertyName: nameof(CustomBackImage),
             returnType: typeof(ImageSource),
-            declaringType: typeof(Titlebar),
+            declaringType: typeof(TitleBar),
             defaultValue: default(ImageSource),
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
-                (bindable as Titlebar)?.UpdateBackButtonImage();
+                (bindable as TitleBar)?.UpdateBackButtonImage();
             });
 
         public static readonly BindableProperty BackCommandProperty = BindableProperty.Create(
             propertyName: nameof(BackCommand),
             returnType: typeof(ICommand),
-            declaringType: typeof(Titlebar),
+            declaringType: typeof(TitleBar),
             defaultValue: null,
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
@@ -199,7 +199,7 @@ namespace RedCorners.Forms
         public static readonly BindableProperty BackCommandParameterProperty = BindableProperty.Create(
             propertyName: nameof(BackCommandParameter),
             returnType: typeof(object),
-            declaringType: typeof(Titlebar),
+            declaringType: typeof(TitleBar),
             defaultValue: null,
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
@@ -210,7 +210,7 @@ namespace RedCorners.Forms
         public static readonly BindableProperty TextColorProperty = BindableProperty.Create(
             propertyName: nameof(TextColor),
             returnType: typeof(Color),
-            declaringType: typeof(Titlebar),
+            declaringType: typeof(TitleBar),
             defaultValue: Color.White,
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
@@ -221,7 +221,7 @@ namespace RedCorners.Forms
         public static readonly BindableProperty FontSizeProperty = BindableProperty.Create(
             propertyName: nameof(FontSize),
             returnType: typeof(double),
-            declaringType: typeof(Titlebar),
+            declaringType: typeof(TitleBar),
             defaultValue: 16.0,
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
@@ -232,7 +232,7 @@ namespace RedCorners.Forms
         public static readonly BindableProperty FontFamilyProperty = BindableProperty.Create(
             propertyName: nameof(FontFamily),
             returnType: typeof(string),
-            declaringType: typeof(Titlebar),
+            declaringType: typeof(TitleBar),
             defaultValue: null,
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
@@ -243,7 +243,7 @@ namespace RedCorners.Forms
         public static readonly BindableProperty FontAttributesProperty = BindableProperty.Create(
             propertyName: nameof(FontAttributes),
             returnType: typeof(FontAttributes),
-            declaringType: typeof(Titlebar),
+            declaringType: typeof(TitleBar),
             defaultValue: FontAttributes.Bold,
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
@@ -254,24 +254,24 @@ namespace RedCorners.Forms
         public static new readonly BindableProperty FixTopPaddingProperty = BindableProperty.Create(
            nameof(FixTopPadding),
            typeof(bool),
-           typeof(Titlebar),
+           typeof(TitleBar),
            true,
            BindingMode.TwoWay,
            propertyChanged: (bindable, oldVal, newVal) =>
            {
-               if (bindable is Titlebar titlebar && titlebar.contentContainer != null)
+               if (bindable is TitleBar titlebar && titlebar.contentContainer != null)
                    titlebar.contentContainer.FixTopPadding = (bool)newVal;
            });
 
         public static new readonly BindableProperty FixBottomPaddingProperty = BindableProperty.Create(
             nameof(FixBottomPadding),
             typeof(bool),
-            typeof(Titlebar),
+            typeof(TitleBar),
             false,
             BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
-                if (bindable is Titlebar titlebar && titlebar.contentContainer != null)
+                if (bindable is TitleBar titlebar && titlebar.contentContainer != null)
                     titlebar.contentContainer.FixBottomPadding = (bool)newVal;
             });
 
@@ -284,9 +284,9 @@ namespace RedCorners.Forms
             }
             var showBack = IsBackButtonVisible ?? (BindingContext is BindableModel vm ? vm.IsModal : true);
             if (showBack)
-                backImage.Source = ImageSource.FromResource("RedCorners.Forms.leftarrow.png", typeof(Titlebar).GetTypeInfo().Assembly);
+                backImage.Source = ImageSource.FromResource("RedCorners.Forms.leftarrow.png", typeof(TitleBar).GetTypeInfo().Assembly);
             else
-                backImage.Source = ImageSource.FromResource("RedCorners.Forms.menu.png", typeof(Titlebar).GetTypeInfo().Assembly);
+                backImage.Source = ImageSource.FromResource("RedCorners.Forms.menu.png", typeof(TitleBar).GetTypeInfo().Assembly);
         }
 
         void UpdateToolbar()

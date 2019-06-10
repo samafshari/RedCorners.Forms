@@ -30,6 +30,7 @@ NuGet: [https://www.nuget.org/packages/RedCorners.Forms](https://www.nuget.org/p
 Sidebar Video: [https://www.youtube.com/watch?v=NPyZ_N5LcoU&feature=youtu.be](https://www.youtube.com/watch?v=NPyZ_N5LcoU&feature=youtu.be)
 
 ![](Screenshots/5.gif?raw=true)
+![](Screenshots/AnimatedTitleBar.gif?raw=true)
 
 ### Dependencies
 

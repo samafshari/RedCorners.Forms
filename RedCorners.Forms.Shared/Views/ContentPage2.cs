@@ -16,7 +16,10 @@ namespace RedCorners.Forms
         BlackOpaque = 2,
     }
 
-    public class AliveContentPage : ContentPage
+    [Obsolete("AliveContentPage is renamed to ContentPage2. Use ContentPage2 instead.")]
+    public sealed class AliveContentPage : ContentPage2 { }
+
+    public class ContentPage2 : ContentPage
     {
         bool isStarted = false;
         WeakReference<BindableModel> lastContext = null;
@@ -83,29 +86,29 @@ namespace RedCorners.Forms
         public static BindableProperty FixTopPaddingProperty = BindableProperty.Create(
             nameof(FixTopPadding),
             typeof(bool),
-            typeof(AliveContentPage),
+            typeof(ContentPage2),
             true,
             BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
-                (bindable as AliveContentPage).AdjustPadding();
+                (bindable as ContentPage2).AdjustPadding();
             });
 
         public static BindableProperty FixBottomPaddingProperty = BindableProperty.Create(
             nameof(FixBottomPadding),
             typeof(bool),
-            typeof(AliveContentPage),
+            typeof(ContentPage2),
             true,
             BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
-                (bindable as AliveContentPage).AdjustPadding();
+                (bindable as ContentPage2).AdjustPadding();
             });
 
         public static BindableProperty UIStatusBarStyleProperty = BindableProperty.Create(
             nameof(UIStatusBarStyle),
             typeof(UIStatusBarStyles),
-            typeof(AliveContentPage),
+            typeof(ContentPage2),
             UIStatusBarStyles.LightContent,
             BindingMode.TwoWay,
             propertyChanged: UpdateSettings);
@@ -113,7 +116,7 @@ namespace RedCorners.Forms
         public static BindableProperty UIStatusBarHiddenProperty = BindableProperty.Create(
             nameof(UIStatusBarHidden),
             typeof(bool),
-            typeof(AliveContentPage),
+            typeof(ContentPage2),
             false,
             BindingMode.TwoWay,
             propertyChanged: UpdateSettings);
@@ -121,7 +124,7 @@ namespace RedCorners.Forms
         public static BindableProperty UIStatusBarAnimatedProperty = BindableProperty.Create(
             nameof(UIStatusBarAnimated),
             typeof(bool),
-            typeof(AliveContentPage),
+            typeof(ContentPage2),
             true,
             BindingMode.TwoWay,
             propertyChanged: UpdateSettings);
@@ -129,7 +132,7 @@ namespace RedCorners.Forms
         public static BindableProperty AndroidStatusBarColorProperty = BindableProperty.Create(
             nameof(AndroidStatusBarColor),
             typeof(Color),
-            typeof(AliveContentPage),
+            typeof(ContentPage2),
             Color.Black,
             BindingMode.TwoWay,
             propertyChanged: UpdateSettings);
@@ -137,7 +140,7 @@ namespace RedCorners.Forms
         public static BindableProperty AndroidTranslucentStatusProperty = BindableProperty.Create(
             nameof(AndroidTranslucentStatus),
             typeof(bool),
-            typeof(AliveContentPage),
+            typeof(ContentPage2),
             true,
             BindingMode.TwoWay,
             propertyChanged: UpdateSettings);
@@ -145,7 +148,7 @@ namespace RedCorners.Forms
         public static BindableProperty AndroidLayoutInScreenProperty = BindableProperty.Create(
             nameof(AndroidLayoutInScreen),
             typeof(bool),
-            typeof(AliveContentPage),
+            typeof(ContentPage2),
             true,
             BindingMode.TwoWay,
             propertyChanged: UpdateSettings);
@@ -153,32 +156,32 @@ namespace RedCorners.Forms
         public static BindableProperty KeepScreenOnProperty = BindableProperty.Create(
             nameof(KeepScreenOn),
             typeof(bool?),
-            typeof(AliveContentPage),
+            typeof(ContentPage2),
             (bool?)null,
             BindingMode.TwoWay,
             propertyChanged: UpdateSettings);
 
         static void UpdateSettings(BindableObject bindable, object oldVal, object newVal)
         {
-            (bindable as AliveContentPage)?.PlatformUpdate?.Invoke();
+            (bindable as ContentPage2)?.PlatformUpdate?.Invoke();
         }
 
-        public AliveContentPage()
+        public ContentPage2()
         {
             AdjustPadding();
         }
 
-        IEnumerable<AliveContentView> GetAliveChildren()
+        IEnumerable<ContentView2> GetAliveChildren()
         {
             if (Content is VisualElement ve)
             {
                 return ve
                     .GetAllChildren()
-                    .Where(x => x is AliveContentView)
-                    .Select(x => (AliveContentView)x);
+                    .Where(x => x is ContentView2)
+                    .Select(x => (ContentView2)x);
             }
 
-            return new AliveContentView[] { };
+            return new ContentView2[] { };
         }
 
         protected override void OnAppearing()

@@ -14,18 +14,18 @@ namespace RedCorners.Forms
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     [ContentProperty("Items")]
-    public partial class Tabbar
+    public partial class TabBar
     {
-        public Tabbar()
+        public TabBar()
         {
-            Items = new ObservableCollection<TabbarItem>();
+            Items = new ObservableCollection<TabBarItem>();
             InitializeComponent();
             UpdateItems();
         }
 
-        public IList<TabbarItem> Items
+        public IList<TabBarItem> Items
         {
-            get => (IList<TabbarItem>)GetValue(ItemsProperty);
+            get => (IList<TabBarItem>)GetValue(ItemsProperty);
             set => SetValue(ItemsProperty, value);
         }
 
@@ -128,27 +128,27 @@ namespace RedCorners.Forms
         public static readonly BindableProperty TextHeightProperty = BindableProperty.Create(
             nameof(TextHeight),
             typeof(GridLength),
-            typeof(Tabbar),
+            typeof(TabBar),
             GridLength.Auto,
             BindingMode.TwoWay,
             propertyChanged: UpdateItemsOnPropertyChanged);
 
         public static readonly BindableProperty ItemsProperty = BindableProperty.Create(
             propertyName: nameof(Items),
-            returnType: typeof(IList<TabbarItem>),
-            declaringType: typeof(Tabbar),
+            returnType: typeof(IList<TabBarItem>),
+            declaringType: typeof(TabBar),
             defaultValue: null,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
-                if (bindable is Tabbar tabbar)
+                if (bindable is TabBar tabbar)
                 {
-                    if (newVal is ObservableCollection<TabbarItem>)
+                    if (newVal is ObservableCollection<TabBarItem>)
                     {
-                        (newVal as ObservableCollection<TabbarItem>).CollectionChanged += tabbar.Tabbar_CollectionChanged;
+                        (newVal as ObservableCollection<TabBarItem>).CollectionChanged += tabbar.Tabbar_CollectionChanged;
                     }
-                    if (oldVal is ObservableCollection<TabbarItem>)
+                    if (oldVal is ObservableCollection<TabBarItem>)
                     {
-                        (oldVal as ObservableCollection<TabbarItem>).CollectionChanged -= tabbar.Tabbar_CollectionChanged;
+                        (oldVal as ObservableCollection<TabBarItem>).CollectionChanged -= tabbar.Tabbar_CollectionChanged;
                     }
                     tabbar.UpdateItems();
                 }
@@ -157,7 +157,7 @@ namespace RedCorners.Forms
         public static readonly BindableProperty ImageButtonStyleProperty = BindableProperty.Create(
             nameof(ImageButtonStyle),
             typeof(ImageButtonStyles),
-            typeof(Tabbar),
+            typeof(TabBar),
             ImageButtonStyles.Image,
             BindingMode.TwoWay,
             propertyChanged: UpdateItemsOnPropertyChanged);
@@ -165,7 +165,7 @@ namespace RedCorners.Forms
         public static readonly BindableProperty ImageHeightRequestProperty = BindableProperty.Create(
             nameof(ImageHeightRequest),
             typeof(double),
-            typeof(Tabbar),
+            typeof(TabBar),
             -1.0,
             BindingMode.TwoWay,
             propertyChanged: UpdateItemsOnPropertyChanged);
@@ -173,7 +173,7 @@ namespace RedCorners.Forms
         public static readonly BindableProperty ImageWidthRequestProperty = BindableProperty.Create(
             nameof(ImageWidthRequest),
             typeof(double),
-            typeof(Tabbar),
+            typeof(TabBar),
             -1.0,
             BindingMode.TwoWay,
             propertyChanged: UpdateItemsOnPropertyChanged);
@@ -181,7 +181,7 @@ namespace RedCorners.Forms
         public static readonly BindableProperty TextColorProperty = BindableProperty.Create(
             propertyName: nameof(TextColor),
             returnType: typeof(Color),
-            declaringType: typeof(Tabbar),
+            declaringType: typeof(TabBar),
             defaultValue: Color.Black,
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: UpdateSelectedItemOnPropertyChanged);
@@ -189,7 +189,7 @@ namespace RedCorners.Forms
         public static readonly BindableProperty FontSizeProperty = BindableProperty.Create(
             propertyName: nameof(FontSize),
             returnType: typeof(double),
-            declaringType: typeof(Tabbar),
+            declaringType: typeof(TabBar),
             defaultValue: 16.0,
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: UpdateSelectedItemOnPropertyChanged);
@@ -197,7 +197,7 @@ namespace RedCorners.Forms
         public static readonly BindableProperty SelectedTextColorProperty = BindableProperty.Create(
             propertyName: nameof(SelectedTextColor),
             returnType: typeof(Color),
-            declaringType: typeof(Tabbar),
+            declaringType: typeof(TabBar),
             defaultValue: Color.Default,
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: UpdateSelectedItemOnPropertyChanged);
@@ -205,7 +205,7 @@ namespace RedCorners.Forms
         public static readonly BindableProperty SelectedFontSizeProperty = BindableProperty.Create(
             propertyName: nameof(SelectedFontSize),
             returnType: typeof(double?),
-            declaringType: typeof(Tabbar),
+            declaringType: typeof(TabBar),
             defaultValue: null,
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: UpdateSelectedItemOnPropertyChanged);
@@ -213,7 +213,7 @@ namespace RedCorners.Forms
         public static readonly BindableProperty FontFamilyProperty = BindableProperty.Create(
             propertyName: nameof(FontFamily),
             returnType: typeof(string),
-            declaringType: typeof(Tabbar),
+            declaringType: typeof(TabBar),
             defaultValue: null,
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: UpdateSelectedItemOnPropertyChanged);
@@ -221,7 +221,7 @@ namespace RedCorners.Forms
         public static readonly BindableProperty FontAttributesProperty = BindableProperty.Create(
             propertyName: nameof(FontAttributes),
             returnType: typeof(FontAttributes),
-            declaringType: typeof(Tabbar),
+            declaringType: typeof(TabBar),
             defaultValue: FontAttributes.Bold,
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: UpdateSelectedItemOnPropertyChanged);
@@ -229,7 +229,7 @@ namespace RedCorners.Forms
         public static readonly BindableProperty SelectedFontAttributesProperty = BindableProperty.Create(
             propertyName: nameof(SelectedFontAttributes),
             returnType: typeof(FontAttributes?),
-            declaringType: typeof(Tabbar),
+            declaringType: typeof(TabBar),
             defaultValue: FontAttributes.Bold,
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: UpdateSelectedItemOnPropertyChanged);
@@ -250,34 +250,34 @@ namespace RedCorners.Forms
         public static readonly BindableProperty VerticalTextAlignmentProperty = BindableProperty.Create(
             propertyName: nameof(VerticalTextAlignment),
             returnType: typeof(TextAlignment),
-            declaringType: typeof(Tabbar),
+            declaringType: typeof(TabBar),
             defaultValue: TextAlignment.Start,
             propertyChanged: UpdateSelectedItemOnPropertyChanged);
 
         public static readonly BindableProperty HorizontalTextAlignmentProperty = BindableProperty.Create(
             propertyName: nameof(HorizontalTextAlignment),
             returnType: typeof(TextAlignment),
-            declaringType: typeof(Tabbar),
+            declaringType: typeof(TabBar),
             defaultValue: TextAlignment.Center,
             propertyChanged: UpdateSelectedItemOnPropertyChanged);
 
         public static readonly BindableProperty SelectedIndexProperty = BindableProperty.Create(
             propertyName: nameof(SelectedIndex),
             returnType: typeof(int),
-            declaringType: typeof(Tabbar),
+            declaringType: typeof(TabBar),
             defaultValue: 0,
             propertyChanged: UpdateSelectedItemOnPropertyChanged);
 
         public static readonly BindableProperty SelectedIndexChangeCommandProperty = BindableProperty.Create(
             propertyName: nameof(SelectedIndexChangeCommand),
             returnType: typeof(ICommand),
-            declaringType: typeof(Tabbar),
+            declaringType: typeof(TabBar),
             defaultValue: null);
 
         public static readonly BindableProperty ImageMarginProperty = BindableProperty.Create(
             nameof(ImageMargin),
             typeof(Thickness),
-            typeof(Tabbar),
+            typeof(TabBar),
             new Thickness(0),
             BindingMode.TwoWay,
             propertyChanged: UpdateSelectedItemOnPropertyChanged);
@@ -285,7 +285,7 @@ namespace RedCorners.Forms
         public static readonly BindableProperty OrientationProperty = BindableProperty.Create(
             nameof(Orientation),
             typeof(StackOrientation),
-            typeof(Tabbar),
+            typeof(TabBar),
             StackOrientation.Horizontal,
             BindingMode.TwoWay,
             propertyChanged: UpdateItemsOnPropertyChanged);
@@ -293,14 +293,14 @@ namespace RedCorners.Forms
         public static readonly BindableProperty SpacingProperty = BindableProperty.Create(
             nameof(Spacing),
             typeof(double),
-            typeof(Tabbar),
+            typeof(TabBar),
             (double)0,
             BindingMode.TwoWay,
             propertyChanged: UpdateItemsOnPropertyChanged);
 
         static void UpdateItemsOnPropertyChanged(BindableObject bindable, object oldVal, object newVal)
         {
-            if (bindable is Tabbar tabbar)
+            if (bindable is TabBar tabbar)
             {
                 tabbar.UpdateItems();
             }
@@ -308,7 +308,7 @@ namespace RedCorners.Forms
 
         static void UpdateSelectedItemOnPropertyChanged(BindableObject bindable, object oldVal, object newVal)
         {
-            if (bindable is Tabbar tabbar)
+            if (bindable is TabBar tabbar)
             {
                 tabbar.UpdateSelectedItem();
             }
@@ -328,7 +328,7 @@ namespace RedCorners.Forms
             content.RowDefinitions.Clear();
 
             int c = 0;
-            foreach (var item in Items as IList<TabbarItem>)
+            foreach (var item in Items as IList<TabBarItem>)
             {
                 item.PropertyChanged -= Item_PropertyChanged;
                 item.PropertyChanged += Item_PropertyChanged;
@@ -389,7 +389,7 @@ namespace RedCorners.Forms
             for (int i = 0; i < content.Children.Count; i++)
             {
                 var child = content.Children[i] as ImageButton;
-                var item = child.BindingContext as TabbarItem;
+                var item = child.BindingContext as TabBarItem;
                 var source = item.Image;
                 bool pressed = SelectedIndex == i || pressedIndex == i;
                 if (pressed && item.SelectedImage != null)
@@ -429,7 +429,7 @@ namespace RedCorners.Forms
         public Command<int> Command => new Command<int>(i =>
         {
             var button = content.Children[i] as ImageButton;
-            var item = button.BindingContext as TabbarItem;
+            var item = button.BindingContext as TabBarItem;
             var can = item.Command?.CanExecute(item.CommandParameter) ?? true;
             if (can)
             {

@@ -20,7 +20,7 @@ namespace RedCorners.Forms
 
     [ContentProperty("Body")]
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Sidebar 
+    public partial class SideBar 
     {
         public View Body
         {
@@ -115,40 +115,40 @@ namespace RedCorners.Forms
         public static readonly BindableProperty BodyProperty = BindableProperty.Create(
             propertyName: nameof(Body),
             returnType: typeof(View),
-            declaringType: typeof(Sidebar),
+            declaringType: typeof(SideBar),
             defaultValue: new Grid(),
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
-                (bindable as Sidebar)?.UpdateLayout();
+                (bindable as SideBar)?.UpdateLayout();
             });
 
         public static readonly BindableProperty SideProperty = BindableProperty.Create(
             propertyName: nameof(Side),
             returnType: typeof(SidebarSides),
-            declaringType: typeof(Sidebar),
+            declaringType: typeof(SideBar),
             defaultValue: SidebarSides.Left,
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
-                (bindable as Sidebar)?.UpdateLayout();
+                (bindable as SideBar)?.UpdateLayout();
             });
 
         public static readonly BindableProperty ContentSizeProperty = BindableProperty.Create(
             propertyName: nameof(ContentSize),
             returnType: typeof(GridLength),
-            declaringType: typeof(Sidebar),
+            declaringType: typeof(SideBar),
             defaultValue: new GridLength(3, GridUnitType.Star),
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
-                (bindable as Sidebar)?.UpdateLayout();
+                (bindable as SideBar)?.UpdateLayout();
             });
 
         public static readonly BindableProperty FadeInDurationProperty = BindableProperty.Create(
             propertyName: nameof(FadeInDuration),
             returnType: typeof(uint),
-            declaringType: typeof(Sidebar),
+            declaringType: typeof(SideBar),
             defaultValue: (uint)150,
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
@@ -158,7 +158,7 @@ namespace RedCorners.Forms
         public static readonly BindableProperty DoesFadeInProperty = BindableProperty.Create(
             propertyName: nameof(DoesFadeIn),
             returnType: typeof(bool),
-            declaringType: typeof(Sidebar),
+            declaringType: typeof(SideBar),
             defaultValue: true,
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
@@ -168,7 +168,7 @@ namespace RedCorners.Forms
         public static readonly BindableProperty SlideInDurationProperty = BindableProperty.Create(
             propertyName: nameof(SlideInDuration),
             returnType: typeof(uint),
-            declaringType: typeof(Sidebar),
+            declaringType: typeof(SideBar),
             defaultValue: (uint)350,
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
@@ -178,7 +178,7 @@ namespace RedCorners.Forms
         public static readonly BindableProperty DoesSlideInProperty = BindableProperty.Create(
             propertyName: nameof(DoesSlideIn),
             returnType: typeof(bool),
-            declaringType: typeof(Sidebar),
+            declaringType: typeof(SideBar),
             defaultValue: true,
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
@@ -188,7 +188,7 @@ namespace RedCorners.Forms
         public static readonly BindableProperty FadeOutDurationProperty = BindableProperty.Create(
             propertyName: nameof(FadeOutDuration),
             returnType: typeof(uint),
-            declaringType: typeof(Sidebar),
+            declaringType: typeof(SideBar),
             defaultValue: (uint)150,
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
@@ -198,7 +198,7 @@ namespace RedCorners.Forms
         public static readonly BindableProperty DoesFadeOutProperty = BindableProperty.Create(
             propertyName: nameof(DoesFadeOut),
             returnType: typeof(bool),
-            declaringType: typeof(Sidebar),
+            declaringType: typeof(SideBar),
             defaultValue: true,
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
@@ -208,7 +208,7 @@ namespace RedCorners.Forms
         public static readonly BindableProperty SlideOutDurationProperty = BindableProperty.Create(
             propertyName: nameof(SlideInDuration),
             returnType: typeof(uint),
-            declaringType: typeof(Sidebar),
+            declaringType: typeof(SideBar),
             defaultValue: (uint)300,
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
@@ -218,7 +218,7 @@ namespace RedCorners.Forms
         public static readonly BindableProperty DoesSlideOutProperty = BindableProperty.Create(
             propertyName: nameof(DoesSlideIn),
             returnType: typeof(bool),
-            declaringType: typeof(Sidebar),
+            declaringType: typeof(SideBar),
             defaultValue: true,
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
@@ -228,7 +228,7 @@ namespace RedCorners.Forms
         public static readonly BindableProperty IsSwipeEnabledProperty = BindableProperty.Create(
             propertyName: nameof(IsSwipeEnabled),
             returnType: typeof(bool),
-            declaringType: typeof(Sidebar),
+            declaringType: typeof(SideBar),
             defaultValue: true,
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
@@ -238,29 +238,29 @@ namespace RedCorners.Forms
         public static new readonly BindableProperty IsVisibleProperty = BindableProperty.Create(
             propertyName: nameof(IsVisible),
             returnType: typeof(bool),
-            declaringType: typeof(Sidebar),
+            declaringType: typeof(SideBar),
             defaultValue: false,
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
-                (bindable as Sidebar)?.UpdateVisibility((bool)oldVal, (bool)newVal);
+                (bindable as SideBar)?.UpdateVisibility((bool)oldVal, (bool)newVal);
             });
 
         public static readonly BindableProperty IsFullSizeProperty = BindableProperty.Create(
             propertyName: nameof(IsFullSize),
             returnType: typeof(bool),
-            declaringType: typeof(Sidebar),
+            declaringType: typeof(SideBar),
             defaultValue: false,
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
-                (bindable as Sidebar)?.UpdateLayout();
+                (bindable as SideBar)?.UpdateLayout();
             });
 
         SwipeGestureRecognizer swipeRight = null, swipeLeft = null, swipeUp = null, swipeDown = null;
         SwipeGestureRecognizer swipeRightIn = null, swipeLeftIn = null, swipeUpIn = null, swipeDownIn = null;
 
-        public Sidebar()
+        public SideBar()
         {
             CascadeInputTransparent = true;
 

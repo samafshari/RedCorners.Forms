@@ -27,18 +27,18 @@
     <Compile Include="$(MSBuildThisFileDirectory)Systems\MessagingSystem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Systems\NotchSystem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Values.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Views\AliveContentPage.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Views\AliveContentView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\ContentPage2.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\ContentView2.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\Button2.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\HorizontalShadow.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Views\ImageButton.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\ImageButton2.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\ItemsStack.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\ListView2.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\MultiComponentLabel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\Tabbar.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\TabbarItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\TabBarItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\TabbedContentPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -54,7 +54,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\WorkerPage.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\Sidebar.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\SideBar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
@@ -67,17 +67,17 @@
       <DependentUpon>TitledContentPage.xaml</DependentUpon>
     </Compile>
     <Compile Update="E:\Projects\RedCorners.Forms\RedCorners.Forms.Shared\Views\Sidebar.xaml.cs">
-      <DependentUpon>Sidebar.xaml</DependentUpon>
+      <DependentUpon>SideBar.xaml</DependentUpon>
     </Compile>
     <Compile Update="E:\Projects\RedCorners.Forms\RedCorners.Forms.Shared\Views\Tabbar.xaml.cs">
-      <DependentUpon>Tabbar.xaml</DependentUpon>
+      <DependentUpon>TabBar.xaml</DependentUpon>
     </Compile>
     <Compile Update="E:\Projects\RedCorners.Forms\RedCorners.Forms.Shared\Views\Titlebar.xaml.cs">
-      <DependentUpon>Titlebar.xaml</DependentUpon>
+      <DependentUpon>TitleBar.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\Titlebar.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\TitleBar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
@@ -93,7 +93,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\Tabbar.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\TabBar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>

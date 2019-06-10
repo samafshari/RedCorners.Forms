@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<rf:AliveContentView
+<rf:ContentView2
     xmlns="http://xamarin.com/schemas/2014/forms" 
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
@@ -7,14 +7,14 @@
     xmlns:rf="clr-namespace:RedCorners.Forms"
     mc:Ignorable="d"
     x:Name="me"
-    x:Class="RedCorners.Forms.Titlebar"
+    x:Class="RedCorners.Forms.TitleBar"
     BackgroundColor="#333333"
     HorizontalOptions="Fill"
     VerticalOptions="StartAndExpand">
-    <rf:AliveContentView.Content>
+    <rf:ContentView2.Content>
         <Grid HorizontalOptions="Fill" VerticalOptions="FillAndExpand" BackgroundColor="{Binding BackgroundColor, Source={x:Reference me}, Mode=OneWay}">
             <ContentView x:Name="body" Content="{Binding Background, Source={x:Reference me}}" />
-            <rf:AliveContentView FixTopPadding="True" HorizontalOptions="Fill" VerticalOptions="FillAndExpand" x:Name="contentContainer">
+            <rf:ContentView2 FixTopPadding="True" HorizontalOptions="Fill" VerticalOptions="FillAndExpand" x:Name="contentContainer">
                 <Grid x:Name="content" 
                       HeightRequest="{Binding ContentHeightRequest, Source={x:Reference me}, Mode=OneWay}" 
                       Margin="{Binding ContentMargin, Source={x:Reference me}, Mode=OneWay}" 
@@ -60,7 +60,7 @@
                         Margin="0,0,10,0"
 			            Grid.Column="1" />
 
-                    <rf:AliveContentView 
+                    <rf:ContentView2 
                         x:Name="buttons" 
                         Grid.Column="2" 
                         HorizontalOptions="EndAndExpand" 
@@ -68,7 +68,7 @@
                         Margin="8,0,8,0" 
                         />
                 </Grid>
-            </rf:AliveContentView>
+            </rf:ContentView2>
         </Grid>
-    </rf:AliveContentView.Content>
-</rf:AliveContentView>
+    </rf:ContentView2.Content>
+</rf:ContentView2>

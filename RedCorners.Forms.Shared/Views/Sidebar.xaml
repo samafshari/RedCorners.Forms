@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<rf:AliveContentView
+<rf:ContentView2
     xmlns="http://xamarin.com/schemas/2014/forms" 
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:rf="clr-namespace:RedCorners.Forms"
-    x:Class="RedCorners.Forms.Sidebar"
+    x:Class="RedCorners.Forms.SideBar"
     HorizontalOptions="Fill"
     VerticalOptions="Fill"
     IsVisible="{Binding IsSidebarOpen, Mode=TwoWay}">
-    <rf:AliveContentView.Content>
+    <rf:ContentView2.Content>
         <Grid x:Name="mainGrid">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition x:Name="colLeft" />
@@ -27,10 +27,10 @@
                 Grid.Row="0"
                 Grid.ColumnSpan="2"
                 Grid.RowSpan="2" />
-            <rf:AliveContentView
+            <rf:ContentView2
                 x:Name="content"
                 HorizontalOptions="Fill"
                 VerticalOptions="Fill" />
         </Grid>
-    </rf:AliveContentView.Content>
-</rf:AliveContentView>
+    </rf:ContentView2.Content>
+</rf:ContentView2>

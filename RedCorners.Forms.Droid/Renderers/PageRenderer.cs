@@ -15,7 +15,7 @@ using RedCorners.Forms;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
-[assembly: ExportRenderer(typeof(AliveContentPage), typeof(RedCorners.Forms.Renderers.PageRenderer))]
+[assembly: ExportRenderer(typeof(ContentPage2), typeof(RedCorners.Forms.Renderers.PageRenderer))]
 namespace RedCorners.Forms.Renderers
 {
     public class PageRenderer : Xamarin.Forms.Platform.Android.PageRenderer
@@ -29,7 +29,7 @@ namespace RedCorners.Forms.Renderers
         {
             base.OnElementChanged(e);
 
-            if (e.NewElement is AliveContentPage page)
+            if (e.NewElement is ContentPage2 page)
             {
                 UpdateAndroidStuff();
                 page.PlatformUpdate = UpdateAndroidStuff;
@@ -44,7 +44,7 @@ namespace RedCorners.Forms.Renderers
             if (Build.VERSION.SdkInt >= BuildVersionCodes.Lollipop)
             {
                 var activity = GetActivity(Context);
-                var page = Element as AliveContentPage;
+                var page = Element as ContentPage2;
 
                 var t = page.AndroidTranslucentStatus;
                 var l = page.AndroidLayoutInScreen;

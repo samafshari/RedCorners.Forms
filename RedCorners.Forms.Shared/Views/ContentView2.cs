@@ -7,11 +7,14 @@ using Xamarin.Forms;
 
 namespace RedCorners.Forms
 {
-    public class AliveContentView : ContentView
+    [Obsolete("AliveContentView is renamed to ContentView2. Use ContentView2 instead.")]
+    public sealed class AliveContentView : ContentView2 { }
+
+    public class ContentView2 : ContentView
     {
         Thickness? originalPadding;
         bool parentWasNull = true;
-        WeakReference<AliveContentPage> pagePointer = null;
+        WeakReference<ContentPage2> pagePointer = null;
 
         public string Title
         {
@@ -58,57 +61,57 @@ namespace RedCorners.Forms
         public static readonly BindableProperty FixTopPaddingProperty = BindableProperty.Create(
             nameof(FixTopPadding),
             typeof(bool),
-            typeof(AliveContentView),
+            typeof(ContentView2),
             false,
             BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
-                (bindable as AliveContentView).AdjustPadding();
+                (bindable as ContentView2).AdjustPadding();
             });
 
         public static readonly BindableProperty IsVisibleAsTabProperty = BindableProperty.Create(
             nameof(IsVisibleAsTab),
             typeof(bool),
-            typeof(AliveContentView),
+            typeof(ContentView2),
             true,
             BindingMode.TwoWay);
 
         public static readonly BindableProperty FixBottomPaddingProperty = BindableProperty.Create(
             nameof(FixBottomPadding),
             typeof(bool),
-            typeof(AliveContentView),
+            typeof(ContentView2),
             false,
             BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
-                (bindable as AliveContentView).AdjustPadding();
+                (bindable as ContentView2).AdjustPadding();
             });
 
         public static readonly BindableProperty TitleProperty = BindableProperty.Create(
             nameof(Title),
             typeof(string),
-            typeof(AliveContentView),
+            typeof(ContentView2),
             "Untitled",
             BindingMode.TwoWay);
 
         public static readonly BindableProperty IconProperty = BindableProperty.Create(
             nameof(Icon),
             typeof(ImageSource),
-            typeof(AliveContentView),
+            typeof(ContentView2),
             null,
             BindingMode.TwoWay);
 
         public static readonly BindableProperty SelectedIconProperty = BindableProperty.Create(
             nameof(SelectedIcon),
             typeof(ImageSource),
-            typeof(AliveContentView),
+            typeof(ContentView2),
             null,
             BindingMode.TwoWay);
 
         public static readonly BindableProperty ShowTabCommandProperty = BindableProperty.Create(
             nameof(ShowTabCommand),
             typeof(ICommand),
-            typeof(AliveContentView),
+            typeof(ContentView2),
             null,
             BindingMode.TwoWay);
 
@@ -129,7 +132,7 @@ namespace RedCorners.Forms
                 bottom);
         }
 
-        void TryHook(AliveContentPage page)
+        void TryHook(ContentPage2 page)
         {
             if (parentWasNull && Parent != null)
             {
@@ -137,7 +140,7 @@ namespace RedCorners.Forms
                 if (page != null)
                 {
                     parentWasNull = false;
-                    pagePointer = new WeakReference<AliveContentPage>(page);
+                    pagePointer = new WeakReference<ContentPage2>(page);
                     page.OnAppeared += Page_OnAppeared;
                     page.OnDisappeared += Page_OnDisappeared;
                     TriggerStart();
@@ -163,7 +166,7 @@ namespace RedCorners.Forms
             TryHook(null);
         }
 
-        public void HookToAlivePage(AliveContentPage page)
+        public void HookToAlivePage(ContentPage2 page)
         {
             TryHook(page);
         }
@@ -212,15 +215,15 @@ namespace RedCorners.Forms
             }
         }
 
-        public AliveContentPage GetPage()
+        public ContentPage2 GetPage()
         {
-            if (Parent is AliveContentPage p) return p;
+            if (Parent is ContentPage2 p) return p;
 
             var el = this as Element;
             while (true)
             {
                 if (el == null || el.Parent == null) return null;
-                if (el.Parent is AliveContentPage page) return page;
+                if (el.Parent is ContentPage2 page) return page;
                 el = el.Parent;
             }
         }

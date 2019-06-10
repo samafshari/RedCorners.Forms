@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<rf:AliveContentView
+<rf:ContentView2
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
@@ -10,19 +10,19 @@
     mc:Ignorable="d"
     x:Name="me"
     x:Class="RedCorners.Forms.TitledContentView">
-    <rf:AliveContentView.Content>
+    <rf:ContentView2.Content>
         <Grid RowSpacing="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <rf:Titlebar
+            <rf:TitleBar
                 x:Name="titlebar"
                 Grid.Row="0"
                 />
 
-            <rf:AliveContentView
+            <rf:ContentView2
                 x:Name="content"
                 Grid.Row="1"
                 HorizontalOptions="Fill"
@@ -31,7 +31,7 @@
                 FixTopPadding="False"
                 />
             
-            <rf:AliveContentView
+            <rf:ContentView2
                 x:Name="overlay"
                 HorizontalOptions="Fill"
                 VerticalOptions="Fill"
@@ -43,5 +43,5 @@
 
             <rf:HorizontalShadow Grid.Row="1" />
         </Grid>
-    </rf:AliveContentView.Content>
-</rf:AliveContentView>
+    </rf:ContentView2.Content>
+</rf:ContentView2>

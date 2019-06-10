@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<rf:AliveContentPage 
+<rf:ContentPage2 
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:views="clr-namespace:RedCorners.Demo.Views"
@@ -9,23 +9,20 @@
     FixBottomPadding="False"
     FixTopPadding="False"
     UIStatusBarStyle="{Binding UIStatusBarStyle}"
-    AndroidLayoutInScreen="{Binding AndroidLayoutInScreen}"
-    AndroidTranslucentStatus="{Binding AndroidTranslucentStatus}"
-    AndroidStatusBarColor="{Binding AndroidStatusBarColor}"
     x:Class="RedCorners.Demo.Views.MainPage"
     x:Name="me"
     BackgroundColor="Black">
-    <rf:AliveContentPage.BindingContext>
+    <rf:ContentPage2.BindingContext>
         <vm:MainViewModel x:Name="vm" />
-    </rf:AliveContentPage.BindingContext>
+    </rf:ContentPage2.BindingContext>
 
     <Grid>
         <ff:CachedImage
             Aspect="AspectFill"
             Opacity="0.7"
-            Source="{Binding BackgroundImage}" />
+            Source="https://media.giphy.com/media/f6qMGmXuOdkwU/giphy.gif" />
 
-        <rf:AliveContentView FixTopPadding="True" FixBottomPadding="True" BackgroundColor="Transparent">
+        <rf:ContentView2 FixTopPadding="True" FixBottomPadding="True" BackgroundColor="Transparent">
             <Grid>
                 <ScrollView>
                     <StackLayout Padding="10">
@@ -43,7 +40,7 @@
                         <Button Text="Test Modal">
                             <Button.Command>
                                 <rf:PageCommand IsModal="True">
-                                    <rf:AliveContentPage>
+                                    <rf:ContentPage2>
                                         <Grid>
                                             <Button Text="Pop" HorizontalOptions="Center" VerticalOptions="Center">
                                                 <Button.Command>
@@ -51,7 +48,7 @@
                                                 </Button.Command>
                                             </Button>
                                         </Grid>
-                                    </rf:AliveContentPage>
+                                    </rf:ContentPage2>
                                 </rf:PageCommand>
                             </Button.Command>
                         </Button>
@@ -78,52 +75,64 @@
                             </Button.Command>
                         </Button>
 
-                        <Button Text="Show Sidebar" Command="{Binding ShowSidebarCommand}" />
+                        <Button Text="Show SideBar" Command="{Binding ShowSidebarCommand}" />
 
                         <Button Text="Show Message" Command="{Binding MessageCommand}" CommandParameter="Message" />
                         
                         <rf:HorizontalLine />
                         
-                        <Button Text="Titlebar Demo 1">
+                        <Button Text="TitleBar Demo 1">
                             <Button.Command>
                                 <rf:PageCommand>
-                                    <rf:AliveContentPage FixTopPadding="False">
-                                        <Grid>
-                                            <rf:Titlebar
+                                    <rf:ContentPage2 FixTopPadding="False">
+                                        <Grid RowSpacing="0">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
+                                            <rf:HorizontalShadow Grid.Row="1" />
+                                            <rf:TitleBar
                                                 Title="Explore"
                                                 IsBackButtonVisible="True"
                                                 BackCommand="{Static rf:Values.PopCommand}">
-                                            </rf:Titlebar>
+                                            </rf:TitleBar>
                                         </Grid>
-                                    </rf:AliveContentPage>
+                                    </rf:ContentPage2>
                                 </rf:PageCommand>
                             </Button.Command>
                         </Button>
 
-                        <Button Text="Titlebar Demo 2 (BackgroundColor)">
+                        <Button Text="TitleBar Demo 2 (BackgroundColor)">
                             <Button.Command>
                                 <rf:PageCommand>
-                                    <rf:AliveContentPage FixTopPadding="False">
-                                        <Grid>
-                                            <rf:Titlebar
+                                    <rf:ContentPage2 FixTopPadding="False">
+                                        <Grid RowSpacing="0">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
+                                            <rf:HorizontalShadow Grid.Row="1" />
+                                            <rf:TitleBar
                                                 Title="Custom Background Color"
                                                 IsBackButtonVisible="True"
                                                 BackgroundColor="#c62828"
                                                 BackCommand="{Static rf:Values.PopCommand}">
-                                            </rf:Titlebar>
+                                            </rf:TitleBar>
                                         </Grid>
-                                    </rf:AliveContentPage>
+                                    </rf:ContentPage2>
                                 </rf:PageCommand>
                             </Button.Command>
                         </Button>
 
-                        <Button Text="Titlebar Demo 3 (Toolbar)">
+                        <Button Text="TitleBar Demo 3 (Toolbar)">
                             <Button.Command>
                                 <rf:PageCommand>
-                                    <rf:AliveContentPage FixTopPadding="False">
-                                        <Grid BindingContext="{Reference vm}">
-                                            <rf:Titlebar
-                                                Title="Buttoned Titlebar"
+                                    <rf:ContentPage2 FixTopPadding="False">
+                                        <Grid BindingContext="{Reference vm}" RowSpacing="0">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
+                                            <rf:HorizontalShadow Grid.Row="1" />
+                                            <rf:TitleBar
+                                                Title="Buttoned TitleBar"
                                                 IsBackButtonVisible="True"
                                                 BackgroundColor="#c62828"
                                                 BackCommand="{Static rf:Values.PopCommand}">
@@ -131,104 +140,127 @@
                                                     <rf:ImageButton Source="menuabout" CommandParameter="About clicked!" Command="{Binding MessageCommand}" HeightRequest="28" WidthRequest="28" />
                                                     <rf:ImageButton Source="menumap" CommandParameter="Pin clicked!" Command="{Binding MessageCommand}" HeightRequest="28" WidthRequest="28" />
                                                 </StackLayout>
-                                            </rf:Titlebar>
+                                            </rf:TitleBar>
                                         </Grid>
-                                    </rf:AliveContentPage>
+                                    </rf:ContentPage2>
                                 </rf:PageCommand>
                             </Button.Command>
                         </Button>
 
-                        <Button Text="Titlebar Demo 4 (Bottombar)">
+                        <Button Text="TitleBar Demo 4 (Bottombar)">
                             <Button.Command>
                                 <rf:PageCommand>
-                                    <rf:AliveContentPage FixTopPadding="False">
-                                        <Grid BindingContext="{Reference vm}">
-                                            <rf:Titlebar
-                                                Title="Bottom Titlebar"
+                                    <rf:ContentPage2 UIStatusBarStyle="Default" FixBottomPadding="False">
+                                        <Grid BindingContext="{Reference vm}" RowSpacing="0">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*" />
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
+                                            <rf:HorizontalShadow2 />
+                                            <rf:TitleBar
+                                                Grid.Row="1"
+                                                Title="Bottom TitleBar"
                                                 IsBackButtonVisible="True"
                                                 BackgroundColor="#c62828"
                                                 BackCommand="{Static rf:Values.PopCommand}"
                                                 FixTopPadding="False"
-                                                FixBottomPadding="True"
-                                                VerticalOptions="End">
+                                                FixBottomPadding="True">
                                                 <StackLayout Orientation="Horizontal" Spacing="28" VerticalOptions="Center">
                                                     <rf:ImageButton Source="menuabout" CommandParameter="About clicked!" Command="{Binding MessageCommand}" HeightRequest="28" WidthRequest="28" />
                                                     <rf:ImageButton Source="menumap" CommandParameter="Pin clicked!" Command="{Binding MessageCommand}" HeightRequest="28" WidthRequest="28" />
                                                 </StackLayout>
-                                            </rf:Titlebar>
+                                            </rf:TitleBar>
                                         </Grid>
-                                    </rf:AliveContentPage>
+                                    </rf:ContentPage2>
                                 </rf:PageCommand>
                             </Button.Command>
                         </Button>
 
-                        <Button Text="Titlebar Demo 5 (Custom Height)">
+                        <Button Text="TitleBar Demo 5 (Custom Height)">
                             <Button.Command>
                                 <rf:PageCommand>
-                                    <rf:AliveContentPage FixTopPadding="False">
-                                        <Grid>
-                                            <rf:Titlebar
-                                                Title="Bottom Titlebar"
+                                    <rf:ContentPage2 FixTopPadding="False">
+                                        <Grid RowSpacing="0">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
+                                            <rf:HorizontalShadow Grid.Row="1" />
+                                            <rf:TitleBar
+                                                Title="Custom Height"
                                                 IsBackButtonVisible="True"
                                                 BackgroundColor="#c62828"
                                                 BackCommand="{Static rf:Values.PopCommand}"
                                                 ContentHeightRequest="100" />
                                         </Grid>
-                                    </rf:AliveContentPage>
+                                    </rf:ContentPage2>
                                 </rf:PageCommand>
                             </Button.Command>
                         </Button>
 
-                        <Button Text="Titlebar Demo 6 (Custom Background)">
+                        <Button Text="TitleBar Demo 6 (Custom Background)">
                             <Button.Command>
                                 <rf:PageCommand>
-                                    <rf:AliveContentPage FixTopPadding="False">
-                                        <Grid>
-                                            <rf:Titlebar
+                                    <rf:ContentPage2 FixTopPadding="False">
+                                        <Grid RowSpacing="0">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
+                                            <rf:HorizontalShadow Grid.Row="1" />
+                                            <rf:TitleBar
                                                 Title="Custom Background"
                                                 IsBackButtonVisible="True"
                                                 BackCommand="{Static rf:Values.PopCommand}">
-                                                <rf:Titlebar.Background>
+                                                <rf:TitleBar.Background>
                                                     <Image Source="https://freefrontend.com/assets/img/css-background-patterns/simple-pattern-with-css3.png" HorizontalOptions="Fill" VerticalOptions="Fill" Aspect="AspectFill" HeightRequest="1" />
-                                                </rf:Titlebar.Background>
-                                            </rf:Titlebar>
+                                                </rf:TitleBar.Background>
+                                            </rf:TitleBar>
                                         </Grid>
-                                    </rf:AliveContentPage>
+                                    </rf:ContentPage2>
                                 </rf:PageCommand>
                             </Button.Command>
                         </Button>
-                        
+
+                        <Button Text="TitleBar Demo 7 (Animated Background)">
+                            <Button.Command>
+                                <rf:PageCommand>
+                                    <rf:ContentPage2 BindingContext="{Reference vm}" FixTopPadding="False">
+                                        <Grid RowSpacing="0">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
+                                            <rf:HorizontalShadow Grid.Row="1" />
+                                            <rf:TitleBar
+                                                Title="Animated Background"
+                                                IsBackButtonVisible="True"
+                                                BackCommand="{Static rf:Values.PopCommand}">
+                                                <rf:TitleBar.Background>
+                                                    <ff:CachedImage 
+                                                        Source="https://media.giphy.com/media/U3qYN8S0j3bpK/giphy.gif" 
+                                                        HorizontalOptions="Fill" VerticalOptions="Fill" Aspect="AspectFill" HeightRequest="1" />
+                                                </rf:TitleBar.Background>
+                                                <StackLayout Orientation="Horizontal" Spacing="28" VerticalOptions="Center">
+                                                    <rf:ImageButton Source="menuabout" CommandParameter="About clicked!" Command="{Binding MessageCommand}" HeightRequest="28" WidthRequest="28" />
+                                                    <rf:ImageButton Source="menumap" CommandParameter="Pin clicked!" Command="{Binding MessageCommand}" HeightRequest="28" WidthRequest="28" />
+                                                </StackLayout>
+                                            </rf:TitleBar>
+                                        </Grid>
+                                    </rf:ContentPage2>
+                                </rf:PageCommand>
+                            </Button.Command>
+                        </Button>
+
                         <Grid IsVisible="{Binding IsIOS}" Padding="2" BackgroundColor="#99000000">
                             <Label Text="LightContent" />
                             <Switch IsToggled="{Binding LightContent}" />
-                        </Grid>
-                        <Grid IsVisible="{Binding IsAndroid}" Padding="2" BackgroundColor="#99000000">
-                            <Label Grid.Row="0" Text="AndroidTranslucentStatus" />
-                            <Switch Grid.Row="0" IsToggled="{Binding AndroidTranslucentStatus}" />
-
-                            <Label Grid.Row="1" Text="AndroidLayoutInScreen" />
-                            <Switch Grid.Row="1" IsToggled="{Binding AndroidLayoutInScreen}" />
-
-                            <Label Grid.Row="2" Text="Dummy" />
-                            <Switch Grid.Row="2" />
-                        </Grid>
-
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-                            <Button Grid.Column="0" Text="Blue" Command="{Binding BlueStatusBarCommand}" />
-                            <Button Grid.Column="1" Text="Green" Command="{Binding GreenStatusBarCommand}" />
                         </Grid>
                     </StackLayout>
                 </ScrollView>
                 <BoxView HeightRequest="2" BackgroundColor="White" HorizontalOptions="Fill" VerticalOptions="Start" />
                 <BoxView HeightRequest="2" BackgroundColor="White" HorizontalOptions="Fill" VerticalOptions="End" />
             </Grid>
-        </rf:AliveContentView>
+        </rf:ContentView2>
 
-        <rf:Sidebar Side="{Binding Side}" ContentSize="{Binding ContentSize}" IsFullSize="{Binding IsFullSize}">
+        <rf:SideBar Side="{Binding Side}" ContentSize="{Binding ContentSize}" IsFullSize="{Binding IsFullSize}">
             <Frame
                 HasShadow="True"
                 HorizontalOptions="Fill"
@@ -241,7 +273,7 @@
                         <ff:CachedImage Source="http://ooze.redcorners.com/redcorners_forms_logo.png" HorizontalOptions="Center" HeightRequest="128" WidthRequest="128" />
                         <Label Text="RedCorners.Forms" TextColor="White" FontSize="Large" HorizontalTextAlignment="Center" HorizontalOptions="Center" />
                         <BoxView HeightRequest="1" HorizontalOptions="Fill" BackgroundColor="White" />
-                        <Button Text="Hide Sidebar" Command="{Binding HideSidebarCommand}" />
+                        <Button Text="Hide SideBar" Command="{Binding HideSidebarCommand}" />
 
                         <Button Text="Left" Command="{Binding PlaceSidebarCommand}" CommandParameter="Left" />
                         <Button Text="Right" Command="{Binding PlaceSidebarCommand}" CommandParameter="Right" />
@@ -265,7 +297,7 @@
                     </StackLayout>
                 </ScrollView>
             </Frame>
-        </rf:Sidebar>
+        </rf:SideBar>
     </Grid>
 
-</rf:AliveContentPage>
+</rf:ContentPage2>

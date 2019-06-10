@@ -16,7 +16,7 @@ namespace RedCorners.Forms
     {
         public TabbedContentPage()
         {
-            Children = new ObservableCollection<AliveContentView>();
+            Children = new ObservableCollection<ContentView2>();
             InitializeComponent();
             UpdateTabbarBackgroundView();
             UpdateChildren();
@@ -46,9 +46,9 @@ namespace RedCorners.Forms
             set => SetValue(TabbarHeightRequestProperty, value);
         }
 
-        public IList<AliveContentView> Children
+        public IList<ContentView2> Children
         {
-            get => (IList<AliveContentView>)GetValue(ChildrenProperty);
+            get => (IList<ContentView2>)GetValue(ChildrenProperty);
             set => SetValue(ChildrenProperty, value);
         }
 
@@ -105,26 +105,26 @@ namespace RedCorners.Forms
 
         public static readonly BindableProperty ChildrenProperty = BindableProperty.Create(
             propertyName: nameof(Children),
-            returnType: typeof(IList<AliveContentView>),
+            returnType: typeof(IList<ContentView2>),
             declaringType: typeof(TabbedContentPage),
             defaultValue: null,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
                 if (bindable is TabbedContentPage page)
                 {
-                    if (oldVal is IList<AliveContentView> views)
+                    if (oldVal is IList<ContentView2> views)
                     {
                         foreach (var item in views)
                             item.PropertyChanged -= page.Child_PropertyChanged;
                     }
 
-                    if (newVal is ObservableCollection<AliveContentView>)
+                    if (newVal is ObservableCollection<ContentView2>)
                     {
-                        (newVal as ObservableCollection<AliveContentView>).CollectionChanged += page.TabbedContentPage_CollectionChanged;
+                        (newVal as ObservableCollection<ContentView2>).CollectionChanged += page.TabbedContentPage_CollectionChanged;
                     }
-                    if (oldVal is ObservableCollection<AliveContentView>)
+                    if (oldVal is ObservableCollection<ContentView2>)
                     {
-                        (oldVal as ObservableCollection<AliveContentView>).CollectionChanged -= page.TabbedContentPage_CollectionChanged;
+                        (oldVal as ObservableCollection<ContentView2>).CollectionChanged -= page.TabbedContentPage_CollectionChanged;
                     }
                     page.UpdateChildren();
                 }
@@ -252,7 +252,7 @@ namespace RedCorners.Forms
 
         private void Tabbar_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == nameof(Tabbar.SelectedIndex))
+            if (e.PropertyName == nameof(TabBar.SelectedIndex))
             {
                 SelectedTab = tabbar.SelectedIndex;
             }
@@ -307,11 +307,11 @@ namespace RedCorners.Forms
         {
             var monitoredNames = new[]
             {
-                nameof(AliveContentView.Title),
-                nameof(AliveContentView.Icon),
-                nameof(AliveContentView.ShowTabCommand),
-                nameof(AliveContentView.SelectedIcon),
-                nameof(AliveContentView.IsVisibleAsTab)
+                nameof(ContentView2.Title),
+                nameof(ContentView2.Icon),
+                nameof(ContentView2.ShowTabCommand),
+                nameof(ContentView2.SelectedIcon),
+                nameof(ContentView2.IsVisibleAsTab)
             };
 
             if (!monitoredNames.Contains(e.PropertyName))
@@ -319,7 +319,7 @@ namespace RedCorners.Forms
 
             UpdateTabs();
 
-            if (e.PropertyName == nameof(AliveContentView.IsVisibleAsTab))
+            if (e.PropertyName == nameof(ContentView2.IsVisibleAsTab))
             {
                 UpdateActivePage();
             }
@@ -329,7 +329,7 @@ namespace RedCorners.Forms
         {
             if (tabbar == null) return;
             var tabbedPages = Children.Where(x => x.IsVisibleAsTab).ToList();
-            var tabItems = tabbedPages.Select(x => new TabbarItem
+            var tabItems = tabbedPages.Select(x => new TabBarItem
             {
                 Command = x.ShowTabCommand ?? ShowTabCommand,
                 CommandParameter = x,
@@ -398,7 +398,7 @@ namespace RedCorners.Forms
             UpdateActivePage();
         }
 
-        readonly Command<AliveContentView> ShowTabCommand = new Command<AliveContentView>(view =>
+        readonly Command<ContentView2> ShowTabCommand = new Command<ContentView2>(view =>
         {
 
         });

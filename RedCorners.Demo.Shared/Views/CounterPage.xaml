@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<rf:AliveContentPage
+<rf:ContentPage2
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:rf="clr-namespace:RedCorners.Forms;assembly=RedCorners.Forms"
@@ -7,9 +7,9 @@
     xmlns:vm="clr-namespace:RedCorners.Demo.ViewModels"
     x:Class="RedCorners.Demo.Views.CounterPage"
     UIStatusBarHidden="True">
-    <rf:AliveContentPage.BindingContext>
+    <rf:ContentPage2.BindingContext>
         <vm:CounterViewModel />
-    </rf:AliveContentPage.BindingContext>
+    </rf:ContentPage2.BindingContext>
     <rf:TitledContentView
         Title="Counter Page"
         IsBackButtonVisible="{Binding IsModal}"
@@ -19,13 +19,13 @@
                 <ColumnDefinition Width="50" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <rf:Tabbar Grid.Row="0" Orientation="Vertical">
-                <rf:TabbarItem Image="icon_home_on" />
-                <rf:TabbarItem Image="icon_grid_on" />
-                <rf:TabbarItem Image="icon_list_on" />
-                <rf:TabbarItem Image="icon_map_on" />
-                <rf:TabbarItem Image="icon_profile_on" />
-            </rf:Tabbar>
+            <rf:TabBar Grid.Row="0" Orientation="Vertical">
+                <rf:TabBarItem Image="icon_home_on" />
+                <rf:TabBarItem Image="icon_grid_on" />
+                <rf:TabBarItem Image="icon_list_on" />
+                <rf:TabBarItem Image="icon_map_on" />
+                <rf:TabBarItem Image="icon_profile_on" />
+            </rf:TabBar>
             <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
@@ -58,7 +58,7 @@
                     <Button Text="Style: ImageText" Command="{Binding ImageTextStyleCommand}" />
 
                 </StackLayout>
-                <rf:Tabbar 
+                <rf:TabBar 
                     Grid.Row="1" 
                     ImageButtonStyle="{Binding ImageButtonStyle}" 
                     TextHeight="30" 
@@ -66,16 +66,16 @@
                     Spacing="2"
                     ImageMargin="{Binding ImageMargin}"
                     VerticalTextAlignment="{Binding VerticalTextAlignment}">
-                    <rf:TabbarItem Image="icon_home_on" Text="Home" />
-                    <rf:TabbarItem Image="icon_grid_on" Text="Grid" />
-                    <rf:TabbarItem Image="icon_list_on" Text="List" />
-                    <rf:TabbarItem Image="icon_map_on" Text="Map" />
-                    <rf:TabbarItem Image="icon_profile_on" Text="Profile" />
-                </rf:Tabbar>
+                    <rf:TabBarItem Image="icon_home_on" Text="Home" />
+                    <rf:TabBarItem Image="icon_grid_on" Text="Grid" />
+                    <rf:TabBarItem Image="icon_list_on" Text="List" />
+                    <rf:TabBarItem Image="icon_map_on" Text="Map" />
+                    <rf:TabBarItem Image="icon_profile_on" Text="Profile" />
+                </rf:TabBar>
             </Grid>
         </Grid>
         <rf:TitledContentView.Overlay>
-            <rf:Sidebar ContentSize="2*">
+            <rf:SideBar ContentSize="2*">
                 <Frame
                     HasShadow="True"
                     HorizontalOptions="Fill"
@@ -101,7 +101,7 @@
                         </StackLayout>
                     </ScrollView>
                 </Frame>
-            </rf:Sidebar>
+            </rf:SideBar>
         </rf:TitledContentView.Overlay>
     </rf:TitledContentView>
-</rf:AliveContentPage>
+</rf:ContentPage2>
