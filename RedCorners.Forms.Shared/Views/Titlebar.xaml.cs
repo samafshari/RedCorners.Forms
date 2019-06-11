@@ -11,7 +11,7 @@ using Xamarin.Forms.Xaml;
 namespace RedCorners.Forms
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    [ContentProperty("Toolbar")]
+    [ContentProperty("ToolBar")]
     public partial class TitleBar 
     {
         public TitleBar()
@@ -24,7 +24,7 @@ namespace RedCorners.Forms
             tap.Tapped += Tap_Tapped;
             controlButtons.GestureRecognizers.Add(tap);
 
-            UpdateToolbar();
+            UpdateToolBar();
             contentContainer.FixTopPadding = FixTopPadding;
             contentContainer.FixBottomPadding = FixBottomPadding;
         }
@@ -41,10 +41,10 @@ namespace RedCorners.Forms
             set => SetValue(BackgroundProperty, value);
         }
 
-        public View Toolbar
+        public View ToolBar
         {
-            get => (View)GetValue(ToolbarProperty);
-            set => SetValue(ToolbarProperty, value);
+            get => (View)GetValue(ToolBarProperty);
+            set => SetValue(ToolBarProperty, value);
         }
 
         public double ContentHeightRequest
@@ -129,8 +129,8 @@ namespace RedCorners.Forms
             {
             });
 
-        public static readonly BindableProperty ToolbarProperty = BindableProperty.Create(
-            propertyName: nameof(Toolbar),
+        public static readonly BindableProperty ToolBarProperty = BindableProperty.Create(
+            propertyName: nameof(ToolBar),
             returnType: typeof(View),
             declaringType: typeof(TitleBar),
             defaultValue: null,
@@ -138,7 +138,7 @@ namespace RedCorners.Forms
             propertyChanged: (bindable, oldVal, newVal) =>
             {
                 if (bindable is TitleBar titlebar)
-                    titlebar.UpdateToolbar();
+                    titlebar.UpdateToolBar();
             });
 
         public static readonly BindableProperty ContentHeightRequestProperty = BindableProperty.Create(
@@ -289,9 +289,9 @@ namespace RedCorners.Forms
                 backImage.Source = ImageSource.FromResource("RedCorners.Forms.menu.png", typeof(TitleBar).GetTypeInfo().Assembly);
         }
 
-        void UpdateToolbar()
+        void UpdateToolBar()
         {
-            buttons.Content = Toolbar;
+            buttons.Content = ToolBar;
         }
     }
 }

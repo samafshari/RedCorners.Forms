@@ -98,7 +98,7 @@ namespace RedCorners.Forms
             propertyChanged: (bindable, oldVal, newVal) =>
             {
                 if (bindable is TitledContentView page)
-                    page.titlebar.Toolbar = (View)newVal;
+                    page.titlebar.ToolBar = (View)newVal;
             });
 
         public static readonly BindableProperty OverlayProperty = BindableProperty.Create(

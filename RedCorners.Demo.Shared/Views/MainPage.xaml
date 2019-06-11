@@ -122,7 +122,7 @@
                             </Button.Command>
                         </Button>
 
-                        <Button Text="TitleBar Demo 3 (Toolbar)">
+                        <Button Text="TitleBar Demo 3 (ToolBar)">
                             <Button.Command>
                                 <rf:PageCommand>
                                     <rf:ContentPage2 FixTopPadding="False">
