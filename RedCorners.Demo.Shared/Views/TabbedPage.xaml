@@ -29,8 +29,15 @@
         <rf:TitledContentView
             Icon="icon_home_on"
             Title="Home"
-            IsBackButtonVisible="{Binding IsModal}"
-            TitleBackgroundImage="https://freefrontend.com/assets/img/css-background-patterns/simple-pattern-with-css3.png">
+            IsBackButtonVisible="{Binding IsModal}">
+            <rf:TitledContentView.TitleBackground>
+                <Image 
+                    Source="https://freefrontend.com/assets/img/css-background-patterns/simple-pattern-with-css3.png"
+                    HorizontalOptions="Fill"
+                    VerticalOptions="Fill"
+                    Aspect="AspectFill"
+                    HeightRequest="1" />
+            </rf:TitledContentView.TitleBackground>
             <StackLayout Padding="10" Spacing="20">
                 <Label Text="TabStyle:" />
                 <rf:TabBar

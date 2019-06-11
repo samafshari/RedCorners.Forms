@@ -26,6 +26,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\TabbedPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\TitleBarDemosPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)App.xaml">
@@ -53,12 +56,21 @@
     <Compile Update="C:\Projects\RedCorners.Forms\RedCorners.Demo.Shared\Views\TitlebarDemo1Page.xaml.cs">
       <DependentUpon>TitlebarDemo1Page.xaml</DependentUpon>
     </Compile>
+    <Compile Update="E:\Projects\RedCorners.Forms\RedCorners.Demo.Shared\Views\TitleBarDemosPage.xaml.cs">
+      <DependentUpon>TitleBarDemosPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="E:\Projects\RedCorners\RedCorners.Demo.Shared\Views\CounterPage.xaml.cs">
       <DependentUpon>CounterPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\TabbedPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\TitleBarDemosPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>

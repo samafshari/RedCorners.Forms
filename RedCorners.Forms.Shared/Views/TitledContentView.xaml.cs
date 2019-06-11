@@ -62,16 +62,10 @@ namespace RedCorners.Forms
             set => SetValue(TitleTextColorProperty, value);
         }
 
-        public ImageSource TitleBackgroundImage
+        public View TitleBackground
         {
-            get => (ImageSource)GetValue(TitleBackgroundImageProperty);
-            set => SetValue(TitleBackgroundImageProperty, value);
-        }
-
-        public double TitleBackgroundImageOpacity
-        {
-            get => (double)GetValue(TitleBackgroundImageOpacityProperty);
-            set => SetValue(TitleBackgroundImageOpacityProperty, value);
+            get => (View)GetValue(TitleBackgroundProperty);
+            set => SetValue(TitleBackgroundProperty, value);
         }
 
         public static readonly BindableProperty BodyProperty = BindableProperty.Create(
@@ -151,25 +145,11 @@ namespace RedCorners.Forms
                     page.titlebar.BackCommandParameter = newVal;
             });
 
-        public static readonly BindableProperty TitleBackgroundImageProperty = BindableProperty.Create(
-            propertyName: nameof(TitleBackgroundImage),
-            returnType: typeof(ImageSource),
+        public static readonly BindableProperty TitleBackgroundProperty = BindableProperty.Create(
+            propertyName: nameof(TitleBackground),
+            returnType: typeof(View),
             declaringType: typeof(TitledContentView),
             defaultValue: null,
-            defaultBindingMode: BindingMode.TwoWay,
-            propertyChanged: (bindable, oldVal, newVal) =>
-            {
-                if (bindable is TitledContentView page)
-                {
-                    page.UpdateTitleBackgroundImage();
-                }
-            });
-
-        public static readonly BindableProperty TitleBackgroundImageOpacityProperty = BindableProperty.Create(
-            propertyName: nameof(TitleBackgroundImageOpacity),
-            returnType: typeof(double),
-            declaringType: typeof(TitledContentView),
-            defaultValue: 1.0,
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
@@ -219,22 +199,7 @@ namespace RedCorners.Forms
         void UpdateTitleBackgroundImage()
         {
             if (titlebar == null) return;
-            if (TitleBackgroundImage == null)
-            {
-                titlebar.Background = null;
-            }
-            else
-            {
-                titlebar.Background = new Image
-                {
-                    HorizontalOptions = LayoutOptions.Fill,
-                    VerticalOptions = LayoutOptions.Fill,
-                    Source = TitleBackgroundImage,
-                    Aspect = Aspect.AspectFill,
-                    Opacity = TitleBackgroundImageOpacity,
-                    HeightRequest = 10
-                };
-            }
+            titlebar.Background = TitleBackground;
         }
     }
 }
