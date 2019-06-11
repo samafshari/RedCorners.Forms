@@ -25,3 +25,8 @@ SideBar Video: [https://www.youtube.com/watch?v=NPyZ_N5LcoU&feature=youtu.be](ht
 TitleBar Video: [https://www.youtube.com/watch?v=EUuuqSCjZ_Y](https://www.youtube.com/watch?v=EUuuqSCjZ_Y)
 
 For more information, visit the project page on Github: [https://github.com/saeedafshari/RedCorners.Forms](https://github.com/saeedafshari/RedCorners.Forms)
+
+![](https://github.com/saeedafshari/RedCorners.Forms/raw/master/Screenshots/5.gif)
+
+![](https://github.com/saeedafshari/RedCorners.Forms/raw/master/Screenshots/AnimatedTitleBar.gif)
+ 
