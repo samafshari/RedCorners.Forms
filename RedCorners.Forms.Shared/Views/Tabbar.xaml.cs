@@ -333,7 +333,7 @@ namespace RedCorners.Forms
                 item.PropertyChanged -= Item_PropertyChanged;
                 item.PropertyChanged += Item_PropertyChanged;
 
-                var img = new ImageButton
+                var img = new ImageButton2
                 {
                     BindingContext = item,
                     CommandParameter = c,
@@ -388,7 +388,7 @@ namespace RedCorners.Forms
         {
             for (int i = 0; i < content.Children.Count; i++)
             {
-                var child = content.Children[i] as ImageButton;
+                var child = content.Children[i] as ImageButton2;
                 var item = child.BindingContext as TabBarItem;
                 var source = item.Image;
                 bool pressed = SelectedIndex == i || pressedIndex == i;
@@ -428,7 +428,7 @@ namespace RedCorners.Forms
 
         public Command<int> Command => new Command<int>(i =>
         {
-            var button = content.Children[i] as ImageButton;
+            var button = content.Children[i] as ImageButton2;
             var item = button.BindingContext as TabBarItem;
             var can = item.Command?.CanExecute(item.CommandParameter) ?? true;
             if (can)

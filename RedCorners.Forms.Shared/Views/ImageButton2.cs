@@ -14,12 +14,12 @@ namespace RedCorners.Forms
         ImageText = Image | Text
     }
 
-    public class ImageButton : Grid
+    public class ImageButton2 : Grid
     {
         Image image;
         Label label;
 
-        public ImageButton()
+        public ImageButton2()
         {
             Build();
         }
@@ -238,96 +238,96 @@ namespace RedCorners.Forms
         public static readonly BindableProperty VerticalTextAlignmentProperty = BindableProperty.Create(
             propertyName: nameof(VerticalTextAlignment),
             returnType: typeof(TextAlignment),
-            declaringType: typeof(ImageButton),
+            declaringType: typeof(ImageButton2),
             defaultValue: TextAlignment.Start);
 
         public static readonly BindableProperty HorizontalTextAlignmentProperty = BindableProperty.Create(
             propertyName: nameof(HorizontalTextAlignment),
             returnType: typeof(TextAlignment),
-            declaringType: typeof(ImageButton),
+            declaringType: typeof(ImageButton2),
             defaultValue: TextAlignment.Center);
 
         public static readonly BindableProperty SourceProperty = BindableProperty.Create(
             propertyName: nameof(Source),
             returnType: typeof(ImageSource),
-            declaringType: typeof(ImageButton),
+            declaringType: typeof(ImageButton2),
             defaultValue: null);
 
         public static readonly BindableProperty CommandProperty = BindableProperty.Create(
             nameof(Command),
             typeof(ICommand),
-            typeof(ImageButton),
+            typeof(ImageButton2),
             null,
             BindingMode.TwoWay);
 
         public static readonly BindableProperty CommandParameterProperty = BindableProperty.Create(
             nameof(CommandParameter),
             typeof(object),
-            typeof(ImageButton),
+            typeof(ImageButton2),
             null,
             BindingMode.TwoWay);
 
         public static readonly BindableProperty PressedCommandProperty = BindableProperty.Create(
             nameof(PressedCommand),
             typeof(ICommand),
-            typeof(ImageButton),
+            typeof(ImageButton2),
             null,
             BindingMode.TwoWay);
 
         public static readonly BindableProperty PressedCommandParameterProperty = BindableProperty.Create(
             nameof(PressedCommandParameter),
             typeof(object),
-            typeof(ImageButton),
+            typeof(ImageButton2),
             null,
             BindingMode.TwoWay);
 
         public static readonly BindableProperty ReleasedCommandProperty = BindableProperty.Create(
             nameof(ReleasedCommand),
             typeof(ICommand),
-            typeof(ImageButton),
+            typeof(ImageButton2),
             null,
             BindingMode.TwoWay);
 
         public static readonly BindableProperty ReleasedCommandParameterProperty = BindableProperty.Create(
             nameof(ReleasedCommandParameter),
             typeof(object),
-            typeof(ImageButton),
+            typeof(ImageButton2),
             null,
             BindingMode.TwoWay);
 
         public static readonly BindableProperty ImageMarginProperty = BindableProperty.Create(
             nameof(ImageMargin),
             typeof(Thickness),
-            typeof(ImageButton),
+            typeof(ImageButton2),
             new Thickness(0,0),
             BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
-                if (bindable is ImageButton butt && butt.image != null)
+                if (bindable is ImageButton2 butt && butt.image != null)
                     butt.image.Margin = (Thickness)newVal;
             });
 
         public static readonly BindableProperty ImageButtonStyleProperty = BindableProperty.Create(
             nameof(ImageButtonStyle),
             typeof(ImageButtonStyles),
-            typeof(ImageButton),
+            typeof(ImageButton2),
             ImageButtonStyles.Image,
             BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
-                if (bindable is ImageButton butt)
+                if (bindable is ImageButton2 butt)
                     butt.Build();
             });
 
         public static readonly BindableProperty TextHeightProperty = BindableProperty.Create(
             nameof(TextHeight),
             typeof(GridLength),
-            typeof(ImageButton),
+            typeof(ImageButton2),
             GridLength.Auto,
             BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
-                if (bindable is ImageButton butt)
+                if (bindable is ImageButton2 butt)
                 {
                     butt.Build();
                 }
@@ -336,12 +336,12 @@ namespace RedCorners.Forms
         public static readonly BindableProperty ImageHeightRequestProperty = BindableProperty.Create(
             nameof(ImageHeightRequest),
             typeof(double),
-            typeof(ImageButton),
+            typeof(ImageButton2),
             -1.0,
             BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
-                if (bindable is ImageButton butt)
+                if (bindable is ImageButton2 butt)
                 {
                     butt.Build();
                 }
@@ -350,12 +350,12 @@ namespace RedCorners.Forms
         public static readonly BindableProperty ImageWidthRequestProperty = BindableProperty.Create(
             nameof(ImageWidthRequest),
             typeof(double),
-            typeof(ImageButton),
+            typeof(ImageButton2),
             -1.0,
             BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
-                if (bindable is ImageButton butt)
+                if (bindable is ImageButton2 butt)
                 {
                     butt.Build();
                 }
@@ -364,7 +364,7 @@ namespace RedCorners.Forms
         public static readonly BindableProperty TextProperty = BindableProperty.Create(
             propertyName: nameof(Text),
             returnType: typeof(string),
-            declaringType: typeof(ImageButton),
+            declaringType: typeof(ImageButton2),
             defaultValue: "",
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
@@ -375,7 +375,7 @@ namespace RedCorners.Forms
         public static readonly BindableProperty TextColorProperty = BindableProperty.Create(
             propertyName: nameof(TextColor),
             returnType: typeof(Color),
-            declaringType: typeof(ImageButton),
+            declaringType: typeof(ImageButton2),
             defaultValue: Color.White,
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
@@ -386,7 +386,7 @@ namespace RedCorners.Forms
         public static readonly BindableProperty FontSizeProperty = BindableProperty.Create(
             propertyName: nameof(FontSize),
             returnType: typeof(double),
-            declaringType: typeof(ImageButton),
+            declaringType: typeof(ImageButton2),
             defaultValue: 16.0,
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
@@ -397,7 +397,7 @@ namespace RedCorners.Forms
         public static readonly BindableProperty FontFamilyProperty = BindableProperty.Create(
             propertyName: nameof(FontFamily),
             returnType: typeof(string),
-            declaringType: typeof(ImageButton),
+            declaringType: typeof(ImageButton2),
             defaultValue: null,
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
@@ -408,7 +408,7 @@ namespace RedCorners.Forms
         public static readonly BindableProperty FontAttributesProperty = BindableProperty.Create(
             propertyName: nameof(FontAttributes),
             returnType: typeof(FontAttributes),
-            declaringType: typeof(ImageButton),
+            declaringType: typeof(ImageButton2),
             defaultValue: FontAttributes.Bold,
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
