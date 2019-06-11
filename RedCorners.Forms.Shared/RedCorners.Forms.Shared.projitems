@@ -35,7 +35,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\ItemsStack.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\ListView2.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\MultiComponentLabel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Views\Tabbar.xaml.cs">
+    <Compile Include="$(MSBuildThisFileDirectory)Views\TabBar.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\TabBarItem.cs" />
@@ -45,10 +45,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\TitledContentView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\Sidebar.xaml.cs">
+    <Compile Include="$(MSBuildThisFileDirectory)Views\SideBar.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\Titlebar.xaml.cs">
+    <Compile Include="$(MSBuildThisFileDirectory)Views\TitleBar.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\WorkerPage.cs" />
@@ -66,13 +66,13 @@
     <Compile Update="E:\Projects\RedCorners.Forms\RedCorners.Forms.Shared\Views\NeatPage.xaml.cs">
       <DependentUpon>TitledContentPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="E:\Projects\RedCorners.Forms\RedCorners.Forms.Shared\Views\Sidebar.xaml.cs">
+    <Compile Update="E:\Projects\RedCorners.Forms\RedCorners.Forms.Shared\Views\SideBar.xaml.cs">
       <DependentUpon>SideBar.xaml</DependentUpon>
     </Compile>
-    <Compile Update="E:\Projects\RedCorners.Forms\RedCorners.Forms.Shared\Views\Tabbar.xaml.cs">
+    <Compile Update="E:\Projects\RedCorners.Forms\RedCorners.Forms.Shared\Views\TabBar.xaml.cs">
       <DependentUpon>TabBar.xaml</DependentUpon>
     </Compile>
-    <Compile Update="E:\Projects\RedCorners.Forms\RedCorners.Forms.Shared\Views\Titlebar.xaml.cs">
+    <Compile Update="E:\Projects\RedCorners.Forms\RedCorners.Forms.Shared\Views\TitleBar.xaml.cs">
       <DependentUpon>TitleBar.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
