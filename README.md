@@ -3,7 +3,7 @@
 RedCorners.Forms brings some neat utilities to your Xamarin.Forms applications
 
 Features:
-- Content views and view models can know when they appear and disappear if they derive from `AliveContentView` and `BindableModel`.
+- Content views and view models can know when they appear and disappear if they derive from `ContentView2` and `BindableModel`.
 - `MessagingCenter` on steroids: Extension methods to easily define messages on `Enums` and `string`s with a very simple and intuitive syntax.
 - `UpdateProperties()`: Signal the update of all of a view model's properties.
 - `Button2`: A button that properly reacts to press, release and click gestures.
@@ -29,8 +29,8 @@ In a Xamarin.Forms solution with a Shared Project structure, install the NuGet s
 NuGet: [https://www.nuget.org/packages/RedCorners.Forms](https://www.nuget.org/packages/RedCorners.Forms)
 Sidebar Video: [https://www.youtube.com/watch?v=NPyZ_N5LcoU&feature=youtu.be](https://www.youtube.com/watch?v=NPyZ_N5LcoU&feature=youtu.be)
 
-![](Screenshots/5.gif?raw=true)
-![](Screenshots/AnimatedTitleBar.gif?raw=true)
+![](https://github.com/saeedafshari/RedCorners.Forms/raw/master/Screenshots/5.gif)
+![](https://github.com/saeedafshari/RedCorners.Forms/raw/master/Screenshots/AnimatedTitleBar.gif)
 
 ### Dependencies
 
@@ -86,22 +86,22 @@ If you use an App.xaml file too, you have to change the base class there as well
 
 Now if you run your application, RedCorners.Forms should boot up and launch your `Views.MainPage` Page.
 
-## AliveContentPage
+## ContentPage2
 
-RedCorners.Forms provides `AliveContentPage`, which is ContentPage on steroids. Some of its notable features are:
+RedCorners.Forms provides `ContentPage2`, which is ContentPage on steroids. Some of its notable features are:
 - Fixing the paddings on iPhone X series
 - Bindable property to change the status bar style on the iOS
 - Bindable property to make the status bar translucent on Android
 - Bindable properties for changing Android's status bar color, and paddings
 - Letting `BindableModel` contexts know when the page appears and disappears
 
-## AliveContentView
+## ContentView2
 
-`AliveContentView` is like `AliveContentPage`, but is based on a `ContentView` instead. It offers properties that fix the paddings on iPhone X series.
+`ContentView2` is like `ContentPage2`, but is based on a `ContentView` instead. It offers properties that fix the paddings on iPhone X series.
 
 ## BindableModel
 
-`BindableModel` is intended to be used as the base class for view models. When used with `AliveContentPage` and `AliveContentView` it gains the power to know when its views and pages appear and disappear.
+`BindableModel` is intended to be used as the base class for view models. When used with `ContentPage2` and `ContentView2` it gains the power to know when its views and pages appear and disappear.
 
 ## PageCommand
 
@@ -127,7 +127,7 @@ RedCorners.Forms provides `AliveContentPage`, which is ContentPage on steroids. 
 
 Define namespaces:
 ```
-<rf:AliveContentPage 
+<rf:ContentPage2 
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:views="clr-namespace:RedCorners.Demo.Views"
@@ -161,9 +161,9 @@ Class name:
 
 Binding context:
 ```
-    <rf:AliveContentPage.BindingContext>
+    <rf:ContentPage2.BindingContext>
         <vm:MainViewModel />
-    </rf:AliveContentPage.BindingContext>
+    </rf:ContentPage2.BindingContext>
 ```
 
 Colorful background image that goes below the status bar:
@@ -174,9 +174,9 @@ Colorful background image that goes below the status bar:
             Source="{Binding BackgroundImage}" />
 ```     
 
-Fix paddings with an AliveContentView:
+Fix paddings with an ContentView2:
 ```
-        <rf:AliveContentView FixTopPadding="True" BackgroundColor="Transparent">
+        <rf:ContentView2 FixTopPadding="True" BackgroundColor="Transparent">
 ```
 
 Add a button that opens a new page using a `PageCommand`. The inner page contains a button that pops the page using a `PopCommand`:
@@ -185,7 +185,7 @@ Add a button that opens a new page using a `PageCommand`. The inner page contain
                 <Button Text="Test Modal">
                     <Button.Command>
                         <rf:PageCommand IsModal="True">
-                            <rf:AliveContentPage>
+                            <rf:ContentPage2>
                                 <Grid>
                                     <Button Text="Pop" HorizontalOptions="Center" VerticalOptions="Center">
                                         <Button.Command>
@@ -193,7 +193,7 @@ Add a button that opens a new page using a `PageCommand`. The inner page contain
                                         </Button.Command>
                                     </Button>
                                 </Grid>
-                            </rf:AliveContentPage>
+                            </rf:ContentPage2>
                         </rf:PageCommand>
                     </Button.Command>
                 </Button>
@@ -265,7 +265,7 @@ Add a switch that toggles the sidebar's side:
                 
 
             </StackLayout>
-        </rf:AliveContentView>
+        </rf:ContentView2>
 ```
 
 Define the sidebar:
@@ -287,7 +287,7 @@ Define the sidebar:
         </rf:Sidebar>
     </Grid>
     
-</rf:AliveContentPage>
+</rf:ContentPage2>
 ```
 
 ## MainViewModel
