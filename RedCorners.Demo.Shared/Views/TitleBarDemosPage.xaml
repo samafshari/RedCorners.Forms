@@ -10,7 +10,7 @@
     FixBottomPadding="False"
     x:Class="RedCorners.Demo.Views.TitleBarDemosPage">
     <rf:ContentPage2.BindingContext>
-        <vm:MainViewModel x:Name="vm" />
+        <vm:TitleBarDemosViewModel x:Name="vm" />
     </rf:ContentPage2.BindingContext>
     <rf:TitledContentView
         Title="TitleBar Examples"

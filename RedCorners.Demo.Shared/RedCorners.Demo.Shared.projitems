@@ -16,12 +16,17 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\LooseMessages.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\CounterViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\TabBarDemosViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\TitleBarDemosViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\CounterPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\MainPage.xaml.cs">
       <SubType>Code</SubType>
       <DependentUpon>%(Filename)</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\TabBarDemosPage.xaml.cs">
+      <SubType>Code</SubType>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\TabbedPage.xaml.cs">
       <SubType>Code</SubType>
@@ -56,6 +61,9 @@
     <Compile Update="C:\Projects\RedCorners.Forms\RedCorners.Demo.Shared\Views\TitlebarDemo1Page.xaml.cs">
       <DependentUpon>TitlebarDemo1Page.xaml</DependentUpon>
     </Compile>
+    <Compile Update="E:\Projects\RedCorners.Forms\RedCorners.Demo.Shared\Views\TabBarDemosPage.xaml.cs">
+      <DependentUpon>TabBarDemosPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="E:\Projects\RedCorners.Forms\RedCorners.Demo.Shared\Views\TitleBarDemosPage.xaml.cs">
       <DependentUpon>TitleBarDemosPage.xaml</DependentUpon>
     </Compile>
@@ -71,6 +79,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\TitleBarDemosPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\TabBarDemosPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>

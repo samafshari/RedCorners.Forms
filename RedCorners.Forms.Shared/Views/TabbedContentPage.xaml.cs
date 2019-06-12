@@ -24,6 +24,14 @@ namespace RedCorners.Forms
             tabbarContainer.BackgroundColor = BackgroundColor;
             tabbar.PropertyChanged += Tabbar_PropertyChanged;
             tabbar.HeightRequest = TabbarHeightRequest;
+            tabbar.TextColor = TextColor;
+            tabbar.FontSize = FontSize;
+            tabbar.FontAttributes = FontAttributes;
+            tabbar.SelectedTextColor = SelectedTextColor;
+            tabbar.SelectedFontSize = SelectedFontSize;
+            tabbar.SelectedFontAttributes = SelectedFontAttributes;
+            tabbar.FontFamily = FontFamily;
+            tabbar.TextHeight = TextHeight;
             tabbarContainer.IsVisible = IsTabbarVisible;
             overlay.Content = Overlay;
         }
@@ -32,6 +40,54 @@ namespace RedCorners.Forms
         {
             get => (Color)GetValue(TabbarBackgroundColorProperty);
             set => SetValue(TabbarBackgroundColorProperty, value);
+        }
+
+        public Color TextColor
+        {
+            get => (Color)GetValue(TextColorProperty);
+            set => SetValue(TextColorProperty, value);
+        }
+
+        public double FontSize
+        {
+            get => (double)GetValue(FontSizeProperty);
+            set => SetValue(FontSizeProperty, value);
+        }
+
+        public FontAttributes FontAttributes
+        {
+            get => (FontAttributes)GetValue(FontAttributesProperty);
+            set => SetValue(FontAttributesProperty, value);
+        }
+
+        public Color SelectedTextColor
+        {
+            get => (Color)GetValue(SelectedTextColorProperty);
+            set => SetValue(SelectedTextColorProperty, value);
+        }
+
+        public double? SelectedFontSize
+        {
+            get => (double?)GetValue(SelectedFontSizeProperty);
+            set => SetValue(SelectedFontSizeProperty, value);
+        }
+
+        public FontAttributes? SelectedFontAttributes
+        {
+            get => (FontAttributes?)GetValue(SelectedFontAttributesProperty);
+            set => SetValue(SelectedFontAttributesProperty, value);
+        }
+
+        public string FontFamily
+        {
+            get => (string)GetValue(FontFamilyProperty);
+            set => SetValue(FontFamilyProperty, value);
+        }
+
+        public GridLength TextHeight
+        {
+            get => (GridLength)GetValue(TextHeightProperty);
+            set => SetValue(TextHeightProperty, value);
         }
 
         public View TabbarBackgroundView
@@ -242,6 +298,102 @@ namespace RedCorners.Forms
                 {
                     page.overlay.Content = (View)newVal;
                 }
+            });
+
+        public static readonly BindableProperty TextColorProperty = BindableProperty.Create(
+            propertyName: nameof(TextColor),
+            returnType: typeof(Color),
+            declaringType: typeof(TabbedContentPage),
+            defaultValue: Color.Black,
+            defaultBindingMode: BindingMode.TwoWay,
+            propertyChanged: (bindable, oldVal, newVal) =>
+            {
+                if (bindable is TabbedContentPage page)
+                    page.tabbar.TextColor = page.TextColor;
+            });
+
+        public static readonly BindableProperty FontSizeProperty = BindableProperty.Create(
+            propertyName: nameof(FontSize),
+            returnType: typeof(double),
+            declaringType: typeof(TabbedContentPage),
+            defaultValue: 16.0,
+            defaultBindingMode: BindingMode.TwoWay,
+            propertyChanged: (bindable, oldVal, newVal) =>
+            {
+                if (bindable is TabbedContentPage page)
+                    page.tabbar.FontSize = page.FontSize;
+            });
+
+        public static readonly BindableProperty SelectedTextColorProperty = BindableProperty.Create(
+            propertyName: nameof(SelectedTextColor),
+            returnType: typeof(Color),
+            declaringType: typeof(TabbedContentPage),
+            defaultValue: Color.Default,
+            defaultBindingMode: BindingMode.TwoWay,
+            propertyChanged: (bindable, oldVal, newVal) =>
+            {
+                if (bindable is TabbedContentPage page)
+                    page.tabbar.SelectedTextColor = page.SelectedTextColor;
+            });
+
+        public static readonly BindableProperty SelectedFontSizeProperty = BindableProperty.Create(
+            propertyName: nameof(SelectedFontSize),
+            returnType: typeof(double?),
+            declaringType: typeof(TabbedContentPage),
+            defaultValue: null,
+            defaultBindingMode: BindingMode.TwoWay,
+            propertyChanged: (bindable, oldVal, newVal) =>
+            {
+                if (bindable is TabbedContentPage page)
+                    page.tabbar.SelectedFontSize = page.SelectedFontSize;
+            });
+
+        public static readonly BindableProperty FontFamilyProperty = BindableProperty.Create(
+            propertyName: nameof(FontFamily),
+            returnType: typeof(string),
+            declaringType: typeof(TabbedContentPage),
+            defaultValue: null,
+            defaultBindingMode: BindingMode.TwoWay,
+            propertyChanged: (bindable, oldVal, newVal) =>
+            {
+                if (bindable is TabbedContentPage page)
+                    page.tabbar.FontFamily = page.FontFamily;
+            });
+
+        public static readonly BindableProperty FontAttributesProperty = BindableProperty.Create(
+            propertyName: nameof(FontAttributes),
+            returnType: typeof(FontAttributes),
+            declaringType: typeof(TabbedContentPage),
+            defaultValue: FontAttributes.Bold,
+            defaultBindingMode: BindingMode.TwoWay,
+            propertyChanged: (bindable, oldVal, newVal) =>
+            {
+                if (bindable is TabbedContentPage page)
+                    page.tabbar.FontAttributes = page.FontAttributes;
+            });
+
+        public static readonly BindableProperty SelectedFontAttributesProperty = BindableProperty.Create(
+            propertyName: nameof(SelectedFontAttributes),
+            returnType: typeof(FontAttributes?),
+            declaringType: typeof(TabbedContentPage),
+            defaultValue: FontAttributes.Bold,
+            defaultBindingMode: BindingMode.TwoWay,
+            propertyChanged: (bindable, oldVal, newVal) =>
+            {
+                if (bindable is TabbedContentPage page)
+                    page.tabbar.SelectedFontAttributes = page.SelectedFontAttributes;
+            });
+
+        public static readonly BindableProperty TextHeightProperty = BindableProperty.Create(
+            nameof(TextHeight),
+            typeof(GridLength),
+            typeof(TabbedContentPage),
+            GridLength.Auto,
+            BindingMode.TwoWay,
+            propertyChanged: (bindable, oldVal, newVal) =>
+            {
+                if (bindable is TabbedContentPage page)
+                    page.tabbar.TextHeight = page.TextHeight;
             });
 
         void UpdateTabbarBackgroundView()

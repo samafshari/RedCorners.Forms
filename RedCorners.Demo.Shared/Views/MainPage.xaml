@@ -20,7 +20,7 @@
         <ff:CachedImage
             Aspect="AspectFill"
             Opacity="0.7"
-            Source="https://media.giphy.com/media/f6qMGmXuOdkwU/giphy.gif" />
+            Source="https://media.giphy.com/media/3ohhwNqFMnb7wZgNnq/giphy.gif" />
 
         <rf:ContentView2 FixTopPadding="True" FixBottomPadding="True" BackgroundColor="Transparent">
             <Grid>
@@ -84,6 +84,12 @@
                         <Button Text="TitleBar Demos">
                             <Button.Command>
                                 <rf:PageCommand PageType="{Type views:TitleBarDemosPage}" />
+                            </Button.Command>
+                        </Button>
+
+                        <Button Text="TabBar Demos">
+                            <Button.Command>
+                                <rf:PageCommand PageType="{Type views:TabBarDemosPage}" />
                             </Button.Command>
                         </Button>
 

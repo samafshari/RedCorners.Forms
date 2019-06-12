@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<rf:TabbedContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:rf="clr-namespace:RedCorners.Forms;assembly=RedCorners.Forms"
+    xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:fft="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+    xmlns:vm="clr-namespace:RedCorners.Demo.ViewModels"
+    TabStyle="{Binding TabStyle}"
+    TabbarBackgroundColor="#FFFFFF"
+    BackgroundColor="#EEEEEE"
+    TabbarHeightRequest="70"
+    IsTabbarVisible="{Binding IsTabbarVisible}"
+    SelectedIndex="{Binding SelectedIndex}"
+    TextColor="White"
+    x:Class="RedCorners.Demo.Views.TabBarDemosPage">
+    
+    <rf:TabbedContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="rf:TitledContentView">
+                <Setter Property="BackCommand" Value="{Binding GoBackCommand}" />
+                <Setter Property="IsBackButtonVisible" Value="{Binding IsModal}" />
+            </Style>
+        </ResourceDictionary>
+    </rf:TabbedContentPage.Resources>
+    
+    <rf:TabbedContentPage.BindingContext>
+        <vm:TabBarDemosViewModel />
+    </rf:TabbedContentPage.BindingContext>
+
+    <rf:TabbedContentPage.TabbarBackgroundView>
+        <Grid BackgroundColor="Black">
+            <ff:CachedImage
+                Aspect="AspectFill"
+                HorizontalOptions="Fill"
+                VerticalOptions="Fill"
+                HeightRequest="1"
+                Opacity="0.5"
+                Source="https://media.giphy.com/media/URZcG7uLd9h4s/giphy.gif">
+                <ff:CachedImage.Transformations>
+                    <fft:BlurredTransformation Radius="40"/>
+                </ff:CachedImage.Transformations>
+            </ff:CachedImage>
+        </Grid>
+    </rf:TabbedContentPage.TabbarBackgroundView>
+    
+    <rf:TitledContentView Icon="icon_home_w" Title="Home">
+        <rf:TitledContentView.TitleBackground>
+            <Image 
+                Source="https://freefrontend.com/assets/img/css-background-patterns/simple-pattern-with-css3.png"
+                HorizontalOptions="Fill"
+                VerticalOptions="Fill"
+                Aspect="AspectFill"
+                HeightRequest="1" />
+        </rf:TitledContentView.TitleBackground>
+        <StackLayout Padding="10" Spacing="20">
+            <Label Text="TabStyle:" />
+            <rf:TabBar
+                HorizontalTextAlignment="Start"
+                ImageButtonStyle="Text"
+                SelectedIndex="2"
+                SelectedIndexChangeCommand="{Binding TabStyleChangeCommand}"
+                TextColor="Black"
+                SelectedTextColor="#1e88e5">
+                <rf:TabBarItem Text="Image" Opacity="1.0" SelectedImage="1.0" />
+                <rf:TabBarItem Text="Text" Opacity="1.0" SelectedImage="1.0" />
+                <rf:TabBarItem Text="ImageText" Opacity="1.0" SelectedImage="1.0" />
+            </rf:TabBar>
+        </StackLayout>
+    </rf:TitledContentView>
+
+    <rf:TitledContentView Icon="icon_list_w" Title="Settings">
+        <StackLayout Padding="10">
+            <Label Text="Title" />
+        </StackLayout>
+    </rf:TitledContentView>
+</rf:TabbedContentPage>

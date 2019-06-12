@@ -24,14 +24,14 @@
                 Grid.Row="1"
                 HorizontalOptions="Fill"
                 VerticalOptions="FillAndExpand"
-                x:Name="tabbarContainer"
-                FixBottomPadding="True">
+                x:Name="tabbarContainer">
                 <Grid>
                     <rf:ContentView2 
                         HorizontalOptions="Fill"
                         VerticalOptions="Fill"
                         x:Name="tabbarBackground" />
                     <rf:TabBar 
+                        FixBottomPadding="True"
                         VerticalOptions="FillAndExpand"
                         x:Name="tabbar" 
                         VerticalTextAlignment="Center"

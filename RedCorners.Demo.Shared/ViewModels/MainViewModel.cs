@@ -109,6 +109,5 @@ namespace RedCorners.Demo.ViewModels
         public Command Switch2Command => new Command(() => SelectedIndex = 1);
         #endregion
 
-        public Command<object> MessageCommand => new Command<object>(s => App.Instance.DisplayAlert("Message", s?.ToString(), "OK"));
     }
 }
