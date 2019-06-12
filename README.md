@@ -8,7 +8,7 @@ NuGet: [https://www.nuget.org/packages/RedCorners.Forms](https://www.nuget.org/p
 
 GitHub: [https://github.com/saeedafshari/RedCorners.Forms](https://github.com/saeedafshari/RedCorners.Forms)
 
-Sidebar Video: [https://www.youtube.com/watch?v=NPyZ_N5LcoU&feature=youtu.be](https://www.youtube.com/watch?v=NPyZ_N5LcoU&feature=youtu.be)
+Sidebar Video: [https://www.youtube.com/watch?v=NPyZ_N5LcoU](https://www.youtube.com/watch?v=NPyZ_N5LcoU)
 
 TitleBar Video: [https://www.youtube.com/watch?v=EUuuqSCjZ_Y](https://www.youtube.com/watch?v=EUuuqSCjZ_Y)
 
