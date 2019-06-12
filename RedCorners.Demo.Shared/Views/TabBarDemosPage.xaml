@@ -29,19 +29,38 @@
     </rf:TabbedContentPage.BindingContext>
 
     <rf:TabbedContentPage.TabbarBackgroundView>
-        <Grid BackgroundColor="Black">
-            <ff:CachedImage
-                Aspect="AspectFill"
-                HorizontalOptions="Fill"
-                VerticalOptions="Fill"
-                HeightRequest="1"
-                Opacity="0.5"
-                Source="https://media.giphy.com/media/URZcG7uLd9h4s/giphy.gif">
-                <ff:CachedImage.Transformations>
-                    <fft:BlurredTransformation Radius="40"/>
-                </ff:CachedImage.Transformations>
-            </ff:CachedImage>
-        </Grid>
+        <OnPlatform x:TypeArguments="View">
+            <On Platform="iOS">
+                <On.Value>
+                    <Grid BackgroundColor="Black">
+                        <ff:CachedImage
+                            Aspect="AspectFill"
+                            HorizontalOptions="Fill"
+                            VerticalOptions="Fill"
+                            HeightRequest="1"
+                            Opacity="0.5"
+                            Source="https://media.giphy.com/media/URZcG7uLd9h4s/giphy.gif">
+                            <ff:CachedImage.Transformations>
+                                <fft:BlurredTransformation Radius="40" />
+                            </ff:CachedImage.Transformations>
+                        </ff:CachedImage>
+                    </Grid>
+                </On.Value>
+            </On>
+            <On Platform="Android">
+                <On.Value>
+                    <Grid BackgroundColor="Black">
+                        <ff:CachedImage
+                            Aspect="AspectFill"
+                            HorizontalOptions="Fill"
+                            VerticalOptions="Fill"
+                            HeightRequest="1"
+                            Opacity="0.5"
+                            Source="https://media.giphy.com/media/URZcG7uLd9h4s/giphy.gif" />
+                    </Grid>
+                </On.Value>
+            </On>
+        </OnPlatform>
     </rf:TabbedContentPage.TabbarBackgroundView>
     
     <rf:TitledContentView Icon="icon_home_w" Title="Home">

@@ -396,11 +396,8 @@ namespace RedCorners.Forms
                     source = item.SelectedImage;
                 child.Source = source;
                 var targetOpacity = pressed ? item.SelectedOpacity : item.Opacity;
-                if (child.Opacity != targetOpacity)
-                {
-                    ViewExtensions.CancelAnimations(child);
-                    child.FadeTo(targetOpacity, 100);
-                }
+                ViewExtensions.CancelAnimations(child);
+                child.FadeTo(targetOpacity, 100);
                 child.ImageMargin = ImageMargin;
                 child.TextColor = (pressed && SelectedTextColor != Color.Default) ? SelectedTextColor : TextColor;
                 child.FontSize = (pressed && SelectedFontSize.HasValue) ? SelectedFontSize.Value : FontSize;
