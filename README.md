@@ -20,9 +20,9 @@ Features:
 - `HorizontalShadow`, `HorizontalShadow2`: Horizontal shadow views you can use to give depth to your UI.
 - `PageCommand`: Make a Button open a new page directly from XAML without any code behind.
 - `PopCommand`: Make a Button pop a modal page directly from XAML without any code behind.
-- `Titlebar`: A very powerful and custom titlebar that looks nice and identical across both iOS and Android.
-- `Sidebar`: A very powerful and flexible sidebar that opens up from any direction, with customizable width, height, background color, slide and fade animations and more!
-- `Tabbar`: A very powerful and cross-platform Tabbar.
+- `TitleBar`: A very powerful and custom titlebar that looks nice and identical across both iOS and Android.
+- `SideBar`: A very powerful and flexible sidebar that opens up from any direction, with customizable width, height, background color, slide and fade animations and more!
+- `TabBar`: A very powerful and cross-platform Tabbar.
 - `TitledContentView`: A content view that has a dynamic titlebar.
 - `TabbedContentPage`: A content page that has a dynamic tabbar.
 - Notch padding compensation: Dynamically adjust the paddings necessary on devices with the notch.
