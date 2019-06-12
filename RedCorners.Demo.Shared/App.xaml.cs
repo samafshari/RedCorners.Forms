@@ -7,7 +7,7 @@ using RedCorners.Forms;
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace RedCorners.Demo
 {
-    public partial class App : AppBase
+    public partial class App : Application2
     {
         public override void InitializeSystems()
         {

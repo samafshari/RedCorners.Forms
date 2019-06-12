@@ -18,10 +18,10 @@
         BackCommand="{Static rf:Values.PopCommand}">
         <rf:TitledContentView.TitleBackground>
             <ff:CachedImage
-                Source="https://media.giphy.com/media/jRprTRTMUYv93xlxDL/giphy.gif"
-                HeightRequest="80"
+                Source="https://media.giphy.com/media/26AHQCn4Ce8fLedlm/giphy.gif"
+                HeightRequest="1"
                 HorizontalOptions="Fill"
-                VerticalOptions="FillAndExpand"
+                VerticalOptions="Fill"
                 Aspect="AspectFill" />
         </rf:TitledContentView.TitleBackground>
         <StackLayout Grid.Row="1" Padding="10">

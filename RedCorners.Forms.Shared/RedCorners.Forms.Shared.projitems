@@ -13,7 +13,7 @@
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)gradienth2.png" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)AppBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Application2.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)BindableModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Colors.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\HasValueConverter.cs" />

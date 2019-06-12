@@ -8,13 +8,16 @@ using Xamarin.Forms;
 
 namespace RedCorners.Forms
 {
-    public abstract class AppBase : Application
+    [Obsolete("AppBase is renamed to Application2. Please use Application2 instead.")]
+    public abstract class AppBase : Application2 { }
+
+    public abstract class Application2 : Application
     {
-        public static AppBase Instance { get; private set; }
+        public static Application2 Instance { get; private set; }
 
         public virtual bool IsResumed { get; set; }
 
-        public AppBase() : base()
+        public Application2() : base()
         {
             Instance = this;
             HookSignals();
