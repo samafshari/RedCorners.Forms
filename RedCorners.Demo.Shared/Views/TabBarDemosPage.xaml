@@ -13,6 +13,8 @@
     IsTabbarVisible="{Binding IsTabbarVisible}"
     SelectedIndex="{Binding SelectedIndex}"
     TextColor="White"
+    TabBarPadding="0,5,0,8"
+    Transition="Crossfade"
     x:Class="RedCorners.Demo.Views.TabBarDemosPage">
     
     <rf:TabbedContentPage.Resources>
@@ -72,6 +74,16 @@
                 Aspect="AspectFill"
                 HeightRequest="1" />
         </rf:TitledContentView.TitleBackground>
+        <Grid>
+            <Image
+                Source="https://images.pexels.com/photos/36717/amazing-animal-beautiful-beautifull.jpg"
+                HorizontalOptions="Fill"
+                VerticalOptions="Fill"
+                Aspect="AspectFill" />
+        </Grid>
+    </rf:TitledContentView>
+
+    <rf:TitledContentView Icon="icon_list_w" Title="Settings">
         <StackLayout Padding="10" Spacing="20">
             <Label Text="TabStyle:" />
             <rf:TabBar
@@ -85,12 +97,6 @@
                 <rf:TabBarItem Text="Text" Opacity="1.0" SelectedImage="1.0" />
                 <rf:TabBarItem Text="ImageText" Opacity="1.0" SelectedImage="1.0" />
             </rf:TabBar>
-        </StackLayout>
-    </rf:TitledContentView>
-
-    <rf:TitledContentView Icon="icon_list_w" Title="Settings">
-        <StackLayout Padding="10">
-            <Label Text="Title" />
         </StackLayout>
     </rf:TitledContentView>
 </rf:TabbedContentPage>

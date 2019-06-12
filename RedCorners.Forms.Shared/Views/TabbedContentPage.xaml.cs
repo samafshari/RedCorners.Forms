@@ -10,6 +10,23 @@ using Xamarin.Forms.Xaml;
 
 namespace RedCorners.Forms
 {
+    public enum TabbedPageTransitions
+    {
+        None = 0,
+        Crossfade,
+        //DipToBackgroundColor,
+        //Slide,
+        //SlideLeft,
+        //SlideRight,
+        //SlideUp,
+        //SlideDown,
+        //Insert,
+        //InsertLeft,
+        //InsertRight,
+        //InsertUp,
+        //InsertDown
+    }
+
     [XamlCompilation(XamlCompilationOptions.Compile)]
     [ContentProperty("Children")]
     public partial class TabbedContentPage
@@ -32,6 +49,7 @@ namespace RedCorners.Forms
             tabbar.SelectedFontAttributes = SelectedFontAttributes;
             tabbar.FontFamily = FontFamily;
             tabbar.TextHeight = TextHeight;
+            tabbar.Margin = TabBarPadding;
             tabbarContainer.IsVisible = IsTabbarVisible;
             overlay.Content = Overlay;
         }
@@ -132,6 +150,12 @@ namespace RedCorners.Forms
             set => SetValue(ImageMarginProperty, value);
         }
 
+        public Thickness TabBarPadding
+        {
+            get => (Thickness)GetValue(TabBarPaddingProperty);
+            set => SetValue(TabBarPaddingProperty, value);
+        }
+
         public View Overlay
         {
             get => (View)GetValue(OverlayProperty);
@@ -142,6 +166,18 @@ namespace RedCorners.Forms
         {
             get => (bool)GetValue(IsTabbarVisibleProperty);
             set => SetValue(IsTabbarVisibleProperty, value);
+        }
+
+        public TabbedPageTransitions Transition
+        {
+            get => (TabbedPageTransitions)GetValue(TransitionProperty);
+            set => SetValue(TransitionProperty, value);
+        }
+
+        public double TransitionDuration
+        {
+            get => (double)GetValue(TransitionDurationProperty);
+            set => SetValue(TransitionDurationProperty, value);
         }
 
         public static readonly BindableProperty TabbarBackgroundViewProperty =
@@ -231,6 +267,19 @@ namespace RedCorners.Forms
             {
                 if (bindable is TabbedContentPage page)
                     page.tabbar.HeightRequest = (double)page.TabbarHeightRequest;
+            });
+
+        public static readonly BindableProperty TabBarPaddingProperty =
+            BindableProperty.Create(
+            nameof(TabBarPadding),
+            typeof(Thickness),
+            typeof(TabbedContentPage),
+            new Thickness(),
+            BindingMode.TwoWay,
+            propertyChanged: (bindable, oldVal, newVal) =>
+            {
+                if (bindable is TabbedContentPage page)
+                    page.tabbar.Margin = page.TabBarPadding;
             });
 
         public static readonly BindableProperty TabbarBackgroundColorProperty =
@@ -396,6 +445,28 @@ namespace RedCorners.Forms
                     page.tabbar.TextHeight = page.TextHeight;
             });
 
+        public static readonly BindableProperty TransitionProperty = BindableProperty.Create(
+            nameof(Transition),
+            typeof(TabbedPageTransitions),
+            typeof(TabbedContentPage),
+            TabbedPageTransitions.None,
+            BindingMode.TwoWay,
+            propertyChanged: (bindable, oldVal, newVal) =>
+            {
+                if (bindable is TabbedContentPage page) { }
+            });
+
+        public static readonly BindableProperty TransitionDurationProperty = BindableProperty.Create(
+            nameof(TransitionDuration),
+            typeof(double),
+            typeof(TabbedContentPage),
+            250.0,
+            BindingMode.TwoWay,
+            propertyChanged: (bindable, oldVal, newVal) =>
+            {
+                if (bindable is TabbedContentPage page) { }
+            });
+
         void UpdateTabbarBackgroundView()
         {
             if (tabbarBackground != null)
@@ -521,6 +592,33 @@ namespace RedCorners.Forms
                     tabId++;
             }
 
+            // Prepare for transition
+            var oldChild = Children.FirstOrDefault(x => x.IsVisible);
+            var newChild = Children[SelectedIndex];
+
+            if (Transition == TabbedPageTransitions.None || oldChild == null)
+            {
+                UpdateActivePage_NoTransition();
+                return;
+            }
+
+            if (oldChild == newChild) return; //Shouldn't happen
+            
+            oldChild.InputTransparent = false;
+            newChild.InputTransparent = true;
+            oldChild.CascadeInputTransparent = true;
+            newChild.CascadeInputTransparent = true;
+
+            var transitions = new Dictionary<TabbedPageTransitions, Action<View, View>>
+            {
+                { TabbedPageTransitions.Crossfade, StartCrossFadeTransition }
+            };
+
+            transitions[Transition](oldChild, newChild);
+        }
+
+        void UpdateActivePage_NoTransition()
+        {
             //Show
             Children[SelectedIndex].IsVisible = true;
             Children[SelectedIndex].InputTransparent = false;
@@ -542,6 +640,29 @@ namespace RedCorners.Forms
                     else
                         view.IsVisible = false;
                 }
+            }
+        }
+
+        async void StartCrossFadeTransition(View oldChild, View newChild)
+        {
+            ViewExtensions.CancelAnimations(oldChild);
+            ViewExtensions.CancelAnimations(newChild);
+            newChild.Opacity = 1.0;
+            newChild.IsVisible = true;
+            
+            await Task.WhenAll(
+                newChild.FadeTo(1.0, (uint)TransitionDuration),
+                oldChild.FadeTo(0.0, (uint)TransitionDuration));
+
+            ShowActivePageOnly();
+        }
+
+        void ShowActivePageOnly()
+        {
+            for (int i = 0; i < Children.Count; i++)
+            {
+                Children[i].IsVisible = SelectedIndex == i;
+                Children[i].InputTransparent = !Children[i].InputTransparent;
             }
         }
 
