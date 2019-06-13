@@ -30,6 +30,7 @@
                 <Setter Property="TextColor" Value="Black" />
                 <Setter Property="SelectedTextColor" Value="#1e88e5" />
                 <Setter Property="Orientation" Value="Vertical" />
+                <Setter Property="Margin" Value="16,0,0,0" />
             </Style>
         </ResourceDictionary>
     </rf:TabbedContentPage.Resources>
@@ -39,7 +40,16 @@
     </rf:TabbedContentPage.BindingContext>
 
     <rf:TabbedContentPage.Background>
-        <rf:TitledContentView />
+        <rf:TitledContentView>
+            <rf:TitledContentView.TitleBackground>
+                <Image 
+                Source="https://freefrontend.com/assets/img/css-background-patterns/simple-pattern-with-css3.png"
+                HorizontalOptions="Fill"
+                VerticalOptions="Fill"
+                Aspect="AspectFill"
+                HeightRequest="1" />
+            </rf:TitledContentView.TitleBackground>
+        </rf:TitledContentView>
     </rf:TabbedContentPage.Background>
     
     <rf:TabbedContentPage.TabbarBackground>
@@ -86,39 +96,55 @@
                 Aspect="AspectFill"
                 HeightRequest="1" />
         </rf:TitledContentView.TitleBackground>
-        <Frame HasShadow="True" Margin="40" Padding="0">
-            <WebView Source="http://neatcapital.ee" HorizontalOptions="Fill" VerticalOptions="Fill" />
-        </Frame>
+        <Grid>
+            <StackLayout Spacing="10" HorizontalOptions="Center" VerticalOptions="Center">
+                <ff:CachedImage Source="http://ooze.redcorners.com/redcorners_forms_logo.png" HorizontalOptions="Center" HeightRequest="128" WidthRequest="128" />
+                <Label Text="RedCorners.Forms" TextColor="Black" FontSize="Large" HorizontalTextAlignment="Center" HorizontalOptions="Center" />
+                <rf:HorizontalLine BackgroundColor="Black" />
+                <Label Text="TabbedContentPage Demo" TextColor="Black" FontSize="Medium" HorizontalTextAlignment="Center" HorizontalOptions="Center" />
+                <Label Text="redcorners.com" TextColor="#99000000" FontSize="Medium" HorizontalTextAlignment="Center" HorizontalOptions="Center" />
+            </StackLayout>
+        </Grid>
     </rf:TitledContentView>
 
     <rf:TitledContentView Icon="icon_list_w" Title="Settings" BackgroundColor="White">
-        <StackLayout Padding="10" Spacing="20">
-            <Label Text="TabStyle:" />
-            <rf:TabBar
-                Style="{StaticResource ChoiceStyle}"
-                SelectedIndex="2"
-                SelectedIndexChangeCommand="{Binding TabStyleChangeCommand}">
-                <rf:TabBarItem Text="Image" Opacity="1.0" />
-                <rf:TabBarItem Text="Text" Opacity="1.0" />
-                <rf:TabBarItem Text="ImageText" Opacity="1.0" />
-            </rf:TabBar>
+        <rf:TitledContentView.TitleBackground>
+            <Image 
+                Source="https://freefrontend.com/assets/img/css-background-patterns/simple-pattern-with-css3.png"
+                HorizontalOptions="Fill"
+                VerticalOptions="Fill"
+                Aspect="AspectFill"
+                HeightRequest="1" />
+        </rf:TitledContentView.TitleBackground>
+        <ScrollView>
+            <StackLayout Padding="10" Spacing="20">
+                <Label Text="TabStyle:" />
+                <rf:TabBar
+                    Style="{StaticResource ChoiceStyle}"
+                    SelectedIndex="2"
+                    SelectedIndexChangeCommand="{Binding TabStyleChangeCommand}">
+                    <rf:TabBarItem Text="Image" Opacity="1.0" />
+                    <rf:TabBarItem Text="Text" Opacity="1.0" />
+                    <rf:TabBarItem Text="ImageText" Opacity="1.0" />
+                </rf:TabBar>
 
-            <Label Text="Transition:" />
-            <rf:TabBar
-                Style="{StaticResource ChoiceStyle}"
-                SelectedIndex="{Binding TransitionId, Mode=TwoWay}">
-                <rf:TabBarItem Text="None" Opacity="1.0" />
-                <rf:TabBarItem Text="CrossFade" Opacity="1.0" />
-                <rf:TabBarItem Text="DipToBackground" Opacity="1.0" />
-                <rf:TabBarItem Text="Slide" Opacity="1.0" />
-                <rf:TabBarItem Text="SlideInverse" Opacity="1.0" />
-                <rf:TabBarItem Text="SlideLeft" Opacity="1.0" />
-                <rf:TabBarItem Text="SlideRight" Opacity="1.0" />
-                <rf:TabBarItem Text="SlideVertically" Opacity="1.0" />
-                <rf:TabBarItem Text="SlideInverseVertically" Opacity="1.0" />
-                <rf:TabBarItem Text="SlideUp" Opacity="1.0" />
-                <rf:TabBarItem Text="SlideDown" Opacity="1.0" />
-            </rf:TabBar>
-        </StackLayout>
+                <Label Text="Transition:" />
+                <rf:TabBar
+                    Style="{StaticResource ChoiceStyle}"
+                    SelectedIndex="{Binding TransitionId, Mode=TwoWay}">
+                    <rf:TabBarItem Text="None" Opacity="1.0" />
+                    <rf:TabBarItem Text="CrossFade" Opacity="1.0" />
+                    <rf:TabBarItem Text="DipToBackground" Opacity="1.0" />
+                    <rf:TabBarItem Text="Slide" Opacity="1.0" />
+                    <rf:TabBarItem Text="SlideInverse" Opacity="1.0" />
+                    <rf:TabBarItem Text="SlideLeft" Opacity="1.0" />
+                    <rf:TabBarItem Text="SlideRight" Opacity="1.0" />
+                    <rf:TabBarItem Text="SlideVertically" Opacity="1.0" />
+                    <rf:TabBarItem Text="SlideInverseVertically" Opacity="1.0" />
+                    <rf:TabBarItem Text="SlideUp" Opacity="1.0" />
+                    <rf:TabBarItem Text="SlideDown" Opacity="1.0" />
+                </rf:TabBar>
+            </StackLayout>
+        </ScrollView>
     </rf:TitledContentView>
 </rf:TabbedContentPage>

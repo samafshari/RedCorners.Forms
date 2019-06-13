@@ -738,12 +738,12 @@ namespace RedCorners.Forms
 
         void StartSlideTransition(View oldChild, View newChild)
         {
-            StartSlideTransition(oldChild, newChild, GetDirection(oldChild, newChild));
+            StartSlideTransition(oldChild, newChild, !GetDirection(oldChild, newChild));
         }
 
         void StartSlideInverseTransition(View oldChild, View newChild)
         {
-            StartSlideTransition(oldChild, newChild, !GetDirection(oldChild, newChild));
+            StartSlideTransition(oldChild, newChild, GetDirection(oldChild, newChild));
         }
 
         void StartSlideLeftTransition(View oldChild, View newChild)
@@ -755,34 +755,6 @@ namespace RedCorners.Forms
         {
             StartSlideTransition(oldChild, newChild, false);
         }
-
-        async void StartSlideTransition(View oldChild, View newChild, bool left)
-        {
-            ViewExtensions.CancelAnimations(oldChild);
-            ViewExtensions.CancelAnimations(newChild);
-
-            isAnimating = true;
-            var oT = -Width;
-            if (left)
-            {
-                newChild.TranslationX = -Width;
-                oT *= -1;
-            }
-            else newChild.TranslationX = Width;
-
-            newChild.TranslationY = 0;
-            oldChild.TranslationX = 0;
-
-            newChild.Opacity = 1.0;
-            newChild.IsVisible = true;
-
-            await Task.WhenAll(
-                newChild.TranslateTo(0, 0, (uint)TransitionDuration),
-                oldChild.TranslateTo(oT, 0, (uint)TransitionDuration));
-
-            ShowActivePageOnly();
-        }
-
         void StartSlideVerticallyTransition(View oldChild, View newChild)
         {
             StartSlideVerticallyTransition(oldChild, newChild, GetDirection(oldChild, newChild));
@@ -803,19 +775,46 @@ namespace RedCorners.Forms
             StartSlideVerticallyTransition(oldChild, newChild, true);
         }
 
+        async void StartSlideTransition(View oldChild, View newChild, bool left)
+        {
+            ViewExtensions.CancelAnimations(oldChild);
+            ViewExtensions.CancelAnimations(newChild);
+
+            isAnimating = true;
+            var oT = -oldChild.Width;
+            if (left)
+            {
+                newChild.TranslationX = -oldChild.Width;
+                oT *= -1;
+            }
+            else newChild.TranslationX = oldChild.Width;
+
+            newChild.TranslationY = 0;
+            oldChild.TranslationX = 0;
+
+            newChild.Opacity = 1.0;
+            newChild.IsVisible = true;
+
+            await Task.WhenAll(
+                newChild.TranslateTo(0, 0, (uint)TransitionDuration),
+                oldChild.TranslateTo(oT, 0, (uint)TransitionDuration));
+
+            ShowActivePageOnly();
+        }
+
         async void StartSlideVerticallyTransition(View oldChild, View newChild, bool down)
         {
             ViewExtensions.CancelAnimations(oldChild);
             ViewExtensions.CancelAnimations(newChild);
 
             isAnimating = true;
-            var oT = Height;
+            var oT = oldChild.Height;
             if (down)
             {
-                newChild.TranslationY = Height;
+                newChild.TranslationY = oldChild.Height;
                 oT *= -1;
             }
-            else newChild.TranslationY = -Height;
+            else newChild.TranslationY = -oldChild.Height;
 
             newChild.TranslationX = 0;
             oldChild.TranslationY = 0;

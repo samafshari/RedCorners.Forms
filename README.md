@@ -12,6 +12,8 @@ Sidebar Video: [https://www.youtube.com/watch?v=NPyZ_N5LcoU](https://www.youtube
 
 TitleBar Video: [https://www.youtube.com/watch?v=EUuuqSCjZ_Y](https://www.youtube.com/watch?v=EUuuqSCjZ_Y)
 
+TabbedContentPage/TabBar Video: [https://www.youtube.com/watch?v=LySXGOvjoBs](https://www.youtube.com/watch?v=LySXGOvjoBs)
+
 Features:
 - Content views and view models can know when they appear and disappear if they derive from `ContentView2` and `BindableModel`.
 - `MessagingCenter` on steroids: Extension methods to easily define messages on `Enums` and `string`s with a very simple and intuitive syntax.
