@@ -10,13 +10,6 @@ namespace RedCorners.Demo.ViewModels
     {
         public override bool IsModal => true;
 
-        bool _isTabbarVisible = true;
-        public bool IsTabbarVisible
-        {
-            get => _isTabbarVisible;
-            set => SetProperty(ref _isTabbarVisible, value);
-        }
-
         int _selectedIndex = 0;
         public int SelectedIndex
         {
@@ -43,6 +36,39 @@ namespace RedCorners.Demo.ViewModels
             }
         }
 
+        bool _isLoggedIn = false;
+        public bool IsLoggedIn
+        {
+            get => _isLoggedIn;
+            set
+            {
+                _isLoggedIn = value;
+                UpdateProperties();
+            }
+        }
+
+        int _durationId = 1;
+        public int DurationId
+        {
+            get => _durationId;
+            set
+            {
+                SetProperty(ref _durationId, value);
+                RaisePropertyChanged(nameof(TransitionDuration));
+            }
+        }
+
+        public double TransitionDuration
+        {
+            get
+            {
+                if (DurationId == 0) return 100.0;
+                if (DurationId == 1) return 250.0;
+                if (DurationId == 2) return 750.0;
+                return 1000.0;
+            }
+        }
+
         public Command<int> TabStyleChangeCommand => new Command<int>(i =>
         {
             if (i == 0) TabStyle = ImageButtonStyles.Image;
@@ -52,5 +78,29 @@ namespace RedCorners.Demo.ViewModels
 
         public Command<object> MessageCommand => new Command<object>(s =>
             App.Instance.DisplayAlert("Message", s?.ToString(), "OK"));
+
+        public Command ShowLoginCommand => new Command(() => { }, () =>
+        {
+            if (!IsLoggedIn)
+                App.Instance.DisplayAlert("Error", "Please log in to see the profile", "OK");
+
+            return IsLoggedIn;
+        });
+
+        public Command ShowSettingsCommand => new Command(() => SelectedIndex = 1);
+
+        bool _isTabBarVisible = true;
+        public bool IsTabBarVisible
+        {
+            get => _isTabBarVisible;
+            set => SetProperty(ref _isTabBarVisible, value);
+        }
+
+        bool _isProfileVisible = true;
+        public bool IsProfileVisible
+        {
+            get => _isProfileVisible;
+            set => SetProperty(ref _isProfileVisible, value);
+        }
     }
 }

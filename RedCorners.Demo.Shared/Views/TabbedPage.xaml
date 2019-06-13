@@ -9,10 +9,10 @@
     xmlns:vm="clr-namespace:RedCorners.Demo.ViewModels"
     KeepScreenOn="True"
     TabStyle="{Binding TabStyle}"
-    TabbarBackgroundColor="#FFFFFF"
+    TabBarBackgroundColor="#FFFFFF"
     BackgroundColor="#EEEEEE"
-    TabbarHeightRequest="70"
-    IsTabbarVisible="{Binding IsTabbarVisible}"
+    TabBarHeightRequest="70"
+    IsTabBarVisible="{Binding IsTabbarVisible}"
     SelectedIndex="{Binding SelectedIndex}"
     mc:Ignorable="d"
     x:Class="RedCorners.Demo.Views.TabbedPage">
