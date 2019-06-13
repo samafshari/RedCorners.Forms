@@ -31,9 +31,6 @@
                 <Setter Property="SelectedTextColor" Value="#1e88e5" />
                 <Setter Property="Orientation" Value="Vertical" />
             </Style>
-            <Style TargetType="rf:TabBarItem" x:Key="ChoiceItemStyle">
-                <Setter Property="Opacity" Value="1.0" />
-            </Style>
         </ResourceDictionary>
     </rf:TabbedContentPage.Resources>
     
@@ -79,8 +76,8 @@
             </On>
         </OnPlatform>
     </rf:TabbedContentPage.TabbarBackground>
-    
-    <rf:TitledContentView Icon="icon_home_w" Title="Home">
+
+    <rf:TitledContentView Icon="icon_home_w" Title="Home" BackgroundColor="White">
         <rf:TitledContentView.TitleBackground>
             <Image 
                 Source="https://freefrontend.com/assets/img/css-background-patterns/simple-pattern-with-css3.png"
@@ -94,7 +91,7 @@
         </Frame>
     </rf:TitledContentView>
 
-    <rf:TitledContentView Icon="icon_list_w" Title="Settings">
+    <rf:TitledContentView Icon="icon_list_w" Title="Settings" BackgroundColor="White">
         <StackLayout Padding="10" Spacing="20">
             <Label Text="TabStyle:" />
             <rf:TabBar
@@ -113,6 +110,14 @@
                 <rf:TabBarItem Text="None" Opacity="1.0" />
                 <rf:TabBarItem Text="CrossFade" Opacity="1.0" />
                 <rf:TabBarItem Text="DipToBackground" Opacity="1.0" />
+                <rf:TabBarItem Text="Slide" Opacity="1.0" />
+                <rf:TabBarItem Text="SlideInverse" Opacity="1.0" />
+                <rf:TabBarItem Text="SlideLeft" Opacity="1.0" />
+                <rf:TabBarItem Text="SlideRight" Opacity="1.0" />
+                <rf:TabBarItem Text="SlideVertically" Opacity="1.0" />
+                <rf:TabBarItem Text="SlideInverseVertically" Opacity="1.0" />
+                <rf:TabBarItem Text="SlideUp" Opacity="1.0" />
+                <rf:TabBarItem Text="SlideDown" Opacity="1.0" />
             </rf:TabBar>
         </StackLayout>
     </rf:TitledContentView>

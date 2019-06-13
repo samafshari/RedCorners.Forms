@@ -15,12 +15,15 @@ namespace RedCorners.Forms
         None = 0,
         Crossfade,
         DipToBackground,
-        //Slide,
-        //SlideLeft,
-        //SlideRight,
-        //SlideUp,
-        //SlideDown,
-        //Insert,
+        Slide,
+        SlideInverse,
+        SlideLeft, //new from left
+        SlideRight, //new from right
+        SlideVertically,
+        SlideInverseVertically,
+        SlideUp, //new from up
+        SlideDown, //new from down
+        //Insert, // need to figure out how to do the z-order. maybe remove child and add again? or move through the list?
         //InsertLeft,
         //InsertRight,
         //InsertUp,
@@ -593,6 +596,7 @@ namespace RedCorners.Forms
             tabbar.ImageMargin = ImageMargin;
         }
 
+        volatile bool isAnimating = false;
         void UpdateActivePage()
         {
             if (SelectedIndex < 0) return;
@@ -620,7 +624,7 @@ namespace RedCorners.Forms
             }
 
             // Prepare for transition
-            if (Transition == TabbedPageTransitions.None)
+            if (Transition == TabbedPageTransitions.None || isAnimating)
             {
                 UpdateActivePage_NoTransition();
                 return;
@@ -643,7 +647,15 @@ namespace RedCorners.Forms
             var transitions = new Dictionary<TabbedPageTransitions, Action<View, View>>
             {
                 { TabbedPageTransitions.Crossfade, StartCrossFadeTransition },
-                { TabbedPageTransitions.DipToBackground, StartDipTransition  }
+                { TabbedPageTransitions.DipToBackground, StartDipTransition  },
+                { TabbedPageTransitions.Slide, StartSlideTransition },
+                { TabbedPageTransitions.SlideInverse, StartSlideInverseTransition },
+                { TabbedPageTransitions.SlideLeft, StartSlideLeftTransition },
+                { TabbedPageTransitions.SlideRight, StartSlideRightTransition },
+                { TabbedPageTransitions.SlideVertically, StartSlideVerticallyTransition },
+                { TabbedPageTransitions.SlideInverseVertically, StartSlideInverseVerticallyTransition },
+                { TabbedPageTransitions.SlideUp, StartSlideUpTransition },
+                { TabbedPageTransitions.SlideDown, StartSlideDownTransition },
             };
 
             transitions[Transition](oldChild, newChild);
@@ -652,20 +664,24 @@ namespace RedCorners.Forms
         void UpdateActivePage_NoTransition()
         {
             //Show
+            ViewExtensions.CancelAnimations(Children[SelectedIndex]);
             Children[SelectedIndex].IsVisible = true;
             Children[SelectedIndex].InputTransparent = false;
             Children[SelectedIndex].Opacity = 1;
+            Children[SelectedIndex].TranslationX = 0;
+            Children[SelectedIndex].TranslationY = 0;
 
             //Hide (we do it after "show" to avoid flickering)
             for (int i = 0; i < Children.Count(); i++)
             {
                 if (SelectedIndex != i)
                 {
+                    ViewExtensions.CancelAnimations(Children[i]);
                     var view = Children[i];
+                    view.InputTransparent = true;
+                    view.Opacity = 0;
                     if (view.Width <= 0)
                     {
-                        view.InputTransparent = true;
-                        view.Opacity = 0;
                         view.SizeChanged -= View_SizeChanged;
                         view.SizeChanged += View_SizeChanged;
                     }
@@ -673,12 +689,19 @@ namespace RedCorners.Forms
                         view.IsVisible = false;
                 }
             }
+
+            isAnimating = false;
         }
 
         async void StartCrossFadeTransition(View oldChild, View newChild)
         {
             ViewExtensions.CancelAnimations(oldChild);
             ViewExtensions.CancelAnimations(newChild);
+
+            isAnimating = true;
+            oldChild.TranslationX = oldChild.TranslationY = 0;
+            newChild.TranslationX = newChild.TranslationY = 0;
+
             newChild.Opacity = 0.01;
             newChild.IsVisible = true;
             
@@ -694,12 +717,116 @@ namespace RedCorners.Forms
             ViewExtensions.CancelAnimations(oldChild);
             ViewExtensions.CancelAnimations(newChild);
 
+            isAnimating = true;
+            oldChild.TranslationX = oldChild.TranslationY = 0;
+            newChild.TranslationX = newChild.TranslationY = 0;
+
             newChild.Opacity = 0.01;
             newChild.IsVisible = true;
 
             uint halfLife = (uint)(TransitionDuration * 0.5);
             await oldChild.FadeTo(0.0, halfLife);
             await newChild.FadeTo(1.0, halfLife);
+            ShowActivePageOnly();
+        }
+
+        bool GetDirection(View oldChild, View newChild)
+        {
+            var oI = Children.IndexOf((ContentView2)oldChild);
+            return oI < SelectedIndex;
+        }
+
+        void StartSlideTransition(View oldChild, View newChild)
+        {
+            StartSlideTransition(oldChild, newChild, GetDirection(oldChild, newChild));
+        }
+
+        void StartSlideInverseTransition(View oldChild, View newChild)
+        {
+            StartSlideTransition(oldChild, newChild, !GetDirection(oldChild, newChild));
+        }
+
+        void StartSlideLeftTransition(View oldChild, View newChild)
+        {
+            StartSlideTransition(oldChild, newChild, true);
+        }
+
+        void StartSlideRightTransition(View oldChild, View newChild)
+        {
+            StartSlideTransition(oldChild, newChild, false);
+        }
+
+        async void StartSlideTransition(View oldChild, View newChild, bool left)
+        {
+            ViewExtensions.CancelAnimations(oldChild);
+            ViewExtensions.CancelAnimations(newChild);
+
+            isAnimating = true;
+            var oT = -Width;
+            if (left)
+            {
+                newChild.TranslationX = -Width;
+                oT *= -1;
+            }
+            else newChild.TranslationX = Width;
+
+            newChild.TranslationY = 0;
+            oldChild.TranslationX = 0;
+
+            newChild.Opacity = 1.0;
+            newChild.IsVisible = true;
+
+            await Task.WhenAll(
+                newChild.TranslateTo(0, 0, (uint)TransitionDuration),
+                oldChild.TranslateTo(oT, 0, (uint)TransitionDuration));
+
+            ShowActivePageOnly();
+        }
+
+        void StartSlideVerticallyTransition(View oldChild, View newChild)
+        {
+            StartSlideVerticallyTransition(oldChild, newChild, GetDirection(oldChild, newChild));
+        }
+
+        void StartSlideInverseVerticallyTransition(View oldChild, View newChild)
+        {
+            StartSlideVerticallyTransition(oldChild, newChild, !GetDirection(oldChild, newChild));
+        }
+
+        void StartSlideUpTransition(View oldChild, View newChild)
+        {
+            StartSlideVerticallyTransition(oldChild, newChild, false);
+        }
+
+        void StartSlideDownTransition(View oldChild, View newChild)
+        {
+            StartSlideVerticallyTransition(oldChild, newChild, true);
+        }
+
+        async void StartSlideVerticallyTransition(View oldChild, View newChild, bool down)
+        {
+            ViewExtensions.CancelAnimations(oldChild);
+            ViewExtensions.CancelAnimations(newChild);
+
+            isAnimating = true;
+            var oT = Height;
+            if (down)
+            {
+                newChild.TranslationY = Height;
+                oT *= -1;
+            }
+            else newChild.TranslationY = -Height;
+
+            newChild.TranslationX = 0;
+            oldChild.TranslationY = 0;
+
+            newChild.Opacity = 1.0;
+            newChild.IsVisible = true;
+
+            await Task.WhenAll(
+                newChild.TranslateTo(0, 0, (uint)TransitionDuration),
+                oldChild.TranslateTo(0, oT, (uint)TransitionDuration));
+
             ShowActivePageOnly();
         }
 
@@ -710,6 +837,7 @@ namespace RedCorners.Forms
                 Children[i].IsVisible = SelectedIndex == i;
                 Children[i].InputTransparent = !Children[i].InputTransparent;
             }
+            isAnimating = false;
         }
 
         private void View_SizeChanged(object sender, EventArgs e)
