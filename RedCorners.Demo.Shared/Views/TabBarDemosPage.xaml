@@ -6,16 +6,18 @@
     xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
     xmlns:fft="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
     xmlns:vm="clr-namespace:RedCorners.Demo.ViewModels"
+    xmlns:views="clr-namespace:RedCorners.Demo.Views"
     TabStyle="{Binding TabStyle}"
     TabBarBackgroundColor="#FFFFFF"
     BackgroundColor="#EEEEEE"
-    TabBarHeightRequest="60"
+    TabBarSizeRequest="60"
     SelectedIndex="{Binding SelectedIndex}"
     TextColor="White"
-    TabBarPadding="0,5,0,8"
+    TabBarPadding="0,8,0,8"
     Transition="{Binding Transition}"
     TransitionDuration="{Binding TransitionDuration}"
     IsTabBarVisible="{Binding IsTabBarVisible}"
+    TabBarPosition="{Binding TabBarPosition}"
     x:Class="RedCorners.Demo.Views.TabBarDemosPage">
     
     <rf:TabbedContentPage.Resources>
@@ -23,6 +25,7 @@
             <Style TargetType="rf:TitledContentView">
                 <Setter Property="BackCommand" Value="{Binding GoBackCommand}" />
                 <Setter Property="IsBackButtonVisible" Value="{Binding IsModal}" />
+                <Setter Property="TitlePosition" Value="{Binding TitlePosition}" />
             </Style>
             <Style TargetType="rf:TabBar" x:Key="ChoiceStyle">
                 <Setter Property="HorizontalTextAlignment" Value="Start" />
@@ -128,6 +131,16 @@
                     <rf:TabBarItem Text="ImageText" Opacity="1.0" />
                 </rf:TabBar>
 
+                <Grid>
+                    <Label Text="Bottom Tab Bar:" VerticalOptions="Center" />
+                    <Switch IsToggled="{Binding BottomTabBar}" HorizontalOptions="End" />
+                </Grid>
+
+                <Grid>
+                    <Label Text="Is Logged In:" VerticalOptions="Center" />
+                    <Switch IsToggled="{Binding IsLoggedIn}" HorizontalOptions="End" />
+                </Grid>
+                
                 <Label Text="Transition:" />
                 <rf:TabBar
                     Style="{StaticResource ChoiceStyle}"
@@ -155,11 +168,6 @@
                     <rf:TabBarItem Text="750" Opacity="1.0" />
                     <rf:TabBarItem Text="1000" Opacity="1.0" />
                 </rf:TabBar>
-                
-                <Grid>
-                    <Label Text="Is Logged In:" VerticalOptions="Center" />
-                    <Switch IsToggled="{Binding IsLoggedIn}" HorizontalOptions="End" />
-                </Grid>
             </StackLayout>
         </ScrollView>
     </rf:TitledContentView>
@@ -173,12 +181,7 @@
                 Aspect="AspectFill"
                 HeightRequest="1" />
         </rf:TitledContentView.TitleBackground>
-        <Grid>
-            <StackLayout Spacing="10" HorizontalOptions="Center" VerticalOptions="Center">
-                <Label Text="Welcome Back" TextColor="Black" FontSize="Medium" HorizontalTextAlignment="Center" HorizontalOptions="Center" />
-                <Label Text="John Smith!" TextColor="#99000000" FontSize="Medium" HorizontalTextAlignment="Center" HorizontalOptions="Center" />
-            </StackLayout>
-        </Grid>
+        <views:TabBarNestingDemoView />
     </rf:TitledContentView>
 
     <rf:TabbedContentPage.Overlay>

@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<rf:TabbedContentView 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:rf="clr-namespace:RedCorners.Forms;assembly=RedCorners.Forms"
+    xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:fft="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+    TabBarBackgroundColor="#c62828"
+    TextColor="White"
+    TabBarPadding="0,8,0,8"
+    TabStyle="Text"
+    TabBarSizeRequest="40"
+    FixTabBarPadding="False"
+    TabBarPosition="Top"
+    Transition="Slide"
+    x:Class="RedCorners.Demo.Views.TabBarNestingDemoView">
+    <rf:ContentView2 Icon="icon_profile_w" Title="Profile" BackgroundColor="White">
+        <rf:TitledContentView.TitleBackground>
+            <Image 
+                Source="https://freefrontend.com/assets/img/css-background-patterns/simple-pattern-with-css3.png"
+                HorizontalOptions="Fill"
+                VerticalOptions="Fill"
+                Aspect="AspectFill"
+                HeightRequest="1" />
+        </rf:TitledContentView.TitleBackground>
+        <Grid>
+            <StackLayout Spacing="10" HorizontalOptions="Center" VerticalOptions="Center">
+                <Label Text="Welcome Back" TextColor="Black" FontSize="Medium" HorizontalTextAlignment="Center" HorizontalOptions="Center" />
+                <Label Text="John Smith!" TextColor="#99000000" FontSize="Medium" HorizontalTextAlignment="Center" HorizontalOptions="Center" />
+            </StackLayout>
+        </Grid>
+    </rf:ContentView2>
+    <rf:ContentView2 Icon="icon_home_w" Title="About" BackgroundColor="White">
+        <rf:TitledContentView.TitleBackground>
+            <Image 
+                Source="https://freefrontend.com/assets/img/css-background-patterns/simple-pattern-with-css3.png"
+                HorizontalOptions="Fill"
+                VerticalOptions="Fill"
+                Aspect="AspectFill"
+                HeightRequest="1" />
+        </rf:TitledContentView.TitleBackground>
+        <Grid>
+            <StackLayout Spacing="10" HorizontalOptions="Center" VerticalOptions="Center">
+                <ff:CachedImage Source="http://ooze.redcorners.com/redcorners_forms_logo.png" HorizontalOptions="Center" HeightRequest="128" WidthRequest="128" />
+                <Label Text="RedCorners.Forms" TextColor="Black" FontSize="Large" HorizontalTextAlignment="Center" HorizontalOptions="Center" />
+                <rf:HorizontalLine BackgroundColor="Black" />
+                <Label Text="TabbedContentPage Demo" TextColor="Black" FontSize="Medium" HorizontalTextAlignment="Center" HorizontalOptions="Center" />
+                <Label Text="redcorners.com" TextColor="#99000000" FontSize="Medium" HorizontalTextAlignment="Center" HorizontalOptions="Center" />
+            </StackLayout>
+        </Grid>
+    </rf:ContentView2>
+</rf:TabbedContentView>

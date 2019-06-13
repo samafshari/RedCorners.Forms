@@ -25,7 +25,7 @@ namespace RedCorners.Demo.ViewModels
         }
 
         int _transitionId = 2;
-        public TabbedPageTransitions Transition => (TabbedPageTransitions)TransitionId;
+        public TabbedContentTransitions Transition => (TabbedContentTransitions)TransitionId;
         public int TransitionId
         {
             get => _transitionId;
@@ -66,6 +66,20 @@ namespace RedCorners.Demo.ViewModels
                 if (DurationId == 1) return 250.0;
                 if (DurationId == 2) return 750.0;
                 return 1000.0;
+            }
+        }
+
+        bool _bottomTabBar = true;
+        public TabBarPositions TabBarPosition => BottomTabBar ? TabBarPositions.Bottom : TabBarPositions.Top;
+        public TitleBarPositions TitlePosition => BottomTabBar ? TitleBarPositions.Top : TitleBarPositions.Bottom;
+
+        public bool BottomTabBar
+        {
+            get => _bottomTabBar;
+            set
+            {
+                _bottomTabBar = value;
+                UpdateProperties();
             }
         }
 

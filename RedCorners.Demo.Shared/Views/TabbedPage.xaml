@@ -11,7 +11,7 @@
     TabStyle="{Binding TabStyle}"
     TabBarBackgroundColor="#FFFFFF"
     BackgroundColor="#EEEEEE"
-    TabBarHeightRequest="70"
+    TabBarSizeRequest="70"
     IsTabBarVisible="{Binding IsTabbarVisible}"
     SelectedIndex="{Binding SelectedIndex}"
     mc:Ignorable="d"

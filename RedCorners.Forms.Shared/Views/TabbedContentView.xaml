@@ -1,5 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<rf:ContentPage2 
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<rf:ContentView2 
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
@@ -9,8 +9,8 @@
     FixBottomPadding="False"
     mc:Ignorable="d"
     x:Name="me"
-    x:Class="RedCorners.Forms.TabbedContentPage">
-    <rf:ContentPage2.Content>
+    x:Class="RedCorners.Forms.TabbedContentView">
+    <rf:ContentView2.Content>
         <Grid RowSpacing="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" x:Name="row0" />
@@ -33,16 +33,15 @@
                         VerticalOptions="Fill"
                         x:Name="tabbarBackground" />
                     <rf:TabBar 
-                        FixBottomPadding="True"
                         VerticalOptions="FillAndExpand"
                         x:Name="tabbar" 
                         VerticalTextAlignment="Center"
                         ImageMargin="8" />
                     <rf:HorizontalShadow x:Name="shadow" />
-                    <rf:HorizontalShadow2 x:Name="shadow2" />
+                    <rf:HorizontalShadow x:Name="shadow2" />
                 </Grid>
             </rf:ContentView2>
-            
+
             <rf:ContentView2
                 x:Name="overlay"
                 HorizontalOptions="Fill"
@@ -53,5 +52,5 @@
                 Grid.RowSpan="3" 
                 />
         </Grid>
-    </rf:ContentPage2.Content>
-</rf:ContentPage2>
+    </rf:ContentView2.Content>
+</rf:ContentView2>

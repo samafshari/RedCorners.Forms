@@ -10,11 +10,37 @@ using Xamarin.Forms.Xaml;
 
 namespace RedCorners.Forms
 {
+    public enum TabbedContentTransitions
+    {
+        None = 0,
+        Crossfade,
+        DipToBackground,
+        Slide,
+        SlideInverse,
+        SlideLeft, //new from left
+        SlideRight, //new from right
+        SlideVertically,
+        SlideInverseVertically,
+        SlideUp, //new from up
+        SlideDown, //new from down
+        //Insert, // need to figure out how to do the z-order. maybe remove child and add again? or move through the list?
+        //InsertLeft,
+        //InsertRight,
+        //InsertUp,
+        //InsertDown
+    }
+
+    public enum TabBarPositions
+    {
+        Bottom = 0,
+        Top
+    }
+
     [XamlCompilation(XamlCompilationOptions.Compile)]
     [ContentProperty("Children")]
-    public partial class TabbedContentPage
+    public partial class TabbedContentView
     {
-        public TabbedContentPage()
+        public TabbedContentView()
         {
             Children = new ObservableCollection<ContentView2>();
             InitializeComponent();
@@ -105,7 +131,7 @@ namespace RedCorners.Forms
             set => SetValue(TabBarSizeRequestProperty, value);
         }
 
-        public IList<ContentView2> Children
+        public new IList<ContentView2> Children
         {
             get => (IList<ContentView2>)GetValue(ChildrenProperty);
             set => SetValue(ChildrenProperty, value);
@@ -186,12 +212,12 @@ namespace RedCorners.Forms
         public static readonly BindableProperty FixTabBarPaddingProperty = BindableProperty.Create(
             propertyName: nameof(FixTabBarPadding),
             returnType: typeof(bool),
-            declaringType: typeof(TabbedContentPage),
+            declaringType: typeof(TabbedContentView),
             defaultValue: true,
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
-                if (bindable is TabbedContentPage page)
+                if (bindable is TabbedContentView page)
                 {
                     page.UpdateTabBarPosition();
                 }
@@ -200,12 +226,12 @@ namespace RedCorners.Forms
         public static readonly BindableProperty TabBarPositionProperty = BindableProperty.Create(
             propertyName: nameof(TabBarPosition),
             returnType: typeof(TabBarPositions),
-            declaringType: typeof(TabbedContentPage),
+            declaringType: typeof(TabbedContentView),
             defaultValue: TabBarPositions.Bottom,
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
-                if (bindable is TabbedContentPage page)
+                if (bindable is TabbedContentView page)
                 {
                     page.UpdateTabBarPosition();
                 }
@@ -214,12 +240,12 @@ namespace RedCorners.Forms
         public static readonly BindableProperty BackgroundProperty = BindableProperty.Create(
             propertyName: nameof(Background),
             returnType: typeof(View),
-            declaringType: typeof(TabbedContentPage),
+            declaringType: typeof(TabbedContentView),
             defaultValue: null,
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
-                if (bindable is TabbedContentPage page)
+                if (bindable is TabbedContentView page)
                 {
                     page.UpdateBackgroundView();
                 }
@@ -229,12 +255,12 @@ namespace RedCorners.Forms
             BindableProperty.Create(
             nameof(TabBarBackground),
             typeof(View),
-            typeof(TabbedContentPage),
+            typeof(TabbedContentView),
             default(View),
             BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
-                if (bindable is TabbedContentPage page)
+                if (bindable is TabbedContentView page)
                 {
                     page.UpdateTabBarBackgroundView();
                 }
@@ -243,11 +269,11 @@ namespace RedCorners.Forms
         public static readonly BindableProperty ChildrenProperty = BindableProperty.Create(
             propertyName: nameof(Children),
             returnType: typeof(IList<ContentView2>),
-            declaringType: typeof(TabbedContentPage),
+            declaringType: typeof(TabbedContentView),
             defaultValue: null,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
-                if (bindable is TabbedContentPage page)
+                if (bindable is TabbedContentView page)
                 {
                     if (oldVal is IList<ContentView2> views)
                     {
@@ -257,11 +283,11 @@ namespace RedCorners.Forms
 
                     if (newVal is ObservableCollection<ContentView2>)
                     {
-                        (newVal as ObservableCollection<ContentView2>).CollectionChanged += page.TabbedContentPage_CollectionChanged;
+                        (newVal as ObservableCollection<ContentView2>).CollectionChanged += page.TabbedContentView_CollectionChanged;
                     }
                     if (oldVal is ObservableCollection<ContentView2>)
                     {
-                        (oldVal as ObservableCollection<ContentView2>).CollectionChanged -= page.TabbedContentPage_CollectionChanged;
+                        (oldVal as ObservableCollection<ContentView2>).CollectionChanged -= page.TabbedContentView_CollectionChanged;
                     }
                     page.UpdateChildren();
                 }
@@ -271,13 +297,13 @@ namespace RedCorners.Forms
             BindableProperty.Create(
             nameof(SelectedTab),
             typeof(int),
-            typeof(TabbedContentPage),
+            typeof(TabbedContentView),
             0,
             BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
                 if (oldVal == newVal) return;
-                if (bindable is TabbedContentPage page)
+                if (bindable is TabbedContentView page)
                     page.SelectTab();
                 Console.WriteLine($"newVal: {newVal}");
             });
@@ -286,31 +312,31 @@ namespace RedCorners.Forms
             BindableProperty.Create(
             nameof(SelectedIndex),
             typeof(int),
-            typeof(TabbedContentPage),
+            typeof(TabbedContentView),
             0,
             BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
                 if (oldVal == newVal) return;
-                if (bindable is TabbedContentPage page)
+                if (bindable is TabbedContentView page)
                     page.UpdateActivePage();
             });
 
-        private void TabbedContentPage_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        private void TabbedContentView_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
             UpdateChildren();
         }
 
-        public static readonly BindableProperty TabBarSizeRequestProperty = 
+        public static readonly BindableProperty TabBarSizeRequestProperty =
             BindableProperty.Create(
             nameof(TabBarSizeRequest),
             typeof(double),
-            typeof(TabbedContentPage),
+            typeof(TabbedContentView),
             70.0,
             BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
-                if (bindable is TabbedContentPage page)
+                if (bindable is TabbedContentView page)
                     page.tabbar.HeightRequest = (double)page.TabBarSizeRequest;
             });
 
@@ -318,12 +344,12 @@ namespace RedCorners.Forms
             BindableProperty.Create(
             nameof(TabBarPadding),
             typeof(Thickness),
-            typeof(TabbedContentPage),
+            typeof(TabbedContentView),
             new Thickness(),
             BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
-                if (bindable is TabbedContentPage page)
+                if (bindable is TabbedContentView page)
                     page.tabbar.Margin = page.TabBarPadding;
             });
 
@@ -331,12 +357,12 @@ namespace RedCorners.Forms
             BindableProperty.Create(
             nameof(TabBarBackgroundColor),
             typeof(Color),
-            typeof(TabbedContentPage),
+            typeof(TabbedContentView),
             Color.FromHex("#EEEEEE"),
             BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
-                if (bindable is TabbedContentPage page)
+                if (bindable is TabbedContentView page)
                     page.tabbarContainer.BackgroundColor = (Color)newVal;
             });
 
@@ -344,12 +370,12 @@ namespace RedCorners.Forms
             BindableProperty.Create(
             nameof(IsTabBarVisible),
             typeof(bool),
-            typeof(TabbedContentPage),
+            typeof(TabbedContentView),
             true,
             BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
-                if (bindable is TabbedContentPage page)
+                if (bindable is TabbedContentView page)
                     page.tabbarContainer.IsVisible = (bool)newVal;
             });
 
@@ -357,12 +383,12 @@ namespace RedCorners.Forms
             BindableProperty.Create(
                 nameof(TabStyle),
                 typeof(ImageButtonStyles),
-                typeof(TabbedContentPage),
+                typeof(TabbedContentView),
                 ImageButtonStyles.Image,
                 BindingMode.TwoWay,
                 propertyChanged: (bindable, oldVal, newVal) =>
                 {
-                    if (bindable is TabbedContentPage page)
+                    if (bindable is TabbedContentView page)
                         page.UpdateTabs();
                 });
 
@@ -370,12 +396,12 @@ namespace RedCorners.Forms
             BindableProperty.Create(
                 nameof(ImageMargin),
                 typeof(Thickness),
-                typeof(TabbedContentPage),
+                typeof(TabbedContentView),
                 new Thickness(8),
                 BindingMode.TwoWay,
                 propertyChanged: (bindable, oldVal, newVal) =>
                 {
-                    if (bindable is TabbedContentPage page)
+                    if (bindable is TabbedContentView page)
                         if (page.tabbar != null)
                             page.tabbar.ImageMargin = (Thickness)newVal;
                 });
@@ -383,12 +409,12 @@ namespace RedCorners.Forms
         public static readonly BindableProperty OverlayProperty = BindableProperty.Create(
             propertyName: nameof(Overlay),
             returnType: typeof(View),
-            declaringType: typeof(TabbedContentPage),
+            declaringType: typeof(TabbedContentView),
             defaultValue: null,
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
-                if (bindable is TabbedContentPage page)
+                if (bindable is TabbedContentView page)
                 {
                     page.overlay.Content = (View)newVal;
                 }
@@ -397,119 +423,119 @@ namespace RedCorners.Forms
         public static readonly BindableProperty TextColorProperty = BindableProperty.Create(
             propertyName: nameof(TextColor),
             returnType: typeof(Color),
-            declaringType: typeof(TabbedContentPage),
+            declaringType: typeof(TabbedContentView),
             defaultValue: Color.Black,
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
-                if (bindable is TabbedContentPage page)
+                if (bindable is TabbedContentView page)
                     page.tabbar.TextColor = page.TextColor;
             });
 
         public static readonly BindableProperty FontSizeProperty = BindableProperty.Create(
             propertyName: nameof(FontSize),
             returnType: typeof(double),
-            declaringType: typeof(TabbedContentPage),
+            declaringType: typeof(TabbedContentView),
             defaultValue: 16.0,
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
-                if (bindable is TabbedContentPage page)
+                if (bindable is TabbedContentView page)
                     page.tabbar.FontSize = page.FontSize;
             });
 
         public static readonly BindableProperty SelectedTextColorProperty = BindableProperty.Create(
             propertyName: nameof(SelectedTextColor),
             returnType: typeof(Color),
-            declaringType: typeof(TabbedContentPage),
+            declaringType: typeof(TabbedContentView),
             defaultValue: Color.Default,
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
-                if (bindable is TabbedContentPage page)
+                if (bindable is TabbedContentView page)
                     page.tabbar.SelectedTextColor = page.SelectedTextColor;
             });
 
         public static readonly BindableProperty SelectedFontSizeProperty = BindableProperty.Create(
             propertyName: nameof(SelectedFontSize),
             returnType: typeof(double?),
-            declaringType: typeof(TabbedContentPage),
+            declaringType: typeof(TabbedContentView),
             defaultValue: null,
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
-                if (bindable is TabbedContentPage page)
+                if (bindable is TabbedContentView page)
                     page.tabbar.SelectedFontSize = page.SelectedFontSize;
             });
 
         public static readonly BindableProperty FontFamilyProperty = BindableProperty.Create(
             propertyName: nameof(FontFamily),
             returnType: typeof(string),
-            declaringType: typeof(TabbedContentPage),
+            declaringType: typeof(TabbedContentView),
             defaultValue: null,
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
-                if (bindable is TabbedContentPage page)
+                if (bindable is TabbedContentView page)
                     page.tabbar.FontFamily = page.FontFamily;
             });
 
         public static readonly BindableProperty FontAttributesProperty = BindableProperty.Create(
             propertyName: nameof(FontAttributes),
             returnType: typeof(FontAttributes),
-            declaringType: typeof(TabbedContentPage),
+            declaringType: typeof(TabbedContentView),
             defaultValue: FontAttributes.Bold,
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
-                if (bindable is TabbedContentPage page)
+                if (bindable is TabbedContentView page)
                     page.tabbar.FontAttributes = page.FontAttributes;
             });
 
         public static readonly BindableProperty SelectedFontAttributesProperty = BindableProperty.Create(
             propertyName: nameof(SelectedFontAttributes),
             returnType: typeof(FontAttributes?),
-            declaringType: typeof(TabbedContentPage),
+            declaringType: typeof(TabbedContentView),
             defaultValue: FontAttributes.Bold,
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
-                if (bindable is TabbedContentPage page)
+                if (bindable is TabbedContentView page)
                     page.tabbar.SelectedFontAttributes = page.SelectedFontAttributes;
             });
 
         public static readonly BindableProperty TextHeightProperty = BindableProperty.Create(
             nameof(TextHeight),
             typeof(GridLength),
-            typeof(TabbedContentPage),
+            typeof(TabbedContentView),
             GridLength.Auto,
             BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
-                if (bindable is TabbedContentPage page)
+                if (bindable is TabbedContentView page)
                     page.tabbar.TextHeight = page.TextHeight;
             });
 
         public static readonly BindableProperty TransitionProperty = BindableProperty.Create(
             nameof(Transition),
             typeof(TabbedContentTransitions),
-            typeof(TabbedContentPage),
+            typeof(TabbedContentView),
             TabbedContentTransitions.None,
             BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
-                if (bindable is TabbedContentPage page) { }
+                if (bindable is TabbedContentView page) { }
             });
 
         public static readonly BindableProperty TransitionDurationProperty = BindableProperty.Create(
             nameof(TransitionDuration),
             typeof(double),
-            typeof(TabbedContentPage),
+            typeof(TabbedContentView),
             250.0,
             BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
-                if (bindable is TabbedContentPage page) { }
+                if (bindable is TabbedContentView page) { }
             });
 
         void UpdateTabBarBackgroundView()
@@ -686,7 +712,7 @@ namespace RedCorners.Forms
                 ShowActivePageOnly();
                 return;
             }
-            
+
             oldChild.InputTransparent = false;
             newChild.InputTransparent = true;
             oldChild.CascadeInputTransparent = true;
@@ -755,7 +781,7 @@ namespace RedCorners.Forms
 
             newChild.Opacity = 0.01;
             newChild.IsVisible = true;
-            
+
             await Task.WhenAll(
                 newChild.FadeTo(1.0, (uint)TransitionDuration),
                 oldChild.FadeTo(0.0, (uint)TransitionDuration));

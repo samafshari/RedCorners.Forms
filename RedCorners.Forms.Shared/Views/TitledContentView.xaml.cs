@@ -10,6 +10,12 @@ using Xamarin.Forms.Xaml;
 
 namespace RedCorners.Forms
 {
+    public enum TitleBarPositions
+    {
+        Top = 0,
+        Bottom
+    }
+
     [XamlCompilation(XamlCompilationOptions.Compile)]
     [ContentProperty("Body")]
     public partial class TitledContentView
@@ -67,6 +73,46 @@ namespace RedCorners.Forms
             get => (View)GetValue(TitleBackgroundProperty);
             set => SetValue(TitleBackgroundProperty, value);
         }
+
+        public TitleBarPositions TitlePosition
+        {
+            get => (TitleBarPositions)GetValue(TitlePositionProperty);
+            set => SetValue(TitlePositionProperty, value);
+        }
+
+        public bool FixTitlePadding
+        {
+            get => (bool)GetValue(FixTitlePaddingProperty);
+            set => SetValue(FixTitlePaddingProperty, value);
+        }
+
+        public static readonly BindableProperty FixTitlePaddingProperty = BindableProperty.Create(
+            propertyName: nameof(FixTitlePadding),
+            returnType: typeof(bool),
+            declaringType: typeof(TitledContentView),
+            defaultValue: true,
+            defaultBindingMode: BindingMode.TwoWay,
+            propertyChanged: (bindable, oldVal, newVal) =>
+            {
+                if (bindable is TitledContentView page)
+                {
+                    page.UpdateTitlePosition();
+                }
+            });
+
+        public static readonly BindableProperty TitlePositionProperty = BindableProperty.Create(
+            propertyName: nameof(TitlePosition),
+            returnType: typeof(TitleBarPositions),
+            declaringType: typeof(TitledContentView),
+            defaultValue: TitleBarPositions.Top,
+            defaultBindingMode: BindingMode.TwoWay,
+            propertyChanged: (bindable, oldVal, newVal) =>
+            {
+                if (bindable is TitledContentView page)
+                {
+                    page.UpdateTitlePosition();
+                }
+            });
 
         public static readonly BindableProperty BodyProperty = BindableProperty.Create(
             propertyName: nameof(Body),
@@ -194,12 +240,41 @@ namespace RedCorners.Forms
         {
             InitializeComponent();
             UpdateTitleBackgroundImage();
+            UpdateTitlePosition();
         }
 
         void UpdateTitleBackgroundImage()
         {
             if (titlebar == null) return;
             titlebar.Background = TitleBackground;
+        }
+
+        void UpdateTitlePosition()
+        {
+            if (FixTitlePadding)
+            {
+                if (TitlePosition == TitleBarPositions.Top)
+                {
+                    titlebar.FixTopPadding = true;
+                    titlebar.FixBottomPadding = false;
+                }
+                else
+                {
+                    titlebar.FixTopPadding = false;
+                    titlebar.FixBottomPadding = true;
+                }
+            }
+            else
+            {
+                titlebar.FixTopPadding = false;
+                titlebar.FixBottomPadding = false;
+            }
+
+            var row = TitlePosition == TitleBarPositions.Top ? 0 : 2;
+            titlebar.SetValue(Grid.RowProperty, row);
+
+            shadow.IsVisible = TitlePosition == TitleBarPositions.Top;
+            shadow2.IsVisible = TitlePosition == TitleBarPositions.Bottom;
         }
     }
 }

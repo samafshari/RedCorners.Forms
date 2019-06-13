@@ -15,6 +15,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
             <rf:TitleBar
@@ -38,10 +39,11 @@
                 InputTransparent="True"
                 CascadeInputTransparent="False"
                 Grid.Row="0"
-                Grid.RowSpan="2" 
+                Grid.RowSpan="3" 
                 />
 
-            <rf:HorizontalShadow Grid.Row="1" />
+            <rf:HorizontalShadow Grid.Row="1" x:Name="shadow" />
+            <rf:HorizontalShadow2 Grid.Row="1" x:Name="shadow2" />
         </Grid>
     </rf:ContentView2.Content>
 </rf:ContentView2>
