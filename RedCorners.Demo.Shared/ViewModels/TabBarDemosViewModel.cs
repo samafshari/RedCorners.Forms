@@ -31,6 +31,18 @@ namespace RedCorners.Demo.ViewModels
             set => SetProperty(ref _tabStyle, value);
         }
 
+        int _transitionId = 2;
+        public TabbedPageTransitions Transition => (TabbedPageTransitions)TransitionId;
+        public int TransitionId
+        {
+            get => _transitionId;
+            set
+            {
+                SetProperty(ref _transitionId, value);
+                RaisePropertyChanged(nameof(Transition));
+            }
+        }
+
         public Command<int> TabStyleChangeCommand => new Command<int>(i =>
         {
             if (i == 0) TabStyle = ImageButtonStyles.Image;
@@ -40,6 +52,5 @@ namespace RedCorners.Demo.ViewModels
 
         public Command<object> MessageCommand => new Command<object>(s =>
             App.Instance.DisplayAlert("Message", s?.ToString(), "OK"));
-
     }
 }

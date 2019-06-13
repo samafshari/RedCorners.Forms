@@ -13,7 +13,7 @@
     VerticalOptions="StartAndExpand">
     <rf:ContentView2.Content>
         <Grid HorizontalOptions="Fill" VerticalOptions="FillAndExpand" BackgroundColor="{Binding BackgroundColor, Source={x:Reference me}, Mode=OneWay}">
-            <ContentView x:Name="body" Content="{Binding Background, Source={x:Reference me}}" />
+            <rf:ContentView2 x:Name="body" Content="{Binding Background, Source={x:Reference me}}" />
             <rf:ContentView2 FixTopPadding="True" HorizontalOptions="Fill" VerticalOptions="FillAndExpand" x:Name="contentContainer">
                 <Grid x:Name="content" 
                       HeightRequest="{Binding ContentHeightRequest, Source={x:Reference me}, Mode=OneWay}" 

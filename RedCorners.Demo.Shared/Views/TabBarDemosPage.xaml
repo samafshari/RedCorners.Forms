@@ -14,7 +14,8 @@
     SelectedIndex="{Binding SelectedIndex}"
     TextColor="White"
     TabBarPadding="0,5,0,8"
-    Transition="Crossfade"
+    Transition="{Binding Transition}"
+    TransitionDuration="750"
     x:Class="RedCorners.Demo.Views.TabBarDemosPage">
     
     <rf:TabbedContentPage.Resources>
@@ -23,6 +24,16 @@
                 <Setter Property="BackCommand" Value="{Binding GoBackCommand}" />
                 <Setter Property="IsBackButtonVisible" Value="{Binding IsModal}" />
             </Style>
+            <Style TargetType="rf:TabBar" x:Key="ChoiceStyle">
+                <Setter Property="HorizontalTextAlignment" Value="Start" />
+                <Setter Property="ImageButtonStyle" Value="Text" />
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="SelectedTextColor" Value="#1e88e5" />
+                <Setter Property="Orientation" Value="Vertical" />
+            </Style>
+            <Style TargetType="rf:TabBarItem" x:Key="ChoiceItemStyle">
+                <Setter Property="Opacity" Value="1.0" />
+            </Style>
         </ResourceDictionary>
     </rf:TabbedContentPage.Resources>
     
@@ -30,7 +41,11 @@
         <vm:TabBarDemosViewModel />
     </rf:TabbedContentPage.BindingContext>
 
-    <rf:TabbedContentPage.TabbarBackgroundView>
+    <rf:TabbedContentPage.Background>
+        <rf:TitledContentView />
+    </rf:TabbedContentPage.Background>
+    
+    <rf:TabbedContentPage.TabbarBackground>
         <OnPlatform x:TypeArguments="View">
             <On Platform="iOS">
                 <On.Value>
@@ -63,7 +78,7 @@
                 </On.Value>
             </On>
         </OnPlatform>
-    </rf:TabbedContentPage.TabbarBackgroundView>
+    </rf:TabbedContentPage.TabbarBackground>
     
     <rf:TitledContentView Icon="icon_home_w" Title="Home">
         <rf:TitledContentView.TitleBackground>
@@ -74,28 +89,30 @@
                 Aspect="AspectFill"
                 HeightRequest="1" />
         </rf:TitledContentView.TitleBackground>
-        <Grid>
-            <Image
-                Source="https://images.pexels.com/photos/36717/amazing-animal-beautiful-beautifull.jpg"
-                HorizontalOptions="Fill"
-                VerticalOptions="Fill"
-                Aspect="AspectFill" />
-        </Grid>
+        <Frame HasShadow="True" Margin="40" Padding="0">
+            <WebView Source="http://neatcapital.ee" HorizontalOptions="Fill" VerticalOptions="Fill" />
+        </Frame>
     </rf:TitledContentView>
 
     <rf:TitledContentView Icon="icon_list_w" Title="Settings">
         <StackLayout Padding="10" Spacing="20">
             <Label Text="TabStyle:" />
             <rf:TabBar
-                HorizontalTextAlignment="Start"
-                ImageButtonStyle="Text"
+                Style="{StaticResource ChoiceStyle}"
                 SelectedIndex="2"
-                SelectedIndexChangeCommand="{Binding TabStyleChangeCommand}"
-                TextColor="Black"
-                SelectedTextColor="#1e88e5">
-                <rf:TabBarItem Text="Image" Opacity="1.0" SelectedImage="1.0" />
-                <rf:TabBarItem Text="Text" Opacity="1.0" SelectedImage="1.0" />
-                <rf:TabBarItem Text="ImageText" Opacity="1.0" SelectedImage="1.0" />
+                SelectedIndexChangeCommand="{Binding TabStyleChangeCommand}">
+                <rf:TabBarItem Text="Image" Opacity="1.0" />
+                <rf:TabBarItem Text="Text" Opacity="1.0" />
+                <rf:TabBarItem Text="ImageText" Opacity="1.0" />
+            </rf:TabBar>
+
+            <Label Text="Transition:" />
+            <rf:TabBar
+                Style="{StaticResource ChoiceStyle}"
+                SelectedIndex="{Binding TransitionId, Mode=TwoWay}">
+                <rf:TabBarItem Text="None" Opacity="1.0" />
+                <rf:TabBarItem Text="CrossFade" Opacity="1.0" />
+                <rf:TabBarItem Text="DipToBackground" Opacity="1.0" />
             </rf:TabBar>
         </StackLayout>
     </rf:TitledContentView>

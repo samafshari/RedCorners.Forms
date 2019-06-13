@@ -17,6 +17,7 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
+            <rf:ContentView2 Grid.Row="0" x:Name="body" HorizontalOptions="Fill" VerticalOptions="Fill" />
             <Grid Grid.Row="0" x:Name="content" HorizontalOptions="Fill" VerticalOptions="Fill">
             </Grid>
 

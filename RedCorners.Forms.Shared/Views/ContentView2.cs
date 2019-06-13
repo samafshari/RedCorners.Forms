@@ -91,7 +91,7 @@ namespace RedCorners.Forms
             nameof(Title),
             typeof(string),
             typeof(ContentView2),
-            "Untitled",
+            string.Empty,
             BindingMode.TwoWay);
 
         public static readonly BindableProperty IconProperty = BindableProperty.Create(
