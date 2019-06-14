@@ -89,7 +89,6 @@ namespace RedCorners.Forms
                 BindingContext = this,
                 HorizontalOptions = LayoutOptions.Fill,
                 VerticalOptions = LayoutOptions.Fill,
-                BackgroundColor = Color.Red
             };
 
             button.Pressed += Button_Pressed;
