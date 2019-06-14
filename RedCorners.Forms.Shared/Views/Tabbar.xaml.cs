@@ -21,6 +21,7 @@ namespace RedCorners.Forms
             Items = new ObservableCollection<TabBarItem>();
             InitializeComponent();
             UpdateItems();
+            UpdateItemsOrientation();
         }
 
         public IList<TabBarItem> Items
@@ -124,6 +125,24 @@ namespace RedCorners.Forms
             get => (double)GetValue(SpacingProperty);
             set => SetValue(SpacingProperty, value);
         }
+
+        public ImageButtonOrientations ItemOrientation
+        {
+            get => (ImageButtonOrientations)GetValue(ItemOrientationProperty);
+            set => SetValue(ItemOrientationProperty, value);
+        }
+
+        public static readonly BindableProperty ItemOrientationProperty = BindableProperty.Create(
+            nameof(ItemOrientation),
+            typeof(ImageButtonOrientations),
+            typeof(TabBar),
+            ImageButtonOrientations.Up,
+            BindingMode.TwoWay,
+            propertyChanged: (bindable, oldVal, newVal) =>
+            {
+                if (bindable is TabBar tabbar)
+                    tabbar.UpdateItemsOrientation();
+            });
 
         public static readonly BindableProperty TextHeightProperty = BindableProperty.Create(
             nameof(TextHeight),
@@ -407,6 +426,16 @@ namespace RedCorners.Forms
                 child.RowSpacing = Spacing;
                 child.VerticalTextAlignment = VerticalTextAlignment;
                 child.HorizontalTextAlignment = HorizontalTextAlignment;
+                child.Orientation = ItemOrientation;
+            }
+        }
+
+        void UpdateItemsOrientation()
+        {
+            for (int i = 0; i < content.Children.Count; i++)
+            {
+                var child = content.Children[i] as ImageButton2;
+                child.Orientation = ItemOrientation;
             }
         }
 

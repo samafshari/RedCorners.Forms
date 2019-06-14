@@ -37,14 +37,15 @@
         TabStyle="{Binding TabStyle}"
         TabBarBackgroundColor="#FFFFFF"
         BackgroundColor="#EEEEEE"
-        TabBarSizeRequest="60"
+        TabBarSizeRequest="{Binding TabBarSizeRequest}"
         SelectedIndex="{Binding SelectedIndex}"
         TextColor="White"
         TabBarPadding="0,8,0,8"
         Transition="{Binding Transition}"
         TransitionDuration="{Binding TransitionDuration}"
         IsTabBarVisible="{Binding IsTabBarVisible}"
-        TabBarPosition="{Binding TabBarPosition}">
+        TabBarPosition="{Binding TabBarPosition}"
+        ItemOrientation="{Binding ItemOrientation}">
         <rf:TabbedContentView.Background>
             <rf:TitledContentView>
                 <rf:TitledContentView.TitleBackground>
@@ -132,6 +133,7 @@
                         <rf:TabBarItem Text="Image" Opacity="1.0" />
                         <rf:TabBarItem Text="Text" Opacity="1.0" />
                         <rf:TabBarItem Text="ImageText" Opacity="1.0" />
+                        <rf:TabBarItem Text="ImageTextStack" Opacity="1.0" />
                     </rf:TabBar>
 
                     <Grid>
@@ -155,6 +157,17 @@
                         <rf:TabBarItem Text="Right" Opacity="1.0" />
                     </rf:TabBar>
 
+                    <Label Text="Tab Bar Item Orientation:" />
+                    <rf:TabBar
+                        Style="{StaticResource ChoiceStyle}"
+                        SelectedIndex="{Binding ItemOrientationId, Mode=TwoWay}"
+                        Orientation="Horizontal">
+                        <rf:TabBarItem Text="Up" Opacity="1.0" />
+                        <rf:TabBarItem Text="Down" Opacity="1.0" />
+                        <rf:TabBarItem Text="Right" Opacity="1.0" />
+                        <rf:TabBarItem Text="Left" Opacity="1.0" />
+                    </rf:TabBar>
+                    
                     <Grid>
                         <Label Text="Is Logged In:" VerticalOptions="Center" />
                         <Switch IsToggled="{Binding IsLoggedIn}" HorizontalOptions="End" />

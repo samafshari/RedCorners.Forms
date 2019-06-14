@@ -63,6 +63,7 @@ namespace RedCorners.Forms
             tabbar.FontFamily = FontFamily;
             tabbar.TextHeight = TextHeight;
             tabbar.Margin = TabBarPadding;
+            tabbar.ItemOrientation = ItemOrientation;
             tabbarContainer.IsVisible = IsTabBarVisible;
             overlay.Content = Overlay;
         }
@@ -328,6 +329,24 @@ namespace RedCorners.Forms
         {
             UpdateChildren();
         }
+
+        public ImageButtonOrientations ItemOrientation
+        {
+            get => (ImageButtonOrientations)GetValue(ItemOrientationProperty);
+            set => SetValue(ItemOrientationProperty, value);
+        }
+
+        public static readonly BindableProperty ItemOrientationProperty = BindableProperty.Create(
+            nameof(ItemOrientation),
+            typeof(ImageButtonOrientations),
+            typeof(TabbedContentView),
+            ImageButtonOrientations.Up,
+            BindingMode.TwoWay,
+            propertyChanged: (bindable, oldVal, newVal) =>
+            {
+                if (bindable is TabbedContentView page)
+                    page.tabbar.ItemOrientation = (ImageButtonOrientations)newVal;
+            });
 
         public static readonly BindableProperty TabBarSizeRequestProperty =
             BindableProperty.Create(

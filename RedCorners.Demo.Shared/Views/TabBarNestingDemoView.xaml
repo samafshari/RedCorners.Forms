@@ -5,13 +5,14 @@
     xmlns:rf="clr-namespace:RedCorners.Forms;assembly=RedCorners.Forms"
     xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
     xmlns:fft="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
-    TabBarBackgroundColor="#c62828"
+    TabBarBackgroundColor="#333333"
     TextColor="White"
     TabBarPadding="0,8,0,8"
-    TabBarSizeRequest="80"
+    TabBarSizeRequest="60"
     FixTabBarPadding="False"
     TabBarPosition="Left"
-    Transition="Slide"
+    ItemOrientation="Right"
+    Transition="SlideVertically"
     x:Class="RedCorners.Demo.Views.TabBarNestingDemoView">
     <rf:ContentView2 Icon="icon_profile_w" Title="Profile" BackgroundColor="White">
         <rf:TitledContentView.TitleBackground>

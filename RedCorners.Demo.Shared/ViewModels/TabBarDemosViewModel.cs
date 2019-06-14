@@ -104,11 +104,34 @@ namespace RedCorners.Demo.ViewModels
             set => SetProperty(ref _fixTitlePadding, value);
         }
 
+        int _itemOrientationId = 0;
+        public ImageButtonOrientations ItemOrientation
+        {
+            get
+            {
+                if (ItemOrientationId == 0) return ImageButtonOrientations.Up;
+                if (ItemOrientationId == 1) return ImageButtonOrientations.Down;
+                if (ItemOrientationId == 2) return ImageButtonOrientations.Right;
+                return ImageButtonOrientations.Left;
+            }
+        }
+
+        public int ItemOrientationId
+        {
+            get => _itemOrientationId;
+            set
+            {
+                SetProperty(ref _itemOrientationId, value);
+                RaisePropertyChanged(nameof(ItemOrientation));
+            }
+        }
+
         public Command<int> TabStyleChangeCommand => new Command<int>(i =>
         {
             if (i == 0) TabStyle = ImageButtonStyles.Image;
             else if (i == 1) TabStyle = ImageButtonStyles.Text;
-            else TabStyle = ImageButtonStyles.ImageText;
+            else if (i == 2) TabStyle = ImageButtonStyles.ImageText;
+            else TabStyle = ImageButtonStyles.ImageTextStack;
         });
 
         public Command<object> MessageCommand => new Command<object>(s =>

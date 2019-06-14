@@ -11,7 +11,16 @@ namespace RedCorners.Forms
     {
         Image = 1,
         Text = 2,
-        ImageText = Image | Text
+        ImageText = Image | Text,
+        ImageTextStack = Image | Text | 4
+    }
+
+    public enum ImageButtonOrientations
+    {
+        Up = 0,
+        Down = 180,
+        Right = -90,
+        Left = 90
     }
 
     public class ImageButton2 : Grid
@@ -80,6 +89,7 @@ namespace RedCorners.Forms
                 BindingContext = this,
                 HorizontalOptions = LayoutOptions.Fill,
                 VerticalOptions = LayoutOptions.Fill,
+                BackgroundColor = Color.Red
             };
 
             button.Pressed += Button_Pressed;
@@ -101,6 +111,21 @@ namespace RedCorners.Forms
 
                 //image.VerticalOptions = LayoutOptions.EndAndExpand;
             }
+            else if (ImageButtonStyle == ImageButtonStyles.ImageTextStack)
+            {
+                RowDefinitions.Add(new RowDefinition { Height = GridLength.Star });
+                RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+                RowDefinitions.Add(new RowDefinition { Height = TextHeight });
+                RowDefinitions.Add(new RowDefinition { Height = GridLength.Star });
+
+                button.SetValue(Grid.RowProperty, 0);
+                button.SetValue(Grid.RowSpanProperty, 4);
+
+                image.SetValue(Grid.RowProperty, 1);
+                label.SetValue(Grid.RowProperty, 2);
+            }
+
+            AdjustOrientation();
         }
 
         private void Button_Clicked(object sender, EventArgs e)
@@ -234,6 +259,23 @@ namespace RedCorners.Forms
             get => (TextAlignment)GetValue(HorizontalTextAlignmentProperty);
             set => SetValue(HorizontalTextAlignmentProperty, value);
         }
+
+        public ImageButtonOrientations Orientation
+        {
+            get => (ImageButtonOrientations)GetValue(OrientationProperty);
+            set => SetValue(OrientationProperty, value);
+        }
+
+        public static readonly BindableProperty OrientationProperty = BindableProperty.Create(
+            propertyName: nameof(Orientation),
+            returnType: typeof(ImageButtonOrientations),
+            declaringType: typeof(ImageButton2),
+            defaultValue: ImageButtonOrientations.Up,
+            propertyChanged: (bindable, oldVal, newVal) =>
+            {
+                if (bindable is ImageButton2 butt)
+                    butt.AdjustOrientation();
+            });
 
         public static readonly BindableProperty VerticalTextAlignmentProperty = BindableProperty.Create(
             propertyName: nameof(VerticalTextAlignment),
@@ -415,5 +457,13 @@ namespace RedCorners.Forms
             {
 
             });
+
+        void AdjustOrientation()
+        {
+            if (image != null)
+                image.Rotation = (double)Orientation;
+            if (label != null)
+                label.Rotation = (double)Orientation;
+        }
     }
 }
