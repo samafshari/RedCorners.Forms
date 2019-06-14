@@ -69,12 +69,6 @@
                             </Button.Command>
                         </Button>
 
-                        <Button Text="Tabbed Page">
-                            <Button.Command>
-                                <rf:PageCommand IsModal="False" PageType="{Type views:TabbedPage}" />
-                            </Button.Command>
-                        </Button>
-
                         <Button Text="Show SideBar" Command="{Binding ShowSidebarCommand}" />
 
                         <Button Text="Show Message" Command="{Binding MessageCommand}" CommandParameter="Message" />

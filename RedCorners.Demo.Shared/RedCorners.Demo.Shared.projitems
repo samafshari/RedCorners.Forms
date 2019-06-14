@@ -31,9 +31,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\TabBarNestingDemoView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\TabbedPage.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\TitleBarDemosPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -76,12 +73,6 @@
     <Compile Update="E:\Projects\RedCorners\RedCorners.Demo.Shared\Views\CounterPage.xaml.cs">
       <DependentUpon>CounterPage.xaml</DependentUpon>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\TabbedPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\TitleBarDemosPage.xaml">

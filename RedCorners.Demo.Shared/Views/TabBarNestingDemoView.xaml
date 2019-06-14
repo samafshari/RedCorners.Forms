@@ -8,10 +8,9 @@
     TabBarBackgroundColor="#c62828"
     TextColor="White"
     TabBarPadding="0,8,0,8"
-    TabStyle="Text"
-    TabBarSizeRequest="40"
+    TabBarSizeRequest="80"
     FixTabBarPadding="False"
-    TabBarPosition="Top"
+    TabBarPosition="Left"
     Transition="Slide"
     x:Class="RedCorners.Demo.Views.TabBarNestingDemoView">
     <rf:ContentView2 Icon="icon_profile_w" Title="Profile" BackgroundColor="White">

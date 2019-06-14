@@ -33,7 +33,9 @@ namespace RedCorners.Forms
     public enum TabBarPositions
     {
         Bottom = 0,
-        Top
+        Top,
+        Left,
+        Right
     }
 
     [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -48,10 +50,10 @@ namespace RedCorners.Forms
             UpdateBackgroundView();
             UpdateTabBarPosition();
             UpdateChildren();
+            UpdateTabBarSizeRequest();
             tabbar.SelectedIndex = SelectedTab;
             tabbarContainer.BackgroundColor = BackgroundColor;
             tabbar.PropertyChanged += TabBar_PropertyChanged;
-            tabbar.HeightRequest = TabBarSizeRequest;
             tabbar.TextColor = TextColor;
             tabbar.FontSize = FontSize;
             tabbar.FontAttributes = FontAttributes;
@@ -337,7 +339,7 @@ namespace RedCorners.Forms
             propertyChanged: (bindable, oldVal, newVal) =>
             {
                 if (bindable is TabbedContentView page)
-                    page.tabbar.HeightRequest = (double)page.TabBarSizeRequest;
+                    page.UpdateTabBarSizeRequest();
             });
 
         public static readonly BindableProperty TabBarPaddingProperty =
@@ -550,31 +552,72 @@ namespace RedCorners.Forms
                 body.Content = Background;
         }
 
-        void UpdateTabBarPosition()
+        void UpdateTabBarSizeRequest()
         {
-            var row = TabBarPosition == TabBarPositions.Bottom ? 2 : 0;
-            tabbarContainer.SetValue(Grid.RowProperty, row);
-            if (FixTabBarPadding)
+            if (TabBarPosition == TabBarPositions.Left || TabBarPosition == TabBarPositions.Right)
             {
-                if (TabBarPosition == TabBarPositions.Bottom)
-                {
-                    tabbar.FixTopPadding = false;
-                    tabbar.FixBottomPadding = true;
-                }
-                else
-                {
-                    tabbar.FixTopPadding = true;
-                    tabbar.FixBottomPadding = false;
-                }
+                tabbar.HeightRequest = -1;
+                tabbar.WidthRequest = TabBarSizeRequest;
             }
             else
             {
+                tabbar.HeightRequest = TabBarSizeRequest;
+                tabbar.WidthRequest = -1;
+            }
+        }
+
+        void UpdateTabBarPosition()
+        {
+            UpdateTabBarSizeRequest();
+            if (TabBarPosition == TabBarPositions.Left || TabBarPosition == TabBarPositions.Right)
+            {
+                // Horizontal
                 tabbar.FixTopPadding = false;
                 tabbar.FixBottomPadding = false;
+                var col = TabBarPosition == TabBarPositions.Left ? 0 : 2;
+                tabbarContainer.SetValue(Grid.RowProperty, 1);
+                tabbarContainer.SetValue(Grid.ColumnProperty, col);
+                tabbarContainer.HorizontalOptions = LayoutOptions.FillAndExpand;
+                tabbarContainer.VerticalOptions = LayoutOptions.Fill;
+                shadow.IsVisible = false;
+                shadow2.IsVisible = false;
+                shadowv.IsVisible = TabBarPosition == TabBarPositions.Right;
+                shadowv2.IsVisible = TabBarPosition == TabBarPositions.Left;
+                tabbar.Orientation = StackOrientation.Vertical;
             }
+            else
+            {
+                // Vertical
+                var row = TabBarPosition == TabBarPositions.Bottom ? 2 : 0;
+                tabbarContainer.SetValue(Grid.RowProperty, row);
+                tabbarContainer.SetValue(Grid.ColumnProperty, 1);
+                if (FixTabBarPadding)
+                {
+                    if (TabBarPosition == TabBarPositions.Bottom)
+                    {
+                        tabbar.FixTopPadding = false;
+                        tabbar.FixBottomPadding = true;
+                    }
+                    else
+                    {
+                        tabbar.FixTopPadding = true;
+                        tabbar.FixBottomPadding = false;
+                    }
+                }
+                else
+                {
+                    tabbar.FixTopPadding = false;
+                    tabbar.FixBottomPadding = false;
+                }
 
-            shadow.IsVisible = TabBarPosition == TabBarPositions.Bottom;
-            shadow2.IsVisible = TabBarPosition == TabBarPositions.Top;
+                shadow.IsVisible = TabBarPosition == TabBarPositions.Bottom;
+                shadow2.IsVisible = TabBarPosition == TabBarPositions.Top;
+                shadowv.IsVisible = false;
+                shadowv2.IsVisible = false;
+                tabbarContainer.HorizontalOptions = LayoutOptions.Fill;
+                tabbarContainer.VerticalOptions = LayoutOptions.FillAndExpand;
+                tabbar.Orientation = StackOrientation.Horizontal;
+            }
         }
 
         private void TabBar_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -921,7 +964,7 @@ namespace RedCorners.Forms
             UpdateActivePage();
         }
 
-        readonly Command<ContentView2> ShowTabCommand = new Command<ContentView2>(view =>
+        new readonly Command<ContentView2> ShowTabCommand = new Command<ContentView2>(view =>
         {
 
         });

@@ -87,7 +87,7 @@ namespace RedCorners.Forms
             nameof(FixTopPadding),
             typeof(bool),
             typeof(ContentPage2),
-            true,
+            false,
             BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
@@ -98,7 +98,7 @@ namespace RedCorners.Forms
             nameof(FixBottomPadding),
             typeof(bool),
             typeof(ContentPage2),
-            true,
+            false,
             BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {

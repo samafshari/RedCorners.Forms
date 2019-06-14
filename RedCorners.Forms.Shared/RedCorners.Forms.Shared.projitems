@@ -30,7 +30,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\ContentPage2.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\ContentView2.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\Button2.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Views\HorizontalShadow.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Shadow.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\ImageButton2.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\ItemsStack.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\ListView2.cs" />
@@ -39,9 +39,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\TabBarItem.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Views\TabbedContentPage.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\TabbedContentView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -105,15 +102,13 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\TabbedContentPage.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\TabbedContentView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\TabbedContentView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)gradientv.png" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)gradientv2.png" />
   </ItemGroup>
 </Project>

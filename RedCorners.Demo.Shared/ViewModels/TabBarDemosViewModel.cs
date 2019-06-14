@@ -69,18 +69,39 @@ namespace RedCorners.Demo.ViewModels
             }
         }
 
-        bool _bottomTabBar = true;
-        public TabBarPositions TabBarPosition => BottomTabBar ? TabBarPositions.Bottom : TabBarPositions.Top;
-        public TitleBarPositions TitlePosition => BottomTabBar ? TitleBarPositions.Top : TitleBarPositions.Bottom;
-
-        public bool BottomTabBar
+        int _tabBarPositionId = 0;
+        public TabBarPositions TabBarPosition => (TabBarPositions)TabBarPositionId;
+        public double TabBarSizeRequest => 
+            (TabBarPosition == TabBarPositions.Bottom || TabBarPosition == TabBarPositions.Top) ?
+            60.0 : 100.0;
+        public int TabBarPositionId
         {
-            get => _bottomTabBar;
+            get => _tabBarPositionId;
             set
             {
-                _bottomTabBar = value;
-                UpdateProperties();
+                SetProperty(ref _tabBarPositionId, value);
+                RaisePropertyChanged(nameof(TabBarPosition));
+                RaisePropertyChanged(nameof(TabBarSizeRequest));
             }
+        }
+
+        bool _bottomTitleBar = false;
+        public TitleBarPositions TitlePosition => BottomTitleBar ? TitleBarPositions.Bottom : TitleBarPositions.Top;
+        public bool BottomTitleBar
+        {
+            get => _bottomTitleBar;
+            set
+            {
+                SetProperty(ref _bottomTitleBar, value);
+                RaisePropertyChanged(nameof(TitlePosition));
+            }
+        }
+
+        bool _fixTitlePadding = true;
+        public bool FixTitlePadding
+        {
+            get => _fixTitlePadding;
+            set => SetProperty(ref _fixTitlePadding, value);
         }
 
         public Command<int> TabStyleChangeCommand => new Command<int>(i =>
