@@ -6,7 +6,7 @@
     x:Class="RedCorners.Forms.SideBar"
     HorizontalOptions="Fill"
     VerticalOptions="Fill"
-    IsVisible="{Binding IsSidebarOpen, Mode=TwoWay}">
+    IsVisible="{Binding IsSideBarOpen, Mode=TwoWay}">
     <rf:ContentView2.Content>
         <Grid x:Name="mainGrid">
             <Grid.ColumnDefinitions>

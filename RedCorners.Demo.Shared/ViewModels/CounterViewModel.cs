@@ -76,7 +76,7 @@ namespace RedCorners.Demo.ViewModels
         public override Command GoBackCommand => new Command(() =>
         {
             if (IsModal) base.GoBackCommand.Execute(this);
-            else IsSidebarOpen = true;
+            else IsSideBarOpen = true;
         });
     }
 }

@@ -29,8 +29,8 @@ namespace RedCorners.Demo.ViewModels
         public UIStatusBarStyles UIStatusBarStyle => LightContent ? UIStatusBarStyles.LightContent : UIStatusBarStyles.Default;
 
         #region SideBar Tests
-        SidebarSides _side = SidebarSides.Right;
-        public SidebarSides Side
+        SideBarSides _side = SideBarSides.Right;
+        public SideBarSides Side
         {
             get => _side;
             set => SetProperty(ref _side, value);
@@ -50,9 +50,9 @@ namespace RedCorners.Demo.ViewModels
             set => SetProperty(ref _contentSize, value);
         }
 
-        public Command<string> PlaceSidebarCommand => new Command<string>(side =>
+        public Command<string> PlaceSideBarCommand => new Command<string>(side =>
         {
-            if (Enum.TryParse<SidebarSides>(side, out var s))
+            if (Enum.TryParse<SideBarSides>(side, out var s))
                 Side = s;
         });
 

@@ -69,7 +69,7 @@
                             </Button.Command>
                         </Button>
 
-                        <Button Text="Show SideBar" Command="{Binding ShowSidebarCommand}" />
+                        <Button Text="Show SideBar" Command="{Binding ShowSideBarCommand}" />
 
                         <Button Text="Show Message" Command="{Binding MessageCommand}" CommandParameter="Message" />
                         
@@ -111,12 +111,12 @@
                         <ff:CachedImage Source="http://ooze.redcorners.com/redcorners_forms_logo.png" HorizontalOptions="Center" HeightRequest="128" WidthRequest="128" />
                         <Label Text="RedCorners.Forms" TextColor="White" FontSize="Large" HorizontalTextAlignment="Center" HorizontalOptions="Center" />
                         <BoxView HeightRequest="1" HorizontalOptions="Fill" BackgroundColor="White" />
-                        <Button Text="Hide SideBar" Command="{Binding HideSidebarCommand}" />
+                        <Button Text="Hide SideBar" Command="{Binding HideSideBarCommand}" />
 
-                        <Button Text="Left" Command="{Binding PlaceSidebarCommand}" CommandParameter="Left" />
-                        <Button Text="Right" Command="{Binding PlaceSidebarCommand}" CommandParameter="Right" />
-                        <Button Text="Top" Command="{Binding PlaceSidebarCommand}" CommandParameter="Top" />
-                        <Button Text="Bottom" Command="{Binding PlaceSidebarCommand}" CommandParameter="Bottom" />
+                        <Button Text="Left" Command="{Binding PlaceSideBarCommand}" CommandParameter="Left" />
+                        <Button Text="Right" Command="{Binding PlaceSideBarCommand}" CommandParameter="Right" />
+                        <Button Text="Top" Command="{Binding PlaceSideBarCommand}" CommandParameter="Top" />
+                        <Button Text="Bottom" Command="{Binding PlaceSideBarCommand}" CommandParameter="Bottom" />
 
                         <Grid>
                             <Grid.ColumnDefinitions>

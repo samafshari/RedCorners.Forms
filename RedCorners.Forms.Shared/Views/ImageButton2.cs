@@ -459,10 +459,20 @@ namespace RedCorners.Forms
 
         void AdjustOrientation()
         {
-            if (image != null)
-                image.Rotation = (double)Orientation;
-            if (label != null)
-                label.Rotation = (double)Orientation;
+            if (ImageButtonStyle == ImageButtonStyles.ImageTextStack || ImageButtonStyle == ImageButtonStyles.ImageText)
+            {
+                Rotation = (double)Orientation;
+                image.Rotation = 0;
+                label.Rotation = 0;
+            }
+            else
+            {
+                Rotation = 0;
+                if (image != null)
+                    image.Rotation = (double)Orientation;
+                if (label != null)
+                    label.Rotation = (double)Orientation;
+            }
         }
     }
 }

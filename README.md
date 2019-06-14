@@ -12,7 +12,7 @@ Sidebar Video: [https://www.youtube.com/watch?v=NPyZ_N5LcoU](https://www.youtube
 
 TitleBar Video: [https://www.youtube.com/watch?v=EUuuqSCjZ_Y](https://www.youtube.com/watch?v=EUuuqSCjZ_Y)
 
-TabbedContentPage/TabBar Video: [https://www.youtube.com/watch?v=LySXGOvjoBs](https://www.youtube.com/watch?v=LySXGOvjoBs)
+TabbedContentView/TabBar Video: [https://www.youtube.com/watch?v=LySXGOvjoBs](https://www.youtube.com/watch?v=LySXGOvjoBs)
 
 Features:
 - Content views and view models can know when they appear and disappear if they derive from `ContentView2` and `BindableModel`.
@@ -26,7 +26,7 @@ Features:
 - `SideBar`: A very powerful and flexible sidebar that opens up from any direction, with customizable width, height, background color, slide and fade animations and more!
 - `TabBar`: A very powerful and cross-platform Tabbar.
 - `TitledContentView`: A content view that has a dynamic titlebar.
-- `TabbedContentPage`: A content page that has a dynamic tabbar.
+- `TabbedContentView`: A content view that has a dynamic tabbar.
 - Notch padding compensation: Dynamically adjust the paddings necessary on devices with the notch.
 - `GetPage()`: An extension method which allows an `Element` to find its parent `Page`.
 - `GetAllChildren()`: An extension method which allows a `VisualElement` to find all its children recursively.

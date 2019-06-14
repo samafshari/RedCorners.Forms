@@ -145,6 +145,7 @@ namespace RedCorners.Demo.ViewModels
             return IsLoggedIn;
         });
 
+        public Command ShowHomeCommand => new Command(() => SelectedIndex = 0);
         public Command ShowSettingsCommand => new Command(() => SelectedIndex = 1);
 
         bool _isTabBarVisible = true;

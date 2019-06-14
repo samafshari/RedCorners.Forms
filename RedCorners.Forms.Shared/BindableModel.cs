@@ -40,19 +40,19 @@ namespace RedCorners.Forms
             }
         }
 
-        bool _isSidebarOpen = false;
-        public virtual bool IsSidebarOpen
+        bool _isSideBarOpen = false;
+        public virtual bool IsSideBarOpen
         {
-            get => _isSidebarOpen;
+            get => _isSideBarOpen;
             set
             {
-                _isSidebarOpen = value;
+                _isSideBarOpen = value;
                 UpdateProperties();
             }
         }
 
-        public virtual Command ShowSidebarCommand => new Command(() => IsSidebarOpen = true);
-        public virtual Command HideSidebarCommand => new Command(() => IsSidebarOpen = false);
+        public virtual Command ShowSideBarCommand => new Command(() => IsSideBarOpen = true);
+        public virtual Command HideSideBarCommand => new Command(() => IsSideBarOpen = false);
 
         [ManualUpdate] public bool IsFailed => Status == TaskStatuses.Fail;
         [ManualUpdate] public bool IsFinished => Status == TaskStatuses.Success;

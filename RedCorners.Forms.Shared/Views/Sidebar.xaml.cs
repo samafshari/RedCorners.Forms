@@ -10,7 +10,7 @@ using Xamarin.Forms.Xaml;
 
 namespace RedCorners.Forms
 {
-    public enum SidebarSides
+    public enum SideBarSides
     {
         Left,
         Right,
@@ -28,9 +28,9 @@ namespace RedCorners.Forms
             set => SetValue(BodyProperty, value);
         }
 
-        public SidebarSides Side
+        public SideBarSides Side
         {
-            get => (SidebarSides)GetValue(SideProperty);
+            get => (SideBarSides)GetValue(SideProperty);
             set => SetValue(SideProperty, value);
         }
 
@@ -125,9 +125,9 @@ namespace RedCorners.Forms
 
         public static readonly BindableProperty SideProperty = BindableProperty.Create(
             propertyName: nameof(Side),
-            returnType: typeof(SidebarSides),
+            returnType: typeof(SideBarSides),
             declaringType: typeof(SideBar),
-            defaultValue: SidebarSides.Left,
+            defaultValue: SideBarSides.Left,
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
@@ -340,10 +340,10 @@ namespace RedCorners.Forms
             if (!IsSwipeEnabled) return;
             if (IsVisible) return;
 
-            if ((Side == SidebarSides.Right && e.Direction == SwipeDirection.Left) ||
-                (Side == SidebarSides.Left && e.Direction == SwipeDirection.Right) ||
-                (Side == SidebarSides.Top && e.Direction == SwipeDirection.Down) ||
-                (Side == SidebarSides.Bottom && e.Direction == SwipeDirection.Up))
+            if ((Side == SideBarSides.Right && e.Direction == SwipeDirection.Left) ||
+                (Side == SideBarSides.Left && e.Direction == SwipeDirection.Right) ||
+                (Side == SideBarSides.Top && e.Direction == SwipeDirection.Down) ||
+                (Side == SideBarSides.Bottom && e.Direction == SwipeDirection.Up))
                 IsVisible = true;
         }
 
@@ -352,10 +352,10 @@ namespace RedCorners.Forms
             if (!IsSwipeEnabled) return;
             if (!IsVisible) return;
 
-            if ((Side == SidebarSides.Right && e.Direction == SwipeDirection.Right) ||
-                (Side == SidebarSides.Left && e.Direction == SwipeDirection.Left) ||
-                (Side == SidebarSides.Top && e.Direction == SwipeDirection.Up) ||
-                (Side == SidebarSides.Bottom && e.Direction == SwipeDirection.Down))
+            if ((Side == SideBarSides.Right && e.Direction == SwipeDirection.Right) ||
+                (Side == SideBarSides.Left && e.Direction == SwipeDirection.Left) ||
+                (Side == SideBarSides.Top && e.Direction == SwipeDirection.Up) ||
+                (Side == SideBarSides.Bottom && e.Direction == SwipeDirection.Down))
                 SetValue(IsVisibleProperty, false);
         }
 
@@ -369,13 +369,13 @@ namespace RedCorners.Forms
             var contentSide = IsFullSize ? GridLength.Star : ContentSize;
             var otherSide = IsFullSize ? new GridLength(0) : GridLength.Star;
 
-            if (Side == SidebarSides.Right || Side == SidebarSides.Left)
+            if (Side == SideBarSides.Right || Side == SideBarSides.Left)
             {
                 Grid.SetRow(content, 0);
                 Grid.SetRowSpan(content, 2);
                 Grid.SetColumnSpan(content, 1);
 
-                if (Side == SidebarSides.Left)
+                if (Side == SideBarSides.Left)
                 {
                     colLeft.Width = contentSide;
                     colRight.Width = otherSide;
@@ -396,7 +396,7 @@ namespace RedCorners.Forms
                 Grid.SetColumnSpan(content, 2);
                 Grid.SetRowSpan(content, 1);
 
-                if (Side == SidebarSides.Top)
+                if (Side == SideBarSides.Top)
                 {
                     rowTop.Height = contentSide;
                     rowBottom.Height = otherSide;
@@ -483,7 +483,7 @@ namespace RedCorners.Forms
         (double x, double y) GetSlideTranslations()
         {
             var baseView = (Parent as View) ?? this;
-            var h = (Side == SidebarSides.Left || Side == SidebarSides.Right);
+            var h = (Side == SideBarSides.Left || Side == SideBarSides.Right);
             var baseSize = h ? baseView.Width : baseView.Height;
             if (Width > 0) baseSize = h ? Width : Height;
             double translation;
@@ -493,7 +493,7 @@ namespace RedCorners.Forms
                 else if (ContentSize.IsAuto) translation = content.Width;
                 else if (ContentSize.IsStar) translation = baseSize / ContentSize.Value;
                 else translation = ContentSize.Value;
-                if (Side == SidebarSides.Left) translation *= -1;
+                if (Side == SideBarSides.Left) translation *= -1;
                 return (translation, 0);
             }
             else
@@ -502,7 +502,7 @@ namespace RedCorners.Forms
                 else if (ContentSize.IsAuto) translation = content.Height;
                 else if (ContentSize.IsStar) translation = baseSize / ContentSize.Value;
                 else translation = ContentSize.Value;
-                if (Side == SidebarSides.Top) translation *= -1;
+                if (Side == SideBarSides.Top) translation *= -1;
                 return (0, translation);
             }
         }

@@ -146,6 +146,22 @@
                         <Switch IsToggled="{Binding FixTitlePadding}" HorizontalOptions="End" />
                     </Grid>
 
+                    <Grid>
+                        <Label Text="Is Logged In:" VerticalOptions="Center" />
+                        <Switch IsToggled="{Binding IsLoggedIn}" HorizontalOptions="End" />
+                    </Grid>
+
+                    <Grid>
+                        <Label Text="Is TabBar Visible" VerticalOptions="Center" />
+                        <Switch IsToggled="{Binding IsTabBarVisible, Mode=TwoWay}" HorizontalOptions="End" />
+                    </Grid>
+                    <Grid>
+                        <Label Text="Is Profile Visible" VerticalOptions="Center" />
+                        <Switch IsToggled="{Binding IsProfileVisible, Mode=TwoWay}" HorizontalOptions="End" />
+                    </Grid>
+
+                    <Button Text="Show SideBar" Command="{Binding ShowSideBarCommand}" />
+
                     <Label Text="Tab Bar Position:" />
                     <rf:TabBar
                         Style="{StaticResource ChoiceStyle}"
@@ -168,11 +184,6 @@
                         <rf:TabBarItem Text="Left" Opacity="1.0" />
                     </rf:TabBar>
                     
-                    <Grid>
-                        <Label Text="Is Logged In:" VerticalOptions="Center" />
-                        <Switch IsToggled="{Binding IsLoggedIn}" HorizontalOptions="End" />
-                    </Grid>
-
                     <Label Text="Transition:" />
                     <rf:TabBar
                         Style="{StaticResource ChoiceStyle}"
@@ -239,6 +250,7 @@
                                 <Label Text="Is Profile Visible" FontSize="Medium" TextColor="White" VerticalOptions="Center" />
                                 <Switch IsToggled="{Binding IsProfileVisible, Mode=TwoWay}" HorizontalOptions="End" />
                             </Grid>
+                            <Button Text="Home" Command="{Binding ShowHomeCommand}" />
                             <Button Text="Settings" Command="{Binding ShowSettingsCommand}" />
                         </StackLayout>
                     </ScrollView>

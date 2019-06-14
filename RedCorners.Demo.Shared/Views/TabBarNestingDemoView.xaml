@@ -8,21 +8,14 @@
     TabBarBackgroundColor="#333333"
     TextColor="White"
     TabBarPadding="0,8,0,8"
-    TabBarSizeRequest="60"
+    TabBarSizeRequest="50"
     FixTabBarPadding="False"
     TabBarPosition="Left"
     ItemOrientation="Right"
     Transition="SlideVertically"
     x:Class="RedCorners.Demo.Views.TabBarNestingDemoView">
+    
     <rf:ContentView2 Icon="icon_profile_w" Title="Profile" BackgroundColor="White">
-        <rf:TitledContentView.TitleBackground>
-            <Image 
-                Source="https://freefrontend.com/assets/img/css-background-patterns/simple-pattern-with-css3.png"
-                HorizontalOptions="Fill"
-                VerticalOptions="Fill"
-                Aspect="AspectFill"
-                HeightRequest="1" />
-        </rf:TitledContentView.TitleBackground>
         <Grid>
             <StackLayout Spacing="10" HorizontalOptions="Center" VerticalOptions="Center">
                 <Label Text="Welcome Back" TextColor="Black" FontSize="Medium" HorizontalTextAlignment="Center" HorizontalOptions="Center" />
@@ -30,15 +23,8 @@
             </StackLayout>
         </Grid>
     </rf:ContentView2>
+    
     <rf:ContentView2 Icon="icon_home_w" Title="About" BackgroundColor="White">
-        <rf:TitledContentView.TitleBackground>
-            <Image 
-                Source="https://freefrontend.com/assets/img/css-background-patterns/simple-pattern-with-css3.png"
-                HorizontalOptions="Fill"
-                VerticalOptions="Fill"
-                Aspect="AspectFill"
-                HeightRequest="1" />
-        </rf:TitledContentView.TitleBackground>
         <Grid>
             <StackLayout Spacing="10" HorizontalOptions="Center" VerticalOptions="Center">
                 <ff:CachedImage Source="http://ooze.redcorners.com/redcorners_forms_logo.png" HorizontalOptions="Center" HeightRequest="128" WidthRequest="128" />
