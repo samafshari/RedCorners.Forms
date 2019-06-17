@@ -45,7 +45,8 @@
         TransitionDuration="{Binding TransitionDuration}"
         IsTabBarVisible="{Binding IsTabBarVisible}"
         TabBarPosition="{Binding TabBarPosition}"
-        ItemOrientation="{Binding ItemOrientation}">
+        ItemOrientation="{Binding ItemOrientation}"
+        HasShadow="False">
         <rf:TabbedContentView.Background>
             <rf:TitledContentView>
                 <rf:TitledContentView.TitleBackground>
@@ -215,7 +216,7 @@
             </ScrollView>
         </rf:TitledContentView>
 
-        <rf:TitledContentView Icon="icon_profile_w" Title="Profile" BackgroundColor="White" ShowTabCommand="{Binding ShowLoginCommand}" IsVisibleAsTab="{Binding IsProfileVisible}">
+        <rf:TitledContentView HasShadow="False" Icon="icon_profile_w" Title="Profile" BackgroundColor="White" ShowTabCommand="{Binding ShowLoginCommand}" IsVisibleAsTab="{Binding IsProfileVisible}">
             <rf:TitledContentView.TitleBackground>
                 <Image 
                     Source="https://freefrontend.com/assets/img/css-background-patterns/simple-pattern-with-css3.png"

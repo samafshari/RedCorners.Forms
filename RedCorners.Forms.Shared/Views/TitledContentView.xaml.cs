@@ -44,6 +44,12 @@ namespace RedCorners.Forms
             set => SetValue(IsBackButtonVisibleProperty, value);
         }
 
+        public bool HasButton
+        {
+            get => (bool)GetValue(HasButtonProperty);
+            set => SetValue(HasButtonProperty, value);
+        }
+
         public ICommand BackCommand
         {
             get => (ICommand)GetValue(BackCommandProperty);
@@ -85,6 +91,41 @@ namespace RedCorners.Forms
             get => (bool)GetValue(FixTitlePaddingProperty);
             set => SetValue(FixTitlePaddingProperty, value);
         }
+
+        public bool HasShadow
+        {
+            get => (bool)GetValue(HasShadowProperty);
+            set => SetValue(HasShadowProperty, value);
+        }
+
+        public static readonly BindableProperty HasButtonProperty = BindableProperty.Create(
+            propertyName: nameof(HasButton),
+            returnType: typeof(bool),
+            declaringType: typeof(TitledContentView),
+            defaultValue: true,
+            defaultBindingMode: BindingMode.TwoWay,
+            propertyChanged: (bindable, oldVal, newVal) =>
+            {
+                if (bindable is TitledContentView page)
+                {
+                    page.titlebar.HasButton = (bool)newVal;
+                }
+            });
+
+        public static readonly BindableProperty HasShadowProperty =
+            BindableProperty.Create(
+            nameof(HasShadow),
+            typeof(bool),
+            typeof(TitledContentView),
+            true,
+            BindingMode.TwoWay,
+            propertyChanged: (bindable, oldVal, newVal) =>
+            {
+                if (bindable is TitledContentView page)
+                {
+                    page.UpdateTitlePosition();
+                }
+            });
 
         public static readonly BindableProperty FixTitlePaddingProperty = BindableProperty.Create(
             propertyName: nameof(FixTitlePadding),
@@ -251,30 +292,40 @@ namespace RedCorners.Forms
 
         void UpdateTitlePosition()
         {
-            if (FixTitlePadding)
+            if (titlebar != null)
             {
-                if (TitlePosition == TitleBarPositions.Top)
+                if (FixTitlePadding)
                 {
-                    titlebar.FixTopPadding = true;
-                    titlebar.FixBottomPadding = false;
+                    if (TitlePosition == TitleBarPositions.Top)
+                    {
+                        titlebar.FixTopPadding = true;
+                        titlebar.FixBottomPadding = false;
+                    }
+                    else
+                    {
+                        titlebar.FixTopPadding = false;
+                        titlebar.FixBottomPadding = true;
+                    }
                 }
                 else
                 {
                     titlebar.FixTopPadding = false;
-                    titlebar.FixBottomPadding = true;
+                    titlebar.FixBottomPadding = false;
                 }
+
+                var row = TitlePosition == TitleBarPositions.Top ? 0 : 2;
+                titlebar.SetValue(Grid.RowProperty, row);
             }
-            else
+
+            if (shadow != null)
             {
-                titlebar.FixTopPadding = false;
-                titlebar.FixBottomPadding = false;
+                shadow.IsVisible = TitlePosition == TitleBarPositions.Top && HasShadow;
             }
 
-            var row = TitlePosition == TitleBarPositions.Top ? 0 : 2;
-            titlebar.SetValue(Grid.RowProperty, row);
-
-            shadow.IsVisible = TitlePosition == TitleBarPositions.Top;
-            shadow2.IsVisible = TitlePosition == TitleBarPositions.Bottom;
+            if (shadow2 != null)
+            {
+                shadow2.IsVisible = TitlePosition == TitleBarPositions.Bottom && HasShadow;
+            }
         }
     }
 }

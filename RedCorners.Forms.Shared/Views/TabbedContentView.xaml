@@ -44,10 +44,10 @@
                         VerticalTextAlignment="Center"
                         HorizontalTextAlignment="Center"
                         ImageMargin="8" />
-                    <rf:HorizontalShadow x:Name="shadow" />
-                    <rf:HorizontalShadow2 x:Name="shadow2" />
-                    <rf:VerticalShadow x:Name="shadowv" />
-                    <rf:VerticalShadow2 x:Name="shadowv2" />
+                    <rf:HorizontalShadow x:Name="shadow" IsVisible="False" />
+                    <rf:HorizontalShadow2 x:Name="shadow2" IsVisible="False" />
+                    <rf:VerticalShadow x:Name="shadowv" IsVisible="False" />
+                    <rf:VerticalShadow2 x:Name="shadowv2" IsVisible="False" />
                 </Grid>
             </rf:ContentView2>
 

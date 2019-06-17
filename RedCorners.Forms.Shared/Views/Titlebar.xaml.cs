@@ -17,7 +17,7 @@ namespace RedCorners.Forms
         public TitleBar()
         {
             InitializeComponent();
-            UpdateBackButtonImage();
+            UpdateButton();
             backImage.InputTransparent = true;
 
             var tap = new TapGestureRecognizer();
@@ -63,6 +63,12 @@ namespace RedCorners.Forms
         {
             get => (bool?)GetValue(IsBackButtonVisibleProperty);
             set => SetValue(IsBackButtonVisibleProperty, value);
+        }
+
+        public bool HasButton
+        {
+            get => (bool)GetValue(HasButtonProperty);
+            set => SetValue(HasButtonProperty, value);
         }
 
         public ImageSource CustomBackImage
@@ -171,7 +177,18 @@ namespace RedCorners.Forms
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
-                (bindable as TitleBar)?.UpdateBackButtonImage();
+                (bindable as TitleBar)?.UpdateButton();
+            });
+
+        public static readonly BindableProperty HasButtonProperty = BindableProperty.Create(
+            propertyName: nameof(HasButton),
+            returnType: typeof(bool),
+            declaringType: typeof(TitleBar),
+            defaultValue: true,
+            defaultBindingMode: BindingMode.TwoWay,
+            propertyChanged: (bindable, oldVal, newVal) =>
+            {
+                (bindable as TitleBar)?.UpdateButton();
             });
 
         public static readonly BindableProperty CustomBackImageProperty = BindableProperty.Create(
@@ -182,7 +199,7 @@ namespace RedCorners.Forms
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
-                (bindable as TitleBar)?.UpdateBackButtonImage();
+                (bindable as TitleBar)?.UpdateButton();
             });
 
         public static readonly BindableProperty BackCommandProperty = BindableProperty.Create(
@@ -275,8 +292,10 @@ namespace RedCorners.Forms
                     titlebar.contentContainer.FixBottomPadding = (bool)newVal;
             });
 
-        void UpdateBackButtonImage()
+        void UpdateButton()
         {
+            controlButtons.IsVisible = HasButton;
+
             if (CustomBackImage != null)
             {
                 backImage.Source = CustomBackImage;

@@ -212,6 +212,12 @@ namespace RedCorners.Forms
             set => SetValue(FixTabBarPaddingProperty, value);
         }
 
+        public bool HasShadow
+        {
+            get => (bool)GetValue(HasShadowProperty);
+            set => SetValue(HasShadowProperty, value);
+        }
+
         public static readonly BindableProperty FixTabBarPaddingProperty = BindableProperty.Create(
             propertyName: nameof(FixTabBarPadding),
             returnType: typeof(bool),
@@ -400,6 +406,19 @@ namespace RedCorners.Forms
                     page.tabbarContainer.IsVisible = (bool)newVal;
             });
 
+        public static readonly BindableProperty HasShadowProperty =
+            BindableProperty.Create(
+            nameof(HasShadow),
+            typeof(bool),
+            typeof(TabbedContentView),
+            true,
+            BindingMode.TwoWay,
+            propertyChanged: (bindable, oldVal, newVal) =>
+            {
+                if (bindable is TabbedContentView page)
+                    page.UpdateTabBarPosition();
+            });
+
         public static readonly BindableProperty TabStyleProperty =
             BindableProperty.Create(
                 nameof(TabStyle),
@@ -573,6 +592,8 @@ namespace RedCorners.Forms
 
         void UpdateTabBarSizeRequest()
         {
+            if (tabbar == null) return;
+
             if (TabBarPosition == TabBarPositions.Left || TabBarPosition == TabBarPositions.Right)
             {
                 tabbar.HeightRequest = -1;
@@ -587,6 +608,13 @@ namespace RedCorners.Forms
 
         void UpdateTabBarPosition()
         {
+            if (tabbar == null) return;
+
+            shadowv.IsVisible = HasShadow && TabBarPosition == TabBarPositions.Right;
+            shadowv2.IsVisible = HasShadow && TabBarPosition == TabBarPositions.Left;
+            shadow.IsVisible = HasShadow && TabBarPosition == TabBarPositions.Bottom;
+            shadow2.IsVisible = HasShadow && TabBarPosition == TabBarPositions.Top;
+
             UpdateTabBarSizeRequest();
             if (TabBarPosition == TabBarPositions.Left || TabBarPosition == TabBarPositions.Right)
             {
@@ -598,10 +626,6 @@ namespace RedCorners.Forms
                 tabbarContainer.SetValue(Grid.ColumnProperty, col);
                 tabbarContainer.HorizontalOptions = LayoutOptions.FillAndExpand;
                 tabbarContainer.VerticalOptions = LayoutOptions.Fill;
-                shadow.IsVisible = false;
-                shadow2.IsVisible = false;
-                shadowv.IsVisible = TabBarPosition == TabBarPositions.Right;
-                shadowv2.IsVisible = TabBarPosition == TabBarPositions.Left;
                 tabbar.Orientation = StackOrientation.Vertical;
             }
             else
@@ -629,14 +653,11 @@ namespace RedCorners.Forms
                     tabbar.FixBottomPadding = false;
                 }
 
-                shadow.IsVisible = TabBarPosition == TabBarPositions.Bottom;
-                shadow2.IsVisible = TabBarPosition == TabBarPositions.Top;
-                shadowv.IsVisible = false;
-                shadowv2.IsVisible = false;
                 tabbarContainer.HorizontalOptions = LayoutOptions.Fill;
                 tabbarContainer.VerticalOptions = LayoutOptions.FillAndExpand;
                 tabbar.Orientation = StackOrientation.Horizontal;
             }
+
         }
 
         private void TabBar_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
