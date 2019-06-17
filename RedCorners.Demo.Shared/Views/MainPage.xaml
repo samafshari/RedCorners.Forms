@@ -60,7 +60,7 @@
 
                         <Button Text="Show Modal From Page">
                             <Button.Command>
-                                <rf:PageCommand IsModal="True" ViewModel="{x:Reference vmCounter}">
+                                <rf:PageCommand IsModal="True" ViewModel="{StaticResource vmCounter}">
                                     <rf:PageCommand.Page>
                                         <views:CounterPage />
                                     </rf:PageCommand.Page>
@@ -75,7 +75,16 @@
 
                         <Button Text="Show Modal From Type">
                             <Button.Command>
-                                <rf:PageCommand IsModal="True" PageType="{Type views:CounterPage}" />
+                                <rf:PageCommand 
+                                    IsModal="True" 
+                                    PageType="{Type views:CounterPage}"
+                                    ViewModelType="{Type vm:CounterViewModel}">
+                                    <rf:PageCommand.ViewModelConfiguration>
+                                        <ResourceDictionary>
+                                            <x:Int32 x:Key="Count">1234</x:Int32>
+                                        </ResourceDictionary>
+                                    </rf:PageCommand.ViewModelConfiguration>
+                                </rf:PageCommand>
                             </Button.Command>
                         </Button>
 

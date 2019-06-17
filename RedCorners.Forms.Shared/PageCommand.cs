@@ -29,11 +29,11 @@ namespace RedCorners.Forms
             if (ViewModelType != null)
                 ViewModel = Activator.CreateInstance(ViewModelType);
 
-            if (ViewModel != null)
-                Page.BindingContext = ViewModel;
-
             if (ViewModel != null && ViewModelConfiguration != null)
                 InjectExtensions.Inject((IDictionary<string, object>)ViewModelConfiguration, ViewModel);
+
+            if (ViewModel != null)
+                Page.BindingContext = ViewModel;
 
             if (IsModal) Signals.ShowModalPage.Signal(Page);
             else Signals.ShowPage.Signal(Page);
