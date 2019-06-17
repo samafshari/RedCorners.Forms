@@ -10,12 +10,6 @@
                 <Setter Property="BackgroundColor" Value="#99000000" />
                 <Setter Property="TextColor" Value="White" />
             </Style>
-            <Style TargetType="rf:TitledContentView">
-                <Setter Property="HasShadow" Value="False" />
-            </Style>
-            <Style TargetType="rf:TabbedContentView">
-                <Setter Property="HasShadow" Value="False" />
-            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </rf:Application2>

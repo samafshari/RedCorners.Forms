@@ -412,11 +412,11 @@ namespace RedCorners.Forms
             typeof(bool),
             typeof(TabbedContentView),
             true,
-            BindingMode.TwoWay,
+            BindingMode.OneWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
                 if (bindable is TabbedContentView page)
-                    page.UpdateTabBarPosition();
+                    page.UpdateShadow();
             });
 
         public static readonly BindableProperty TabStyleProperty =
@@ -606,14 +606,19 @@ namespace RedCorners.Forms
             }
         }
 
-        void UpdateTabBarPosition()
+        void UpdateShadow()
         {
-            if (tabbar == null) return;
+            if (shadow == null) return;
 
             shadowv.IsVisible = HasShadow && TabBarPosition == TabBarPositions.Right;
             shadowv2.IsVisible = HasShadow && TabBarPosition == TabBarPositions.Left;
             shadow.IsVisible = HasShadow && TabBarPosition == TabBarPositions.Bottom;
             shadow2.IsVisible = HasShadow && TabBarPosition == TabBarPositions.Top;
+        }
+
+        void UpdateTabBarPosition()
+        {
+            if (tabbar == null) return;
 
             UpdateTabBarSizeRequest();
             if (TabBarPosition == TabBarPositions.Left || TabBarPosition == TabBarPositions.Right)
@@ -658,6 +663,7 @@ namespace RedCorners.Forms
                 tabbar.Orientation = StackOrientation.Horizontal;
             }
 
+            UpdateShadow();
         }
 
         private void TabBar_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
