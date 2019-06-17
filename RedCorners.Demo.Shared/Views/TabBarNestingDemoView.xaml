@@ -16,7 +16,15 @@
     HasShadow="False"
     x:Class="RedCorners.Demo.Views.TabBarNestingDemoView">
     
-    <rf:TitledContentView FixTitlePadding="False" HasShadow="False" HasButton="False" Icon="icon_profile_w" Title="Profile" BackgroundColor="White">
+    <rf:TitledContentView 
+        FixTitlePadding="False" 
+        HasShadow="False" 
+        HasButton="False" 
+        Icon="icon_profile_w" 
+        Title="Profile" 
+        BackgroundColor="White"
+        TitleColor="Black"
+        TitleTextColor="White">
         <Grid>
             <StackLayout Spacing="10" HorizontalOptions="Center" VerticalOptions="Center">
                 <Label Text="Welcome Back" TextColor="Black" FontSize="Medium" HorizontalTextAlignment="Center" HorizontalOptions="Center" />

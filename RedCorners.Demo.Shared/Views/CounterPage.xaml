@@ -7,9 +7,6 @@
     xmlns:vm="clr-namespace:RedCorners.Demo.ViewModels"
     x:Class="RedCorners.Demo.Views.CounterPage"
     UIStatusBarHidden="True">
-    <rf:ContentPage2.BindingContext>
-        <vm:CounterViewModel />
-    </rf:ContentPage2.BindingContext>
     <rf:TitledContentView
         Title="Counter Page"
         IsBackButtonVisible="{Binding IsModal}"

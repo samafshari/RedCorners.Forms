@@ -26,10 +26,22 @@ namespace RedCorners.Forms
             set => SetValue(BodyProperty, value);
         }
 
-        public View Buttons
+        public View ToolBar
         {
-            get => (View)GetValue(ButtonsProperty);
-            set => SetValue(ButtonsProperty, value);
+            get => (View)GetValue(ToolBarProperty);
+            set => SetValue(ToolBarProperty, value);
+        }
+
+        public double TitleHeightRequest
+        {
+            get => (double)GetValue(TitleHeightRequestProperty);
+            set => SetValue(TitleHeightRequestProperty, value);
+        }
+
+        public Thickness TitlePadding
+        {
+            get => (Thickness)GetValue(TitlePaddingProperty);
+            set => SetValue(TitlePaddingProperty, value);
         }
 
         public View Overlay
@@ -98,19 +110,78 @@ namespace RedCorners.Forms
             set => SetValue(HasShadowProperty, value);
         }
 
+        [TypeConverter(typeof(FontSizeConverter))]
+        public double TitleFontSize
+        {
+            get => (double)GetValue(TitleFontSizeProperty);
+            set => SetValue(TitleFontSizeProperty, value);
+        }
+
+        public string TitleFontFamily
+        {
+            get => (string)GetValue(TitleFontFamilyProperty);
+            set => SetValue(TitleFontFamilyProperty, value);
+        }
+
+        public FontAttributes TitleFontAttributes
+        {
+            get => (FontAttributes)GetValue(TitleFontAttributesProperty);
+            set => SetValue(TitleFontAttributesProperty, value);
+        }
+
+        public static readonly BindableProperty TitleHeightRequestProperty = BindableProperty.Create(
+            propertyName: nameof(TitleHeightRequest),
+            returnType: typeof(double),
+            declaringType: typeof(TitledContentView),
+            defaultValue: 60.0,
+            defaultBindingMode: BindingMode.TwoWay);
+
+        public static readonly BindableProperty TitlePaddingProperty = BindableProperty.Create(
+            propertyName: nameof(TitlePadding),
+            returnType: typeof(Thickness),
+            declaringType: typeof(TitledContentView),
+            defaultValue: default(Thickness),
+            defaultBindingMode: BindingMode.TwoWay);
+
+        public static readonly BindableProperty TitleFontSizeProperty = BindableProperty.Create(
+            propertyName: nameof(TitleFontSize),
+            returnType: typeof(double),
+            declaringType: typeof(TitledContentView),
+            defaultValue: 16.0,
+            defaultBindingMode: BindingMode.TwoWay,
+            propertyChanged: (bindable, oldVal, newVal) =>
+            {
+
+            });
+
+        public static readonly BindableProperty TitleFontFamilyProperty = BindableProperty.Create(
+            propertyName: nameof(TitleFontFamily),
+            returnType: typeof(string),
+            declaringType: typeof(TitledContentView),
+            defaultValue: null,
+            defaultBindingMode: BindingMode.TwoWay,
+            propertyChanged: (bindable, oldVal, newVal) =>
+            {
+
+            });
+
+        public static readonly BindableProperty TitleFontAttributesProperty = BindableProperty.Create(
+            propertyName: nameof(TitleFontAttributes),
+            returnType: typeof(FontAttributes),
+            declaringType: typeof(TitledContentView),
+            defaultValue: FontAttributes.Bold,
+            defaultBindingMode: BindingMode.TwoWay,
+            propertyChanged: (bindable, oldVal, newVal) =>
+            {
+
+            });
+
         public static readonly BindableProperty HasButtonProperty = BindableProperty.Create(
             propertyName: nameof(HasButton),
             returnType: typeof(bool),
             declaringType: typeof(TitledContentView),
             defaultValue: true,
-            defaultBindingMode: BindingMode.TwoWay,
-            propertyChanged: (bindable, oldVal, newVal) =>
-            {
-                if (bindable is TitledContentView page)
-                {
-                    page.titlebar.HasButton = (bool)newVal;
-                }
-            });
+            defaultBindingMode: BindingMode.TwoWay);
 
         public static readonly BindableProperty HasShadowProperty =
             BindableProperty.Create(
@@ -170,17 +241,12 @@ namespace RedCorners.Forms
                 }
             });
 
-        public static readonly BindableProperty ButtonsProperty = BindableProperty.Create(
-            propertyName: nameof(Buttons),
+        public static readonly BindableProperty ToolBarProperty = BindableProperty.Create(
+            propertyName: nameof(ToolBar),
             returnType: typeof(View),
             declaringType: typeof(TitledContentView),
             defaultValue: null,
-            defaultBindingMode: BindingMode.TwoWay,
-            propertyChanged: (bindable, oldVal, newVal) =>
-            {
-                if (bindable is TitledContentView page)
-                    page.titlebar.ToolBar = (View)newVal;
-            });
+            defaultBindingMode: BindingMode.TwoWay);
 
         public static readonly BindableProperty OverlayProperty = BindableProperty.Create(
             propertyName: nameof(Overlay),
@@ -201,36 +267,21 @@ namespace RedCorners.Forms
             returnType: typeof(bool?),
             declaringType: typeof(TitledContentView),
             defaultValue: default(bool?),
-            defaultBindingMode: BindingMode.TwoWay,
-            propertyChanged: (bindable, oldVal, newVal) =>
-            {
-                if (bindable is TitledContentView page)
-                    page.titlebar.IsBackButtonVisible = (bool?)newVal;
-            });
+            defaultBindingMode: BindingMode.TwoWay);
 
         public static readonly BindableProperty BackCommandProperty = BindableProperty.Create(
             propertyName: nameof(BackCommand),
             returnType: typeof(ICommand),
             declaringType: typeof(TitledContentView),
             defaultValue: null,
-            defaultBindingMode: BindingMode.TwoWay,
-            propertyChanged: (bindable, oldVal, newVal) =>
-            {
-                if (bindable is TitledContentView page)
-                    page.titlebar.BackCommand = (ICommand)newVal;
-            });
+            defaultBindingMode: BindingMode.TwoWay);
 
         public static readonly BindableProperty BackCommandParameterProperty = BindableProperty.Create(
             propertyName: nameof(BackCommandParameter),
             returnType: typeof(object),
             declaringType: typeof(TitledContentView),
             defaultValue: null,
-            defaultBindingMode: BindingMode.TwoWay,
-            propertyChanged: (bindable, oldVal, newVal) =>
-            {
-                if (bindable is TitledContentView page)
-                    page.titlebar.BackCommandParameter = newVal;
-            });
+            defaultBindingMode: BindingMode.TwoWay);
 
         public static readonly BindableProperty TitleBackgroundProperty = BindableProperty.Create(
             propertyName: nameof(TitleBackground),
@@ -251,31 +302,14 @@ namespace RedCorners.Forms
             returnType: typeof(Color),
             declaringType: typeof(TitledContentView),
             defaultValue: Color.FromHex("#000000"),
-            defaultBindingMode: BindingMode.TwoWay,
-            propertyChanged: (bindable, oldVal, newVal) =>
-            {
-                if (bindable is TitledContentView page)
-                    page.titlebar.BackgroundColor = (Color)newVal;
-            });
+            defaultBindingMode: BindingMode.TwoWay);
 
         public static readonly BindableProperty TitleTextColorProperty = BindableProperty.Create(
             propertyName: nameof(TitleTextColor),
             returnType: typeof(Color),
             declaringType: typeof(TitledContentView),
             defaultValue: Color.White,
-            defaultBindingMode: BindingMode.TwoWay,
-            propertyChanged: (bindable, oldVal, newVal) =>
-            {
-                if (bindable is TitledContentView page)
-                    page.titlebar.TextColor = (Color)newVal;
-            });
-
-        protected override void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            base.OnPropertyChanged(propertyName);
-            if (propertyName == nameof(Title))
-                titlebar.Title = Title;
-        }
+            defaultBindingMode: BindingMode.TwoWay);
 
         public TitledContentView()
         {

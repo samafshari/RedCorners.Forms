@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>RedCorners.Forms</id>
-    <version>4.9.11</version>
+    <version>4.9.15</version>
     <title>RedCorners.Forms</title>
     <authors>Saeed Afshari and NeatCapital OÜ</authors>
     <owners>NeatCapital OÜ</owners>
@@ -17,7 +17,7 @@
     <dependencies>
       <group targetFramework="netstandard2.0">
           <dependency id="Xamarin.Forms" version="4.0.0.425677" />
-          <dependency id="RedCorners" version="4.1.2" />
+          <dependency id="RedCorners" version="4.1.4" />
       </group>
 	  
 	  <group targetFramework="MonoAndroid80">

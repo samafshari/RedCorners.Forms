@@ -13,20 +13,20 @@
     VerticalOptions="StartAndExpand">
     <rf:ContentView2.Content>
         <Grid 
+            x:Name="titleBackground"
             HorizontalOptions="Fill" 
-            VerticalOptions="FillAndExpand" 
-            BackgroundColor="{Binding BackgroundColor, Source={x:Reference me}, Mode=OneWay}">
+            VerticalOptions="FillAndExpand">
             <rf:ContentView2 
                 x:Name="body" 
-                Content="{Binding Background, Source={x:Reference me}}" />
+                Content="{Binding Background, Source={x:Reference me}, Mode=TwoWay}" />
             <rf:ContentView2 
                 FixTopPadding="True" 
                 HorizontalOptions="Fill" 
                 VerticalOptions="FillAndExpand" 
                 x:Name="contentContainer">
                 <Grid x:Name="content" 
-                      HeightRequest="{Binding ContentHeightRequest, Source={x:Reference me}, Mode=OneWay}" 
-                      Margin="{Binding ContentMargin, Source={x:Reference me}, Mode=OneWay}" 
+                      HeightRequest="{Binding ContentHeightRequest, Source={x:Reference me}, Mode=TwoWay}" 
+                      Margin="{Binding ContentMargin, Source={x:Reference me}, Mode=TwoWay}" 
                       HorizontalOptions="Fill" VerticalOptions="Fill"
                       Padding="5,0">
                     <Grid.ColumnDefinitions>
@@ -53,10 +53,10 @@
 
                     <Label 
                         x:Name="lblTitle"
-			            Text="{Binding Title, Source={x:Reference me}, Mode=OneWay}" 
-			            TextColor="{Binding TextColor, Source={x:Reference me}, Mode=OneWay}" 
-			            FontAttributes="{Binding FontAttributes, Source={x:Reference me}, Mode=OneWay}" 
-			            FontSize="{Binding FontSize, Source={x:Reference me}, Mode=OneWay}"
+			            Text="{Binding Title, Source={x:Reference me}, Mode=TwoWay}" 
+			            TextColor="{Binding TextColor, Source={x:Reference me}, Mode=TwoWay}" 
+			            FontAttributes="{Binding FontAttributes, Source={x:Reference me}, Mode=TwoWay}" 
+			            FontSize="{Binding FontSize, Source={x:Reference me}, Mode=TwoWay}"
 			            VerticalOptions="Center" 
 			            HorizontalOptions="Fill"
                         HorizontalTextAlignment="Start"

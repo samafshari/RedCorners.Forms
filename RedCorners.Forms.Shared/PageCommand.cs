@@ -25,6 +25,16 @@ namespace RedCorners.Forms
                 if (Page == null)
                     throw new Exception("PageType did not construct a Page!");
             }
+
+            if (ViewModelType != null)
+                ViewModel = Activator.CreateInstance(ViewModelType);
+
+            if (ViewModel != null)
+                Page.BindingContext = ViewModel;
+
+            if (ViewModel != null && ViewModelConfiguration != null)
+                InjectExtensions.Inject((IDictionary<string, object>)ViewModelConfiguration, ViewModel);
+
             if (IsModal) Signals.ShowModalPage.Signal(Page);
             else Signals.ShowPage.Signal(Page);
         }
@@ -79,5 +89,41 @@ namespace RedCorners.Forms
             get => (bool)GetValue(IsModalProperty);
             set => SetValue(IsModalProperty, value);
         }
+
+        public object ViewModel
+        {
+            get => (object)GetValue(ViewModelProperty);
+            set => SetValue(ViewModelProperty, value);
+        }
+
+        public static BindableProperty ViewModelProperty = BindableProperty.Create(
+            nameof(ViewModel),
+            typeof(object),
+            typeof(PageCommand),
+            defaultBindingMode: BindingMode.TwoWay);
+
+        public Type ViewModelType
+        {
+            get => (Type)GetValue(ViewModelTypeProperty);
+            set => SetValue(ViewModelTypeProperty, value);
+        }
+
+        public static BindableProperty ViewModelTypeProperty = BindableProperty.Create(
+            nameof(ViewModelType),
+            typeof(Type),
+            typeof(PageCommand),
+            defaultBindingMode: BindingMode.TwoWay);
+
+        public ResourceDictionary ViewModelConfiguration
+        {
+            get => (ResourceDictionary)GetValue(ViewModelConfigurationProperty);
+            set => SetValue(ViewModelConfigurationProperty, value);
+        }
+
+        public static BindableProperty ViewModelConfigurationProperty = BindableProperty.Create(
+            nameof(ViewModelConfiguration),
+            typeof(ResourceDictionary),
+            typeof(PageCommand),
+            defaultBindingMode: BindingMode.TwoWay);
     }
 }

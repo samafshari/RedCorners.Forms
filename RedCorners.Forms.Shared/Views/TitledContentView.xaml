@@ -21,6 +21,21 @@
             <rf:TitleBar
                 x:Name="titlebar"
                 Grid.Row="0"
+                BindingContext="{x:Reference me}"
+                Title="{Binding Title}"
+                BackgroundColor="{Binding TitleColor}"
+                TextColor="{Binding TitleTextColor}"
+                Background="{Binding TitleBackground}"
+                HasButton="{Binding HasButton}"
+                ToolBar="{Binding ToolBar}"
+                IsBackButtonVisible="{Binding IsBackButtonVisible}"
+                BackCommand="{Binding BackCommand}"
+                BackCommandParameter="{Binding BackCommandParameter}"
+                FontSize="{Binding TitleFontSize}"
+                FontFamily="{Binding TitleFontFamily}"
+                FontAttributes="{Binding TitleFontAttributes}"
+                ContentHeightRequest="{Binding TitleHeightRequest}"
+                ContentMargin="{Binding TitlePadding}"
                 />
 
             <rf:ContentView2

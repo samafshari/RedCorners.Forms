@@ -374,7 +374,7 @@ namespace RedCorners.Forms
                     ImageWidthRequest = ImageWidthRequest,
                     Opacity = SelectedIndex == c ? item.SelectedOpacity : item.Opacity
                 };
-
+                
                 content.Children.Add(img);
                 if (Orientation == StackOrientation.Horizontal)
                 {

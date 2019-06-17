@@ -8,7 +8,7 @@ using Xamarin.Forms;
 namespace RedCorners.Forms
 {
     [ContentProperty("Content")]
-    public class DelayedView : ContentView2
+    internal class DelayedView : ContentView2
     {
         public bool IsLoading { get; protected set; }
 
