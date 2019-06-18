@@ -30,7 +30,7 @@ namespace RedCorners.Forms
                 ViewModel = Activator.CreateInstance(ViewModelType);
 
             if (ViewModel != null && ViewModelConfiguration != null)
-                InjectExtensions.Inject((IDictionary<string, object>)ViewModelConfiguration, ViewModel);
+                InjectExtensions.InjectDictionary(ViewModelConfiguration, ViewModel);
 
             if (ViewModel != null)
                 Page.BindingContext = ViewModel;
