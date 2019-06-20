@@ -32,6 +32,7 @@ namespace RedCorners.Forms.Renderers
                 firstTime = false;
                 thisButton.TouchDown += ThisButton_TouchDown;
                 thisButton.TouchUpOutside += ThisButton_TouchUpOutside;
+                thisButton.TouchCancel += ThisButton_TouchCancel;
                 thisButton.TouchUpInside += ThisButton_TouchUpInside;
             }
 
@@ -54,6 +55,11 @@ namespace RedCorners.Forms.Renderers
             {
                 Console.WriteLine($"Custom button null err: {ex}");
             }
+        }
+
+        private void ThisButton_TouchCancel(object sender, EventArgs e)
+        {
+            (Element as Button2).OnReleased();
         }
 
         private void ThisButton_TouchUpInside(object sender, EventArgs e)
