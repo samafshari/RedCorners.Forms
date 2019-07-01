@@ -3,6 +3,7 @@ using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using RedCorners.Forms;
+using System.Threading.Tasks;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace RedCorners.Demo
@@ -21,6 +22,11 @@ namespace RedCorners.Demo
             });
 
             LooseMessages.Ping.Signal("Hello, World!");
+
+            SplashTasks.Add(async () =>
+            {
+                await Task.Delay(5000);
+            });
         }
 
         public override Page GetFirstPage() => 

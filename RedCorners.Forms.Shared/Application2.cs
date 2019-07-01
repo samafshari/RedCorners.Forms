@@ -5,6 +5,7 @@ using RedCorners.Forms;
 using RedCorners.Forms.Systems;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using System.Linq;
 
 namespace RedCorners.Forms
 {
@@ -13,6 +14,8 @@ namespace RedCorners.Forms
 
     public abstract class Application2 : Application
     {
+        protected readonly List<Func<Task>> SplashTasks = new List<Func<Task>>();
+
         public static Application2 Instance { get; private set; }
 
         public virtual bool IsResumed { get; set; }
@@ -22,6 +25,9 @@ namespace RedCorners.Forms
             Instance = this;
             HookSignals();
             InitializeSystems();
+#if __IOS__
+            SplashTasks.Add(GetPageMarginAsync);
+#endif
             ShowSplashPage();
         }
 
@@ -58,22 +64,24 @@ namespace RedCorners.Forms
             });
         }
 
-        public virtual
-#if __IOS__
-            async
-#endif
-            void ShowSplashPage()
+        public virtual async void ShowSplashPage()
         {
-#if __IOS__
-            MainPage = GetSplashPage();
+            if (SplashTasks.Count > 0)
+            {
+                MainPage = GetSplashPage();
+                await Task.WhenAll(SplashTasks.Select(x => x()));
+            }
+
+            ShowFirstPage();
+        }
+
+        async Task GetPageMarginAsync()
+        {
             while (!NotchSystem.Instance.HasWindowInformation)
             {
                 NotchSystem.Instance.GetPageMargin();
                 await Task.Delay(50);
             }
-#endif
-
-            ShowFirstPage();
         }
 
         public virtual Page GetSplashPage() => new ContentPage

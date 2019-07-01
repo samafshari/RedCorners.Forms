@@ -46,7 +46,10 @@
                 FixBottomPadding="False"
                 FixTopPadding="False"
                 />
-            
+
+            <rf:HorizontalShadow Grid.Row="1" x:Name="shadow" />
+            <rf:HorizontalShadow2 Grid.Row="1" x:Name="shadow2" />
+
             <rf:ContentView2
                 x:Name="overlay"
                 HorizontalOptions="Fill"
@@ -56,9 +59,6 @@
                 Grid.Row="0"
                 Grid.RowSpan="3" 
                 />
-
-            <rf:HorizontalShadow Grid.Row="1" x:Name="shadow" />
-            <rf:HorizontalShadow2 Grid.Row="1" x:Name="shadow2" />
         </Grid>
     </rf:ContentView2.Content>
 </rf:ContentView2>
