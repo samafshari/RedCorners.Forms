@@ -251,7 +251,19 @@
                                 <Label Text="Is Profile Visible" FontSize="Medium" TextColor="White" VerticalOptions="Center" />
                                 <Switch IsToggled="{Binding IsProfileVisible, Mode=TwoWay}" HorizontalOptions="End" />
                             </Grid>
-                            <Button Text="Home" Command="{Binding ShowHomeCommand}" />
+                            <Button Text="Home">
+                                <Button.Command>
+                                    <rf:ChainCommand>
+                                        <rf:ProxyCommand Command="{Binding ShowHomeCommand}" />
+                                        <rf:ProxyCommand Command="{Binding HideSideBarCommand}" />
+                                    </rf:ChainCommand>
+                                </Button.Command>
+                            </Button>
+                            <Button Text="ProxyCommand">
+                                <Button.Command>
+                                    <rf:ProxyCommand Command="{Binding ShowHomeCommand}" IsEnabled="{Binding IsTabBarVisible}" />
+                                </Button.Command>
+                            </Button>
                             <Button Text="Settings" Command="{Binding ShowSettingsCommand}" />
                         </StackLayout>
                     </ScrollView>

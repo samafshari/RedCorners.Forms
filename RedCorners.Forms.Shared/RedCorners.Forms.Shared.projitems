@@ -15,6 +15,7 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Application2.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)BindableModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ChainCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Colors.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\HasValueConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\FormsExtensions.cs" />
@@ -23,6 +24,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\Signals.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PageCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PopCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ProxyCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Systems\LogSystem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Systems\MessagingSystem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Systems\NotchSystem.cs" />

@@ -39,7 +39,7 @@ namespace RedCorners.Forms
             else Signals.ShowPage.Signal(Page);
         }
 
-        public static BindableProperty PageProperty = BindableProperty.Create(
+        public static readonly BindableProperty PageProperty = BindableProperty.Create(
             nameof(Page),
             typeof(Page),
             typeof(PageCommand),
@@ -58,7 +58,7 @@ namespace RedCorners.Forms
             set => SetValue(PageProperty, value);
         }
 
-        public static BindableProperty PageTypeProperty = BindableProperty.Create(
+        public static readonly BindableProperty PageTypeProperty = BindableProperty.Create(
             nameof(PageType),
             typeof(Type),
             typeof(PageCommand),
@@ -77,7 +77,7 @@ namespace RedCorners.Forms
             set => SetValue(PageTypeProperty, value);
         }
 
-        public static BindableProperty IsModalProperty = BindableProperty.Create(
+        public static readonly BindableProperty IsModalProperty = BindableProperty.Create(
             nameof(IsModal),
             typeof(bool),
             typeof(PageCommand),
@@ -96,7 +96,7 @@ namespace RedCorners.Forms
             set => SetValue(ViewModelProperty, value);
         }
 
-        public static BindableProperty ViewModelProperty = BindableProperty.Create(
+        public static readonly BindableProperty ViewModelProperty = BindableProperty.Create(
             nameof(ViewModel),
             typeof(object),
             typeof(PageCommand),
@@ -108,7 +108,7 @@ namespace RedCorners.Forms
             set => SetValue(ViewModelTypeProperty, value);
         }
 
-        public static BindableProperty ViewModelTypeProperty = BindableProperty.Create(
+        public static readonly BindableProperty ViewModelTypeProperty = BindableProperty.Create(
             nameof(ViewModelType),
             typeof(Type),
             typeof(PageCommand),
@@ -120,7 +120,7 @@ namespace RedCorners.Forms
             set => SetValue(ViewModelConfigurationProperty, value);
         }
 
-        public static BindableProperty ViewModelConfigurationProperty = BindableProperty.Create(
+        public static readonly BindableProperty ViewModelConfigurationProperty = BindableProperty.Create(
             nameof(ViewModelConfiguration),
             typeof(ResourceDictionary),
             typeof(PageCommand),
