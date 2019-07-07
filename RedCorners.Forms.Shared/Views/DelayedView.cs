@@ -31,16 +31,16 @@ namespace RedCorners.Forms
             set => SetValue(ContentProperty, value);
         }
 
-        public ICommand Command
+        public Func<object, Task> Job
         {
-            get => (ICommand)GetValue(CommandProperty);
-            set => SetValue(CommandProperty, value);
+            get => (Func<object, Task>)GetValue(JobProperty);
+            set => SetValue(JobProperty, value);
         }
 
-        public object CommandParameter
+        public object JobParameter
         {
-            get => GetValue(CommandParameterProperty);
-            set => SetValue(CommandParameterProperty, value);
+            get => GetValue(JobParameterProperty);
+            set => SetValue(JobParameterProperty, value);
         }
 
         public static readonly BindableProperty LoadingViewProperty = BindableProperty.Create(
@@ -74,15 +74,15 @@ namespace RedCorners.Forms
                     view.UpdateContent();
             });
 
-        public static readonly BindableProperty CommandProperty = BindableProperty.Create(
-            propertyName: nameof(Command),
-            returnType: typeof(ICommand),
+        public static readonly BindableProperty JobProperty = BindableProperty.Create(
+            propertyName: nameof(Job),
+            returnType: typeof(Func<object, Task>),
             declaringType: typeof(DelayedView),
             defaultValue: null,
             defaultBindingMode: BindingMode.TwoWay);
 
-        public static readonly BindableProperty CommandParameterProperty = BindableProperty.Create(
-           propertyName: nameof(CommandParameter),
+        public static readonly BindableProperty JobParameterProperty = BindableProperty.Create(
+           propertyName: nameof(JobParameter),
            returnType: typeof(object),
            declaringType: typeof(DelayedView),
            defaultValue: null,
@@ -103,9 +103,13 @@ namespace RedCorners.Forms
         protected override void OnParentSet()
         {
             base.OnParentSet();
-            if (isLoaded) return;
-            if (Parent != null)
-                Work();
+            TryWork();
+        }
+
+        protected override void OnSizeAllocated(double width, double height)
+        {
+            base.OnSizeAllocated(width, height);
+            TryWork();
         }
 
         void UpdateLoadingView()
@@ -122,15 +126,25 @@ namespace RedCorners.Forms
             }
         }
 
+        void TryWork()
+        {
+            if (isLoaded) return;
+            if (Parent != null && Width > 0)
+                Work();
+        }
+
         async void Work()
         {
             var delay = Task.Delay(Delay);
-            var job = Task.Run(() =>
+            if (Job != null)
             {
-                if (Command?.CanExecute(CommandParameter) ?? false)
-                    Command?.Execute(CommandParameter);
-            });
-            await Task.WhenAll(delay, job);
+                var job = Job(JobParameter);
+                await Task.WhenAll(delay, job);
+            }
+            else
+            {
+                await delay;
+            }
 
             isLoaded = true;
             UpdateContent();

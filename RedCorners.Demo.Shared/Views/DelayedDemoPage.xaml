@@ -9,7 +9,7 @@
     mc:Ignorable="d"
     x:Class="RedCorners.Demo.Views.DelayedDemoPage">
     <ContentPage.BindingContext>
-        <vm:DelayedViewModel />
+        <vm:DelayedViewModel x:Name="viewModel" />
     </ContentPage.BindingContext>
 
     <rf:TitledContentView 
@@ -25,7 +25,7 @@
 
         <Grid>
             <!-- Define Page Contents Here -->
-            <rf:DelayedView Command="{Binding DelayCommand}">
+            <rf:DelayedView Job="{Binding DelayCommand}">
                 <Label Text="Hello, DelayedDemoPage!" HorizontalOptions="Center" VerticalOptions="Center" />
             </rf:DelayedView>
         </Grid>

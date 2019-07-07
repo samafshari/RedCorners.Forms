@@ -5,6 +5,7 @@ using RedCorners.Forms;
 using RedCorners.Models;
 using System.Collections.Generic;
 using Xamarin.Forms;
+using System.Threading.Tasks;
 
 namespace RedCorners.Demo.ViewModels
 {
@@ -15,9 +16,7 @@ namespace RedCorners.Demo.ViewModels
             Status = TaskStatuses.Success;
         }
 
-        public Command DelayCommand => new Command(() =>
-        {
-            System.Threading.Thread.Sleep(10000);
-        });
+        public Func<object, Task> DelayCommand =>
+            (o) => Task.Delay(10000);
     }
 }
