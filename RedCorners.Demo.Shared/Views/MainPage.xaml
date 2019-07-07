@@ -106,6 +106,12 @@
                             </Button.Command>
                         </Button>
 
+                        <Button Text="Delayed Demos">
+                            <Button.Command>
+                                <rf:PageCommand PageType="{Type views:DelayedDemoPage}" />
+                            </Button.Command>
+                        </Button>
+
                         <Grid IsVisible="{Binding IsIOS}" Padding="2" BackgroundColor="#99000000">
                             <Label Text="LightContent" />
                             <Switch IsToggled="{Binding LightContent}" />

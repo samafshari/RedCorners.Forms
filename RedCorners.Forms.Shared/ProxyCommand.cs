@@ -4,7 +4,7 @@ using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
 
-namespace RedCorners.Forms
+namespace RedCorners.Forms.Preview
 {
     public class ProxyCommand : BindableObject, ICommand
     {

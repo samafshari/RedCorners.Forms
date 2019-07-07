@@ -246,7 +246,10 @@ namespace RedCorners.Forms
             returnType: typeof(View),
             declaringType: typeof(TitledContentView),
             defaultValue: null,
-            defaultBindingMode: BindingMode.TwoWay);
+            defaultBindingMode: BindingMode.TwoWay,
+            propertyChanged: (bindable, oldVal, newVal) =>
+            {
+            });
 
         public static readonly BindableProperty OverlayProperty = BindableProperty.Create(
             propertyName: nameof(Overlay),

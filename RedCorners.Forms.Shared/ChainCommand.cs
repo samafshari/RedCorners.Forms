@@ -6,7 +6,7 @@ using System.Windows.Input;
 using Xamarin.Forms;
 using System.Linq;
 
-namespace RedCorners.Forms
+namespace RedCorners.Forms.Preview
 {
     public enum ExecuteCommandPolicies
     {
