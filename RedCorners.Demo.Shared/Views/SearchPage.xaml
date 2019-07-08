@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<rf:ContentPage2
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:rf="clr-namespace:RedCorners.Forms;assembly=RedCorners.Forms"
+    xmlns:vm="clr-namespace:RedCorners.Demo.ViewModels"
+    mc:Ignorable="d"
+    x:Class="RedCorners.Demo.Views.SearchPage">
+    <ContentPage.BindingContext>
+        <vm:SearchViewModel />
+    </ContentPage.BindingContext>
+
+    <rf:TitledContentView 
+        Title="SearchPage" 
+        BackCommand="{Binding GoBackCommand}" 
+        IsBackButtonVisible="True">
+        <rf:TitledContentView.ToolBar>
+            <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand">
+                <!-- Define Toolbar Here -->
+            </StackLayout>
+        </rf:TitledContentView.ToolBar>
+
+        <StackLayout>
+            <!-- Define Page Contents Here -->
+            <rf:SearchBar2 IsCancelVisible="{Binding IsCancelVisible}" />
+            <Switch IsToggled="{Binding IsCancelVisible}" />
+            <rf:SearchBar2 
+                IsCancelVisible="True" 
+                CancelCommand="{Binding CancelCommand}" 
+                CancelCommandParameter="{Binding Text, Source={x:Reference bar2}}" 
+                TextChangeAction="{Binding TextChangeAction}"
+                x:Name="bar2" />
+            <Label Text="{Binding TextChangeResult}" />
+        </StackLayout>
+    </rf:TitledContentView>
+</rf:ContentPage2>

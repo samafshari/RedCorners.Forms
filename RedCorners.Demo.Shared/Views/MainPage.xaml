@@ -112,6 +112,12 @@
                             </Button.Command>
                         </Button>
 
+                        <Button Text="SearchBar2 Demos">
+                            <Button.Command>
+                                <rf:PageCommand PageType="{Type views:SearchPage}" />
+                            </Button.Command>
+                        </Button>
+
                         <Grid IsVisible="{Binding IsIOS}" Padding="2" BackgroundColor="#99000000">
                             <Label Text="LightContent" />
                             <Switch IsToggled="{Binding LightContent}" />

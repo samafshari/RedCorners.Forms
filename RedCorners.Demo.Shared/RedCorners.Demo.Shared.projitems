@@ -17,6 +17,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\CounterViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\DelayedViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SearchViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\TabBarDemosViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\TitleBarDemosViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\CounterPage.xaml.cs">
@@ -28,6 +29,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\MainPage.xaml.cs">
       <SubType>Code</SubType>
       <DependentUpon>%(Filename)</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\SearchPage.xaml.cs">
+      <SubType>Code</SubType>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\TabBarDemosPage.xaml.cs">
       <SubType>Code</SubType>
@@ -68,6 +72,12 @@
     <Compile Update="C:\Projects\RedCorners.Forms\RedCorners.Demo.Shared\Views\TitlebarDemo1Page.xaml.cs">
       <DependentUpon>TitlebarDemo1Page.xaml</DependentUpon>
     </Compile>
+    <Compile Update="E:\Projects\RedCorners.Forms\RedCorners.Demo.Shared\Views\CancelPage.xaml.cs">
+      <DependentUpon>CancelPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="E:\Projects\RedCorners.Forms\RedCorners.Demo.Shared\Views\SearchPage.xaml.cs">
+      <DependentUpon>SearchPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="E:\Projects\RedCorners.Forms\RedCorners.Demo.Shared\Views\TabBarDemosPage.xaml.cs">
       <DependentUpon>TabBarDemosPage.xaml</DependentUpon>
     </Compile>
@@ -101,6 +111,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\DelayedDemoPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\SearchPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
