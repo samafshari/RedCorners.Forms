@@ -29,6 +29,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Systems\MessagingSystem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Systems\NotchSystem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Values.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\CodeEntry.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\ContentPage2.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\ContentView2.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\Button2.cs" />
@@ -66,6 +69,9 @@
   <ItemGroup>
     <Compile Update="C:\Projects\RedCorners.Forms\RedCorners.Forms.Shared\Views\TabbedContentPage.xaml.cs">
       <DependentUpon>TabbedContentPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="E:\Projects\RedCorners.Forms\RedCorners.Forms.Shared\Views\CodeEntry.xaml.cs">
+      <DependentUpon>CodeEntry.xaml</DependentUpon>
     </Compile>
     <Compile Update="E:\Projects\RedCorners.Forms\RedCorners.Forms.Shared\Views\NeatPage.xaml.cs">
       <DependentUpon>TitledContentPage.xaml</DependentUpon>
@@ -114,5 +120,11 @@
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)gradientv.png" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)gradientv2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\CodeEntry.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

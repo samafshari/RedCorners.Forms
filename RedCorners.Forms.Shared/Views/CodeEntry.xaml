@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<rf:ContentView2
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:rf="clr-namespace:RedCorners.Forms;assembly=RedCorners.Forms"
+    mc:Ignorable="d"
+    x:Class="RedCorners.Forms.CodeEntry">
+    <Grid>
+        <Entry 
+            x:Name="textBox" 
+            Keyboard="Numeric" 
+            TextChanged="TextBox_TextChanged" 
+            Opacity="0"
+            WidthRequest="32"
+            />
+
+        <StackLayout 
+            x:Name="stack"
+            Orientation="Horizontal" 
+            HorizontalOptions="CenterAndExpand" 
+            VerticalOptions="CenterAndExpand" 
+            Spacing="8"
+            InputTransparent="True"
+            CascadeInputTransparent="True">
+            <StackLayout.Resources>
+                <ResourceDictionary>
+                    <Style TargetType="Entry">
+                        <Setter Property="InputTransparent" Value="True" />
+                        <Setter Property="IsReadOnly" Value="True" />
+                        <Setter Property="HorizontalTextAlignment" Value="Center" />
+                        <Setter Property="VerticalOptions" Value="Center" />
+                    </Style>
+                </ResourceDictionary>
+            </StackLayout.Resources>
+        </StackLayout>
+
+        <Grid.GestureRecognizers>
+            <TapGestureRecognizer x:Name="tap" />
+        </Grid.GestureRecognizers>
+    </Grid>
+</rf:ContentView2>

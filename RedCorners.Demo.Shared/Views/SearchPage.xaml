@@ -33,6 +33,7 @@
                 TextChangeAction="{Binding TextChangeAction}"
                 x:Name="bar2" />
             <Label Text="{Binding TextChangeResult}" />
+            <rf:CodeEntry Text="{Binding Code}" Length="6" FinishCommand="{Binding CancelCommand}" FinishCommandParameter="{Binding Code}" />
         </StackLayout>
     </rf:TitledContentView>
 </rf:ContentPage2>

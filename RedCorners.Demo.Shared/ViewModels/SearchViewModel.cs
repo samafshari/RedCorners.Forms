@@ -29,6 +29,13 @@ namespace RedCorners.Demo.ViewModels
             set => SetProperty(ref _textChangeResult, value);
         }
 
+        string _code = "";
+        public string Code
+        {
+            get => _code;
+            set => SetProperty(ref _code, value);
+        }
+
         public Command<string> CancelCommand => new Command<string>(s =>
             App.Instance.DisplayAlert("Cancel", s, "OK"));
 
