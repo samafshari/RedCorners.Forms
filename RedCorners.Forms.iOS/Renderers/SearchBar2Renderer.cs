@@ -36,8 +36,9 @@ namespace RedCorners.Forms.Renderers
         protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             base.OnElementPropertyChanged(sender, e);
-            
-            Control.ShowsCancelButton = (Element as SearchBar2).IsCancelVisible;
+
+            if (Control != null && Element as SearchBar2 != null)
+                Control.ShowsCancelButton = (Element as SearchBar2).IsCancelVisible;
         }
     }
 }
