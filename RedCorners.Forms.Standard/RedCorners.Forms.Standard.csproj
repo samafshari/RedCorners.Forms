@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>RedCorners.Forms</AssemblyName>
+    <RootNamespace>RedCorners.Forms</RootNamespace>
+  </PropertyGroup>
+
+  <Import Project="..\RedCorners.Forms.Shared\RedCorners.Forms.Shared.projitems" Label="Shared" />
+
+  <ItemGroup>
+    <PackageReference Include="RedCorners" Version="5.0.0" />
+    <PackageReference Include="Xamarin.Forms" Version="4.0.0.425677" />
+  </ItemGroup>
+
+</Project>
