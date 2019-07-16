@@ -17,8 +17,14 @@ namespace RedCorners.Forms
             InitializeComponent();
             tap.Tapped += Tap_Tapped;
             textBox.Focused += TextBox_Focused;
+            Unfocused += CodeEntry_Unfocused;
             UpdateKeyboard();
             BuildUI();
+        }
+
+        private void CodeEntry_Unfocused(object sender, FocusEventArgs e)
+        {
+            textBox?.Unfocus();
         }
 
         public static readonly BindableProperty TextProperty = BindableProperty.Create(
