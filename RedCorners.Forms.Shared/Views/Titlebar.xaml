@@ -59,7 +59,7 @@
 			            FontSize="{Binding FontSize, Source={x:Reference me}, Mode=TwoWay}"
 			            VerticalOptions="Center" 
 			            HorizontalOptions="Fill"
-                        HorizontalTextAlignment="Start"
+                        HorizontalTextAlignment="{Binding TextAlignment, Source={x:Reference me}, Mode=TwoWay}"
 			            LineBreakMode="TailTruncation" 
                         Margin="0,0,10,0"
 			            Grid.Column="1" />

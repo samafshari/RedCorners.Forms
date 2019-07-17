@@ -129,6 +129,22 @@ namespace RedCorners.Forms
             set => SetValue(TitleFontAttributesProperty, value);
         }
 
+        public TextAlignment TitleAlignment
+        {
+            get => (TextAlignment)GetValue(TitleAlignmentProperty);
+            set => SetValue(TitleAlignmentProperty, value);
+        }
+
+        public static readonly BindableProperty TitleAlignmentProperty = BindableProperty.Create(
+            propertyName: nameof(TitleAlignment),
+            returnType: typeof(TextAlignment),
+            declaringType: typeof(TitleBar),
+            defaultValue: TextAlignment.Start,
+            defaultBindingMode: BindingMode.TwoWay,
+            propertyChanged: (bindable, oldVal, newVal) =>
+            {
+            });
+
         public static readonly BindableProperty TitleHeightRequestProperty = BindableProperty.Create(
             propertyName: nameof(TitleHeightRequest),
             returnType: typeof(double),

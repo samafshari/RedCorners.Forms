@@ -127,6 +127,22 @@ namespace RedCorners.Forms
             set => SetValue(FixBottomPaddingProperty, value);
         }
 
+        public TextAlignment TextAlignment
+        {
+            get => (TextAlignment)GetValue(TextAlignmentProperty);
+            set => SetValue(TextAlignmentProperty, value);
+        }
+
+        public static readonly BindableProperty TextAlignmentProperty = BindableProperty.Create(
+            propertyName: nameof(TextAlignment),
+            returnType: typeof(TextAlignment),
+            declaringType: typeof(TitleBar),
+            defaultValue: TextAlignment.Start,
+            defaultBindingMode: BindingMode.TwoWay,
+            propertyChanged: (bindable, oldVal, newVal) =>
+            {
+            });
+
         public static readonly BindableProperty BackgroundProperty = BindableProperty.Create(
             propertyName: nameof(Background),
             returnType: typeof(View),

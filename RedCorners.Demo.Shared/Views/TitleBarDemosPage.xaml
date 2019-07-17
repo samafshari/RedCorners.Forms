@@ -208,6 +208,42 @@
                     </rf:PageCommand>
                 </Button.Command>
             </Button>
+
+            <Button Text="Center Align">
+                <Button.Command>
+                    <rf:PageCommand>
+                        <rf:ContentPage2 BindingContext="{Reference vm}" FixTopPadding="False">
+                            <Grid RowSpacing="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <rf:HorizontalShadow Grid.Row="1" />
+                                <rf:TitleBar
+                                    Title="Center Align"
+                                    TextAlignment="Center"
+                                    IsBackButtonVisible="True"
+                                    BackCommand="{Static rf:Values.PopCommand}">
+                                    <rf:TitleBar.Background>
+                                        <ff:CachedImage 
+                                            Source="https://media.giphy.com/media/U3qYN8S0j3bpK/giphy.gif" 
+                                            HorizontalOptions="Fill" 
+                                            VerticalOptions="Fill" 
+                                            Aspect="AspectFill" 
+                                            HeightRequest="1" />
+                                    </rf:TitleBar.Background>
+                                    <StackLayout Orientation="Horizontal" Spacing="28" VerticalOptions="Center">
+                                        <rf:ImageButton2 
+                                            Source="menuabout" 
+                                            CommandParameter="About clicked!" 
+                                            Command="{Binding MessageCommand}" 
+                                            HeightRequest="28" WidthRequest="28" />
+                                    </StackLayout>
+                                </rf:TitleBar>
+                            </Grid>
+                        </rf:ContentPage2>
+                    </rf:PageCommand>
+                </Button.Command>
+            </Button>
         </StackLayout>
     </rf:TitledContentView>
 </rf:ContentPage2>

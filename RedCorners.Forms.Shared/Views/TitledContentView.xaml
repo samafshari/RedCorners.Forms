@@ -35,6 +35,7 @@
                 FontAttributes="{Binding TitleFontAttributes, Source={x:Reference me}}"
                 ContentHeightRequest="{Binding TitleHeightRequest, Source={x:Reference me}}"
                 ContentMargin="{Binding TitlePadding, Source={x:Reference me}}"
+                TextAlignment="{Binding TitleAlignment, Source={x:Reference me}}"
                 />
 
             <rf:ContentView2
