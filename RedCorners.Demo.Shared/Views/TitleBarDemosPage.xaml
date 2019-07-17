@@ -222,22 +222,23 @@
                                     Title="Center Align"
                                     TextAlignment="Center"
                                     IsBackButtonVisible="True"
-                                    BackCommand="{Static rf:Values.PopCommand}">
+                                    BackCommand="{Static rf:Values.PopCommand}"
+                                    BackgroundColor="Gray">
                                     <rf:TitleBar.Background>
                                         <ff:CachedImage 
-                                            Source="https://media.giphy.com/media/U3qYN8S0j3bpK/giphy.gif" 
+                                            Source="http://www.sclance.com/pngs/transparent-grid-png/transparent_grid_png_1404573.png" 
                                             HorizontalOptions="Fill" 
                                             VerticalOptions="Fill" 
                                             Aspect="AspectFill" 
                                             HeightRequest="1" />
                                     </rf:TitleBar.Background>
-                                    <StackLayout Orientation="Horizontal" Spacing="28" VerticalOptions="Center">
+                                    <!--<StackLayout Orientation="Horizontal" Spacing="28" VerticalOptions="Center">
                                         <rf:ImageButton2 
                                             Source="menuabout" 
                                             CommandParameter="About clicked!" 
                                             Command="{Binding MessageCommand}" 
                                             HeightRequest="28" WidthRequest="28" />
-                                    </StackLayout>
+                                    </StackLayout>-->
                                 </rf:TitleBar>
                             </Grid>
                         </rf:ContentPage2>
