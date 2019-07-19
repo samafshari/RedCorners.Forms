@@ -147,6 +147,20 @@ namespace RedCorners.Forms
             set => SetValue(CustomBackImageProperty, value);
         }
 
+        public bool IsDark
+        {
+            get => (bool)GetValue(IsDarkProperty);
+            set => SetValue(IsDarkProperty, value);
+        }
+
+        public static readonly BindableProperty IsDarkProperty = BindableProperty.Create(
+            propertyName: nameof(IsDark),
+            returnType: typeof(bool),
+            declaringType: typeof(TitledContentView),
+            defaultValue: false,
+            defaultBindingMode: BindingMode.TwoWay);
+
+
         public static readonly BindableProperty CustomBackImageProperty = BindableProperty.Create(
             propertyName: nameof(CustomBackImage),
             returnType: typeof(ImageSource),
