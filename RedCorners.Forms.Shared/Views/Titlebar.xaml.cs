@@ -142,6 +142,24 @@ namespace RedCorners.Forms
             set => SetValue(TextAlignmentProperty, value);
         }
 
+        public bool IsDark
+        {
+            get => (bool)GetValue(IsDarkProperty);
+            set => SetValue(IsDarkProperty, value);
+        }
+
+        public static readonly BindableProperty IsDarkProperty = BindableProperty.Create(
+            propertyName: nameof(IsDark),
+            returnType: typeof(bool),
+            declaringType: typeof(TitleBar),
+            defaultValue: false,
+            defaultBindingMode: BindingMode.TwoWay,
+            propertyChanged: (bindable, oldVal, newVal) =>
+            {
+                if (bindable is TitleBar titlebar)
+                    titlebar.UpdateButton();
+            });
+
         public static readonly BindableProperty TextAlignmentProperty = BindableProperty.Create(
             propertyName: nameof(TextAlignment),
             returnType: typeof(TextAlignment),
@@ -343,10 +361,11 @@ namespace RedCorners.Forms
                 return;
             }
             var showBack = IsBackButtonVisible ?? (BindingContext is BindableModel vm ? vm.IsModal : true);
+            var darkSuffix = IsDark ? "b" : "";
             if (showBack)
-                backImage.Source = ImageSource.FromResource("RedCorners.Forms.leftarrow.png", typeof(TitleBar).GetTypeInfo().Assembly);
+                backImage.Source = ImageSource.FromResource($"RedCorners.Forms.leftarrow{darkSuffix}.png", typeof(TitleBar).GetTypeInfo().Assembly);
             else
-                backImage.Source = ImageSource.FromResource("RedCorners.Forms.menu.png", typeof(TitleBar).GetTypeInfo().Assembly);
+                backImage.Source = ImageSource.FromResource($"RedCorners.Forms.menu{darkSuffix}.png", typeof(TitleBar).GetTypeInfo().Assembly);
         }
 
         void UpdateToolBar()

@@ -98,6 +98,8 @@
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)leftarrow.png" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)menu.png" />
+	<EmbeddedResource Include="$(MSBuildThisFileDirectory)leftarrowb.png" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)menub.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\TitledContentView.xaml">
