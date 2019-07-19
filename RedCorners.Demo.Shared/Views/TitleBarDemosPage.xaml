@@ -402,6 +402,24 @@
                     </rf:PageCommand>
                 </Button.Command>
             </Button>
+
+            <Button Text="Dark">
+                <Button.Command>
+                    <rf:PageCommand>
+                        <rf:ContentPage2 BindingContext="{Reference vm}" FixTopPadding="False">
+                            <rf:TitledContentView
+                                TitleColor="LightGreen"
+                                IsDark="True"
+                                TitleTextColor="Black"
+                                Title="Black TitleBar">
+                                <rf:TitledContentView.LeftToolBar>
+                                    <rf:Button2 TextColor="White" Text="Back" Command="{x:Static rf:Values.PopCommand}" Visual="Default" BackgroundColor="Transparent" />
+                                </rf:TitledContentView.LeftToolBar>
+                            </rf:TitledContentView>
+                        </rf:ContentPage2>
+                    </rf:PageCommand>
+                </Button.Command>
+            </Button>
         </StackLayout>
     </rf:TitledContentView>
 </rf:ContentPage2>
