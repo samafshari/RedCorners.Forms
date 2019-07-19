@@ -26,8 +26,11 @@ namespace RedCorners.Forms
             controlButtons.GestureRecognizers.Add(tap);
 
             UpdateToolBar();
+            UpdateLeftToolBar();
             contentContainer.FixTopPadding = FixTopPadding;
             contentContainer.FixBottomPadding = FixBottomPadding;
+
+            UpdateTextAlignment();
         }
 
         private void Tap_Tapped(object sender, EventArgs e)
@@ -46,6 +49,12 @@ namespace RedCorners.Forms
         {
             get => (View)GetValue(ToolBarProperty);
             set => SetValue(ToolBarProperty, value);
+        }
+
+        public View LeftToolBar
+        {
+            get => (View)GetValue(LeftToolBarProperty);
+            set => SetValue(LeftToolBarProperty, value);
         }
 
         public double ContentHeightRequest
@@ -141,6 +150,8 @@ namespace RedCorners.Forms
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
+                if (bindable is TitleBar titlebar)
+                    titlebar.UpdateTextAlignment();
             });
 
         public static readonly BindableProperty BackgroundProperty = BindableProperty.Create(
@@ -163,6 +174,18 @@ namespace RedCorners.Forms
             {
                 if (bindable is TitleBar titlebar)
                     titlebar.UpdateToolBar();
+            });
+
+        public static readonly BindableProperty LeftToolBarProperty = BindableProperty.Create(
+            propertyName: nameof(LeftToolBar),
+            returnType: typeof(View),
+            declaringType: typeof(TitleBar),
+            defaultValue: null,
+            defaultBindingMode: BindingMode.TwoWay,
+            propertyChanged: (bindable, oldVal, newVal) =>
+            {
+                if (bindable is TitleBar titlebar)
+                    titlebar.UpdateLeftToolBar();
             });
 
         public static readonly BindableProperty ContentHeightRequestProperty = BindableProperty.Create(
@@ -312,7 +335,7 @@ namespace RedCorners.Forms
 
         void UpdateButton()
         {
-            controlButtons.IsVisible = HasButton;
+            controlButtons.IsVisible = HasButton && LeftToolBar == null;
 
             if (CustomBackImage != null)
             {
@@ -329,6 +352,28 @@ namespace RedCorners.Forms
         void UpdateToolBar()
         {
             buttons.Content = ToolBar;
+        }
+
+        void UpdateLeftToolBar()
+        {
+            leftbuttons.Content = LeftToolBar;
+            leftbuttons.IsVisible = LeftToolBar != null;
+            UpdateButton();
+        }
+
+        void UpdateTextAlignment()
+        {
+            if (lblTitle == null) return;
+            if (TextAlignment == TextAlignment.Center)
+            {
+                lblTitle.SetValue(Grid.ColumnProperty, 0);
+                lblTitle.SetValue(Grid.ColumnSpanProperty, 3);
+            }
+            else
+            {
+                lblTitle.SetValue(Grid.ColumnProperty, 1);
+                lblTitle.SetValue(Grid.ColumnSpanProperty, 1);
+            }
         }
     }
 }

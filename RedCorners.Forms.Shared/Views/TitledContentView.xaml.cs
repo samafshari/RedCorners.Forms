@@ -32,6 +32,12 @@ namespace RedCorners.Forms
             set => SetValue(ToolBarProperty, value);
         }
 
+        public View LeftToolBar
+        {
+            get => (View)GetValue(LeftToolBarProperty);
+            set => SetValue(LeftToolBarProperty, value);
+        }
+
         public double TitleHeightRequest
         {
             get => (double)GetValue(TitleHeightRequestProperty);
@@ -135,10 +141,26 @@ namespace RedCorners.Forms
             set => SetValue(TitleAlignmentProperty, value);
         }
 
+        public ImageSource CustomBackImage
+        {
+            get => (ImageSource)GetValue(CustomBackImageProperty);
+            set => SetValue(CustomBackImageProperty, value);
+        }
+
+        public static readonly BindableProperty CustomBackImageProperty = BindableProperty.Create(
+            propertyName: nameof(CustomBackImage),
+            returnType: typeof(ImageSource),
+            declaringType: typeof(TitledContentView),
+            defaultValue: default(ImageSource),
+            defaultBindingMode: BindingMode.TwoWay,
+            propertyChanged: (bindable, oldVal, newVal) =>
+            {
+            });
+
         public static readonly BindableProperty TitleAlignmentProperty = BindableProperty.Create(
             propertyName: nameof(TitleAlignment),
             returnType: typeof(TextAlignment),
-            declaringType: typeof(TitleBar),
+            declaringType: typeof(TitledContentView),
             defaultValue: TextAlignment.Start,
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
@@ -259,6 +281,16 @@ namespace RedCorners.Forms
 
         public static readonly BindableProperty ToolBarProperty = BindableProperty.Create(
             propertyName: nameof(ToolBar),
+            returnType: typeof(View),
+            declaringType: typeof(TitledContentView),
+            defaultValue: null,
+            defaultBindingMode: BindingMode.TwoWay,
+            propertyChanged: (bindable, oldVal, newVal) =>
+            {
+            });
+
+        public static readonly BindableProperty LeftToolBarProperty = BindableProperty.Create(
+            propertyName: nameof(LeftToolBar),
             returnType: typeof(View),
             declaringType: typeof(TitledContentView),
             defaultValue: null,

@@ -27,6 +27,7 @@
                 Background="{Binding TitleBackground, Source={x:Reference me}}"
                 HasButton="{Binding HasButton, Source={x:Reference me}}"
                 ToolBar="{Binding ToolBar, Source={x:Reference me}}"
+                LeftToolBar="{Binding LeftToolBar, Source={x:Reference me}}"
                 IsBackButtonVisible="{Binding IsBackButtonVisible, Source={x:Reference me}}"
                 BackCommand="{Binding BackCommand, Source={x:Reference me}}"
                 BackCommandParameter="{Binding BackCommandParameter, Source={x:Reference me}}"
@@ -36,6 +37,7 @@
                 ContentHeightRequest="{Binding TitleHeightRequest, Source={x:Reference me}}"
                 ContentMargin="{Binding TitlePadding, Source={x:Reference me}}"
                 TextAlignment="{Binding TitleAlignment, Source={x:Reference me}}"
+                CustomBackImage="{Binding CustomBackImage, Source={x:Reference me}}"
                 />
 
             <rf:ContentView2
