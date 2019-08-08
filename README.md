@@ -2,7 +2,7 @@
 
 RedCorners.Forms brings some neat utilities to your Xamarin.Forms applications
 
-Documentation: [https://github.com/saeedafshari/RedCorners.Forms/wiki](https://github.com/saeedafshari/RedCorners.Forms/wiki)
+To browse the up to date documentation, [visit RedCorners.com/forms](https://redcorners.com/forms)
 
 NuGet: [https://www.nuget.org/packages/RedCorners.Forms](https://www.nuget.org/packages/RedCorners.Forms)
 
