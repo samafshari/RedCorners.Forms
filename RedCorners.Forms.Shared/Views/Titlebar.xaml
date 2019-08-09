@@ -39,7 +39,9 @@
                     <rf:ContentView2
                         x:Name="titleView"
                         HorizontalOptions="Fill"
-                        VerticalOptions="Fill"
+                        VerticalOptions="Fill"        
+                        InputTransparent="True"
+                        CascadeInputTransparent="False"
 			            Grid.Column="0"
                         Grid.ColumnSpan="3" />
                     
@@ -77,7 +79,6 @@
 			            FontSize="{Binding FontSize, Source={x:Reference me}, Mode=TwoWay}"
 			            VerticalOptions="Center" 
 			            HorizontalOptions="Fill"
-                        HorizontalTextAlignment="{Binding TextAlignment, Source={x:Reference me}, Mode=TwoWay}"
 			            LineBreakMode="TailTruncation" 
 			            Grid.Column="0"
                         Grid.ColumnSpan="3" />

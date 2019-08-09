@@ -411,11 +411,7 @@
                                 TitleColor="LightGreen"
                                 IsDark="True"
                                 TitleTextColor="Black"
-                                Title="Black TitleBar">
-                                <rf:TitledContentView.LeftToolBar>
-                                    <rf:Button2 TextColor="White" Text="Back" Command="{x:Static rf:Values.PopCommand}" Visual="Default" BackgroundColor="Transparent" />
-                                </rf:TitledContentView.LeftToolBar>
-                            </rf:TitledContentView>
+                                Title="Black TitleBar" />
                         </rf:ContentPage2>
                     </rf:PageCommand>
                 </Button.Command>
@@ -427,12 +423,29 @@
                         <rf:ContentPage2 BindingContext="{Reference vm}">
                             <rf:TitledContentView Title="" TitleAlignment="Center" BackCommand="{x:Static rf:Values.PopCommand}">
                                 <rf:TitledContentView.TitleView>
-                                    <ff:CachedImage Margin="10" Source="http://ooze.redcorners.com/redcorners_logo.png" HorizontalOptions="Center" />
+                                    <ff:CachedImage Margin="10" Source="http://ooze.redcorners.com/redcorners_logo.png" HorizontalOptions="Center">
+                                        <ff:CachedImage.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding MessageCommand}" CommandParameter="Logo Clicked!" />
+                                        </ff:CachedImage.GestureRecognizers>
+                                    </ff:CachedImage>
                                 </rf:TitledContentView.TitleView>
                                 <StackLayout>
                                     <rf:TitleBar TitleAlignment="Start" FixBottomPadding="False" FixTopPadding="False">
                                         <rf:TitleBar.TitleView>
-                                            <ff:CachedImage Margin="10" Source="http://ooze.redcorners.com/redcorners_logo.png" HorizontalOptions="Start" />
+                                            <ff:CachedImage Margin="10" Source="http://ooze.redcorners.com/redcorners_logo.png" HorizontalOptions="Start">
+                                                <ff:CachedImage.GestureRecognizers>
+                                                    <TapGestureRecognizer Command="{Binding MessageCommand}" CommandParameter="Logo Clicked!" />
+                                                </ff:CachedImage.GestureRecognizers>
+                                            </ff:CachedImage>
+                                        </rf:TitleBar.TitleView>
+                                    </rf:TitleBar>
+                                    <rf:TitleBar TitleAlignment="End" FixBottomPadding="False" FixTopPadding="False">
+                                        <rf:TitleBar.TitleView>
+                                            <ff:CachedImage Margin="10" Source="http://ooze.redcorners.com/redcorners_logo.png" HorizontalOptions="End">
+                                                <ff:CachedImage.GestureRecognizers>
+                                                    <TapGestureRecognizer Command="{Binding MessageCommand}" CommandParameter="Logo Clicked!" />
+                                                </ff:CachedImage.GestureRecognizers>
+                                            </ff:CachedImage>
                                         </rf:TitleBar.TitleView>
                                     </rf:TitleBar>
                                 </StackLayout>

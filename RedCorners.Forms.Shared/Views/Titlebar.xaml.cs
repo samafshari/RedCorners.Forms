@@ -13,9 +13,9 @@ namespace RedCorners.Forms
 {
     public enum TitleAlignments
     {
-        Start,
-        Center,
-        End
+        Start = 0,
+        Center = 1,
+        End = 2
     }
 
     [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -435,6 +435,8 @@ namespace RedCorners.Forms
                 titleView.SetValue(Grid.ColumnProperty, 1);
                 titleView.SetValue(Grid.ColumnSpanProperty, 1);
             }
+
+            lblTitle.HorizontalTextAlignment = (TextAlignment)(int)TitleAlignment;
         }
     }
 }
