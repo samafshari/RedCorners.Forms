@@ -36,7 +36,8 @@
                 FontAttributes="{Binding TitleFontAttributes, Source={x:Reference me}}"
                 ContentHeightRequest="{Binding TitleHeightRequest, Source={x:Reference me}}"
                 ContentMargin="{Binding TitlePadding, Source={x:Reference me}}"
-                TextAlignment="{Binding TitleAlignment, Source={x:Reference me}}"
+                TitleAlignment="{Binding TitleAlignment, Source={x:Reference me}}"
+                TitleView="{Binding TitleView, Source={x:Reference me}}"
                 CustomBackImage="{Binding CustomBackImage, Source={x:Reference me}}"
                 IsDark="{Binding IsDark, Source={x:Reference me}}"
                 />

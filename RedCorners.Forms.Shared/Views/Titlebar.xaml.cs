@@ -11,6 +11,13 @@ using System.Runtime.CompilerServices;
 
 namespace RedCorners.Forms
 {
+    public enum TitleAlignments
+    {
+        Start,
+        Center,
+        End
+    }
+
     [XamlCompilation(XamlCompilationOptions.Compile)]
     [ContentProperty("ToolBar")]
     public partial class TitleBar 
@@ -27,10 +34,11 @@ namespace RedCorners.Forms
 
             UpdateToolBar();
             UpdateLeftToolBar();
+            UpdateTitleView();
             contentContainer.FixTopPadding = FixTopPadding;
             contentContainer.FixBottomPadding = FixBottomPadding;
 
-            UpdateTextAlignment();
+            UpdateTitleAlignment();
         }
 
         private void Tap_Tapped(object sender, EventArgs e)
@@ -55,6 +63,12 @@ namespace RedCorners.Forms
         {
             get => (View)GetValue(LeftToolBarProperty);
             set => SetValue(LeftToolBarProperty, value);
+        }
+
+        public View TitleView
+        {
+            get => (View)GetValue(TitleViewProperty);
+            set => SetValue(TitleViewProperty, value);
         }
 
         public double ContentHeightRequest
@@ -136,10 +150,10 @@ namespace RedCorners.Forms
             set => SetValue(FixBottomPaddingProperty, value);
         }
 
-        public TextAlignment TextAlignment
+        public TitleAlignments TitleAlignment
         {
-            get => (TextAlignment)GetValue(TextAlignmentProperty);
-            set => SetValue(TextAlignmentProperty, value);
+            get => (TitleAlignments)GetValue(TitleAlignmentProperty);
+            set => SetValue(TitleAlignmentProperty, value);
         }
 
         public bool IsDark
@@ -160,16 +174,16 @@ namespace RedCorners.Forms
                     titlebar.UpdateButton();
             });
 
-        public static readonly BindableProperty TextAlignmentProperty = BindableProperty.Create(
-            propertyName: nameof(TextAlignment),
-            returnType: typeof(TextAlignment),
+        public static readonly BindableProperty TitleAlignmentProperty = BindableProperty.Create(
+            propertyName: nameof(TitleAlignment),
+            returnType: typeof(TitleAlignments),
             declaringType: typeof(TitleBar),
-            defaultValue: TextAlignment.Start,
+            defaultValue: TitleAlignments.Start,
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
                 if (bindable is TitleBar titlebar)
-                    titlebar.UpdateTextAlignment();
+                    titlebar.UpdateTitleAlignment();
             });
 
         public static readonly BindableProperty BackgroundProperty = BindableProperty.Create(
@@ -204,6 +218,18 @@ namespace RedCorners.Forms
             {
                 if (bindable is TitleBar titlebar)
                     titlebar.UpdateLeftToolBar();
+            });
+
+        public static readonly BindableProperty TitleViewProperty = BindableProperty.Create(
+            propertyName: nameof(TitleView),
+            returnType: typeof(View),
+            declaringType: typeof(TitleBar),
+            defaultValue: null,
+            defaultBindingMode: BindingMode.TwoWay,
+            propertyChanged: (bindable, oldVal, newVal) =>
+            {
+                if (bindable is TitleBar titlebar)
+                    titlebar.UpdateTitleView();
             });
 
         public static readonly BindableProperty ContentHeightRequestProperty = BindableProperty.Create(
@@ -384,18 +410,29 @@ namespace RedCorners.Forms
             UpdateButton();
         }
 
-        void UpdateTextAlignment()
+        void UpdateTitleView()
+        {
+            titleView.Content = TitleView;
+        }
+
+        void UpdateTitleAlignment()
         {
             if (lblTitle == null) return;
-            if (TextAlignment == TextAlignment.Center)
+            if (TitleAlignment == TitleAlignments.Center)
             {
                 lblTitle.SetValue(Grid.ColumnProperty, 0);
                 lblTitle.SetValue(Grid.ColumnSpanProperty, 3);
+
+                titleView.SetValue(Grid.ColumnProperty, 0);
+                titleView.SetValue(Grid.ColumnSpanProperty, 3);
             }
             else
             {
                 lblTitle.SetValue(Grid.ColumnProperty, 1);
                 lblTitle.SetValue(Grid.ColumnSpanProperty, 1);
+
+                titleView.SetValue(Grid.ColumnProperty, 1);
+                titleView.SetValue(Grid.ColumnSpanProperty, 1);
             }
         }
     }

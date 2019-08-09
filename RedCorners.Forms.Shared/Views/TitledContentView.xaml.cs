@@ -135,10 +135,16 @@ namespace RedCorners.Forms
             set => SetValue(TitleFontAttributesProperty, value);
         }
 
-        public TextAlignment TitleAlignment
+        public TitleAlignments TitleAlignment
         {
-            get => (TextAlignment)GetValue(TitleAlignmentProperty);
+            get => (TitleAlignments)GetValue(TitleAlignmentProperty);
             set => SetValue(TitleAlignmentProperty, value);
+        }
+
+        public View TitleView
+        {
+            get => (View)GetValue(TitleViewProperty);
+            set => SetValue(TitleViewProperty, value);
         }
 
         public ImageSource CustomBackImage
@@ -173,9 +179,9 @@ namespace RedCorners.Forms
 
         public static readonly BindableProperty TitleAlignmentProperty = BindableProperty.Create(
             propertyName: nameof(TitleAlignment),
-            returnType: typeof(TextAlignment),
+            returnType: typeof(TitleAlignments),
             declaringType: typeof(TitledContentView),
-            defaultValue: TextAlignment.Start,
+            defaultValue: TitleAlignments.Start,
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
@@ -305,6 +311,16 @@ namespace RedCorners.Forms
 
         public static readonly BindableProperty LeftToolBarProperty = BindableProperty.Create(
             propertyName: nameof(LeftToolBar),
+            returnType: typeof(View),
+            declaringType: typeof(TitledContentView),
+            defaultValue: null,
+            defaultBindingMode: BindingMode.TwoWay,
+            propertyChanged: (bindable, oldVal, newVal) =>
+            {
+            });
+
+        public static readonly BindableProperty TitleViewProperty = BindableProperty.Create(
+            propertyName: nameof(TitleView),
             returnType: typeof(View),
             declaringType: typeof(TitledContentView),
             defaultValue: null,

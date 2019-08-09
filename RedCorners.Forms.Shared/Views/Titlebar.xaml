@@ -36,6 +36,13 @@
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
 
+                    <rf:ContentView2
+                        x:Name="titleView"
+                        HorizontalOptions="Fill"
+                        VerticalOptions="Fill"
+			            Grid.Column="0"
+                        Grid.ColumnSpan="3" />
+                    
                     <rf:ContentView2 
                         x:Name="leftbuttons" 
                         Grid.Column="0" 
@@ -60,7 +67,7 @@
 				            Margin="12,0,6,0"
                             />
                     </Grid>
-
+                    
                     <Label 
                         InputTransparent="True"
                         x:Name="lblTitle"
@@ -74,7 +81,7 @@
 			            LineBreakMode="TailTruncation" 
 			            Grid.Column="0"
                         Grid.ColumnSpan="3" />
-
+                    
                     <rf:ContentView2 
                         x:Name="buttons" 
                         Grid.Column="2" 
