@@ -413,6 +413,7 @@ namespace RedCorners.Forms
         void UpdateTitleView()
         {
             titleView.Content = TitleView;
+            lblTitle.IsVisible = TitleView == null;
         }
 
         void UpdateTitleAlignment()
