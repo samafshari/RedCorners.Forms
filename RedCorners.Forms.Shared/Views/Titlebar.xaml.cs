@@ -351,6 +351,10 @@ namespace RedCorners.Forms
                     titlebar.contentContainer.FixBottomPadding = (bool)newVal;
             });
 
+
+        public static ImageSource BackButtonImageOverride = null;
+        public static ImageSource MenuButtonImageOverride = null;
+
         void UpdateButton()
         {
             controlButtons.IsVisible = HasButton && LeftToolBar == null;
@@ -363,9 +367,9 @@ namespace RedCorners.Forms
             var showBack = IsBackButtonVisible ?? (BindingContext is BindableModel vm ? vm.IsModal : true);
             var darkSuffix = IsDark ? "b" : "";
             if (showBack)
-                backImage.Source = ImageSource.FromResource($"RedCorners.Forms.leftarrow{darkSuffix}.png", typeof(TitleBar).GetTypeInfo().Assembly);
+                backImage.Source = BackButtonImageOverride ?? ImageSource.FromResource($"RedCorners.Forms.leftarrow{darkSuffix}.png", typeof(TitleBar).GetTypeInfo().Assembly);
             else
-                backImage.Source = ImageSource.FromResource($"RedCorners.Forms.menu{darkSuffix}.png", typeof(TitleBar).GetTypeInfo().Assembly);
+                backImage.Source = MenuButtonImageOverride ?? ImageSource.FromResource($"RedCorners.Forms.menu{darkSuffix}.png", typeof(TitleBar).GetTypeInfo().Assembly);
         }
 
         void UpdateToolBar()

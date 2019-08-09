@@ -60,6 +60,7 @@ namespace RedCorners.Forms
             set => SetValue(TextColorProperty, value);
         }
 
+        [TypeConverter(typeof(FontSizeConverter))]
         public double FontSize
         {
             get => (double)GetValue(FontSizeProperty);
@@ -78,6 +79,7 @@ namespace RedCorners.Forms
             set => SetValue(SelectedTextColorProperty, value);
         }
 
+        [TypeConverter(typeof(FontSizeConverter))]
         public double? SelectedFontSize
         {
             get => (double?)GetValue(SelectedFontSizeProperty);

@@ -211,6 +211,7 @@ namespace RedCorners.Forms
             set => SetValue(TextColorProperty, value);
         }
 
+        [TypeConverter(typeof(FontSizeConverter))]
         public double FontSize
         {
             get => (double)GetValue(FontSizeProperty);
