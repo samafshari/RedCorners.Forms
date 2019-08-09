@@ -23,10 +23,11 @@ namespace RedCorners.Forms
         public virtual bool IsModal { get; set; } = true;
 
         public event PropertyChangedEventHandler PropertyChanged;
+        [Obsolete("Use RaisePropertyChanged instead.")]
         public void OnPropertyChanged([CallerMemberName] string m = null) =>
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(m));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(m));
         public void RaisePropertyChanged([CallerMemberName] string m = null) =>
-            OnPropertyChanged(m);
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(m));
 
         public event EventHandler<string> OnLog;
 
