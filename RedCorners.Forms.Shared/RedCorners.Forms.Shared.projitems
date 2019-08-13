@@ -21,6 +21,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\FormsExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\LogExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\MessagingExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IElement.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Signals.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PageCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PopCommand.cs" />
@@ -98,7 +99,7 @@
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)leftarrow.png" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)menu.png" />
-	<EmbeddedResource Include="$(MSBuildThisFileDirectory)leftarrowb.png" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)leftarrowb.png" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)menub.png" />
   </ItemGroup>
   <ItemGroup>

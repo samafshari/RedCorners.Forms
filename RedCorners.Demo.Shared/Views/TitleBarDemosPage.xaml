@@ -24,436 +24,438 @@
                 VerticalOptions="Fill"
                 Aspect="AspectFill" />
         </rf:TitledContentView.TitleBackground>
-        <StackLayout Grid.Row="1" Padding="10">
-            <Button Text="BackgroundColor">
-                <Button.Command>
-                    <rf:PageCommand>
-                        <rf:ContentPage2 FixTopPadding="False">
-                            <Grid RowSpacing="0">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto" />
-                                </Grid.RowDefinitions>
-                                <rf:HorizontalShadow Grid.Row="1" />
-                                <rf:TitleBar
-                                    Title="Custom Background Color"
-                                    IsBackButtonVisible="True"
-                                    BackgroundColor="#c62828"
-                                    BackCommand="{Static rf:Values.PopCommand}" />
-                            </Grid>
-                        </rf:ContentPage2>
-                    </rf:PageCommand>
-                </Button.Command>
-            </Button>
+        <ScrollView>
+            <StackLayout Grid.Row="1" Padding="10">
+                <Button Text="BackgroundColor">
+                    <Button.Command>
+                        <rf:PageCommand>
+                            <rf:ContentPage2 FixTopPadding="False">
+                                <Grid RowSpacing="0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <rf:HorizontalShadow Grid.Row="1" />
+                                    <rf:TitleBar
+                                            Title="Custom Background Color"
+                                            IsBackButtonVisible="True"
+                                            BackgroundColor="#c62828"
+                                            BackCommand="{Static rf:Values.PopCommand}" />
+                                </Grid>
+                            </rf:ContentPage2>
+                        </rf:PageCommand>
+                    </Button.Command>
+                </Button>
 
-            <Button Text="ToolBar">
-                <Button.Command>
-                    <rf:PageCommand>
-                        <rf:ContentPage2 FixTopPadding="False">
-                            <Grid BindingContext="{Reference vm}" RowSpacing="0">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto" />
-                                </Grid.RowDefinitions>
-                                <rf:HorizontalShadow Grid.Row="1" />
-                                <rf:TitleBar
-                                    Title="Buttoned TitleBar"
-                                    IsBackButtonVisible="True"
-                                    BackgroundColor="#c62828"
-                                    BackCommand="{Static rf:Values.PopCommand}">
-                                    <StackLayout Orientation="Horizontal" Spacing="28" VerticalOptions="Center">
-                                        <rf:ImageButton2 
-                                            Source="menuabout" 
-                                            CommandParameter="About clicked!" 
-                                            Command="{Binding MessageCommand}" 
-                                            HeightRequest="28"
-                                            WidthRequest="28" />
-                                        <rf:ImageButton2 
-                                            Source="menumap" 
-                                            CommandParameter="Pin clicked!" 
-                                            Command="{Binding MessageCommand}" 
-                                            HeightRequest="28" 
-                                            WidthRequest="28" />
-                                    </StackLayout>
-                                </rf:TitleBar>
-                            </Grid>
-                        </rf:ContentPage2>
-                    </rf:PageCommand>
-                </Button.Command>
-            </Button>
-
-            <Button Text="Left ToolBar">
-                <Button.Command>
-                    <rf:PageCommand>
-                        <rf:ContentPage2 FixTopPadding="False">
-                            <StackLayout BindingContext="{Reference vm}">
-                                <rf:TitleBar
-                                    Title="Left ToolBar"
-                                    BackgroundColor="#c62828">
-                                    <rf:TitleBar.LeftToolBar>
+                <Button Text="ToolBar">
+                    <Button.Command>
+                        <rf:PageCommand>
+                            <rf:ContentPage2 FixTopPadding="False">
+                                <Grid BindingContext="{Reference vm}" RowSpacing="0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <rf:HorizontalShadow Grid.Row="1" />
+                                    <rf:TitleBar
+                                            Title="Buttoned TitleBar"
+                                            IsBackButtonVisible="True"
+                                            BackgroundColor="#c62828"
+                                            BackCommand="{Static rf:Values.PopCommand}">
                                         <StackLayout Orientation="Horizontal" Spacing="28" VerticalOptions="Center">
                                             <rf:ImageButton2 
-                                            Source="menuabout" 
-                                            CommandParameter="About clicked!" 
-                                            Command="{Binding MessageCommand}" 
-                                            HeightRequest="28"
-                                            WidthRequest="28" />
+                                                    Source="menuabout" 
+                                                    CommandParameter="About clicked!" 
+                                                    Command="{Binding MessageCommand}" 
+                                                    HeightRequest="28"
+                                                    WidthRequest="28" />
                                             <rf:ImageButton2 
-                                            Source="menumap" 
-                                            CommandParameter="Pin clicked!" 
-                                            Command="{Binding MessageCommand}" 
-                                            HeightRequest="28" 
-                                            WidthRequest="28" />
+                                                    Source="menumap" 
+                                                    CommandParameter="Pin clicked!" 
+                                                    Command="{Binding MessageCommand}" 
+                                                    HeightRequest="28" 
+                                                    WidthRequest="28" />
                                         </StackLayout>
-                                    </rf:TitleBar.LeftToolBar>
-                                    <StackLayout Orientation="Horizontal" Spacing="28" VerticalOptions="Center">
-                                        <rf:ImageButton2 
-                                            Source="menuabout" 
-                                            CommandParameter="About clicked!" 
-                                            Command="{Binding MessageCommand}" 
-                                            HeightRequest="28"
-                                            WidthRequest="28" />
-                                        <rf:ImageButton2 
-                                            Source="menumap" 
-                                            CommandParameter="Pin clicked!" 
-                                            Command="{Binding MessageCommand}" 
-                                            HeightRequest="28" 
-                                            WidthRequest="28" />
-                                    </StackLayout>
-                                </rf:TitleBar>
-
-                                <rf:TitleBar
-                                    FixTopPadding="False"
-                                    Title="Center Text"
-                                    TitleAlignment="Center"
-                                    BackgroundColor="#c62828">
-                                    <rf:TitleBar.LeftToolBar>
-                                        <StackLayout Orientation="Horizontal" Spacing="28" VerticalOptions="Center">
-                                            <rf:ImageButton2 
-                                            Source="menuabout" 
-                                            CommandParameter="About clicked!" 
-                                            Command="{Binding MessageCommand}" 
-                                            HeightRequest="28"
-                                            WidthRequest="28" />
-                                            <rf:ImageButton2 
-                                            Source="menumap" 
-                                            CommandParameter="Pin clicked!" 
-                                            Command="{Binding MessageCommand}" 
-                                            HeightRequest="28" 
-                                            WidthRequest="28" />
-                                        </StackLayout>
-                                    </rf:TitleBar.LeftToolBar>
-                                    <StackLayout Orientation="Horizontal" Spacing="28" VerticalOptions="Center">
-                                        <rf:ImageButton2 
-                                            Source="menuabout" 
-                                            CommandParameter="About clicked!" 
-                                            Command="{Binding MessageCommand}" 
-                                            HeightRequest="28"
-                                            WidthRequest="28" />
-                                        <rf:ImageButton2 
-                                            Source="menumap" 
-                                            CommandParameter="Pin clicked!" 
-                                            Command="{Binding MessageCommand}" 
-                                            HeightRequest="28" 
-                                            WidthRequest="28" />
-                                    </StackLayout>
-                                </rf:TitleBar>
-
-                                <rf:TitleBar
-                                    FixTopPadding="False"
-                                    Title="Right Text"
-                                    TitleAlignment="End"
-                                    BackgroundColor="#c62828">
-                                    <rf:TitleBar.LeftToolBar>
-                                        <StackLayout Orientation="Horizontal" Spacing="28" VerticalOptions="Center">
-                                            <rf:ImageButton2 
-                                            Source="menuabout" 
-                                            CommandParameter="About clicked!" 
-                                            Command="{Binding MessageCommand}" 
-                                            HeightRequest="28"
-                                            WidthRequest="28" />
-                                            <rf:ImageButton2 
-                                            Source="menumap" 
-                                            CommandParameter="Pin clicked!" 
-                                            Command="{Binding MessageCommand}" 
-                                            HeightRequest="28" 
-                                            WidthRequest="28" />
-                                        </StackLayout>
-                                    </rf:TitleBar.LeftToolBar>
-                                    <StackLayout Orientation="Horizontal" Spacing="28" VerticalOptions="Center">
-                                        <rf:ImageButton2 
-                                            Source="menuabout" 
-                                            CommandParameter="About clicked!" 
-                                            Command="{Binding MessageCommand}" 
-                                            HeightRequest="28"
-                                            WidthRequest="28" />
-                                        <rf:ImageButton2 
-                                            Source="menumap" 
-                                            CommandParameter="Pin clicked!" 
-                                            Command="{Binding MessageCommand}" 
-                                            HeightRequest="28" 
-                                            WidthRequest="28" />
-                                    </StackLayout>
-                                </rf:TitleBar>
-
-                                <rf:TitleBar
-                                    FixTopPadding="False"
-                                    Title="Right Text"
-                                    TitleAlignment="End"
-                                    BackgroundColor="#c62828">
-                                    <rf:TitleBar.LeftToolBar>
-                                        <StackLayout Orientation="Horizontal" Spacing="28" VerticalOptions="Center">
-                                            <rf:Button2
-                                                Text="Back"
-                                                TextColor="White"
-                                                BackgroundColor="Transparent"
-                                                Command="{x:Static rf:Values.PopCommand}" />
-                                        </StackLayout>
-                                    </rf:TitleBar.LeftToolBar>
-                                    <StackLayout Orientation="Horizontal" Spacing="28" VerticalOptions="Center">
-                                        <rf:ImageButton2 
-                                            Source="menuabout" 
-                                            CommandParameter="About clicked!" 
-                                            Command="{Binding MessageCommand}" 
-                                            HeightRequest="28"
-                                            WidthRequest="28" />
-                                        <rf:ImageButton2 
-                                            Source="menumap" 
-                                            CommandParameter="Pin clicked!" 
-                                            Command="{Binding MessageCommand}" 
-                                            HeightRequest="28" 
-                                            WidthRequest="28" />
-                                    </StackLayout>
-                                </rf:TitleBar>
-                            </StackLayout>
-                        </rf:ContentPage2>
-                    </rf:PageCommand>
-                </Button.Command>
-            </Button>
-            
-            <Button Text="Bottom bar">
-                <Button.Command>
-                    <rf:PageCommand>
-                        <rf:ContentPage2 UIStatusBarStyle="Default" FixBottomPadding="False">
-                            <Grid BindingContext="{Reference vm}" RowSpacing="0">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="*" />
-                                    <RowDefinition Height="Auto" />
-                                </Grid.RowDefinitions>
-                                <rf:HorizontalShadow2 />
-                                <rf:TitleBar
-                                    Grid.Row="1"
-                                    Title="Bottom TitleBar"
-                                    IsBackButtonVisible="True"
-                                    BackgroundColor="#c62828"
-                                    BackCommand="{Static rf:Values.PopCommand}"
-                                    FixTopPadding="False"
-                                    FixBottomPadding="True">
-                                    <StackLayout Orientation="Horizontal" Spacing="28" VerticalOptions="Center">
-                                        <rf:ImageButton2 
-                                            Source="menuabout" 
-                                            CommandParameter="About clicked!" 
-                                            Command="{Binding MessageCommand}" 
-                                            HeightRequest="28"
-                                            WidthRequest="28" />
-                                        <rf:ImageButton2 
-                                            Source="menumap" 
-                                            CommandParameter="Pin clicked!" 
-                                            Command="{Binding MessageCommand}" 
-                                            HeightRequest="28" 
-                                            WidthRequest="28" />
-                                    </StackLayout>
-                                </rf:TitleBar>
-                            </Grid>
-                        </rf:ContentPage2>
-                    </rf:PageCommand>
-                </Button.Command>
-            </Button>
-
-            <Button Text="Custom Height">
-                <Button.Command>
-                    <rf:PageCommand>
-                        <rf:ContentPage2 FixTopPadding="False">
-                            <Grid RowSpacing="0">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto" />
-                                </Grid.RowDefinitions>
-                                <rf:HorizontalShadow Grid.Row="1" />
-                                <rf:TitleBar
-                                    Title="Custom Height"
-                                    IsBackButtonVisible="True"
-                                    BackgroundColor="#c62828"
-                                    BackCommand="{Static rf:Values.PopCommand}"
-                                    ContentHeightRequest="100" />
-                            </Grid>
-                        </rf:ContentPage2>
-                    </rf:PageCommand>
-                </Button.Command>
-            </Button>
-
-            <Button Text="TitleBar Demo 6 (Custom Background)">
-                <Button.Command>
-                    <rf:PageCommand>
-                        <rf:ContentPage2 FixTopPadding="False">
-                            <Grid RowSpacing="0">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto" />
-                                </Grid.RowDefinitions>
-                                <rf:HorizontalShadow Grid.Row="1" />
-                                <rf:TitleBar
-                                    Title="Custom Background"
-                                    IsBackButtonVisible="True"
-                                    BackCommand="{Static rf:Values.PopCommand}">
-                                    <rf:TitleBar.Background>
-                                        <Image 
-                                            Source="https://freefrontend.com/assets/img/css-background-patterns/simple-pattern-with-css3.png" 
-                                            HorizontalOptions="Fill" 
-                                            VerticalOptions="Fill" 
-                                            Aspect="AspectFill" 
-                                            HeightRequest="1" />
-                                    </rf:TitleBar.Background>
-                                </rf:TitleBar>
-                            </Grid>
-                        </rf:ContentPage2>
-                    </rf:PageCommand>
-                </Button.Command>
-            </Button>
-
-            <Button Text="Animated Background">
-                <Button.Command>
-                    <rf:PageCommand>
-                        <rf:ContentPage2 BindingContext="{Reference vm}" FixTopPadding="False">
-                            <Grid RowSpacing="0">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto" />
-                                </Grid.RowDefinitions>
-                                <rf:HorizontalShadow Grid.Row="1" />
-                                <rf:TitleBar
-                                    Title="Animated Background"
-                                    IsBackButtonVisible="True"
-                                    BackCommand="{Static rf:Values.PopCommand}">
-                                    <rf:TitleBar.Background>
-                                        <ff:CachedImage 
-                                            Source="https://media.giphy.com/media/U3qYN8S0j3bpK/giphy.gif" 
-                                            HorizontalOptions="Fill" 
-                                            VerticalOptions="Fill" 
-                                            Aspect="AspectFill" 
-                                            HeightRequest="1" />
-                                    </rf:TitleBar.Background>
-                                    <StackLayout Orientation="Horizontal" Spacing="28" VerticalOptions="Center">
-                                        <rf:ImageButton2 
-                                            Source="menuabout" 
-                                            CommandParameter="About clicked!" 
-                                            Command="{Binding MessageCommand}" 
-                                            HeightRequest="28" WidthRequest="28" />
-                                        <rf:ImageButton2 
-                                            Source="menumap" 
-                                            CommandParameter="Pin clicked!" 
-                                            Command="{Binding MessageCommand}" 
-                                            HeightRequest="28" 
-                                            WidthRequest="28" />
-                                    </StackLayout>
-                                </rf:TitleBar>
-                            </Grid>
-                        </rf:ContentPage2>
-                    </rf:PageCommand>
-                </Button.Command>
-            </Button>
-
-            <Button Text="Center Align">
-                <Button.Command>
-                    <rf:PageCommand>
-                        <rf:ContentPage2 BindingContext="{Reference vm}" FixTopPadding="False">
-                            <Grid RowSpacing="0">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto" />
-                                </Grid.RowDefinitions>
-                                <rf:HorizontalShadow Grid.Row="1" />
-                                <rf:TitleBar
-                                    Title="Center Align"
-                                    TitleAlignment="Center"
-                                    IsBackButtonVisible="True"
-                                    BackCommand="{Static rf:Values.PopCommand}"
-                                    BackgroundColor="Gray">
-                                    <rf:TitleBar.Background>
-                                        <ff:CachedImage 
-                                            Source="http://www.sclance.com/pngs/transparent-grid-png/transparent_grid_png_1404573.png" 
-                                            HorizontalOptions="Fill" 
-                                            VerticalOptions="Fill" 
-                                            Aspect="AspectFill" 
-                                            HeightRequest="1" />
-                                    </rf:TitleBar.Background>
-                                </rf:TitleBar>
-                            </Grid>
-                        </rf:ContentPage2>
-                    </rf:PageCommand>
-                </Button.Command>
-            </Button>
-
-            <Button Text="TitledContentView">
-                <Button.Command>
-                    <rf:PageCommand>
-                        <rf:ContentPage2 BindingContext="{Reference vm}" FixTopPadding="False">
-                            <rf:TitledContentView
-                                Title="TitledContentView">
-                                <rf:TitledContentView.LeftToolBar>
-                                    <rf:Button2 TextColor="White" Text="Back" Command="{x:Static rf:Values.PopCommand}" Visual="Default" BackgroundColor="Transparent" />
-                                </rf:TitledContentView.LeftToolBar>
-                            </rf:TitledContentView>
-                        </rf:ContentPage2>
-                    </rf:PageCommand>
-                </Button.Command>
-            </Button>
-
-            <Button Text="Dark">
-                <Button.Command>
-                    <rf:PageCommand>
-                        <rf:ContentPage2 BindingContext="{Reference vm}" FixTopPadding="False">
-                            <rf:TitledContentView
-                                TitleColor="LightGreen"
-                                IsDark="True"
-                                TitleTextColor="Black"
-                                Title="Black TitleBar" />
-                        </rf:ContentPage2>
-                    </rf:PageCommand>
-                </Button.Command>
-            </Button>
-
-            <Button Text="Center Image Logo">
-                <Button.Command>
-                    <rf:PageCommand>
-                        <rf:ContentPage2 BindingContext="{Reference vm}">
-                            <rf:TitledContentView Title="" TitleAlignment="Center" BackCommand="{x:Static rf:Values.PopCommand}">
-                                <rf:TitledContentView.TitleView>
-                                    <ff:CachedImage Margin="10" Source="http://ooze.redcorners.com/redcorners_logo.png" HorizontalOptions="Center">
-                                        <ff:CachedImage.GestureRecognizers>
-                                            <TapGestureRecognizer Command="{Binding MessageCommand}" CommandParameter="Logo Clicked!" />
-                                        </ff:CachedImage.GestureRecognizers>
-                                    </ff:CachedImage>
-                                </rf:TitledContentView.TitleView>
-                                <StackLayout>
-                                    <rf:TitleBar TitleAlignment="Start" FixBottomPadding="False" FixTopPadding="False">
-                                        <rf:TitleBar.TitleView>
-                                            <ff:CachedImage Margin="10" Source="http://ooze.redcorners.com/redcorners_logo.png" HorizontalOptions="Start">
-                                                <ff:CachedImage.GestureRecognizers>
-                                                    <TapGestureRecognizer Command="{Binding MessageCommand}" CommandParameter="Logo Clicked!" />
-                                                </ff:CachedImage.GestureRecognizers>
-                                            </ff:CachedImage>
-                                        </rf:TitleBar.TitleView>
                                     </rf:TitleBar>
-                                    <rf:TitleBar TitleAlignment="End" FixBottomPadding="False" FixTopPadding="False">
-                                        <rf:TitleBar.TitleView>
-                                            <ff:CachedImage Margin="10" Source="http://ooze.redcorners.com/redcorners_logo.png" HorizontalOptions="End">
-                                                <ff:CachedImage.GestureRecognizers>
-                                                    <TapGestureRecognizer Command="{Binding MessageCommand}" CommandParameter="Logo Clicked!" />
-                                                </ff:CachedImage.GestureRecognizers>
-                                            </ff:CachedImage>
-                                        </rf:TitleBar.TitleView>
+                                </Grid>
+                            </rf:ContentPage2>
+                        </rf:PageCommand>
+                    </Button.Command>
+                </Button>
+
+                <Button Text="Left ToolBar">
+                    <Button.Command>
+                        <rf:PageCommand>
+                            <rf:ContentPage2 FixTopPadding="False">
+                                <StackLayout BindingContext="{Reference vm}">
+                                    <rf:TitleBar
+                                            Title="Left ToolBar"
+                                            BackgroundColor="#c62828">
+                                        <rf:TitleBar.LeftToolBar>
+                                            <StackLayout Orientation="Horizontal" Spacing="28" VerticalOptions="Center">
+                                                <rf:ImageButton2 
+                                                    Source="menuabout" 
+                                                    CommandParameter="About clicked!" 
+                                                    Command="{Binding MessageCommand}" 
+                                                    HeightRequest="28"
+                                                    WidthRequest="28" />
+                                                <rf:ImageButton2 
+                                                    Source="menumap" 
+                                                    CommandParameter="Pin clicked!" 
+                                                    Command="{Binding MessageCommand}" 
+                                                    HeightRequest="28" 
+                                                    WidthRequest="28" />
+                                            </StackLayout>
+                                        </rf:TitleBar.LeftToolBar>
+                                        <StackLayout Orientation="Horizontal" Spacing="28" VerticalOptions="Center">
+                                            <rf:ImageButton2 
+                                                    Source="menuabout" 
+                                                    CommandParameter="About clicked!" 
+                                                    Command="{Binding MessageCommand}" 
+                                                    HeightRequest="28"
+                                                    WidthRequest="28" />
+                                            <rf:ImageButton2 
+                                                    Source="menumap" 
+                                                    CommandParameter="Pin clicked!" 
+                                                    Command="{Binding MessageCommand}" 
+                                                    HeightRequest="28" 
+                                                    WidthRequest="28" />
+                                        </StackLayout>
+                                    </rf:TitleBar>
+
+                                    <rf:TitleBar
+                                            FixTopPadding="False"
+                                            Title="Center Text"
+                                            TitleAlignment="Center"
+                                            BackgroundColor="#c62828">
+                                        <rf:TitleBar.LeftToolBar>
+                                            <StackLayout Orientation="Horizontal" Spacing="28" VerticalOptions="Center">
+                                                <rf:ImageButton2 
+                                                    Source="menuabout" 
+                                                    CommandParameter="About clicked!" 
+                                                    Command="{Binding MessageCommand}" 
+                                                    HeightRequest="28"
+                                                    WidthRequest="28" />
+                                                <rf:ImageButton2 
+                                                    Source="menumap" 
+                                                    CommandParameter="Pin clicked!" 
+                                                    Command="{Binding MessageCommand}" 
+                                                    HeightRequest="28" 
+                                                    WidthRequest="28" />
+                                            </StackLayout>
+                                        </rf:TitleBar.LeftToolBar>
+                                        <StackLayout Orientation="Horizontal" Spacing="28" VerticalOptions="Center">
+                                            <rf:ImageButton2 
+                                                    Source="menuabout" 
+                                                    CommandParameter="About clicked!" 
+                                                    Command="{Binding MessageCommand}" 
+                                                    HeightRequest="28"
+                                                    WidthRequest="28" />
+                                            <rf:ImageButton2 
+                                                    Source="menumap" 
+                                                    CommandParameter="Pin clicked!" 
+                                                    Command="{Binding MessageCommand}" 
+                                                    HeightRequest="28" 
+                                                    WidthRequest="28" />
+                                        </StackLayout>
+                                    </rf:TitleBar>
+
+                                    <rf:TitleBar
+                                            FixTopPadding="False"
+                                            Title="Right Text"
+                                            TitleAlignment="End"
+                                            BackgroundColor="#c62828">
+                                        <rf:TitleBar.LeftToolBar>
+                                            <StackLayout Orientation="Horizontal" Spacing="28" VerticalOptions="Center">
+                                                <rf:ImageButton2 
+                                                    Source="menuabout" 
+                                                    CommandParameter="About clicked!" 
+                                                    Command="{Binding MessageCommand}" 
+                                                    HeightRequest="28"
+                                                    WidthRequest="28" />
+                                                <rf:ImageButton2 
+                                                    Source="menumap" 
+                                                    CommandParameter="Pin clicked!" 
+                                                    Command="{Binding MessageCommand}" 
+                                                    HeightRequest="28" 
+                                                    WidthRequest="28" />
+                                            </StackLayout>
+                                        </rf:TitleBar.LeftToolBar>
+                                        <StackLayout Orientation="Horizontal" Spacing="28" VerticalOptions="Center">
+                                            <rf:ImageButton2 
+                                                    Source="menuabout" 
+                                                    CommandParameter="About clicked!" 
+                                                    Command="{Binding MessageCommand}" 
+                                                    HeightRequest="28"
+                                                    WidthRequest="28" />
+                                            <rf:ImageButton2 
+                                                    Source="menumap" 
+                                                    CommandParameter="Pin clicked!" 
+                                                    Command="{Binding MessageCommand}" 
+                                                    HeightRequest="28" 
+                                                    WidthRequest="28" />
+                                        </StackLayout>
+                                    </rf:TitleBar>
+
+                                    <rf:TitleBar
+                                            FixTopPadding="False"
+                                            Title="Right Text"
+                                            TitleAlignment="End"
+                                            BackgroundColor="#c62828">
+                                        <rf:TitleBar.LeftToolBar>
+                                            <StackLayout Orientation="Horizontal" Spacing="28" VerticalOptions="Center">
+                                                <rf:Button2
+                                                        Text="Back"
+                                                        TextColor="White"
+                                                        BackgroundColor="Transparent"
+                                                        Command="{x:Static rf:Values.PopCommand}" />
+                                            </StackLayout>
+                                        </rf:TitleBar.LeftToolBar>
+                                        <StackLayout Orientation="Horizontal" Spacing="28" VerticalOptions="Center">
+                                            <rf:ImageButton2 
+                                                    Source="menuabout" 
+                                                    CommandParameter="About clicked!" 
+                                                    Command="{Binding MessageCommand}" 
+                                                    HeightRequest="28"
+                                                    WidthRequest="28" />
+                                            <rf:ImageButton2 
+                                                    Source="menumap" 
+                                                    CommandParameter="Pin clicked!" 
+                                                    Command="{Binding MessageCommand}" 
+                                                    HeightRequest="28" 
+                                                    WidthRequest="28" />
+                                        </StackLayout>
                                     </rf:TitleBar>
                                 </StackLayout>
-                            </rf:TitledContentView>
-                        </rf:ContentPage2>
-                    </rf:PageCommand>
-                </Button.Command>
-            </Button>
-        </StackLayout>
+                            </rf:ContentPage2>
+                        </rf:PageCommand>
+                    </Button.Command>
+                </Button>
+
+                <Button Text="Bottom bar">
+                    <Button.Command>
+                        <rf:PageCommand>
+                            <rf:ContentPage2 UIStatusBarStyle="Default" FixBottomPadding="False">
+                                <Grid BindingContext="{Reference vm}" RowSpacing="0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <rf:HorizontalShadow2 />
+                                    <rf:TitleBar
+                                            Grid.Row="1"
+                                            Title="Bottom TitleBar"
+                                            IsBackButtonVisible="True"
+                                            BackgroundColor="#c62828"
+                                            BackCommand="{Static rf:Values.PopCommand}"
+                                            FixTopPadding="False"
+                                            FixBottomPadding="True">
+                                        <StackLayout Orientation="Horizontal" Spacing="28" VerticalOptions="Center">
+                                            <rf:ImageButton2 
+                                                    Source="menuabout" 
+                                                    CommandParameter="About clicked!" 
+                                                    Command="{Binding MessageCommand}" 
+                                                    HeightRequest="28"
+                                                    WidthRequest="28" />
+                                            <rf:ImageButton2 
+                                                    Source="menumap" 
+                                                    CommandParameter="Pin clicked!" 
+                                                    Command="{Binding MessageCommand}" 
+                                                    HeightRequest="28" 
+                                                    WidthRequest="28" />
+                                        </StackLayout>
+                                    </rf:TitleBar>
+                                </Grid>
+                            </rf:ContentPage2>
+                        </rf:PageCommand>
+                    </Button.Command>
+                </Button>
+
+                <Button Text="Custom Height">
+                    <Button.Command>
+                        <rf:PageCommand>
+                            <rf:ContentPage2 FixTopPadding="False">
+                                <Grid RowSpacing="0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <rf:HorizontalShadow Grid.Row="1" />
+                                    <rf:TitleBar
+                                            Title="Custom Height"
+                                            IsBackButtonVisible="True"
+                                            BackgroundColor="#c62828"
+                                            BackCommand="{Static rf:Values.PopCommand}"
+                                            ContentHeightRequest="100" />
+                                </Grid>
+                            </rf:ContentPage2>
+                        </rf:PageCommand>
+                    </Button.Command>
+                </Button>
+
+                <Button Text="TitleBar Demo 6 (Custom Background)">
+                    <Button.Command>
+                        <rf:PageCommand>
+                            <rf:ContentPage2 FixTopPadding="False">
+                                <Grid RowSpacing="0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <rf:HorizontalShadow Grid.Row="1" />
+                                    <rf:TitleBar
+                                            Title="Custom Background"
+                                            IsBackButtonVisible="True"
+                                            BackCommand="{Static rf:Values.PopCommand}">
+                                        <rf:TitleBar.Background>
+                                            <Image 
+                                                    Source="https://freefrontend.com/assets/img/css-background-patterns/simple-pattern-with-css3.png" 
+                                                    HorizontalOptions="Fill" 
+                                                    VerticalOptions="Fill" 
+                                                    Aspect="AspectFill" 
+                                                    HeightRequest="1" />
+                                        </rf:TitleBar.Background>
+                                    </rf:TitleBar>
+                                </Grid>
+                            </rf:ContentPage2>
+                        </rf:PageCommand>
+                    </Button.Command>
+                </Button>
+
+                <Button Text="Animated Background">
+                    <Button.Command>
+                        <rf:PageCommand>
+                            <rf:ContentPage2 BindingContext="{Reference vm}" FixTopPadding="False">
+                                <Grid RowSpacing="0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <rf:HorizontalShadow Grid.Row="1" />
+                                    <rf:TitleBar
+                                            Title="Animated Background"
+                                            IsBackButtonVisible="True"
+                                            BackCommand="{Static rf:Values.PopCommand}">
+                                        <rf:TitleBar.Background>
+                                            <ff:CachedImage 
+                                                    Source="https://media.giphy.com/media/U3qYN8S0j3bpK/giphy.gif" 
+                                                    HorizontalOptions="Fill" 
+                                                    VerticalOptions="Fill" 
+                                                    Aspect="AspectFill" 
+                                                    HeightRequest="1" />
+                                        </rf:TitleBar.Background>
+                                        <StackLayout Orientation="Horizontal" Spacing="28" VerticalOptions="Center">
+                                            <rf:ImageButton2 
+                                                    Source="menuabout" 
+                                                    CommandParameter="About clicked!" 
+                                                    Command="{Binding MessageCommand}" 
+                                                    HeightRequest="28" WidthRequest="28" />
+                                            <rf:ImageButton2 
+                                                    Source="menumap" 
+                                                    CommandParameter="Pin clicked!" 
+                                                    Command="{Binding MessageCommand}" 
+                                                    HeightRequest="28" 
+                                                    WidthRequest="28" />
+                                        </StackLayout>
+                                    </rf:TitleBar>
+                                </Grid>
+                            </rf:ContentPage2>
+                        </rf:PageCommand>
+                    </Button.Command>
+                </Button>
+
+                <Button Text="Center Align">
+                    <Button.Command>
+                        <rf:PageCommand>
+                            <rf:ContentPage2 BindingContext="{Reference vm}" FixTopPadding="False">
+                                <Grid RowSpacing="0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <rf:HorizontalShadow Grid.Row="1" />
+                                    <rf:TitleBar
+                                            Title="Center Align"
+                                            TitleAlignment="Center"
+                                            IsBackButtonVisible="True"
+                                            BackCommand="{Static rf:Values.PopCommand}"
+                                            BackgroundColor="Gray">
+                                        <rf:TitleBar.Background>
+                                            <ff:CachedImage 
+                                                    Source="http://www.sclance.com/pngs/transparent-grid-png/transparent_grid_png_1404573.png" 
+                                                    HorizontalOptions="Fill" 
+                                                    VerticalOptions="Fill" 
+                                                    Aspect="AspectFill" 
+                                                    HeightRequest="1" />
+                                        </rf:TitleBar.Background>
+                                    </rf:TitleBar>
+                                </Grid>
+                            </rf:ContentPage2>
+                        </rf:PageCommand>
+                    </Button.Command>
+                </Button>
+
+                <Button Text="TitledContentView">
+                    <Button.Command>
+                        <rf:PageCommand>
+                            <rf:ContentPage2 BindingContext="{Reference vm}" FixTopPadding="False">
+                                <rf:TitledContentView
+                                        Title="TitledContentView">
+                                    <rf:TitledContentView.LeftToolBar>
+                                        <rf:Button2 TextColor="White" Text="Back" Command="{x:Static rf:Values.PopCommand}" Visual="Default" BackgroundColor="Transparent" />
+                                    </rf:TitledContentView.LeftToolBar>
+                                </rf:TitledContentView>
+                            </rf:ContentPage2>
+                        </rf:PageCommand>
+                    </Button.Command>
+                </Button>
+
+                <Button Text="Dark">
+                    <Button.Command>
+                        <rf:PageCommand>
+                            <rf:ContentPage2 BindingContext="{Reference vm}" FixTopPadding="False">
+                                <rf:TitledContentView
+                                        TitleColor="LightGreen"
+                                        IsDark="True"
+                                        TitleTextColor="Black"
+                                        Title="Black TitleBar" />
+                            </rf:ContentPage2>
+                        </rf:PageCommand>
+                    </Button.Command>
+                </Button>
+
+                <Button Text="Center Image Logo">
+                    <Button.Command>
+                        <rf:PageCommand>
+                            <rf:ContentPage2 BindingContext="{Reference vm}">
+                                <rf:TitledContentView Title="" TitleAlignment="Center" BackCommand="{x:Static rf:Values.PopCommand}">
+                                    <rf:TitledContentView.TitleView>
+                                        <ff:CachedImage Margin="10" Source="http://ooze.redcorners.com/redcorners_logo.png" HorizontalOptions="Center">
+                                            <ff:CachedImage.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding MessageCommand}" CommandParameter="Logo Clicked!" />
+                                            </ff:CachedImage.GestureRecognizers>
+                                        </ff:CachedImage>
+                                    </rf:TitledContentView.TitleView>
+                                    <StackLayout>
+                                        <rf:TitleBar TitleAlignment="Start" FixBottomPadding="False" FixTopPadding="False">
+                                            <rf:TitleBar.TitleView>
+                                                <ff:CachedImage Margin="10" Source="http://ooze.redcorners.com/redcorners_logo.png" HorizontalOptions="Start">
+                                                    <ff:CachedImage.GestureRecognizers>
+                                                        <TapGestureRecognizer Command="{Binding MessageCommand}" CommandParameter="Logo Clicked!" />
+                                                    </ff:CachedImage.GestureRecognizers>
+                                                </ff:CachedImage>
+                                            </rf:TitleBar.TitleView>
+                                        </rf:TitleBar>
+                                        <rf:TitleBar TitleAlignment="End" FixBottomPadding="False" FixTopPadding="False">
+                                            <rf:TitleBar.TitleView>
+                                                <ff:CachedImage Margin="10" Source="http://ooze.redcorners.com/redcorners_logo.png" HorizontalOptions="End">
+                                                    <ff:CachedImage.GestureRecognizers>
+                                                        <TapGestureRecognizer Command="{Binding MessageCommand}" CommandParameter="Logo Clicked!" />
+                                                    </ff:CachedImage.GestureRecognizers>
+                                                </ff:CachedImage>
+                                            </rf:TitleBar.TitleView>
+                                        </rf:TitleBar>
+                                    </StackLayout>
+                                </rf:TitledContentView>
+                            </rf:ContentPage2>
+                        </rf:PageCommand>
+                    </Button.Command>
+                </Button>
+            </StackLayout>
+        </ScrollView>
     </rf:TitledContentView>
 </rf:ContentPage2>

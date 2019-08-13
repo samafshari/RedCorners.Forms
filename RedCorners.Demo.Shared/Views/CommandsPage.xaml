@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<rf:ContentPage2
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:rf="clr-namespace:RedCorners.Forms;assembly=RedCorners.Forms"
+    xmlns:vm="clr-namespace:RedCorners.Demo.ViewModels"
+    mc:Ignorable="d"
+    x:Class="RedCorners.Demo.Views.CommandsPage">
+    <ContentPage.BindingContext>
+        <vm:CommandsViewModel x:Name="vm" />
+    </ContentPage.BindingContext>
+
+    <rf:TitledContentView 
+        Title="CommandsPage" 
+        BackCommand="{Binding GoBackCommand}" 
+        IsBackButtonVisible="True">
+        <StackLayout>
+            <Button Text="Button Test" Command="{Binding MessageCommand}" CommandParameter="Button Test" />
+            
+            <rf:Button2 Text="Normal Test" Command="{Binding MessageCommand}" CommandParameter="Normal Test" />
+
+            <rf:Button2 Text="Proxy Test" CommandParameter="Proxy Test">
+                <rf:Button2.Command>
+                    <rf:ProxyCommand Command="{Binding MessageCommand}" x:Name="cmdProxy" />
+                </rf:Button2.Command>
+            </rf:Button2>
+
+            <rf:Button2 Text="Local Test" CommandParameter="Proxy Test">
+                <rf:Button2.Command>
+                    <rf:ProxyCommand Command="{Binding MessageCommand}" CommandParameter="Local Test" />
+                </rf:Button2.Command>
+            </rf:Button2>
+        </StackLayout>
+    </rf:TitledContentView>
+</rf:ContentPage2>

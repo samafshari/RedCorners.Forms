@@ -118,6 +118,12 @@
                             </Button.Command>
                         </Button>
 
+                        <Button Text="Commands">
+                            <Button.Command>
+                                <rf:PageCommand PageType="{Type views:CommandsPage}" />
+                            </Button.Command>
+                        </Button>
+
                         <Grid IsVisible="{Binding IsIOS}" Padding="2" BackgroundColor="#99000000">
                             <Label Text="LightContent" />
                             <Switch IsToggled="{Binding LightContent}" />

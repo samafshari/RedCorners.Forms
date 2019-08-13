@@ -4,9 +4,9 @@ using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
 
-namespace RedCorners.Forms.Preview
+namespace RedCorners.Forms
 {
-    public class ProxyCommand : BindableObject, ICommand
+    public class ProxyCommand : Element, ICommand
     {
         public event EventHandler CanExecuteChanged;
 
@@ -18,12 +18,18 @@ namespace RedCorners.Forms.Preview
         bool ICommand.CanExecute(object parameter)
         {
             if (!IsEnabled) return false;
+            Console.WriteLine($"BindingContext: {BindingContext?.GetType().ToString() ?? "null"}");
+            Console.WriteLine($"Parent: {Parent?.GetType().ToString() ?? "null"}");
+            if (!UseParentParameter) parameter = CommandParameter;
+            else parameter = CommandParameter ?? parameter;
             return Command?.CanExecute(parameter) ?? true;
         }
 
         void ICommand.Execute(object parameter)
         {
             if (!IsEnabled) return;
+            if (!UseParentParameter) parameter = CommandParameter;
+            else parameter = CommandParameter ?? parameter;
             Command?.Execute(parameter);
         }
 
@@ -31,6 +37,18 @@ namespace RedCorners.Forms.Preview
         {
             get => (ICommand)GetValue(CommandProperty);
             set => SetValue(CommandProperty, value);
+        }
+
+        public object CommandParameter
+        {
+            get => GetValue(CommandParameterProperty);
+            set => SetValue(CommandParameterProperty, value);
+        }
+
+        public bool UseParentParameter
+        {
+            get => (bool)GetValue(UseParentParameterProperty);
+            set => SetValue(UseParentParameterProperty, value);
         }
 
         public bool IsEnabled
@@ -49,9 +67,17 @@ namespace RedCorners.Forms.Preview
                 if (bindable is ProxyCommand proxy)
                 {
                     if (oldVal is ICommand cmd && cmd != null)
+                    {
                         cmd.CanExecuteChanged -= proxy.CanExecuteChanged;
+                        if (cmd is IElement2 el2) el2.Parent = null;
+                        else if (cmd is Element el) el.Parent = null;
+                    }
                     if (newVal is ICommand cmd2 && cmd2 != null)
+                    {
                         cmd2.CanExecuteChanged += proxy.CanExecuteChanged;
+                        if (cmd2 is IElement2 el2) el2.Parent = proxy;
+                        else if (cmd2 is Element el) el.Parent = proxy;
+                    }
 
                     proxy.CanExecuteChanged?.Invoke(bindable, new EventArgs());
                 }
@@ -68,14 +94,16 @@ namespace RedCorners.Forms.Preview
                     proxy.CanExecuteChanged?.Invoke(bindable, new EventArgs());
             });
 
-        protected override void OnBindingContextChanged()
-        {
-            base.OnBindingContextChanged();
-        }
+        public static readonly BindableProperty CommandParameterProperty = BindableProperty.Create(
+            propertyName: nameof(CommandParameter),
+            returnType: typeof(object),
+            declaringType: typeof(ProxyCommand),
+            defaultValue: null);
 
-        void PropagateBindingContext()
-        {
-        }
-        
+        public static readonly BindableProperty UseParentParameterProperty = BindableProperty.Create(
+            propertyName: nameof(UseParentParameter),
+            returnType: typeof(bool),
+            declaringType: typeof(ProxyCommand),
+            defaultValue: true);
     }
 }

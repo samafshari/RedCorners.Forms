@@ -24,7 +24,7 @@ namespace RedCorners.Forms.Preview
     }
 
     [ContentProperty("Items")]
-    public class ChainCommand : BindableObject, ICommand
+    public class ChainCommand : BindableObject, ICommand, IElement2
     {
         public event EventHandler CanExecuteChanged;
 
@@ -102,6 +102,7 @@ namespace RedCorners.Forms.Preview
             get => (Func<object, bool>)GetValue(CustomCanExecuteProperty);
             set => SetValue(CustomCanExecuteProperty, value);
         }
+        public Element Parent { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         //public bool TestBeforeExecute
         //{
