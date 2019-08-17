@@ -23,7 +23,7 @@
 	<key>MinimumOSVersion</key>
 	<string>8.0</string>
 	<key>CFBundleDisplayName</key>
-	<string>RedCorners.Demo</string>
+	<string>Forms</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.companyname.RedCorners.Demo</string>
 	<key>CFBundleVersion</key>

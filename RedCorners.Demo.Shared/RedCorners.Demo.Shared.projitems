@@ -16,6 +16,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\LooseMessages.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\CounterViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\DelayedViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Frame2ViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SearchViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\TabBarDemosViewModel.cs" />
@@ -24,6 +25,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\DelayedDemoPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Frame2Page.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\MainPage.xaml.cs">
@@ -75,6 +79,9 @@
     <Compile Update="E:\Projects\RedCorners.Forms\RedCorners.Demo.Shared\Views\CancelPage.xaml.cs">
       <DependentUpon>CancelPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="E:\Projects\RedCorners.Forms\RedCorners.Demo.Shared\Views\Frame2Page.xaml.cs">
+      <DependentUpon>Frame2Page.xaml</DependentUpon>
+    </Compile>
     <Compile Update="E:\Projects\RedCorners.Forms\RedCorners.Demo.Shared\Views\SearchPage.xaml.cs">
       <DependentUpon>SearchPage.xaml</DependentUpon>
     </Compile>
@@ -117,6 +124,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\SearchPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\Frame2Page.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>

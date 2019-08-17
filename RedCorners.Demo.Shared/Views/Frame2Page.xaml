@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<rf:ContentPage2
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:rf="clr-namespace:RedCorners.Forms;assembly=RedCorners.Forms"
+    xmlns:vm="clr-namespace:RedCorners.Demo.ViewModels"
+    mc:Ignorable="d"
+    x:Class="RedCorners.Demo.Views.Frame2Page">
+    <ContentPage.BindingContext>
+        <vm:Frame2ViewModel />
+    </ContentPage.BindingContext>
+
+    <rf:TitledContentView 
+        Title="Frame2 Page" 
+        BackCommand="{Binding GoBackCommand}" 
+        IsBackButtonVisible="True"
+        BackgroundColor="LightGray">
+        <rf:TitledContentView.ToolBar>
+            <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand">
+                <!-- Define Toolbar Here -->
+            </StackLayout>
+        </rf:TitledContentView.ToolBar>
+
+        <Grid >
+        <StackLayout Spacing="8" Margin="20">
+            <!-- Define Page Contents Here -->
+            <Label Text="{Binding Hue, StringFormat='Hue {0:N2}'}" />
+            <Slider HorizontalOptions="Fill" Value="{Binding Hue}" Minimum="0" Maximum="100" />
+
+            <Label Text="{Binding Sat, StringFormat='Saturation {0:N2}'}" />
+            <Slider HorizontalOptions="Fill" Value="{Binding Sat}" Minimum="0" Maximum="100" />
+
+            <Label Text="{Binding Lit, StringFormat='Lightness {0:N2}'}" />
+            <Slider HorizontalOptions="Fill" Value="{Binding Lit}" Minimum="0" Maximum="100" />
+
+            <Label Text="{Binding Alpha, StringFormat='Alpha {0:N2}'}" />
+            <Slider HorizontalOptions="Fill" Value="{Binding Alpha}" Minimum="0" Maximum="100" />
+
+            <Label Text="{Binding ShadowRadiusD, StringFormat='Shadow Radius {0:N2} (careful, can crash iOS)'}" />
+            <Slider HorizontalOptions="Fill" Value="{Binding ShadowRadiusD}" Minimum="0" Maximum="1000" />
+
+            <Label Text="Corner Radius" />
+            <Slider HorizontalOptions="Fill" Value="0" Minimum="0" Maximum="100" x:Name="sldCorner" />
+        </StackLayout>
+
+            <rf:Frame2 
+                HasShadow="True" 
+                ShadowRadius="{Binding ShadowRadius}" 
+                ShadowColor="{Binding ShadowColor}"
+                VerticalOptions="End"
+                CornerRadius="{Binding Value, Source={x:Reference sldCorner}}" Margin="40" BackgroundColor="White">
+                <Grid HorizontalOptions="Fill" HeightRequest="100">
+                    <Label HorizontalOptions="Center" VerticalOptions="Center" Text="Hello, World" />
+                </Grid>
+            </rf:Frame2>
+        </Grid>
+    </rf:TitledContentView>
+</rf:ContentPage2>
