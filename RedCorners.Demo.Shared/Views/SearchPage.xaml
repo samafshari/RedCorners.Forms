@@ -22,7 +22,7 @@
             </StackLayout>
         </rf:TitledContentView.ToolBar>
 
-        <StackLayout>
+        <StackLayout BackgroundColor="LightGray" Spacing="16">
             <!-- Define Page Contents Here -->
             <rf:SearchBar2 IsCancelVisible="{Binding IsCancelVisible}" />
             <Switch IsToggled="{Binding IsCancelVisible}" />

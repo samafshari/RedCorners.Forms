@@ -15,7 +15,7 @@ namespace RedCorners.Forms
             set => SetValue(TextAlignmentProperty, value);
         }
 
-        public static BindableProperty TextAlignmentProperty =
+        public static readonly BindableProperty TextAlignmentProperty =
             BindableProperty.Create(nameof(TextAlignment),
             typeof(TextAlignment),
             typeof(Button2),
