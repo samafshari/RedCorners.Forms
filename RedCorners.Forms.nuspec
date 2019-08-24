@@ -2,11 +2,11 @@
 <package >
   <metadata>
     <id>RedCorners.Forms</id>
-    <version>5.27.0</version>
+    <version>5.28.0</version>
     <title>RedCorners.Forms</title>
     <authors>Saeed Afshari and NeatCapital OÜ</authors>
     <owners>NeatCapital OÜ</owners>
-    <projectUrl>https://github.com/saeedafshari/RedCorners.Forms</projectUrl>
+    <projectUrl>https://redcorners.com/forms</projectUrl>
     <iconUrl>http://ooze.redcorners.com/redcorners_forms_logo3.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>RedCorners.Forms brings some neat utilities to your Xamarin.Forms projects.</description>

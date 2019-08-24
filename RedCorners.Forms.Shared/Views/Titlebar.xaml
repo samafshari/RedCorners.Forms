@@ -16,6 +16,15 @@
             x:Name="titleBackground"
             HorizontalOptions="Fill" 
             VerticalOptions="FillAndExpand">
+
+            <Image
+                x:Name="titleImage"
+                Source="{Binding BackgroundImage, Source={x:Reference me}, Mode=TwoWay}"
+                HorizontalOptions="Fill"
+                VerticalOptions="Fill"
+                Aspect="AspectFill"
+                InputTransparent="True"
+                HeightRequest="1" />
             <rf:ContentView2 
                 x:Name="body" 
                 Content="{Binding Background, Source={x:Reference me}, Mode=TwoWay}" />
@@ -35,7 +44,7 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
-
+                    
                     <rf:ContentView2
                         x:Name="titleView"
                         HorizontalOptions="Fill"

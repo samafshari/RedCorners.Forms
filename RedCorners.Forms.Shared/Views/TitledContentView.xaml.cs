@@ -104,6 +104,12 @@ namespace RedCorners.Forms
             set => SetValue(TitlePositionProperty, value);
         }
 
+        public ImageSource TitleBackgroundImage
+        {
+            get => (ImageSource)GetValue(TitleBackgroundImageProperty);
+            set => SetValue(TitleBackgroundImageProperty, value);
+        }
+
         public bool FixTitlePadding
         {
             get => (bool)GetValue(FixTitlePaddingProperty);
@@ -378,6 +384,20 @@ namespace RedCorners.Forms
                 }
             });
 
+        public static readonly BindableProperty TitleBackgroundImageProperty = BindableProperty.Create(
+            propertyName: nameof(TitleBackgroundImage),
+            returnType: typeof(ImageSource),
+            declaringType: typeof(TitledContentView),
+            defaultValue: null,
+            defaultBindingMode: BindingMode.TwoWay,
+            propertyChanged: (bindable, oldVal, newVal) =>
+            {
+                if (bindable is TitledContentView page)
+                {
+                    page.UpdateTitleBackgroundImage();
+                }
+            });
+
         public static readonly BindableProperty TitleColorProperty = BindableProperty.Create(
             propertyName: nameof(TitleColor),
             returnType: typeof(Color),
@@ -402,6 +422,7 @@ namespace RedCorners.Forms
         void UpdateTitleBackgroundImage()
         {
             if (titlebar == null) return;
+            titlebar.BackgroundImage = TitleBackgroundImage;
             titlebar.Background = TitleBackground;
         }
 

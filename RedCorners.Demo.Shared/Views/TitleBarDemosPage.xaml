@@ -301,16 +301,8 @@
                                 <rf:TitleBar
                                     Title="Custom Background"
                                     IsBackButtonVisible="True"
-                                    BackCommand="{Static rf:Values.PopCommand}">
-                                    <rf:TitleBar.Background>
-                                        <Image 
-                                            Source="https://freefrontend.com/assets/img/css-background-patterns/simple-pattern-with-css3.png" 
-                                            HorizontalOptions="Fill" 
-                                            VerticalOptions="Fill" 
-                                            Aspect="AspectFill" 
-                                            HeightRequest="1" />
-                                    </rf:TitleBar.Background>
-                                </rf:TitleBar>
+                                    BackCommand="{Static rf:Values.PopCommand}"
+                                    BackgroundImage="https://freefrontend.com/assets/img/css-background-patterns/simple-pattern-with-css3.png" />
                             </Grid>
                         </rf:ContentPage2>
                     </rf:PageCommand>

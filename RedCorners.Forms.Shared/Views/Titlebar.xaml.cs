@@ -101,6 +101,12 @@ namespace RedCorners.Forms
             set => SetValue(CustomBackImageProperty, value);
         }
 
+        public ImageSource BackgroundImage
+        {
+            get => (ImageSource)GetValue(BackgroundImageProperty);
+            set => SetValue(BackgroundImageProperty, value);
+        }
+
         public ICommand BackCommand
         {
             get => (ICommand)GetValue(BackCommandProperty);
@@ -194,6 +200,17 @@ namespace RedCorners.Forms
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
+            });
+
+        public static readonly BindableProperty BackgroundImageProperty = BindableProperty.Create(
+            propertyName: nameof(BackgroundImage),
+            returnType: typeof(ImageSource),
+            declaringType: typeof(TitleBar),
+            defaultValue: null,
+            defaultBindingMode: BindingMode.TwoWay,
+            propertyChanged: (bindable, oldVal, newVal) =>
+            {
+
             });
 
         public static readonly BindableProperty ToolBarProperty = BindableProperty.Create(
