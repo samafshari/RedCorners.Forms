@@ -20,6 +20,7 @@
             <Image
                 x:Name="titleImage"
                 Source="{Binding BackgroundImage, Source={x:Reference me}, Mode=TwoWay}"
+                Opacity="{Binding BackgroundImageOpacity, Source={x:Reference me}, Mode=TwoWay}"
                 HorizontalOptions="Fill"
                 VerticalOptions="Fill"
                 Aspect="AspectFill"

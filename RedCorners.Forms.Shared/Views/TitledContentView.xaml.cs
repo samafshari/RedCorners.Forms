@@ -165,6 +165,12 @@ namespace RedCorners.Forms
             set => SetValue(IsDarkProperty, value);
         }
 
+        public double TitleBackgroundImageOpacity
+        {
+            get => (double)GetValue(TitleBackgroundImageOpacityProperty);
+            set => SetValue(TitleBackgroundImageOpacityProperty, value);
+        }
+
         public static readonly BindableProperty IsDarkProperty = BindableProperty.Create(
             propertyName: nameof(IsDark),
             returnType: typeof(bool),
@@ -412,6 +418,21 @@ namespace RedCorners.Forms
             defaultValue: Color.White,
             defaultBindingMode: BindingMode.TwoWay);
 
+
+        public static readonly BindableProperty TitleBackgroundImageOpacityProperty = BindableProperty.Create(
+            propertyName: nameof(TitleBackgroundImageOpacity),
+            returnType: typeof(double),
+            declaringType: typeof(TitledContentView),
+            defaultValue: 1.0,
+            defaultBindingMode: BindingMode.TwoWay,
+            propertyChanged: (bindable, oldVal, newVal) =>
+            {
+                if (bindable is TitledContentView page)
+                {
+                    page.UpdateTitleBackgroundImage();
+                }
+            });
+
         public TitledContentView()
         {
             InitializeComponent();
@@ -423,6 +444,7 @@ namespace RedCorners.Forms
         {
             if (titlebar == null) return;
             titlebar.BackgroundImage = TitleBackgroundImage;
+            titlebar.BackgroundImageOpacity = TitleBackgroundImageOpacity;
             titlebar.Background = TitleBackground;
         }
 

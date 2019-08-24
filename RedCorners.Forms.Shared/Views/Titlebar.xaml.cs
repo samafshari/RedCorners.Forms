@@ -107,6 +107,12 @@ namespace RedCorners.Forms
             set => SetValue(BackgroundImageProperty, value);
         }
 
+        public double BackgroundImageOpacity
+        {
+            get => (double)GetValue(BackgroundImageOpacityProperty);
+            set => SetValue(BackgroundImageOpacityProperty, value);
+        }
+
         public ICommand BackCommand
         {
             get => (ICommand)GetValue(BackCommandProperty);
@@ -254,6 +260,17 @@ namespace RedCorners.Forms
             returnType: typeof(double),
             declaringType: typeof(TitleBar),
             defaultValue: 60.0,
+            defaultBindingMode: BindingMode.TwoWay,
+            propertyChanged: (bindable, oldVal, newVal) =>
+            {
+
+            });
+
+        public static readonly BindableProperty BackgroundImageOpacityProperty = BindableProperty.Create(
+            propertyName: nameof(BackgroundImageOpacity),
+            returnType: typeof(double),
+            declaringType: typeof(TitleBar),
+            defaultValue: 1.0,
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
