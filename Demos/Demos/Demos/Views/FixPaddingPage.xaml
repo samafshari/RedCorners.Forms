@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<rf:ContentPage2
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:rf="clr-namespace:RedCorners.Forms;assembly=RedCorners.Forms"
+    xmlns:vm="clr-namespace:Demos.ViewModels"
+    mc:Ignorable="d"
+    x:Class="Demos.Views.FixPaddingPage"
+    BackgroundColor="Black"
+    FixBottomPadding="{Binding FixBottomPadding}" 
+    FixTopPadding="{Binding FixTopPadding}"
+    UIStatusBarStyle="{Binding UIStatusBarStyle}">
+    <ContentPage.BindingContext>
+        <vm:FixPaddingViewModel />
+    </ContentPage.BindingContext>
+    <Grid BackgroundColor="White">
+        <StackLayout HorizontalOptions="Fill" VerticalOptions="Center" Padding="30">
+            <Grid>
+                <Label Text="FixTopPadding" />
+                <Switch HorizontalOptions="End" IsToggled="{Binding FixTopPadding}" />
+            </Grid>
+            <Grid>
+                <Label Text="FixBottomPadding" />
+                <Switch HorizontalOptions="End" IsToggled="{Binding FixBottomPadding}" />
+            </Grid>
+            <Button Text="Close" Command="{Static rf:Values.PopCommand}" />
+        </StackLayout>
+    </Grid>
+</rf:ContentPage2>

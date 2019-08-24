@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<rf:ContentPage2
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:rf="clr-namespace:RedCorners.Forms;assembly=RedCorners.Forms"
+    xmlns:vm="clr-namespace:Demos.ViewModels"
+    xmlns:views="clr-namespace:Demos.Views"
+    mc:Ignorable="d"
+    x:Class="Demos.Views.MainPage">
+    <ContentPage.BindingContext>
+        <vm:MainViewModel />
+    </ContentPage.BindingContext>
+
+    <rf:TitledContentView Title="Demos" BackCommand="{Binding ShowSideBarCommand}" IsBackButtonVisible="False">
+        <ScrollView>
+            <StackLayout Padding="30">
+                <Button Text="FixPaddingPage">
+                    <Button.Command>
+                        <rf:PageCommand PageType="{Type views:FixPaddingPage}" />
+                    </Button.Command>
+                </Button>
+            </StackLayout>
+        </ScrollView>
+        
+        <rf:TitledContentView.Overlay>
+            <rf:SideBar ContentSize="2*">
+                <Frame Padding="0" BackgroundColor="#333333" HasShadow="True" CornerRadius="0">
+                    <StackLayout Padding="30, 40">
+                        <Image Source="http://ooze.redcorners.com/redcorners_forms_logo.png" HorizontalOptions="Center" HeightRequest="128" WidthRequest="128" />
+                        <Label Text="Demos" FontSize="Large" TextColor="White" HorizontalTextAlignment="Center" />
+                        <rf:HorizontalLine />
+                        <Button Text="Hide" Command="{Binding HideSideBarCommand}" />
+                    </StackLayout>
+                </Frame>
+            </rf:SideBar>
+        </rf:TitledContentView.Overlay>
+    </rf:TitledContentView>
+</rf:ContentPage2>
