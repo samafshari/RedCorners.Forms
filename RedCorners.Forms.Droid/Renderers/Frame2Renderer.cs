@@ -55,9 +55,18 @@ namespace RedCorners.Forms.Renderers
             else
                 CardElevation = 0f;
 
-            
-            this.SetOutlineAmbientShadowColor(ColorExtensions.ToAndroid(f2.ShadowColor));
-            this.SetOutlineSpotShadowColor(ColorExtensions.ToAndroid(f2.ShadowColor));
+            if (Element.HasShadow)
+            {
+                try
+                {
+                    this.SetOutlineAmbientShadowColor(ColorExtensions.ToAndroid(f2.ShadowColor));
+                    this.SetOutlineSpotShadowColor(ColorExtensions.ToAndroid(f2.ShadowColor));
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Frame2 Error: {ex}");
+                }
+            }
         }
 
         protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e)

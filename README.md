@@ -33,5 +33,10 @@ Features:
 - `Application2`: A new Application base class for Xamarin.Forms which makes bootstrapping apps much easier.
 
 
+![](https://github.com/saeedafshari/RedCorners.Forms/raw/master/Screenshots/FixPaddings.gif)
+
 ![](https://github.com/saeedafshari/RedCorners.Forms/raw/master/Screenshots/5.gif)
+
+![](https://github.com/saeedafshari/RedCorners.Forms/raw/master/Screenshots/001_frame2.png)
+
 ![](https://github.com/saeedafshari/RedCorners.Forms/raw/master/Screenshots/AnimatedTitleBar.gif)
