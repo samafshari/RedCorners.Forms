@@ -6,7 +6,7 @@ RedCorners.Forms brings some neat utilities to your Xamarin.Forms applications
 
 NuGet: [https://www.nuget.org/packages/RedCorners.Forms](https://www.nuget.org/packages/RedCorners.Forms)
 
-GitHub: [https://github.com/saeedafshari/RedCorners.Forms](https://github.com/saeedafshari/RedCorners.Forms)
+GitHub: [https://github.com/samafshari/RedCorners.Forms](https://github.com/samafshari/RedCorners.Forms)
 
 Sidebar Video: [https://www.youtube.com/watch?v=NPyZ_N5LcoU](https://www.youtube.com/watch?v=NPyZ_N5LcoU)
 
@@ -33,10 +33,10 @@ Features:
 - `Application2`: A new Application base class for Xamarin.Forms which makes bootstrapping apps much easier.
 
 
-![](https://github.com/saeedafshari/RedCorners.Forms/raw/master/Screenshots/FixPaddings.gif)
+![](https://github.com/samafshari/RedCorners.Forms/raw/master/Screenshots/FixPaddings.gif)
 
-![](https://github.com/saeedafshari/RedCorners.Forms/raw/master/Screenshots/5.gif)
+![](https://github.com/samafshari/RedCorners.Forms/raw/master/Screenshots/5.gif)
 
-![](https://github.com/saeedafshari/RedCorners.Forms/raw/master/Screenshots/001_frame2.png)
+![](https://github.com/samafshari/RedCorners.Forms/raw/master/Screenshots/001_frame2.png)
 
-![](https://github.com/saeedafshari/RedCorners.Forms/raw/master/Screenshots/AnimatedTitleBar.gif)
+![](https://github.com/samafshari/RedCorners.Forms/raw/master/Screenshots/AnimatedTitleBar.gif)
