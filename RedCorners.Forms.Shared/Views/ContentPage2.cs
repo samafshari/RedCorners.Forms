@@ -5,6 +5,9 @@ using System.Text;
 using Xamarin.Forms;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using Xamarin.Forms.PlatformConfiguration;
+using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
+using VisualElement = Xamarin.Forms.VisualElement;
 
 namespace RedCorners.Forms
 {
@@ -168,6 +171,7 @@ namespace RedCorners.Forms
 
         public ContentPage2()
         {
+            On<iOS>().SetModalPresentationStyle(UIModalPresentationStyle.FullScreen);
             AdjustPadding();
         }
 
