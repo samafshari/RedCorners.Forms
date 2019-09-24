@@ -30,16 +30,21 @@ namespace RedCorners.Forms.Renderers
                 };
             }
         }
-        
+
+        static UIStatusBarStyles lastStyle = UIStatusBarStyles.Default;
+        static bool lastHidden = false;
+
         public override UIStatusBarStyle PreferredStatusBarStyle()
         {
-            var style = (long)((ContentPage2)Element).UIStatusBarStyle;
+            var style = (long)(((ContentPage2)Element)?.UIStatusBarStyle ?? lastStyle);
+            lastStyle = (UIStatusBarStyles)style;
             return (UIStatusBarStyle)style;
         }
 
         public override bool PrefersStatusBarHidden()
         {
-            return ((ContentPage2)Element).UIStatusBarHidden;
+            lastHidden = ((ContentPage2)Element)?.UIStatusBarHidden ?? lastHidden;
+            return lastHidden;
         }
     }
 }
