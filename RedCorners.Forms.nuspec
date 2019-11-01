@@ -2,9 +2,9 @@
 <package >
   <metadata>
     <id>RedCorners.Forms</id>
-    <version>5.32.0</version>
+    <version>5.33.0</version>
     <title>RedCorners.Forms</title>
-    <authors>Saeed Afshari and NeatCapital OÜ</authors>
+    <authors>NeatCapital OÜ</authors>
     <owners>NeatCapital OÜ</owners>
     <projectUrl>https://redcorners.com/forms</projectUrl>
     <iconUrl>http://ooze.redcorners.com/redcorners_forms_logo3.png</iconUrl>
@@ -16,18 +16,18 @@
 
     <dependencies>
       <group targetFramework="netstandard2.0">
-          <dependency id="Xamarin.Forms" version="4.2.0.815419" />
+          <dependency id="Xamarin.Forms" version="4.3.0.947036" />
           <dependency id="RedCorners" version="5.0.0" />
       </group>
 	  
 	  <group targetFramework="MonoAndroid80">
           <dependency id="Xamarin.Android.Support.v7.AppCompat" version="28.0.0.3" />
-          <dependency id="Xamarin.Forms" version="4.2.0.815419" />
+          <dependency id="Xamarin.Forms" version="4.3.0.947036" />
           <dependency id="RedCorners" version="5.0.0" />
       </group>
 	  
 	  <group targetFramework="Xamarin.iOS10">
-		  <dependency id="Xamarin.Forms" version="4.2.0.815419" />
+		  <dependency id="Xamarin.Forms" version="4.3.0.947036" />
           <dependency id="RedCorners" version="5.0.0" />
 	  </group>
     </dependencies>
