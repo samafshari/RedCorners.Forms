@@ -110,7 +110,20 @@ namespace RedCorners.Forms.Renderers
                 if (!t && l) softHeight = 0;
                 if (t && !l) softHeight = 0;
 
-                Signals.AndroidSafeInsetsUpdate.Signal<Thickness>(new Thickness(0, statusHeight, 0, softHeight));
+
+                Thickness cutout = new Thickness(0, statusHeight, 0, softHeight);
+                
+                if (Build.VERSION.SdkInt >= BuildVersionCodes.P)
+                {
+                    //check for edge insets
+                    var displayCutout = activity.Window.DecorView.RootWindowInsets.DisplayCutout;
+                    if (displayCutout != null)
+                    {
+                        cutout = new Thickness(displayCutout.SafeInsetLeft, displayCutout.SafeInsetTop, displayCutout.SafeInsetRight, displayCutout.SafeInsetBottom);
+                    }
+                }
+
+                Signals.AndroidSafeInsetsUpdate.Signal<Thickness>(cutout);
 
                 page.AdjustPadding();
                 

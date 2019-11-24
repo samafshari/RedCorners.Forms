@@ -73,7 +73,10 @@ namespace RedCorners.Forms.Systems
         Thickness AndroidSafeInsets = new Thickness();
         public bool HasWindowInformation => true;
         public GridLength BottomHeight => new GridLength(GetPageMargin().Bottom);
-        public Thickness GetPageMargin() => SumPadding(OverridePadding ?? AndroidSafeInsets, ExtraPadding);
+        public Thickness GetPageMargin()
+        {
+            return SumPadding(OverridePadding ?? AndroidSafeInsets, ExtraPadding);
+        }
 #else
         public bool HasWindowInformation => true;
         public GridLength BottomHeight => new GridLength(GetPageMargin().Bottom);
