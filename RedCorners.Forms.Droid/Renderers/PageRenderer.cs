@@ -90,7 +90,9 @@ namespace RedCorners.Forms.Renderers
 
                 var softHeight = Math.Max(0, (height - usableHeight) / dpi);
 
-                var statusHeight = 25;
+                Rect rect = new Rect();
+                activity.Window.DecorView.GetWindowVisibleDisplayFrame(rect);
+                var statusHeight = rect.Top / dpi;
 
                 // U11
                 //T, !L: TOP OK BOTTOM OK
@@ -112,23 +114,9 @@ namespace RedCorners.Forms.Renderers
                 if (t && !l) softHeight = 0;
 
 
-                Thickness cutout = new Thickness(0, statusHeight, 0, softHeight);
-                
-                if (Build.VERSION.SdkInt >= BuildVersionCodes.P)
-                {
-                    //check for edge insets
-                    //var displayCutout = activity.Window.DecorView.RootWindowInsets.DisplayCutout;
-                    Rect rect = new Rect();
-                    activity.Window.DecorView.GetWindowVisibleDisplayFrame(rect);
-                    cutout.Top = rect.Top / dpi;
-                    //if (displayCutout != null)
-                    //{
-                    //    //cutout = new Thickness(displayCutout.SafeInsetLeft, displayCutout.SafeInsetTop, displayCutout.SafeInsetRight, displayCutout.SafeInsetBottom);
-                    //    cutout.Top = displayCutout.SafeInsetTop / dpi;
-                    //}
-                }
+                Thickness padding = new Thickness(0, statusHeight, 0, softHeight);
 
-                Signals.AndroidSafeInsetsUpdate.Signal<Thickness>(cutout);
+                Signals.AndroidSafeInsetsUpdate.Signal<Thickness>(padding);
 
                 page.AdjustPadding();
                 
