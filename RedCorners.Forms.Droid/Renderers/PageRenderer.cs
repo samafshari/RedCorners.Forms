@@ -6,6 +6,7 @@ using System.Text;
 
 using Android.App;
 using Android.Content;
+using Android.Graphics;
 using Android.OS;
 using Android.Runtime;
 using Android.Util;
@@ -116,11 +117,15 @@ namespace RedCorners.Forms.Renderers
                 if (Build.VERSION.SdkInt >= BuildVersionCodes.P)
                 {
                     //check for edge insets
-                    var displayCutout = activity.Window.DecorView.RootWindowInsets.DisplayCutout;
-                    if (displayCutout != null)
-                    {
-                        cutout = new Thickness(displayCutout.SafeInsetLeft, displayCutout.SafeInsetTop, displayCutout.SafeInsetRight, displayCutout.SafeInsetBottom);
-                    }
+                    //var displayCutout = activity.Window.DecorView.RootWindowInsets.DisplayCutout;
+                    Rect rect = new Rect();
+                    activity.Window.DecorView.GetWindowVisibleDisplayFrame(rect);
+                    cutout.Top = rect.Top / dpi;
+                    //if (displayCutout != null)
+                    //{
+                    //    //cutout = new Thickness(displayCutout.SafeInsetLeft, displayCutout.SafeInsetTop, displayCutout.SafeInsetRight, displayCutout.SafeInsetBottom);
+                    //    cutout.Top = displayCutout.SafeInsetTop / dpi;
+                    //}
                 }
 
                 Signals.AndroidSafeInsetsUpdate.Signal<Thickness>(cutout);
