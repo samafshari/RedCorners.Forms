@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>RedCorners.Forms</id>
-    <version>5.36.0</version>
+    <version>5.37.0</version>
     <title>RedCorners.Forms</title>
     <authors>NeatCapital OÜ</authors>
     <owners>NeatCapital OÜ</owners>
@@ -11,7 +11,7 @@
     <description>RedCorners.Forms brings some neat utilities to your Xamarin.Forms projects.</description>
     <releaseNotes>RedCorners.Forms brings some neat utilities to your Xamarin.Forms projects.</releaseNotes>
     <copyright>Copyright 2019 NeatCapital OÜ</copyright>
-    <tags>Xamarin.Forms</tags>
+    <tags>Xamarin.Forms UI SideBar TabBar TitleBar Status Bar Padding Components Controls</tags>
 
     <dependencies>
       <group targetFramework="netstandard2.0">

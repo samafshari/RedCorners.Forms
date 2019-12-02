@@ -111,7 +111,6 @@
                     <rf:HorizontalLine BackgroundColor="Black" />
                     <Label Text="TabbedContentView Demo" TextColor="Black" FontSize="Medium" HorizontalTextAlignment="Center" HorizontalOptions="Center" />
                     <Label Text="redcorners.com" TextColor="#99000000" FontSize="Medium" HorizontalTextAlignment="Center" HorizontalOptions="Center" />
-                    <BoxView BackgroundColor="Black" WidthRequest="84" HeightRequest="84" HorizontalOptions="Center" VerticalOptions="Center" />
                 </StackLayout>
             </Grid>
         </rf:TitledContentView>

@@ -79,44 +79,33 @@ namespace RedCorners.Forms.Renderers
                             activity.Window.ClearFlags(WindowManagerFlags.KeepScreenOn);
                     }
                     UpdateLayout();
+
+
+                    DisplayMetrics metrics = new DisplayMetrics();
+                    activity.WindowManager.DefaultDisplay.GetRealMetrics(metrics);
+                    var height = metrics.HeightPixels;
+                    var dpi = Resources.DisplayMetrics.ScaledDensity;
+
+                    Rect rect = new Rect();
+                    activity.Window.DecorView.GetWindowVisibleDisplayFrame(rect);
+                    var statusHeight = rect.Top / dpi;
+
+                    var softHeight = (height - rect.Bottom) / dpi;
+                    Thickness padding = new Thickness(0, statusHeight, 0, softHeight);
+
+                    if (Build.VERSION.SdkInt >= BuildVersionCodes.P)
+                    {
+                        //check for edge insets
+                        var displayCutout = activity.Window.DecorView.RootWindowInsets.DisplayCutout;
+                        if (displayCutout != null)
+                        {
+                            padding.Top = Math.Max(padding.Top, displayCutout.SafeInsetTop / dpi);
+                            padding.Bottom = Math.Max(padding.Bottom, displayCutout.SafeInsetBottom / dpi);
+                        }
+                    }
+
+                    Signals.AndroidSafeInsetsUpdate.Signal<Thickness>(padding);
                 }
-
-                DisplayMetrics metrics = new DisplayMetrics();
-                activity.WindowManager.DefaultDisplay.GetMetrics(metrics);
-                var usableHeight = metrics.HeightPixels;
-                activity.WindowManager.DefaultDisplay.GetRealMetrics(metrics);
-                var height = metrics.HeightPixels;
-                var dpi = Resources.DisplayMetrics.ScaledDensity;
-
-                var softHeight = Math.Max(0, (height - usableHeight) / dpi);
-
-                Rect rect = new Rect();
-                activity.Window.DecorView.GetWindowVisibleDisplayFrame(rect);
-                var statusHeight = rect.Top / dpi;
-
-                // U11
-                //T, !L: TOP OK BOTTOM OK
-                //!T, !L: OK OK
-                //!T, L: OK OK
-                //T, L: OK OK
-
-                //EMU
-                //T, L: KK
-                //!T, L: KK
-                //!T, !L: NO
-                //T, !L; KK
-
-                if (!t && !l) statusHeight = 0;
-                if (!t && l) statusHeight = 0;
-
-                if (t && l) softHeight = 0;
-                if (!t && l) softHeight = 0;
-                if (t && !l) softHeight = 0;
-
-
-                Thickness padding = new Thickness(0, statusHeight, 0, softHeight);
-
-                Signals.AndroidSafeInsetsUpdate.Signal<Thickness>(padding);
 
                 page.AdjustPadding();
                 
