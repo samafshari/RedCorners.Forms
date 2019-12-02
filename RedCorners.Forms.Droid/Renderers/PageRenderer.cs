@@ -41,7 +41,6 @@ namespace RedCorners.Forms.Renderers
         {
             // This whole flow is buggy when done on the fly,
             // also, !T and !L don't go well together, so if it happens, we change it to !T and L
-
             if (Build.VERSION.SdkInt >= BuildVersionCodes.Lollipop)
             {
                 var activity = GetActivity(Context);
@@ -80,7 +79,6 @@ namespace RedCorners.Forms.Renderers
                     }
                     UpdateLayout();
 
-
                     DisplayMetrics metrics = new DisplayMetrics();
                     activity.WindowManager.DefaultDisplay.GetRealMetrics(metrics);
                     var height = metrics.HeightPixels;
@@ -90,13 +88,13 @@ namespace RedCorners.Forms.Renderers
                     activity.Window.DecorView.GetWindowVisibleDisplayFrame(rect);
                     var statusHeight = rect.Top / dpi;
 
-                    var softHeight = (height - rect.Bottom) / dpi;
+                    var softHeight = 0; // (height - rect.Bottom) / dpi;
                     Thickness padding = new Thickness(0, statusHeight, 0, softHeight);
 
                     if (Build.VERSION.SdkInt >= BuildVersionCodes.P)
                     {
                         //check for edge insets
-                        var displayCutout = activity.Window.DecorView.RootWindowInsets.DisplayCutout;
+                        var displayCutout = activity.Window.DecorView.RootWindowInsets?.DisplayCutout;
                         if (displayCutout != null)
                         {
                             padding.Top = Math.Max(padding.Top, displayCutout.SafeInsetTop / dpi);
