@@ -36,14 +36,14 @@ namespace RedCorners.Forms.Renderers
 
         public override UIStatusBarStyle PreferredStatusBarStyle()
         {
-            var style = (long)(((ContentPage2)Element)?.UIStatusBarStyle ?? lastStyle);
+            var style = (long)((Element as ContentPage2)?.UIStatusBarStyle ?? lastStyle);
             lastStyle = (UIStatusBarStyles)style;
             return (UIStatusBarStyle)style;
         }
 
         public override bool PrefersStatusBarHidden()
         {
-            lastHidden = ((ContentPage2)Element)?.UIStatusBarHidden ?? lastHidden;
+            lastHidden = (Element as ContentPage2)?.UIStatusBarHidden ?? lastHidden;
             return lastHidden;
         }
     }
