@@ -37,8 +37,8 @@ namespace RedCorners.Forms.Renderers
         {
             base.OnElementPropertyChanged(sender, e);
 
-            if (Control != null && Element as SearchBar2 != null)
-                Control.ShowsCancelButton = (Element as SearchBar2).IsCancelVisible;
+            if (Control != null && Element is SearchBar2 el && el != null)
+                Control.ShowsCancelButton = el.IsCancelVisible;
         }
     }
 }

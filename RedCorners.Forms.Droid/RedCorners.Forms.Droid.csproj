@@ -49,6 +49,7 @@
     <Compile Include="Renderers\Frame2Renderer.cs" />
     <Compile Include="Renderers\PageRenderer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Renderers\SearchBar2Renderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="RedCorners">

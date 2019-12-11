@@ -73,6 +73,29 @@ namespace RedCorners.Forms
             null,
             BindingMode.TwoWay);
 
+        public static readonly BindableProperty EntryBackgroundColorProperty = BindableProperty.Create(
+            nameof(EntryBackgroundColor),
+            typeof(Color),
+            typeof(CodeEntry),
+            Color.White,
+            BindingMode.TwoWay,
+            propertyChanged: (bindable, oldVal, newVal) =>
+            {
+                if (bindable is CodeEntry view)
+                    view.UpdateColors();
+            });
+
+        public static readonly BindableProperty TextColorProperty = BindableProperty.Create(
+            nameof(TextColor),
+            typeof(Color),
+            typeof(CodeEntry),
+            Color.Black,
+            BindingMode.TwoWay,
+            propertyChanged: (bindable, oldVal, newVal) =>
+            {
+                if (bindable is CodeEntry view)
+                    view.UpdateColors();
+            });
 
         public string Text
         {
@@ -104,6 +127,18 @@ namespace RedCorners.Forms
             set => SetValue(FinishCommandParameterProperty, value);
         }
 
+        public Color EntryBackgroundColor
+        {
+            get => (Color)GetValue(EntryBackgroundColorProperty);
+            set => SetValue(EntryBackgroundColorProperty, value);
+        }
+
+        public Color TextColor
+        {
+            get => (Color)GetValue(TextColorProperty);
+            set => SetValue(TextColorProperty, value);
+        }
+
         private void TextBox_Focused(object sender, FocusEventArgs e)
         {
             textBox.Text = "";
@@ -125,7 +160,11 @@ namespace RedCorners.Forms
             stack.Children.Clear();
             for (int i = 0; i < Length; i++)
             {
-                stack.Children.Add(new Entry());
+                stack.Children.Add(new Entry
+                {
+                    BackgroundColor = EntryBackgroundColor,
+                    TextColor = TextColor
+                });
             }
         }
 
@@ -164,6 +203,16 @@ namespace RedCorners.Forms
         {
             if (textBox == null) return;
             textBox.Keyboard = Keyboard;
+        }
+
+        void UpdateColors()
+        {
+            var entries = stack.Children.Select(x => x as Entry).ToArray();
+            foreach (var entry in entries)
+            {
+                entry.BackgroundColor = EntryBackgroundColor;
+                entry.TextColor = TextColor;
+            }
         }
     }
 }
