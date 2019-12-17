@@ -15,7 +15,16 @@ using System.Windows;
 namespace RedCorners.Forms
 {
     [AttributeUsage(AttributeTargets.All)]
-    public class ManualUpdate : Attribute { }
+    public class ManualUpdate : Attribute 
+    {
+        public ManualUpdate() { }
+        public ManualUpdate(bool updateIfForced)
+        {
+            UpdateIfForced = updateIfForced;
+        }
+
+        public bool UpdateIfForced { get; set; } = true;
+    }
 
     public partial class BindableModel : INotifyPropertyChanged
     {
@@ -95,7 +104,7 @@ namespace RedCorners.Forms
         {
             OnLog?.Invoke(this, $"[{method}] {message ?? "(null)"}");
         }
-
+        
         public BindableModel() { }
 
         protected virtual void SetProperty<T>(ref T storage, T value, [CallerMemberName] string propertyName = null)
@@ -110,7 +119,9 @@ namespace RedCorners.Forms
             {
                 foreach (var item in GetType().GetProperties())
                 {
-                    if (item.GetCustomAttributes(typeof(ManualUpdate), true).Any() && !forceAll)
+                    var manual = item.GetCustomAttributes(typeof(ManualUpdate), true).FirstOrDefault() as ManualUpdate;
+                    
+                    if (manual != null && (!forceAll || !manual.UpdateIfForced))
                         continue;
 
                     RaisePropertyChanged(item.Name);
