@@ -4,13 +4,16 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>RedCorners.Forms</AssemblyName>
     <RootNamespace>RedCorners.Forms</RootNamespace>
+    <SignAssembly>false</SignAssembly>
+    <DelaySign>false</DelaySign>
+    <AssemblyOriginatorKeyFile>RedCorners.Forms.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
   <Import Project="..\RedCorners.Forms.Shared\RedCorners.Forms.Shared.projitems" Label="Shared" />
 
   <ItemGroup>
-    <PackageReference Include="RedCorners" Version="6.0.0" />
-    <PackageReference Include="Xamarin.Forms" Version="4.4.0.991265" />
+    <PackageReference Include="RedCorners" Version="8.0.0" />
+    <PackageReference Include="Xamarin.Forms" Version="4.4.0.991640" />
   </ItemGroup>
 
 </Project>
