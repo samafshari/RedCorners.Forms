@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Renderers\Button2Renderer.cs" />
+    <Compile Include="Renderers\DatePicker2Renderer.cs" />
     <Compile Include="Renderers\Frame2Renderer.cs" />
     <Compile Include="Renderers\PageRenderer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -57,7 +58,7 @@
     </PackageReference>
     <PackageReference Include="Xamarin.Android.Support.v7.AppCompat" Version="28.0.0.3" />
     <PackageReference Include="Xamarin.Forms">
-      <Version>4.4.0.991640</Version>
+      <Version>4.5.0.396</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup />

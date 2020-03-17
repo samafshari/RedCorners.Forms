@@ -29,6 +29,7 @@ Global
 		RedCorners.Demo.Shared\RedCorners.Demo.Shared.projitems*{0a12785b-f34d-4e84-ac80-e5405669151b}*SharedItemsImports = 4
 		RedCorners.Demo.Shared\RedCorners.Demo.Shared.projitems*{4ae74670-e276-4c61-8caf-6b0e5c2e16f0}*SharedItemsImports = 4
 		RedCorners.Forms.Shared\RedCorners.Forms.Shared.projitems*{c0d002e0-8a8b-4ff7-9aa1-336531905f97}*SharedItemsImports = 4
+		RedCorners.Forms.Shared\RedCorners.Forms.Shared.projitems*{cf6373ee-e296-4872-9ed1-fbb97f38c9e6}*SharedItemsImports = 5
 		RedCorners.Demo.Shared\RedCorners.Demo.Shared.projitems*{d84026c6-df66-4204-8f27-8c778625ea9c}*SharedItemsImports = 13
 		RedCorners.Forms.Shared\RedCorners.Forms.Shared.projitems*{f6a648b4-ed87-437f-8f6e-54aba4f9b2c7}*SharedItemsImports = 4
 	EndGlobalSection

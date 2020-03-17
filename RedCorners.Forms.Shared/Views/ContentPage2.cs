@@ -171,7 +171,7 @@ namespace RedCorners.Forms
 
         public ContentPage2()
         {
-            On<iOS>().SetModalPresentationStyle(UIModalPresentationStyle.FullScreen);
+            this.On<Xamarin.Forms.PlatformConfiguration.iOS>().SetModalPresentationStyle(UIModalPresentationStyle.FullScreen);
             AdjustPadding();
         }
 

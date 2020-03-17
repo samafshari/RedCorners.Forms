@@ -35,8 +35,13 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\ContentPage2.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\ContentView2.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\Button2.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\DatePicker2.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\DelayedView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\Frame2.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\HiddenEntryView.xaml.cs">
+      <DependentUpon>HiddenEntryView.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\SearchBar2.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\Shadow.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\ImageButton2.cs" />
@@ -126,6 +131,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\CodeEntry.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\HiddenEntryView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>

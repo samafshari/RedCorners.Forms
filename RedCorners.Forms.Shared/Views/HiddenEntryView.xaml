@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<rf:ContentView2
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:rf="clr-namespace:RedCorners.Forms;assembly=RedCorners.Forms"
+    xmlns:local="clr-namespace:RedCorners.Forms.Views"
+    mc:Ignorable="d"
+    x:Class="RedCorners.Forms.Views.HiddenEntryView">
+    <Grid>
+        <Label 
+            x:Name="label" 
+            HorizontalOptions="Fill" 
+            VerticalOptions="Fill" 
+            VerticalTextAlignment="Center" 
+            Text="{Binding Label, Mode=TwoWay}"
+            TextColor="{Binding LabelTextColor, Mode=TwoWay}"
+            FontFamily="{Binding FontFamily, Mode=TwoWay}"
+            FontAttributes="{Binding FontAttributes, Mode=TwoWay}"
+            HorizontalTextAlignment="{Binding LabelTextAlignment, Mode=TwoWay}"
+            Margin="{Binding LabelMargin, Mode=TwoWay}"
+            FontSize="{Binding LabelFontSize, Mode=TwoWay}"
+            />
+        <Entry 
+            x:Name="entry" 
+            HorizontalOptions="Fill" 
+            VerticalOptions="Fill" 
+            VerticalTextAlignment="Center" 
+            Text="{Binding Text, Mode=TwoWay}"
+            Placeholder="{Binding Placeholder, Mode=TwoWay}"
+            BackgroundColor="{Binding EntryBackgroundColor, Mode=TwoWay}"
+            TextColor="{Binding EntryTextColor, Mode=TwoWay}"
+            PlaceholderColor="{Binding EntryPlaceholderColor, Mode=TwoWay}"
+            FontFamily="{Binding FontFamily, Mode=TwoWay}"
+            FontAttributes="{Binding FontAttributes, Mode=TwoWay}"
+            HorizontalTextAlignment="{Binding EntryTextAlignment, Mode=TwoWay}"
+            FontSize="{Binding EntryFontSize, Mode=TwoWay}"
+            Keyboard="{Binding Keyboard, Mode=TwoWay}"
+            ReturnCommand="{Binding SubmitCommand, Mode=TwoWay}"
+            IsPassword="{Binding IsPassword, Mode=TwoWay}"
+            />
+        <local:DatePicker2
+            x:Name="datePicker"
+            HorizontalOptions="Fill"
+            VerticalOptions="Fill"
+            Date="{Binding Date, Mode=TwoWay}"
+            BackgroundColor="{Binding EntryBackgroundColor, Mode=TwoWay}"
+            TextColor="{Binding EntryTextColor, Mode=TwoWay}"
+            FontFamily="{Binding FontFamily, Mode=TwoWay}"
+            FontAttributes="{Binding FontAttributes, Mode=TwoWay}"
+            FontSize="{Binding EntryFontSize, Mode=TwoWay}"
+            />
+    </Grid>
+</rf:ContentView2>
