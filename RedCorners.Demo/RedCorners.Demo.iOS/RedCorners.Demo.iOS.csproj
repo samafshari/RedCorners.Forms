@@ -62,7 +62,7 @@
     <WarningLevel>4</WarningLevel>
     <MtouchArch>ARM64</MtouchArch>
     <ConsolePause>false</ConsolePause>
-    <CodesignKey>iPhone Developer: Saeed Afshari (R7B64Q5D49)</CodesignKey>
+    <CodesignKey>Apple Development: Saeed Afshari (R7B64Q5D49)</CodesignKey>
     <CodesignEntitlements>
     </CodesignEntitlements>
     <MtouchDebug>false</MtouchDebug>

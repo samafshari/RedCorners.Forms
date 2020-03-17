@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Foundation;
 using RedCorners.Forms.iOS.Renderers;
-using RedCorners.Forms.Views;
+using RedCorners.Forms;
 using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;

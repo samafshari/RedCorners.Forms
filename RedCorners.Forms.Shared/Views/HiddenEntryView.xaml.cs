@@ -11,7 +11,7 @@ using RedCorners;
 using RedCorners.Forms;
 using System.Windows.Input;
 
-namespace RedCorners.Forms.Views
+namespace RedCorners.Forms
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class HiddenEntryView

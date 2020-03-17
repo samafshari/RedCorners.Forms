@@ -10,7 +10,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using RedCorners.Forms.Renderers;
-using RedCorners.Forms.Views;
+using RedCorners.Forms;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 using DatePicker = Xamarin.Forms.DatePicker;
