@@ -94,6 +94,16 @@ namespace RedCorners.Forms.Systems
             {
 #if __IOS__
                 var window = UIKit.UIApplication.SharedApplication.Windows.FirstOrDefault();
+                if (window != null)
+                {
+                    SafeAreaInsets = new Thickness
+                    (
+                        window.SafeAreaInsets.Left,
+                        window.SafeAreaInsets.Top,
+                        window.SafeAreaInsets.Right,
+                        window.SafeAreaInsets.Bottom
+                    );
+                }
                 if ((window?.SafeAreaInsets.Top ?? 20) > 20)
                 {
                     return true;
@@ -102,5 +112,9 @@ namespace RedCorners.Forms.Systems
                 return false;
             }
         }
+
+#if __IOS__
+        public Thickness SafeAreaInsets { get; set; }
+#endif
     }
 }
