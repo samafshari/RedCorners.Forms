@@ -2,31 +2,31 @@
 <package >
   <metadata>
     <id>RedCorners.Forms</id>
-    <version>8.47.0</version>
+    <version>8.48.0</version>
     <title>RedCorners.Forms</title>
     <authors>NeatCapital OÜ</authors>
     <owners>NeatCapital OÜ</owners>
     <projectUrl>https://redcorners.com/forms</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>RedCorners.Forms brings some neat utilities to your Xamarin.Forms projects.</description>
-    <releaseNotes>RedCorners.Forms brings some neat utilities to your Xamarin.Forms projects.</releaseNotes>
+    <description>Side Bar, Tabbed View and more for your Xamarin.Forms projects.</description>
+    <releaseNotes>Side Bar, Tabbed View and more for your Xamarin.Forms projects.</releaseNotes>
     <copyright>Copyright 2019-2020 NeatCapital OÜ</copyright>
     <tags>Xamarin.Forms UI SideBar TabBar TitleBar Status Bar Padding Components Controls</tags>
 
     <dependencies>
       <group targetFramework="netstandard2.0">
-          <dependency id="Xamarin.Forms" version="4.5.0.396" />
+          <dependency id="Xamarin.Forms" version="4.8.0.1560" />
           <dependency id="RedCorners" version="8.0.0" />
       </group>
 	  
 	  <group targetFramework="MonoAndroid80">
           <dependency id="Xamarin.Android.Support.v7.AppCompat" version="28.0.0.3" />
-          <dependency id="Xamarin.Forms" version="4.5.0.396" />
+          <dependency id="Xamarin.Forms" version="4.8.0.1560" />
           <dependency id="RedCorners" version="8.0.0" />
       </group>
 	  
 	  <group targetFramework="Xamarin.iOS10">
-		  <dependency id="Xamarin.Forms" version="4.5.0.396" />
+		  <dependency id="Xamarin.Forms" version="4.8.0.1560" />
           <dependency id="RedCorners" version="8.0.0" />
 	  </group>
     </dependencies>

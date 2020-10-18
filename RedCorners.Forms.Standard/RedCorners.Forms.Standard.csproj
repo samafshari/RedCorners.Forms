@@ -13,7 +13,7 @@
 
   <ItemGroup>
     <PackageReference Include="RedCorners" Version="8.0.0" />
-    <PackageReference Include="Xamarin.Forms" Version="4.5.0.396" />
+    <PackageReference Include="Xamarin.Forms" Version="4.8.0.1560" />
   </ItemGroup>
 
 </Project>
