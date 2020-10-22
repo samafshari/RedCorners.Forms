@@ -16,6 +16,8 @@ using RedCorners.Forms;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
+using Rect = Android.Graphics.Rect;
+
 [assembly: ExportRenderer(typeof(ContentPage2), typeof(RedCorners.Forms.Renderers.PageRenderer))]
 namespace RedCorners.Forms.Renderers
 {

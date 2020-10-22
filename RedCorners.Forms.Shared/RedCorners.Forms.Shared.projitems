@@ -17,7 +17,13 @@
     <Compile Include="$(MSBuildThisFileDirectory)BindableModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ChainCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Colors.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\AndMultiConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\EqualsConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\FalseToDoubleConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\HasValueConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\IsNullConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\NotConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\OrMultiConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\FormsExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\LogExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\MessagingExtensions.cs" />

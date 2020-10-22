@@ -7,13 +7,21 @@ namespace RedCorners.Forms
 {
     public static class FormsExtensions
     {
-        public static ContentPage GetPage(this Element view)
+        public static Page WithPage(this View view)
+        {
+            return new ContentPage2
+            {
+                Content = view
+            };
+        }
+
+        public static Page GetPage(this Element view)
         {
             var el = view;
             while (true)
             {
                 if (el == null || el.Parent == null) return null;
-                if (el.Parent is ContentPage page) return page;
+                if (el.Parent is Page page) return page;
                 el = el.Parent;
             }
         }
