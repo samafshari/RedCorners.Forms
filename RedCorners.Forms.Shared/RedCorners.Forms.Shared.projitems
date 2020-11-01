@@ -17,6 +17,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)BindableModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ChainCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Colors.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\FirstOrDefaultMultiConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\AndMultiConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\EqualsConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\FalseToDoubleConverter.cs" />

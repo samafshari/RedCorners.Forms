@@ -70,6 +70,7 @@ namespace RedCorners.Forms
             {
                 MainPage = GetSplashPage();
                 await Task.WhenAll(SplashTasks.Select(x => x()));
+                SplashTasks.Clear();
             }
 
             ShowFirstPage();
