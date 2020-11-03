@@ -304,7 +304,6 @@ namespace RedCorners.Forms
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
-                Console.WriteLine("Body is changing");
                 if (bindable is TitledContentView page)
                 {
                     page.content.Content = newVal as View;

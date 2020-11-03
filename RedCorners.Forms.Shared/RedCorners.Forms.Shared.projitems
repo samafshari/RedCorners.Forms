@@ -22,6 +22,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\EqualsConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\FalseToDoubleConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\HasValueConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\CaseConverters.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\IsNullConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\NotConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\OrMultiConverter.cs" />

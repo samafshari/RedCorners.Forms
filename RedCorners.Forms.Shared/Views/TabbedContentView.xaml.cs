@@ -316,7 +316,6 @@ namespace RedCorners.Forms
                 if (oldVal == newVal) return;
                 if (bindable is TabbedContentView page)
                     page.SelectTab();
-                Console.WriteLine($"newVal: {newVal}");
             });
 
         public static readonly BindableProperty SelectedIndexProperty =

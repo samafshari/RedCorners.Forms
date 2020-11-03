@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;
 using System.Linq;
+using System.Diagnostics;
 
 #if __IOS__
 using UIKit;
@@ -52,7 +53,7 @@ namespace RedCorners.Forms.Systems
             {
                 Device.BeginInvokeOnMainThread(() =>
                 {
-                    Console.WriteLine("Calculating safe areas...");
+                    Debug.WriteLine("Calculating safe areas...");
                     var window = UIKit.UIApplication.SharedApplication.Windows.FirstOrDefault();
                     if (window == null) Console.WriteLine($"No window found.");
                     else
