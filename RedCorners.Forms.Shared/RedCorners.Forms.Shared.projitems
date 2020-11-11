@@ -11,6 +11,10 @@
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)gradienth.png" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)gradienth2.png" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\DotsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Application2.cs" />
@@ -45,6 +49,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\Button2.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\DatePicker2.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\DelayedView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\DotsView.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>DotsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\Frame2.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\HiddenEntryView.xaml.cs">
       <DependentUpon>HiddenEntryView.xaml</DependentUpon>

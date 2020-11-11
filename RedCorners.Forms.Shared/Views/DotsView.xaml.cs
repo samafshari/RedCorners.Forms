@@ -11,7 +11,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Shapes;
 using Xamarin.Forms.Xaml;
 
-namespace RedCorners.Demo.Views
+namespace RedCorners.Forms
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DotsView
