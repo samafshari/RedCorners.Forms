@@ -47,10 +47,10 @@ namespace RedCorners.Forms
                 BackCommand.Execute(BackCommandParameter);
         }
 
-        public View Background
+        public View BackgroundView
         {
-            get => (View)GetValue(BackgroundProperty);
-            set => SetValue(BackgroundProperty, value);
+            get => (View)GetValue(BackgroundViewProperty);
+            set => SetValue(BackgroundViewProperty, value);
         }
 
         public View ToolBar
@@ -198,8 +198,8 @@ namespace RedCorners.Forms
                     titlebar.UpdateTitleAlignment();
             });
 
-        public static readonly BindableProperty BackgroundProperty = BindableProperty.Create(
-            propertyName: nameof(Background),
+        public static readonly BindableProperty BackgroundViewProperty = BindableProperty.Create(
+            propertyName: nameof(BackgroundView),
             returnType: typeof(View),
             declaringType: typeof(TitleBar),
             defaultValue: null,

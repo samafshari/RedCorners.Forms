@@ -92,10 +92,10 @@ namespace RedCorners.Forms
             set => SetValue(TitleTextColorProperty, value);
         }
 
-        public View TitleBackground
+        public View TitleBackgroundView
         {
-            get => (View)GetValue(TitleBackgroundProperty);
-            set => SetValue(TitleBackgroundProperty, value);
+            get => (View)GetValue(TitleBackgroundViewProperty);
+            set => SetValue(TitleBackgroundViewProperty, value);
         }
 
         public TitleBarPositions TitlePosition
@@ -375,8 +375,8 @@ namespace RedCorners.Forms
             defaultValue: null,
             defaultBindingMode: BindingMode.TwoWay);
 
-        public static readonly BindableProperty TitleBackgroundProperty = BindableProperty.Create(
-            propertyName: nameof(TitleBackground),
+        public static readonly BindableProperty TitleBackgroundViewProperty = BindableProperty.Create(
+            propertyName: nameof(TitleBackgroundView),
             returnType: typeof(View),
             declaringType: typeof(TitledContentView),
             defaultValue: null,
@@ -444,7 +444,7 @@ namespace RedCorners.Forms
             if (titlebar == null) return;
             titlebar.BackgroundImage = TitleBackgroundImage;
             titlebar.BackgroundImageOpacity = TitleBackgroundImageOpacity;
-            titlebar.Background = TitleBackground;
+            titlebar.BackgroundView = TitleBackgroundView;
         }
 
         void UpdateTitlePosition()

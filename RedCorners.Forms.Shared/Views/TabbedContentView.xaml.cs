@@ -196,10 +196,10 @@ namespace RedCorners.Forms
             set => SetValue(TransitionDurationProperty, value);
         }
 
-        public View Background
+        public View BackgroundView
         {
-            get => (View)GetValue(BackgroundProperty);
-            set => SetValue(BackgroundProperty, value);
+            get => (View)GetValue(BackgroundViewProperty);
+            set => SetValue(BackgroundViewProperty, value);
         }
 
         public TabBarPositions TabBarPosition
@@ -248,8 +248,8 @@ namespace RedCorners.Forms
                 }
             });
 
-        public static readonly BindableProperty BackgroundProperty = BindableProperty.Create(
-            propertyName: nameof(Background),
+        public static readonly BindableProperty BackgroundViewProperty = BindableProperty.Create(
+            propertyName: nameof(BackgroundView),
             returnType: typeof(View),
             declaringType: typeof(TabbedContentView),
             defaultValue: null,
@@ -587,8 +587,8 @@ namespace RedCorners.Forms
 
         void UpdateBackgroundView()
         {
-            if (body.Content != Background)
-                body.Content = Background;
+            if (body.Content != BackgroundView)
+                body.Content = BackgroundView;
         }
 
         void UpdateTabBarSizeRequest()

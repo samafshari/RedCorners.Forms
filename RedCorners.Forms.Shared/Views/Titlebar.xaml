@@ -28,7 +28,7 @@
                 HeightRequest="1" />
             <rf:ContentView2 
                 x:Name="body" 
-                Content="{Binding Background, Source={x:Reference me}, Mode=TwoWay}" />
+                Content="{Binding BackgroundView, Source={x:Reference me}, Mode=TwoWay}" />
             <rf:ContentView2 
                 FixTopPadding="True" 
                 HorizontalOptions="Fill" 

@@ -24,7 +24,7 @@
                 Title="{Binding Title, Source={x:Reference me}}"
                 BackgroundColor="{Binding TitleColor, Source={x:Reference me}}"
                 TextColor="{Binding TitleTextColor, Source={x:Reference me}}"
-                Background="{Binding TitleBackground, Source={x:Reference me}}"
+                BackgroundView="{Binding TitleBackgroundView, Source={x:Reference me}}"
                 HasButton="{Binding HasButton, Source={x:Reference me}}"
                 ToolBar="{Binding ToolBar, Source={x:Reference me}}"
                 LeftToolBar="{Binding LeftToolBar, Source={x:Reference me}}"
