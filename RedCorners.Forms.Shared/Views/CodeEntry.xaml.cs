@@ -246,7 +246,8 @@ namespace RedCorners.Forms
 
         void UpdateColors()
         {
-            var entries = stack.Children.Select(x => x as Entry).ToArray();
+            if (stack == null) return;
+            var entries = stack.Children.Select(x => x as CodeEntryBoxViewBase).ToArray();
             foreach (var entry in entries)
             {
                 entry.BackgroundColor = EntryBackgroundColor;
