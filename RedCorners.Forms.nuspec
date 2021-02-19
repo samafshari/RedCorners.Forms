@@ -10,7 +10,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Side Bar, Tabbed View and more for your Xamarin.Forms projects.</description>
     <releaseNotes>Side Bar, Tabbed View and more for your Xamarin.Forms projects.</releaseNotes>
-    <copyright>Copyright 2019-2020 NeatCapital OÜ</copyright>
+    <copyright>Copyright 2019-2021 NeatCapital OÜ</copyright>
     <tags>Xamarin.Forms UI SideBar TabBar TitleBar Status Bar Padding Components Controls</tags>
 
     <dependencies>

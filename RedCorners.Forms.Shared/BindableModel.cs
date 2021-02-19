@@ -7,6 +7,8 @@ using System.Text;
 using RedCorners.Models;
 using Xamarin.Forms;
 using RedCorners.Forms;
+using System.Windows.Input;
+using System.Reflection;
 
 #if WINDOWS
 using System.Windows;
@@ -14,16 +16,20 @@ using System.Windows;
 
 namespace RedCorners.Forms
 {
-    [AttributeUsage(AttributeTargets.All)]
-    public class ManualUpdate : Attribute 
-    {
-        public ManualUpdate() { }
-        public ManualUpdate(bool updateIfForced)
-        {
-            UpdateIfForced = updateIfForced;
-        }
 
-        public bool UpdateIfForced { get; set; } = true;
+    [AttributeUsage(AttributeTargets.All)]
+    public class NoUpdate : Attribute
+    {
+    }
+
+    [AttributeUsage(AttributeTargets.All)]
+    public class Updates : Attribute
+    {
+    }
+
+    [AttributeUsage(AttributeTargets.All)]
+    public class ManualUpdate : Attribute
+    {
     }
 
     public partial class BindableModel : INotifyPropertyChanged
@@ -113,15 +119,21 @@ namespace RedCorners.Forms
             RaisePropertyChanged(propertyName);
         }
 
+        PropertyInfo[] properties = null;
         public void UpdateProperties(bool forceAll = false)
         {
-            Xamarin.Forms.Device.BeginInvokeOnMainThread(() =>
+            if (properties == null)
+                properties = GetType().GetProperties();
+            
+            Device.BeginInvokeOnMainThread(() =>
             {
-                foreach (var item in GetType().GetProperties())
+                foreach (var item in properties)
                 {
-                    var manual = item.GetCustomAttributes(typeof(ManualUpdate), true).FirstOrDefault() as ManualUpdate;
-                    
-                    if (manual != null && (!forceAll || !manual.UpdateIfForced))
+                    if (item.GetCustomAttributes(typeof(NoUpdate), true).Any())
+                        continue;
+                    if (item.GetCustomAttributes(typeof(ManualUpdate), true).Any() && !forceAll)
+                        continue;
+                    if (item.PropertyType.IsAssignableFrom(typeof(ICommand)) && !item.GetCustomAttributes(typeof(Updates), true).Any())
                         continue;
 
                     RaisePropertyChanged(item.Name);
@@ -131,7 +143,7 @@ namespace RedCorners.Forms
 
         public void UpdateProperties(IEnumerable<string> names)
         {
-            Xamarin.Forms.Device.BeginInvokeOnMainThread(() =>
+            Device.BeginInvokeOnMainThread(() =>
             {
                 foreach (var item in names)
                     RaisePropertyChanged(item);
