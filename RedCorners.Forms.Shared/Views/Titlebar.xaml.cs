@@ -174,12 +174,18 @@ namespace RedCorners.Forms
             set => SetValue(IsDarkProperty, value);
         }
 
+        public ControlTemplate TitleViewTemplate
+        {
+            get => (ControlTemplate)GetValue(TitleViewTemplateProperty);
+            set => SetValue(TitleViewTemplateProperty, value);
+        }
+
         public static readonly BindableProperty IsDarkProperty = BindableProperty.Create(
             propertyName: nameof(IsDark),
             returnType: typeof(bool),
             declaringType: typeof(TitleBar),
             defaultValue: false,
-            defaultBindingMode: BindingMode.TwoWay,
+            defaultBindingMode: BindingMode.OneWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
                 if (bindable is TitleBar titlebar)
@@ -191,7 +197,7 @@ namespace RedCorners.Forms
             returnType: typeof(TitleAlignments),
             declaringType: typeof(TitleBar),
             defaultValue: TitleAlignments.Start,
-            defaultBindingMode: BindingMode.TwoWay,
+            defaultBindingMode: BindingMode.OneWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
                 if (bindable is TitleBar titlebar)
@@ -203,7 +209,7 @@ namespace RedCorners.Forms
             returnType: typeof(View),
             declaringType: typeof(TitleBar),
             defaultValue: null,
-            defaultBindingMode: BindingMode.TwoWay,
+            defaultBindingMode: BindingMode.OneWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
             });
@@ -213,7 +219,7 @@ namespace RedCorners.Forms
             returnType: typeof(ImageSource),
             declaringType: typeof(TitleBar),
             defaultValue: null,
-            defaultBindingMode: BindingMode.TwoWay,
+            defaultBindingMode: BindingMode.OneWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
 
@@ -224,7 +230,7 @@ namespace RedCorners.Forms
             returnType: typeof(View),
             declaringType: typeof(TitleBar),
             defaultValue: null,
-            defaultBindingMode: BindingMode.TwoWay,
+            defaultBindingMode: BindingMode.OneWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
                 if (bindable is TitleBar titlebar)
@@ -236,7 +242,7 @@ namespace RedCorners.Forms
             returnType: typeof(View),
             declaringType: typeof(TitleBar),
             defaultValue: null,
-            defaultBindingMode: BindingMode.TwoWay,
+            defaultBindingMode: BindingMode.OneWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
                 if (bindable is TitleBar titlebar)
@@ -248,7 +254,7 @@ namespace RedCorners.Forms
             returnType: typeof(View),
             declaringType: typeof(TitleBar),
             defaultValue: null,
-            defaultBindingMode: BindingMode.TwoWay,
+            defaultBindingMode: BindingMode.OneWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
                 if (bindable is TitleBar titlebar)
@@ -260,7 +266,7 @@ namespace RedCorners.Forms
             returnType: typeof(double),
             declaringType: typeof(TitleBar),
             defaultValue: 60.0,
-            defaultBindingMode: BindingMode.TwoWay,
+            defaultBindingMode: BindingMode.OneWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
 
@@ -271,7 +277,7 @@ namespace RedCorners.Forms
             returnType: typeof(double),
             declaringType: typeof(TitleBar),
             defaultValue: 1.0,
-            defaultBindingMode: BindingMode.TwoWay,
+            defaultBindingMode: BindingMode.OneWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
 
@@ -282,7 +288,7 @@ namespace RedCorners.Forms
             returnType: typeof(Thickness),
             declaringType: typeof(TitleBar),
             defaultValue: default(Thickness),
-            defaultBindingMode: BindingMode.TwoWay,
+            defaultBindingMode: BindingMode.OneWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
 
@@ -293,7 +299,7 @@ namespace RedCorners.Forms
             returnType: typeof(bool?),
             declaringType: typeof(TitleBar),
             defaultValue: default(bool?),
-            defaultBindingMode: BindingMode.TwoWay,
+            defaultBindingMode: BindingMode.OneWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
                 (bindable as TitleBar)?.UpdateButton();
@@ -304,7 +310,7 @@ namespace RedCorners.Forms
             returnType: typeof(bool),
             declaringType: typeof(TitleBar),
             defaultValue: true,
-            defaultBindingMode: BindingMode.TwoWay,
+            defaultBindingMode: BindingMode.OneWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
                 (bindable as TitleBar)?.UpdateButton();
@@ -315,7 +321,7 @@ namespace RedCorners.Forms
             returnType: typeof(ImageSource),
             declaringType: typeof(TitleBar),
             defaultValue: default(ImageSource),
-            defaultBindingMode: BindingMode.TwoWay,
+            defaultBindingMode: BindingMode.OneWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
                 (bindable as TitleBar)?.UpdateButton();
@@ -326,7 +332,7 @@ namespace RedCorners.Forms
             returnType: typeof(ICommand),
             declaringType: typeof(TitleBar),
             defaultValue: null,
-            defaultBindingMode: BindingMode.TwoWay,
+            defaultBindingMode: BindingMode.OneWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
 
@@ -337,7 +343,7 @@ namespace RedCorners.Forms
             returnType: typeof(object),
             declaringType: typeof(TitleBar),
             defaultValue: null,
-            defaultBindingMode: BindingMode.TwoWay,
+            defaultBindingMode: BindingMode.OneWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
 
@@ -348,7 +354,7 @@ namespace RedCorners.Forms
             returnType: typeof(Color),
             declaringType: typeof(TitleBar),
             defaultValue: Color.White,
-            defaultBindingMode: BindingMode.TwoWay,
+            defaultBindingMode: BindingMode.OneWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
 
@@ -359,7 +365,7 @@ namespace RedCorners.Forms
             returnType: typeof(double),
             declaringType: typeof(TitleBar),
             defaultValue: 16.0,
-            defaultBindingMode: BindingMode.TwoWay,
+            defaultBindingMode: BindingMode.OneWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
 
@@ -370,18 +376,23 @@ namespace RedCorners.Forms
             returnType: typeof(string),
             declaringType: typeof(TitleBar),
             defaultValue: null,
-            defaultBindingMode: BindingMode.TwoWay,
+            defaultBindingMode: BindingMode.OneWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
 
             });
+        
+        public static readonly BindableProperty TitleViewTemplateProperty = BindableProperty.Create(
+            propertyName: nameof(TitleViewTemplate),
+            returnType: typeof(ControlTemplate),
+            declaringType: typeof(TitleBar));
 
         public static readonly BindableProperty FontAttributesProperty = BindableProperty.Create(
             propertyName: nameof(FontAttributes),
             returnType: typeof(FontAttributes),
             declaringType: typeof(TitleBar),
             defaultValue: FontAttributes.Bold,
-            defaultBindingMode: BindingMode.TwoWay,
+            defaultBindingMode: BindingMode.OneWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
 
@@ -392,7 +403,7 @@ namespace RedCorners.Forms
            typeof(bool),
            typeof(TitleBar),
            true,
-           BindingMode.TwoWay,
+           BindingMode.OneWay,
            propertyChanged: (bindable, oldVal, newVal) =>
            {
                if (bindable is TitleBar titlebar && titlebar.contentContainer != null)
@@ -404,7 +415,7 @@ namespace RedCorners.Forms
             typeof(bool),
             typeof(TitleBar),
             false,
-            BindingMode.TwoWay,
+            BindingMode.OneWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
                 if (bindable is TitleBar titlebar && titlebar.contentContainer != null)

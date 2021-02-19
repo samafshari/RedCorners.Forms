@@ -1,105 +1,103 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8" ?>
 <rf:ContentView2
-    xmlns="http://xamarin.com/schemas/2014/forms" 
+    x:Class="RedCorners.Forms.TitleBar"
+    xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:rf="clr-namespace:RedCorners.Forms"
-    mc:Ignorable="d"
     x:Name="me"
-    x:Class="RedCorners.Forms.TitleBar"
     BackgroundColor="#333333"
     HorizontalOptions="Fill"
-    VerticalOptions="StartAndExpand">
+    VerticalOptions="StartAndExpand"
+    mc:Ignorable="d">
     <rf:ContentView2.Content>
-        <Grid 
+        <Grid
             x:Name="titleBackground"
-            HorizontalOptions="Fill" 
+            HorizontalOptions="Fill"
             VerticalOptions="FillAndExpand">
 
             <Image
                 x:Name="titleImage"
-                Source="{Binding BackgroundImage, Source={x:Reference me}, Mode=TwoWay}"
-                Opacity="{Binding BackgroundImageOpacity, Source={x:Reference me}, Mode=TwoWay}"
-                HorizontalOptions="Fill"
-                VerticalOptions="Fill"
                 Aspect="AspectFill"
+                HeightRequest="1"
+                HorizontalOptions="Fill"
                 InputTransparent="True"
-                HeightRequest="1" />
-            <rf:ContentView2 
-                x:Name="body" 
-                Content="{Binding BackgroundView, Source={x:Reference me}, Mode=TwoWay}" />
-            <rf:ContentView2 
-                FixTopPadding="True" 
-                HorizontalOptions="Fill" 
-                VerticalOptions="FillAndExpand" 
-                x:Name="contentContainer">
-                <Grid x:Name="content" 
-                      HeightRequest="{Binding ContentHeightRequest, Source={x:Reference me}, Mode=TwoWay}" 
-                      Margin="{Binding ContentMargin, Source={x:Reference me}, Mode=TwoWay}" 
-                      HorizontalOptions="Fill" VerticalOptions="Fill"
-                      Padding="5,0"
-                      ColumnSpacing="10">
+                Opacity="{Binding BackgroundImageOpacity, Source={x:Reference me}}"
+                Source="{Binding BackgroundImage, Source={x:Reference me}}"
+                VerticalOptions="Fill" />
+            <rf:ContentView2 x:Name="body" Content="{Binding BackgroundView, Source={x:Reference me}}" />
+            <rf:ContentView2
+                x:Name="contentContainer"
+                FixTopPadding="True"
+                HorizontalOptions="Fill"
+                VerticalOptions="FillAndExpand">
+                <Grid
+                    x:Name="content"
+                    Margin="{Binding ContentMargin, Source={x:Reference me}}"
+                    Padding="5,0"
+                    ColumnSpacing="10"
+                    HeightRequest="{Binding ContentHeightRequest, Source={x:Reference me}}"
+                    HorizontalOptions="Fill"
+                    VerticalOptions="Fill">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
-                    
+
                     <rf:ContentView2
                         x:Name="titleView"
-                        HorizontalOptions="Fill"
-                        VerticalOptions="Fill"        
-                        InputTransparent="True"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="3"
                         CascadeInputTransparent="False"
-			            Grid.Column="0"
-                        Grid.ColumnSpan="3" />
-                    
-                    <rf:ContentView2 
-                        x:Name="leftbuttons" 
-                        Grid.Column="0" 
-                        HorizontalOptions="FillAndExpand" 
-                        VerticalOptions="Fill" 
-                        Margin="8,0,0,0" 
-                        />
-                    
-                    <Grid 
+                        ControlTemplate="{Binding TitleViewTemplate, Source={x:Reference me}}"
+                        HorizontalOptions="Fill"
+                        InputTransparent="True"
+                        VerticalOptions="Fill" />
+
+                    <rf:ContentView2
+                        x:Name="leftbuttons"
+                        Grid.Column="0"
+                        Margin="8,0,0,0"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="Fill" />
+
+                    <Grid
                         x:Name="controlButtons"
                         Grid.Column="0"
                         HorizontalOptions="FillAndExpand"
                         VerticalOptions="Fill"
                         WidthRequest="42">
-                        <Image 
+                        <Image
                             x:Name="backImage"
-				            Aspect="AspectFit"
-				            WidthRequest="24" 
-				            HeightRequest="24" 
-				            VerticalOptions="Center" 
-				            HorizontalOptions="Start"
-				            Margin="12,0,6,0"
-                            />
+                            Margin="12,0,6,0"
+                            Aspect="AspectFit"
+                            HeightRequest="24"
+                            HorizontalOptions="Start"
+                            VerticalOptions="Center"
+                            WidthRequest="24" />
                     </Grid>
-                    
-                    <Label 
-                        InputTransparent="True"
+
+                    <Label
                         x:Name="lblTitle"
-			            Text="{Binding Title, Source={x:Reference me}, Mode=TwoWay}" 
-			            TextColor="{Binding TextColor, Source={x:Reference me}, Mode=TwoWay}" 
-			            FontAttributes="{Binding FontAttributes, Source={x:Reference me}, Mode=TwoWay}" 
-			            FontSize="{Binding FontSize, Source={x:Reference me}, Mode=TwoWay}"
-			            VerticalOptions="Center" 
-			            HorizontalOptions="Fill"
-			            LineBreakMode="TailTruncation" 
-			            Grid.Column="0"
-                        Grid.ColumnSpan="3" />
-                    
-                    <rf:ContentView2 
-                        x:Name="buttons" 
-                        Grid.Column="2" 
-                        HorizontalOptions="EndAndExpand" 
-                        VerticalOptions="Fill" 
-                        Margin="0,0,8,0" 
-                        />
+                        Grid.Column="0"
+                        Grid.ColumnSpan="3"
+                        FontAttributes="{Binding FontAttributes, Source={x:Reference me}}"
+                        FontSize="{Binding FontSize, Source={x:Reference me}}"
+                        HorizontalOptions="Fill"
+                        InputTransparent="True"
+                        LineBreakMode="TailTruncation"
+                        Text="{Binding Title, Source={x:Reference me}}"
+                        TextColor="{Binding TextColor, Source={x:Reference me}}"
+                        VerticalOptions="Center" />
+
+                    <rf:ContentView2
+                        x:Name="buttons"
+                        Grid.Column="2"
+                        Margin="0,0,8,0"
+                        HorizontalOptions="EndAndExpand"
+                        VerticalOptions="Fill" />
                 </Grid>
             </rf:ContentView2>
         </Grid>

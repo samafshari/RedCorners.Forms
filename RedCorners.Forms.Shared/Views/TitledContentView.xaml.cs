@@ -177,6 +177,24 @@ namespace RedCorners.Forms
             set => SetValue(TitleBackgroundImageOpacityProperty, value);
         }
 
+        public ControlTemplate TitleViewTemplate
+        {
+            get => (ControlTemplate)GetValue(TitleViewTemplateProperty);
+            set => SetValue(TitleViewTemplateProperty, value);
+        }
+
+        public ControlTemplate BodyTemplate
+        {
+            get => (ControlTemplate)GetValue(BodyTemplateProperty);
+            set => SetValue(BodyTemplateProperty, value);
+        }
+
+        public ControlTemplate TitleBarTemplate
+        {
+            get => (ControlTemplate)GetValue(TitleBarTemplateProperty);
+            set => SetValue(TitleBarTemplateProperty, value);
+        }
+
         public static readonly BindableProperty IsDarkProperty = BindableProperty.Create(
             propertyName: nameof(IsDark),
             returnType: typeof(bool),
@@ -437,6 +455,21 @@ namespace RedCorners.Forms
                     page.UpdateTitleBackgroundImage();
                 }
             });
+
+        public static readonly BindableProperty TitleViewTemplateProperty = BindableProperty.Create(
+            propertyName: nameof(TitleViewTemplate),
+            returnType: typeof(ControlTemplate),
+            declaringType: typeof(TitledGroup));
+
+        public static readonly BindableProperty BodyTemplateProperty = BindableProperty.Create(
+            propertyName: nameof(BodyTemplate),
+            returnType: typeof(ControlTemplate),
+            declaringType: typeof(TitledGroup));
+
+        public static readonly BindableProperty TitleBarTemplateProperty = BindableProperty.Create(
+            propertyName: nameof(TitleBarTemplate),
+            returnType: typeof(ControlTemplate),
+            declaringType: typeof(TitledGroup));
 
         public TitledGroup()
         {

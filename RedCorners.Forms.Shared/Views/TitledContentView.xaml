@@ -1,15 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <rf:ContentView2
+    x:Class="RedCorners.Forms.TitledGroup"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:rf="clr-namespace:RedCorners.Forms"
-    FixTopPadding="False"
-    FixBottomPadding="False"
-    mc:Ignorable="d"
     x:Name="me"
-    x:Class="RedCorners.Forms.TitledGroup">
+    FixBottomPadding="False"
+    FixTopPadding="False"
+    mc:Ignorable="d">
     <rf:ContentView2.Content>
         <Grid RowSpacing="0">
             <Grid.RowDefinitions>
@@ -20,49 +20,49 @@
 
             <rf:TitleBar
                 x:Name="titlebar"
-                Grid.Row="0"
                 Title="{Binding Title, Source={x:Reference me}}"
-                BackgroundColor="{Binding TitleColor, Source={x:Reference me}}"
-                TextColor="{Binding TitleTextColor, Source={x:Reference me}}"
-                BackgroundView="{Binding TitleBackgroundView, Source={x:Reference me}}"
-                HasButton="{Binding HasButton, Source={x:Reference me}}"
-                ToolBar="{Binding ToolBar, Source={x:Reference me}}"
-                LeftToolBar="{Binding LeftToolBar, Source={x:Reference me}}"
-                IsBackButtonVisible="{Binding IsBackButtonVisible, Source={x:Reference me}}"
+                Grid.Row="0"
                 BackCommand="{Binding BackCommand, Source={x:Reference me}}"
                 BackCommandParameter="{Binding BackCommandParameter, Source={x:Reference me}}"
-                FontSize="{Binding TitleFontSize, Source={x:Reference me}}"
-                FontFamily="{Binding TitleFontFamily, Source={x:Reference me}}"
-                FontAttributes="{Binding TitleFontAttributes, Source={x:Reference me}}"
+                BackgroundColor="{Binding TitleColor, Source={x:Reference me}}"
+                BackgroundView="{Binding TitleBackgroundView, Source={x:Reference me}}"
                 ContentHeightRequest="{Binding TitleHeightRequest, Source={x:Reference me}}"
                 ContentMargin="{Binding TitlePadding, Source={x:Reference me}}"
+                ControlTemplate="{Binding TitleBarTemplate, Source={x:Reference me}}"
+                CustomBackImage="{Binding CustomBackImage, Source={x:Reference me}}"
+                FontAttributes="{Binding TitleFontAttributes, Source={x:Reference me}}"
+                FontFamily="{Binding TitleFontFamily, Source={x:Reference me}}"
+                FontSize="{Binding TitleFontSize, Source={x:Reference me}}"
+                HasButton="{Binding HasButton, Source={x:Reference me}}"
+                IsBackButtonVisible="{Binding IsBackButtonVisible, Source={x:Reference me}}"
+                IsDark="{Binding IsDark, Source={x:Reference me}}"
+                LeftToolBar="{Binding LeftToolBar, Source={x:Reference me}}"
+                TextColor="{Binding TitleTextColor, Source={x:Reference me}}"
                 TitleAlignment="{Binding TitleAlignment, Source={x:Reference me}}"
                 TitleView="{Binding TitleView, Source={x:Reference me}}"
-                CustomBackImage="{Binding CustomBackImage, Source={x:Reference me}}"
-                IsDark="{Binding IsDark, Source={x:Reference me}}"
-                />
+                TitleViewTemplate="{Binding TitleViewTemplate, Source={Reference me}}"
+                ToolBar="{Binding ToolBar, Source={x:Reference me}}" />
 
             <rf:ContentView2
                 x:Name="content"
                 Grid.Row="1"
-                HorizontalOptions="Fill"
-                VerticalOptions="Fill"
+                ControlTemplate="{Binding BodyTemplate, Source={Reference me}}"
                 FixBottomPadding="False"
                 FixTopPadding="False"
-                />
+                HorizontalOptions="Fill"
+                VerticalOptions="Fill" />
 
-            <rf:HorizontalShadow Grid.Row="1" x:Name="shadow" />
-            <rf:HorizontalShadow2 Grid.Row="1" x:Name="shadow2" />
+            <rf:HorizontalShadow x:Name="shadow" Grid.Row="1" />
+            <rf:HorizontalShadow2 x:Name="shadow2" Grid.Row="1" />
 
             <rf:ContentView2
                 x:Name="overlay"
-                HorizontalOptions="Fill"
-                VerticalOptions="Fill"
-                InputTransparent="True"
-                CascadeInputTransparent="False"
                 Grid.Row="0"
-                Grid.RowSpan="3" 
-                />
+                Grid.RowSpan="3"
+                CascadeInputTransparent="False"
+                HorizontalOptions="Fill"
+                InputTransparent="True"
+                VerticalOptions="Fill" />
         </Grid>
     </rf:ContentView2.Content>
 </rf:ContentView2>
