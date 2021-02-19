@@ -7,7 +7,7 @@
     xmlns:vm="clr-namespace:RedCorners.Demo.ViewModels"
     x:Class="RedCorners.Demo.Views.CounterPage"
     UIStatusBarHidden="True">
-    <rf:TitledContentView
+    <rf:TitledGroup
         Title="Counter Page"
         IsBackButtonVisible="{Binding IsModal}"
         BackCommand="{Binding GoBackCommand}">
@@ -71,7 +71,7 @@
                 </rf:TabBar>
             </Grid>
         </Grid>
-        <rf:TitledContentView.Overlay>
+        <rf:TitledGroup.Overlay>
             <rf:SideBar ContentSize="2*">
                 <Frame
                     HasShadow="True"
@@ -99,6 +99,6 @@
                     </ScrollView>
                 </Frame>
             </rf:SideBar>
-        </rf:TitledContentView.Overlay>
-    </rf:TitledContentView>
+        </rf:TitledGroup.Overlay>
+    </rf:TitledGroup>
 </rf:ContentPage2>

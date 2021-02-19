@@ -10,10 +10,10 @@
                 <Setter Property="BackgroundColor" Value="#99000000" />
                 <Setter Property="TextColor" Value="White" />
             </Style>
-            <Style TargetType="rf:TabbedContentView">
+            <Style TargetType="rf:TabGroup">
                 <Setter Property="HasShadow" Value="False" />
             </Style>
-            <Style TargetType="rf:TitledContentView">
+            <Style TargetType="rf:TitledGroup">
                 <Setter Property="HasShadow" Value="False" />
             </Style>
         </ResourceDictionary>

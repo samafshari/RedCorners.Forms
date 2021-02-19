@@ -27,6 +27,18 @@ namespace RedCorners.Forms
             textBox?.Unfocus();
         }
 
+        public static readonly BindableProperty BoxTypeProperty = BindableProperty.Create(
+            nameof(BoxType),
+            typeof(Type),
+            typeof(CodeEntry),
+            typeof(CodeEntryBoxView),
+            BindingMode.OneWay,
+            propertyChanged: (bindable, oldVal, newVal) =>
+            {
+                if (oldVal != newVal && bindable is CodeEntry view)
+                    view.BuildUI();
+            });
+
         public static readonly BindableProperty TextProperty = BindableProperty.Create(
             nameof(Text),
             typeof(string),
@@ -39,7 +51,7 @@ namespace RedCorners.Forms
             typeof(int),
             typeof(CodeEntry),
             4,
-            BindingMode.TwoWay,
+            BindingMode.OneWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
                 if (oldVal != newVal && bindable is CodeEntry view)
@@ -51,7 +63,7 @@ namespace RedCorners.Forms
             typeof(Keyboard),
             typeof(CodeEntry),
             Keyboard.Numeric,
-            BindingMode.TwoWay,
+            BindingMode.OneWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
                 if (bindable is CodeEntry view)
@@ -63,7 +75,7 @@ namespace RedCorners.Forms
             typeof(ICommand),
             typeof(CodeEntry),
             null,
-            BindingMode.TwoWay);
+            BindingMode.OneWay);
 
 
         public static readonly BindableProperty FinishCommandParameterProperty = BindableProperty.Create(
@@ -71,14 +83,14 @@ namespace RedCorners.Forms
             typeof(object),
             typeof(CodeEntry),
             null,
-            BindingMode.TwoWay);
+            BindingMode.OneWay);
 
         public static readonly BindableProperty EntryBackgroundColorProperty = BindableProperty.Create(
             nameof(EntryBackgroundColor),
             typeof(Color),
             typeof(CodeEntry),
             Color.White,
-            BindingMode.TwoWay,
+            BindingMode.OneWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
                 if (bindable is CodeEntry view)
@@ -90,13 +102,36 @@ namespace RedCorners.Forms
             typeof(Color),
             typeof(CodeEntry),
             Color.Black,
-            BindingMode.TwoWay,
+            BindingMode.OneWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
                 if (bindable is CodeEntry view)
                     view.UpdateColors();
             });
 
+        public static readonly BindableProperty SpacingProperty = BindableProperty.Create(
+            nameof(Spacing),
+            typeof(double),
+            typeof(CodeEntry),
+            8.0,
+            BindingMode.OneWay,
+            propertyChanged: (bindable, oldVal, newVal) =>
+            {
+                if (bindable is CodeEntry view)
+                    view.UpdateUI();
+            });
+
+        public Type BoxType
+        {
+            get => (Type)GetValue(BoxTypeProperty);
+            set => SetValue(BoxTypeProperty, value);
+        }
+
+        public double Spacing
+        {
+            get => (double)GetValue(SpacingProperty);
+            set => SetValue(SpacingProperty, value);
+        }
         public string Text
         {
             get => (string)GetValue(TextProperty);
@@ -158,19 +193,19 @@ namespace RedCorners.Forms
         void BuildUI()
         {
             stack.Children.Clear();
+            stack.Spacing = Spacing;
             for (int i = 0; i < Length; i++)
             {
-                stack.Children.Add(new Entry
-                {
-                    BackgroundColor = EntryBackgroundColor,
-                    TextColor = TextColor
-                });
+                var box = Activator.CreateInstance(BoxType) as CodeEntryBoxViewBase;
+                box.BackgroundColor = EntryBackgroundColor;
+                box.TextColor = TextColor;
+                stack.Children.Add(box);
             }
         }
 
         void UpdateUI()
         {
-            var entries = stack.Children.Select(x => x as Entry).ToArray();
+            var entries = stack.Children.Select(x => x as CodeEntryBoxViewBase).ToArray();
             if (textBox.Text == null)
                 foreach (var entry in entries)
                     entry.Text = "";
@@ -192,6 +227,9 @@ namespace RedCorners.Forms
                     entries[i].Text = textBox.Text.Length > i ? textBox.Text[i].ToString() : "";
                 }
             }
+
+            if (stack != null)
+                stack.Spacing = Spacing;
         }
 
         public new void Focus()

@@ -12,7 +12,7 @@
     x:Class="RedCorners.Demo.Views.TabBarDemosPage">
     <rf:ContentPage2.Resources>
         <ResourceDictionary>
-            <Style TargetType="rf:TitledContentView">
+            <Style TargetType="rf:TitledGroup">
                 <Setter Property="BackCommand" Value="{Binding GoBackCommand}" />
                 <Setter Property="IsBackButtonVisible" Value="{Binding IsModal}" />
                 <Setter Property="TitlePosition" Value="{Binding TitlePosition}" />
@@ -33,7 +33,7 @@
         <vm:TabBarDemosViewModel x:Name="viewModel" />
     </rf:ContentPage2.BindingContext>
 
-    <rf:TabbedContentView
+    <rf:TabGroup
         TabStyle="{Binding TabStyle}"
         TabBarBackgroundColor="#FFFFFF"
         BackgroundColor="#EEEEEE"
@@ -47,20 +47,20 @@
         TabBarPosition="{Binding TabBarPosition}"
         ItemOrientation="{Binding ItemOrientation}"
         HasShadow="False">
-        <rf:TabbedContentView.Background>
-            <rf:TitledContentView>
-                <rf:TitledContentView.TitleBackgroundView>
+        <rf:TabGroup.BackgroundView>
+            <rf:TitledGroup>
+                <rf:TitledGroup.TitleBackgroundView>
                     <Image 
                     Source="https://freefrontend.com/assets/img/css-background-patterns/simple-pattern-with-css3.png"
                     HorizontalOptions="Fill"
                     VerticalOptions="Fill"
                     Aspect="AspectFill"
                     HeightRequest="1" />
-                </rf:TitledContentView.TitleBackgroundView>
-            </rf:TitledContentView>
-        </rf:TabbedContentView.Background>
+                </rf:TitledGroup.TitleBackgroundView>
+            </rf:TitledGroup>
+        </rf:TabGroup.BackgroundView>
 
-        <rf:TabbedContentView.TabBarBackground>
+        <rf:TabGroup.TabBarBackground>
             <OnPlatform x:TypeArguments="View">
                 <On Platform="iOS">
                     <On.Value>
@@ -93,37 +93,37 @@
                     </On.Value>
                 </On>
             </OnPlatform>
-        </rf:TabbedContentView.TabBarBackground>
+        </rf:TabGroup.TabBarBackground>
 
-        <rf:TitledContentView Icon="icon_home_w" Title="Home" BackgroundColor="White">
-            <rf:TitledContentView.TitleBackground>
+        <rf:TitledGroup Icon="icon_home_w" Title="Home" BackgroundColor="White">
+            <rf:TitledGroup.TitleBackgroundView>
                 <Image 
                     Source="https://freefrontend.com/assets/img/css-background-patterns/simple-pattern-with-css3.png"
                     HorizontalOptions="Fill"
                     VerticalOptions="Fill"
                     Aspect="AspectFill"
                     HeightRequest="1" />
-            </rf:TitledContentView.TitleBackground>
+            </rf:TitledGroup.TitleBackgroundView>
             <Grid>
                 <StackLayout Spacing="10" HorizontalOptions="Center" VerticalOptions="Center">
                     <ff:CachedImage Source="http://ooze.redcorners.com/redcorners_forms_logo.png" HorizontalOptions="Center" HeightRequest="128" WidthRequest="128" />
                     <Label Text="RedCorners.Forms" TextColor="Black" FontSize="Large" HorizontalTextAlignment="Center" HorizontalOptions="Center" />
                     <rf:HorizontalLine BackgroundColor="Black" />
-                    <Label Text="TabbedContentView Demo" TextColor="Black" FontSize="Medium" HorizontalTextAlignment="Center" HorizontalOptions="Center" />
+                    <Label Text="TabGroup Demo" TextColor="Black" FontSize="Medium" HorizontalTextAlignment="Center" HorizontalOptions="Center" />
                     <Label Text="redcorners.com" TextColor="#99000000" FontSize="Medium" HorizontalTextAlignment="Center" HorizontalOptions="Center" />
                 </StackLayout>
             </Grid>
-        </rf:TitledContentView>
+        </rf:TitledGroup>
 
-        <rf:TitledContentView Icon="icon_list_w" Title="Settings" BackgroundColor="White">
-            <rf:TitledContentView.TitleBackground>
+        <rf:TitledGroup Icon="icon_list_w" Title="Settings" BackgroundColor="White">
+            <rf:TitledGroup.TitleBackgroundView>
                 <Image 
                     Source="https://freefrontend.com/assets/img/css-background-patterns/simple-pattern-with-css3.png"
                     HorizontalOptions="Fill"
                     VerticalOptions="Fill"
                     Aspect="AspectFill"
                     HeightRequest="1" />
-            </rf:TitledContentView.TitleBackground>
+            </rf:TitledGroup.TitleBackgroundView>
             <ScrollView>
                 <StackLayout Padding="10" Spacing="20">
                     <Label Text="TabStyle:" />
@@ -214,21 +214,21 @@
                     </rf:TabBar>
                 </StackLayout>
             </ScrollView>
-        </rf:TitledContentView>
+        </rf:TitledGroup>
 
-        <rf:TitledContentView HasShadow="False" Icon="icon_profile_w" Title="Profile" BackgroundColor="White" ShowTabCommand="{Binding ShowLoginCommand}" IsVisibleAsTab="{Binding IsProfileVisible}">
-            <rf:TitledContentView.TitleBackground>
+        <rf:TitledGroup HasShadow="False" Icon="icon_profile_w" Title="Profile" BackgroundColor="White" ShowTabCommand="{Binding ShowLoginCommand}" IsVisibleAsTab="{Binding IsProfileVisible}">
+            <rf:TitledGroup.TitleBackgroundView>
                 <Image 
                     Source="https://freefrontend.com/assets/img/css-background-patterns/simple-pattern-with-css3.png"
                     HorizontalOptions="Fill"
                     VerticalOptions="Fill"
                     Aspect="AspectFill"
                     HeightRequest="1" />
-            </rf:TitledContentView.TitleBackground>
+            </rf:TitledGroup.TitleBackgroundView>
             <views:TabBarNestingDemoView />
-        </rf:TitledContentView>
+        </rf:TitledGroup>
 
-        <rf:TabbedContentView.Overlay>
+        <rf:TabGroup.Overlay>
             <rf:SideBar ContentSize="2*">
                 <Frame
                     HasShadow="True"
@@ -257,6 +257,6 @@
                     </ScrollView>
                 </Frame>
             </rf:SideBar>
-        </rf:TabbedContentView.Overlay>
-    </rf:TabbedContentView>
+        </rf:TabGroup.Overlay>
+    </rf:TabGroup>
 </rf:ContentPage2>

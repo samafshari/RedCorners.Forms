@@ -12,15 +12,15 @@
         <vm:SearchViewModel />
     </ContentPage.BindingContext>
 
-    <rf:TitledContentView 
+    <rf:TitledGroup 
         Title="SearchPage" 
         BackCommand="{Binding GoBackCommand}" 
         IsBackButtonVisible="True">
-        <rf:TitledContentView.ToolBar>
+        <rf:TitledGroup.ToolBar>
             <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand">
                 <!-- Define Toolbar Here -->
             </StackLayout>
-        </rf:TitledContentView.ToolBar>
+        </rf:TitledGroup.ToolBar>
 
         <StackLayout BackgroundColor="LightGray" Spacing="16">
             <!-- Define Page Contents Here -->
@@ -35,5 +35,5 @@
             <Label Text="{Binding TextChangeResult}" />
             <rf:CodeEntry Text="{Binding Code}" Length="6" FinishCommand="{Binding CancelCommand}" FinishCommandParameter="{Binding Code}" />
         </StackLayout>
-    </rf:TitledContentView>
+    </rf:TitledGroup>
 </rf:ContentPage2>

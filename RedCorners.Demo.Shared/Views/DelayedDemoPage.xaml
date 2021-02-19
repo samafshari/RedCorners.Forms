@@ -12,16 +12,16 @@
         <vm:DelayedViewModel x:Name="viewModel" />
     </ContentPage.BindingContext>
 
-    <rf:TitledContentView 
+    <rf:TitledGroup 
         Title="DelayedDemoPage" 
         TitleColor="#e91e63" 
         BackCommand="{Binding GoBackCommand}" 
         IsBackButtonVisible="True">
-        <rf:TitledContentView.ToolBar>
+        <rf:TitledGroup.ToolBar>
             <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand">
                 <!-- Define Toolbar Here -->
             </StackLayout>
-        </rf:TitledContentView.ToolBar>
+        </rf:TitledGroup.ToolBar>
 
         <Grid>
             <!-- Define Page Contents Here -->
@@ -29,5 +29,5 @@
                 <Label Text="Hello, DelayedDemoPage!" HorizontalOptions="Center" VerticalOptions="Center" />
             </rf:DelayedView>
         </Grid>
-    </rf:TitledContentView>
+    </rf:TitledGroup>
 </rf:ContentPage2>

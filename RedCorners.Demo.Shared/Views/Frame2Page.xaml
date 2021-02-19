@@ -12,16 +12,16 @@
         <vm:Frame2ViewModel />
     </ContentPage.BindingContext>
 
-    <rf:TitledContentView 
+    <rf:TitledGroup 
         Title="Frame2 Page" 
         BackCommand="{Binding GoBackCommand}" 
         IsBackButtonVisible="True"
         BackgroundColor="LightGray">
-        <rf:TitledContentView.ToolBar>
+        <rf:TitledGroup.ToolBar>
             <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand">
                 <!-- Define Toolbar Here -->
             </StackLayout>
-        </rf:TitledContentView.ToolBar>
+        </rf:TitledGroup.ToolBar>
 
         <Grid >
         <StackLayout Spacing="8" Margin="20">
@@ -56,5 +56,5 @@
                 </Grid>
             </rf:Frame2>
         </Grid>
-    </rf:TitledContentView>
+    </rf:TitledGroup>
 </rf:ContentPage2>

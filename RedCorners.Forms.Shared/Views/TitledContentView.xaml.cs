@@ -10,6 +10,12 @@ using Xamarin.Forms.Xaml;
 
 namespace RedCorners.Forms
 {
+    [Obsolete("Use TitledGroup instead")]
+    public class TitledContentView : TitledGroup
+    {
+
+    }
+
     public enum TitleBarPositions
     {
         Top = 0,
@@ -18,7 +24,7 @@ namespace RedCorners.Forms
 
     [XamlCompilation(XamlCompilationOptions.Compile)]
     [ContentProperty("Body")]
-    public partial class TitledContentView
+    public partial class TitledGroup
     {
         public View Body
         {
@@ -174,7 +180,7 @@ namespace RedCorners.Forms
         public static readonly BindableProperty IsDarkProperty = BindableProperty.Create(
             propertyName: nameof(IsDark),
             returnType: typeof(bool),
-            declaringType: typeof(TitledContentView),
+            declaringType: typeof(TitledGroup),
             defaultValue: false,
             defaultBindingMode: BindingMode.TwoWay);
 
@@ -182,7 +188,7 @@ namespace RedCorners.Forms
         public static readonly BindableProperty CustomBackImageProperty = BindableProperty.Create(
             propertyName: nameof(CustomBackImage),
             returnType: typeof(ImageSource),
-            declaringType: typeof(TitledContentView),
+            declaringType: typeof(TitledGroup),
             defaultValue: default(ImageSource),
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
@@ -192,7 +198,7 @@ namespace RedCorners.Forms
         public static readonly BindableProperty TitleAlignmentProperty = BindableProperty.Create(
             propertyName: nameof(TitleAlignment),
             returnType: typeof(TitleAlignments),
-            declaringType: typeof(TitledContentView),
+            declaringType: typeof(TitledGroup),
             defaultValue: TitleAlignments.Start,
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
@@ -202,21 +208,21 @@ namespace RedCorners.Forms
         public static readonly BindableProperty TitleHeightRequestProperty = BindableProperty.Create(
             propertyName: nameof(TitleHeightRequest),
             returnType: typeof(double),
-            declaringType: typeof(TitledContentView),
+            declaringType: typeof(TitledGroup),
             defaultValue: 60.0,
             defaultBindingMode: BindingMode.TwoWay);
 
         public static readonly BindableProperty TitlePaddingProperty = BindableProperty.Create(
             propertyName: nameof(TitlePadding),
             returnType: typeof(Thickness),
-            declaringType: typeof(TitledContentView),
+            declaringType: typeof(TitledGroup),
             defaultValue: default(Thickness),
             defaultBindingMode: BindingMode.TwoWay);
 
         public static readonly BindableProperty TitleFontSizeProperty = BindableProperty.Create(
             propertyName: nameof(TitleFontSize),
             returnType: typeof(double),
-            declaringType: typeof(TitledContentView),
+            declaringType: typeof(TitledGroup),
             defaultValue: 16.0,
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
@@ -227,7 +233,7 @@ namespace RedCorners.Forms
         public static readonly BindableProperty TitleFontFamilyProperty = BindableProperty.Create(
             propertyName: nameof(TitleFontFamily),
             returnType: typeof(string),
-            declaringType: typeof(TitledContentView),
+            declaringType: typeof(TitledGroup),
             defaultValue: null,
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
@@ -238,7 +244,7 @@ namespace RedCorners.Forms
         public static readonly BindableProperty TitleFontAttributesProperty = BindableProperty.Create(
             propertyName: nameof(TitleFontAttributes),
             returnType: typeof(FontAttributes),
-            declaringType: typeof(TitledContentView),
+            declaringType: typeof(TitledGroup),
             defaultValue: FontAttributes.Bold,
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
@@ -249,7 +255,7 @@ namespace RedCorners.Forms
         public static readonly BindableProperty HasButtonProperty = BindableProperty.Create(
             propertyName: nameof(HasButton),
             returnType: typeof(bool),
-            declaringType: typeof(TitledContentView),
+            declaringType: typeof(TitledGroup),
             defaultValue: true,
             defaultBindingMode: BindingMode.TwoWay);
 
@@ -257,12 +263,12 @@ namespace RedCorners.Forms
             BindableProperty.Create(
             nameof(HasShadow),
             typeof(bool),
-            typeof(TitledContentView),
+            typeof(TitledGroup),
             true,
             BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
-                if (bindable is TitledContentView page)
+                if (bindable is TitledGroup page)
                 {
                     page.UpdateTitlePosition();
                 }
@@ -271,12 +277,12 @@ namespace RedCorners.Forms
         public static readonly BindableProperty FixTitlePaddingProperty = BindableProperty.Create(
             propertyName: nameof(FixTitlePadding),
             returnType: typeof(bool),
-            declaringType: typeof(TitledContentView),
+            declaringType: typeof(TitledGroup),
             defaultValue: true,
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
-                if (bindable is TitledContentView page)
+                if (bindable is TitledGroup page)
                 {
                     page.UpdateTitlePosition();
                 }
@@ -285,12 +291,12 @@ namespace RedCorners.Forms
         public static readonly BindableProperty TitlePositionProperty = BindableProperty.Create(
             propertyName: nameof(TitlePosition),
             returnType: typeof(TitleBarPositions),
-            declaringType: typeof(TitledContentView),
+            declaringType: typeof(TitledGroup),
             defaultValue: TitleBarPositions.Top,
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
-                if (bindable is TitledContentView page)
+                if (bindable is TitledGroup page)
                 {
                     page.UpdateTitlePosition();
                 }
@@ -299,12 +305,12 @@ namespace RedCorners.Forms
         public static readonly BindableProperty BodyProperty = BindableProperty.Create(
             propertyName: nameof(Body),
             returnType: typeof(View),
-            declaringType: typeof(TitledContentView),
+            declaringType: typeof(TitledGroup),
             defaultValue: null,
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
-                if (bindable is TitledContentView page)
+                if (bindable is TitledGroup page)
                 {
                     page.content.Content = newVal as View;
                 }
@@ -313,7 +319,7 @@ namespace RedCorners.Forms
         public static readonly BindableProperty ToolBarProperty = BindableProperty.Create(
             propertyName: nameof(ToolBar),
             returnType: typeof(View),
-            declaringType: typeof(TitledContentView),
+            declaringType: typeof(TitledGroup),
             defaultValue: null,
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
@@ -323,7 +329,7 @@ namespace RedCorners.Forms
         public static readonly BindableProperty LeftToolBarProperty = BindableProperty.Create(
             propertyName: nameof(LeftToolBar),
             returnType: typeof(View),
-            declaringType: typeof(TitledContentView),
+            declaringType: typeof(TitledGroup),
             defaultValue: null,
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
@@ -333,7 +339,7 @@ namespace RedCorners.Forms
         public static readonly BindableProperty TitleViewProperty = BindableProperty.Create(
             propertyName: nameof(TitleView),
             returnType: typeof(View),
-            declaringType: typeof(TitledContentView),
+            declaringType: typeof(TitledGroup),
             defaultValue: null,
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
@@ -343,12 +349,12 @@ namespace RedCorners.Forms
         public static readonly BindableProperty OverlayProperty = BindableProperty.Create(
             propertyName: nameof(Overlay),
             returnType: typeof(View),
-            declaringType: typeof(TitledContentView),
+            declaringType: typeof(TitledGroup),
             defaultValue: null,
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
-                if (bindable is TitledContentView page)
+                if (bindable is TitledGroup page)
                 {
                     page.overlay.Content = (View)newVal;
                 }
@@ -357,33 +363,33 @@ namespace RedCorners.Forms
         public static readonly BindableProperty IsBackButtonVisibleProperty = BindableProperty.Create(
             propertyName: nameof(IsBackButtonVisible),
             returnType: typeof(bool?),
-            declaringType: typeof(TitledContentView),
+            declaringType: typeof(TitledGroup),
             defaultValue: default(bool?),
             defaultBindingMode: BindingMode.TwoWay);
 
         public static readonly BindableProperty BackCommandProperty = BindableProperty.Create(
             propertyName: nameof(BackCommand),
             returnType: typeof(ICommand),
-            declaringType: typeof(TitledContentView),
+            declaringType: typeof(TitledGroup),
             defaultValue: null,
             defaultBindingMode: BindingMode.TwoWay);
 
         public static readonly BindableProperty BackCommandParameterProperty = BindableProperty.Create(
             propertyName: nameof(BackCommandParameter),
             returnType: typeof(object),
-            declaringType: typeof(TitledContentView),
+            declaringType: typeof(TitledGroup),
             defaultValue: null,
             defaultBindingMode: BindingMode.TwoWay);
 
         public static readonly BindableProperty TitleBackgroundViewProperty = BindableProperty.Create(
             propertyName: nameof(TitleBackgroundView),
             returnType: typeof(View),
-            declaringType: typeof(TitledContentView),
+            declaringType: typeof(TitledGroup),
             defaultValue: null,
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
-                if (bindable is TitledContentView page)
+                if (bindable is TitledGroup page)
                 {
                     page.UpdateTitleBackgroundImage();
                 }
@@ -392,12 +398,12 @@ namespace RedCorners.Forms
         public static readonly BindableProperty TitleBackgroundImageProperty = BindableProperty.Create(
             propertyName: nameof(TitleBackgroundImage),
             returnType: typeof(ImageSource),
-            declaringType: typeof(TitledContentView),
+            declaringType: typeof(TitledGroup),
             defaultValue: null,
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
-                if (bindable is TitledContentView page)
+                if (bindable is TitledGroup page)
                 {
                     page.UpdateTitleBackgroundImage();
                 }
@@ -406,14 +412,14 @@ namespace RedCorners.Forms
         public static readonly BindableProperty TitleColorProperty = BindableProperty.Create(
             propertyName: nameof(TitleColor),
             returnType: typeof(Color),
-            declaringType: typeof(TitledContentView),
+            declaringType: typeof(TitledGroup),
             defaultValue: Color.FromHex("#000000"),
             defaultBindingMode: BindingMode.TwoWay);
 
         public static readonly BindableProperty TitleTextColorProperty = BindableProperty.Create(
             propertyName: nameof(TitleTextColor),
             returnType: typeof(Color),
-            declaringType: typeof(TitledContentView),
+            declaringType: typeof(TitledGroup),
             defaultValue: Color.White,
             defaultBindingMode: BindingMode.TwoWay);
 
@@ -421,18 +427,18 @@ namespace RedCorners.Forms
         public static readonly BindableProperty TitleBackgroundImageOpacityProperty = BindableProperty.Create(
             propertyName: nameof(TitleBackgroundImageOpacity),
             returnType: typeof(double),
-            declaringType: typeof(TitledContentView),
+            declaringType: typeof(TitledGroup),
             defaultValue: 1.0,
             defaultBindingMode: BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
-                if (bindable is TitledContentView page)
+                if (bindable is TitledGroup page)
                 {
                     page.UpdateTitleBackgroundImage();
                 }
             });
 
-        public TitledContentView()
+        public TitledGroup()
         {
             InitializeComponent();
             UpdateTitleBackgroundImage();

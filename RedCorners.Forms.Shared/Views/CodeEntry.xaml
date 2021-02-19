@@ -1,29 +1,28 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <rf:ContentView2
+    x:Class="RedCorners.Forms.CodeEntry"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:rf="clr-namespace:RedCorners.Forms;assembly=RedCorners.Forms"
-    mc:Ignorable="d"
-    x:Class="RedCorners.Forms.CodeEntry">
+    mc:Ignorable="d">
     <Grid>
-        <Entry 
-            x:Name="textBox" 
-            Keyboard="Numeric" 
-            TextChanged="TextBox_TextChanged" 
+        <Entry
+            x:Name="textBox"
+            Keyboard="Numeric"
             Opacity="0"
-            WidthRequest="32"
-            />
+            TextChanged="TextBox_TextChanged"
+            WidthRequest="32" />
 
-        <StackLayout 
+        <StackLayout
             x:Name="stack"
-            Orientation="Horizontal" 
-            HorizontalOptions="CenterAndExpand" 
-            VerticalOptions="CenterAndExpand" 
-            Spacing="8"
+            CascadeInputTransparent="True"
+            HorizontalOptions="CenterAndExpand"
             InputTransparent="True"
-            CascadeInputTransparent="True">
+            Orientation="Horizontal"
+            Spacing="8"
+            VerticalOptions="CenterAndExpand">
             <StackLayout.Resources>
                 <ResourceDictionary>
                     <Style TargetType="Entry">

@@ -10,7 +10,7 @@
     IsClippedToBounds="True"
     mc:Ignorable="d"
     x:Name="me"
-    x:Class="RedCorners.Forms.TabbedContentView">
+    x:Class="RedCorners.Forms.TabGroup">
     <rf:ContentView2.Content>
         <Grid RowSpacing="0" ColumnSpacing="0">
             <Grid.RowDefinitions>

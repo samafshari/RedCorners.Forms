@@ -45,6 +45,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\CodeEntry.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\CodeEntryBoxView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\ContentPage2.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\ContentView2.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\Button2.cs" />

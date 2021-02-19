@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<rf:TabbedContentView 
+<rf:TabGroup 
     xmlns="http://xamarin.com/schemas/2014/forms" 
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:rf="clr-namespace:RedCorners.Forms;assembly=RedCorners.Forms"
@@ -16,7 +16,7 @@
     HasShadow="False"
     x:Class="RedCorners.Demo.Views.TabBarNestingDemoView">
     
-    <rf:TitledContentView 
+    <rf:TitledGroup 
         FixTitlePadding="False" 
         HasShadow="False" 
         HasButton="False" 
@@ -31,7 +31,7 @@
                 <Label Text="John Smith!" TextColor="#99000000" FontSize="Medium" HorizontalTextAlignment="Center" HorizontalOptions="Center" />
             </StackLayout>
         </Grid>
-    </rf:TitledContentView>
+    </rf:TitledGroup>
     
     <rf:ContentView2 Icon="icon_home_w" Title="About" BackgroundColor="White">
         <Grid>
@@ -44,4 +44,4 @@
             </StackLayout>
         </Grid>
     </rf:ContentView2>
-</rf:TabbedContentView>
+</rf:TabGroup>

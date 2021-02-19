@@ -12,18 +12,18 @@
     <rf:ContentPage2.BindingContext>
         <vm:TitleBarDemosViewModel x:Name="vm" />
     </rf:ContentPage2.BindingContext>
-    <rf:TitledContentView
+    <rf:TitledGroup
         Title="TitleBar Examples"
         IsBackButtonVisible="True"
         BackCommand="{Static rf:Values.PopCommand}">
-        <rf:TitledContentView.TitleBackground>
+        <rf:TitledGroup.TitleBackgroundView>
             <ff:CachedImage
                 Source="https://media.giphy.com/media/26AHQCn4Ce8fLedlm/giphy.gif"
                 HeightRequest="1"
                 HorizontalOptions="Fill"
                 VerticalOptions="Fill"
                 Aspect="AspectFill" />
-        </rf:TitledContentView.TitleBackground>
+        </rf:TitledGroup.TitleBackgroundView>
         <StackLayout Grid.Row="1" Padding="10">
             <Button Text="BackgroundColor">
                 <Button.Command>
@@ -322,14 +322,14 @@
                                     Title="Animated Background"
                                     IsBackButtonVisible="True"
                                     BackCommand="{Static rf:Values.PopCommand}">
-                                    <rf:TitleBar.Background>
+                                    <rf:TitleBar.BackgroundView>
                                         <ff:CachedImage 
                                             Source="https://media.giphy.com/media/U3qYN8S0j3bpK/giphy.gif" 
                                             HorizontalOptions="Fill" 
                                             VerticalOptions="Fill" 
                                             Aspect="AspectFill" 
                                             HeightRequest="1" />
-                                    </rf:TitleBar.Background>
+                                    </rf:TitleBar.BackgroundView>
                                     <StackLayout Orientation="Horizontal" Spacing="28" VerticalOptions="Center">
                                         <rf:ImageButton2 
                                             Source="menuabout" 
@@ -365,14 +365,14 @@
                                     IsBackButtonVisible="True"
                                     BackCommand="{Static rf:Values.PopCommand}"
                                     BackgroundColor="Gray">
-                                    <rf:TitleBar.Background>
+                                    <rf:TitleBar.BackgroundView>
                                         <ff:CachedImage 
                                             Source="http://www.sclance.com/pngs/transparent-grid-png/transparent_grid_png_1404573.png" 
                                             HorizontalOptions="Fill" 
                                             VerticalOptions="Fill" 
                                             Aspect="AspectFill" 
                                             HeightRequest="1" />
-                                    </rf:TitleBar.Background>
+                                    </rf:TitleBar.BackgroundView>
                                 </rf:TitleBar>
                             </Grid>
                         </rf:ContentPage2>
@@ -380,16 +380,16 @@
                 </Button.Command>
             </Button>
 
-            <Button Text="TitledContentView">
+            <Button Text="TitledGroup">
                 <Button.Command>
                     <rf:PageCommand>
                         <rf:ContentPage2 BindingContext="{Reference vm}" FixTopPadding="False">
-                            <rf:TitledContentView
-                                Title="TitledContentView">
-                                <rf:TitledContentView.LeftToolBar>
+                            <rf:TitledGroup
+                                Title="TitledGroup">
+                                <rf:TitledGroup.LeftToolBar>
                                     <rf:Button2 TextColor="White" Text="Back" Command="{x:Static rf:Values.PopCommand}" Visual="Default" BackgroundColor="Transparent" />
-                                </rf:TitledContentView.LeftToolBar>
-                            </rf:TitledContentView>
+                                </rf:TitledGroup.LeftToolBar>
+                            </rf:TitledGroup>
                         </rf:ContentPage2>
                     </rf:PageCommand>
                 </Button.Command>
@@ -399,7 +399,7 @@
                 <Button.Command>
                     <rf:PageCommand>
                         <rf:ContentPage2 BindingContext="{Reference vm}" FixTopPadding="False">
-                            <rf:TitledContentView
+                            <rf:TitledGroup
                                 TitleColor="LightGreen"
                                 IsDark="True"
                                 TitleTextColor="Black"
@@ -413,14 +413,14 @@
                 <Button.Command>
                     <rf:PageCommand>
                         <rf:ContentPage2 BindingContext="{Reference vm}">
-                            <rf:TitledContentView Title="" TitleAlignment="Center" BackCommand="{x:Static rf:Values.PopCommand}">
-                                <rf:TitledContentView.TitleView>
+                            <rf:TitledGroup Title="" TitleAlignment="Center" BackCommand="{x:Static rf:Values.PopCommand}">
+                                <rf:TitledGroup.TitleView>
                                     <ff:CachedImage Margin="10" Source="http://ooze.redcorners.com/redcorners_logo.png" HorizontalOptions="Center">
                                         <ff:CachedImage.GestureRecognizers>
                                             <TapGestureRecognizer Command="{Binding MessageCommand}" CommandParameter="Logo Clicked!" />
                                         </ff:CachedImage.GestureRecognizers>
                                     </ff:CachedImage>
-                                </rf:TitledContentView.TitleView>
+                                </rf:TitledGroup.TitleView>
                                 <StackLayout>
                                     <rf:TitleBar TitleAlignment="Start" FixBottomPadding="False" FixTopPadding="False">
                                         <rf:TitleBar.TitleView>
@@ -441,11 +441,11 @@
                                         </rf:TitleBar.TitleView>
                                     </rf:TitleBar>
                                 </StackLayout>
-                            </rf:TitledContentView>
+                            </rf:TitledGroup>
                         </rf:ContentPage2>
                     </rf:PageCommand>
                 </Button.Command>
             </Button>
         </StackLayout>
-    </rf:TitledContentView>
+    </rf:TitledGroup>
 </rf:ContentPage2>
