@@ -13,8 +13,11 @@ using System.Windows.Input;
 
 namespace RedCorners.Forms
 {
+    [Obsolete("Use HiddenEntry instead")]
+    public class HiddenEntryView : HiddenEntry { }
+
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class HiddenEntryView
+    public partial class HiddenEntry
     {
         public string Text
         {
@@ -145,71 +148,71 @@ namespace RedCorners.Forms
         }
 
         public static readonly BindableProperty TextProperty = BindableProperty.Create(
-            nameof(Text), typeof(string), typeof(HiddenEntryView), defaultBindingMode: BindingMode.TwoWay);
+            nameof(Text), typeof(string), typeof(HiddenEntry), defaultBindingMode: BindingMode.TwoWay);
 
         public static readonly BindableProperty IsPasswordProperty = BindableProperty.Create(
-            nameof(IsPassword), typeof(bool), typeof(HiddenEntryView), false, defaultBindingMode: BindingMode.TwoWay);
+            nameof(IsPassword), typeof(bool), typeof(HiddenEntry), false, defaultBindingMode: BindingMode.TwoWay);
 
         public static readonly BindableProperty PlaceholderProperty = BindableProperty.Create(
-            nameof(Placeholder), typeof(string), typeof(HiddenEntryView), defaultBindingMode: BindingMode.TwoWay);
+            nameof(Placeholder), typeof(string), typeof(HiddenEntry), defaultBindingMode: BindingMode.TwoWay);
 
         public static readonly BindableProperty LabelProperty = BindableProperty.Create(
-            nameof(Label), typeof(string), typeof(HiddenEntryView), defaultBindingMode: BindingMode.TwoWay);
+            nameof(Label), typeof(string), typeof(HiddenEntry), defaultBindingMode: BindingMode.TwoWay);
 
         public static readonly BindableProperty EntryBackgroundColorProperty = BindableProperty.Create(
-            nameof(EntryBackgroundColor), typeof(Color), typeof(HiddenEntryView), Color.White, defaultBindingMode: BindingMode.TwoWay);
+            nameof(EntryBackgroundColor), typeof(Color), typeof(HiddenEntry), Color.White, defaultBindingMode: BindingMode.TwoWay);
 
         public static readonly BindableProperty EntryTextColorProperty = BindableProperty.Create(
-            nameof(EntryTextColor), typeof(Color), typeof(HiddenEntryView), Color.Black, defaultBindingMode: BindingMode.TwoWay);
+            nameof(EntryTextColor), typeof(Color), typeof(HiddenEntry), Color.Black, defaultBindingMode: BindingMode.TwoWay);
 
         public static readonly BindableProperty PlaceholderColorProperty = BindableProperty.Create(
-            nameof(PlaceholderColor), typeof(Color), typeof(HiddenEntryView), Color.Gray, defaultBindingMode: BindingMode.TwoWay);
+            nameof(PlaceholderColor), typeof(Color), typeof(HiddenEntry), Color.Gray, defaultBindingMode: BindingMode.TwoWay);
 
         public static readonly BindableProperty LabelTextColorProperty = BindableProperty.Create(
-            nameof(LabelTextColor), typeof(Color), typeof(HiddenEntryView), Color.Black, defaultBindingMode: BindingMode.TwoWay);
+            nameof(LabelTextColor), typeof(Color), typeof(HiddenEntry), Color.Black, defaultBindingMode: BindingMode.TwoWay);
 
         public static readonly BindableProperty FontFamilyProperty = BindableProperty.Create(
-            nameof(FontFamily), typeof(string), typeof(HiddenEntryView), defaultBindingMode: BindingMode.TwoWay);
+            nameof(FontFamily), typeof(string), typeof(HiddenEntry), defaultBindingMode: BindingMode.TwoWay);
 
         public static readonly BindableProperty FontAttributesProperty = BindableProperty.Create(
-            nameof(FontAttributes), typeof(FontAttributes), typeof(HiddenEntryView), FontAttributes.None, defaultBindingMode: BindingMode.TwoWay);
+            nameof(FontAttributes), typeof(FontAttributes), typeof(HiddenEntry), FontAttributes.None, defaultBindingMode: BindingMode.TwoWay);
 
         public static readonly BindableProperty EntryTextAlignmentProperty = BindableProperty.Create(
-            nameof(EntryTextAlignment), typeof(TextAlignment), typeof(HiddenEntryView), TextAlignment.End, defaultBindingMode: BindingMode.TwoWay);
+            nameof(EntryTextAlignment), typeof(TextAlignment), typeof(HiddenEntry), TextAlignment.End, defaultBindingMode: BindingMode.TwoWay);
 
         public static readonly BindableProperty LabelTextAlignmentProperty = BindableProperty.Create(
-            nameof(LabelTextAlignment), typeof(TextAlignment), typeof(HiddenEntryView), TextAlignment.End, defaultBindingMode: BindingMode.TwoWay);
+            nameof(LabelTextAlignment), typeof(TextAlignment), typeof(HiddenEntry), TextAlignment.End, defaultBindingMode: BindingMode.TwoWay);
 
         public static readonly BindableProperty LabelMarginProperty = BindableProperty.Create(
-            nameof(LabelMargin), typeof(Thickness), typeof(HiddenEntryView), new Thickness(), defaultBindingMode: BindingMode.TwoWay);
+            nameof(LabelMargin), typeof(Thickness), typeof(HiddenEntry), new Thickness(), defaultBindingMode: BindingMode.TwoWay);
 
         public static readonly BindableProperty EntryFontSizeProperty = BindableProperty.Create(
-            nameof(EntryFontSize), typeof(double), typeof(HiddenEntryView), 14.0, defaultBindingMode: BindingMode.TwoWay);
+            nameof(EntryFontSize), typeof(double), typeof(HiddenEntry), 14.0, defaultBindingMode: BindingMode.TwoWay);
 
         public static readonly BindableProperty LabelFontSizeProperty = BindableProperty.Create(
-            nameof(LabelFontSize), typeof(double), typeof(HiddenEntryView), 14.0, defaultBindingMode: BindingMode.TwoWay);
+            nameof(LabelFontSize), typeof(double), typeof(HiddenEntry), 14.0, defaultBindingMode: BindingMode.TwoWay);
 
         public static readonly BindableProperty KeyboardProperty = BindableProperty.Create(
-            nameof(Keyboard), typeof(Keyboard), typeof(HiddenEntryView), Keyboard.Default, defaultBindingMode: BindingMode.TwoWay);
+            nameof(Keyboard), typeof(Keyboard), typeof(HiddenEntry), Keyboard.Default, defaultBindingMode: BindingMode.TwoWay);
 
         public static readonly BindableProperty SubmitCommandProperty = BindableProperty.Create(
-            nameof(SubmitCommand), typeof(ICommand), typeof(HiddenEntryView), default(ICommand), defaultBindingMode: BindingMode.TwoWay);
+            nameof(SubmitCommand), typeof(ICommand), typeof(HiddenEntry), default(ICommand), defaultBindingMode: BindingMode.TwoWay);
 
         public static readonly BindableProperty UnfocusActionProperty = BindableProperty.Create(
-            nameof(UnfocusAction), typeof(Action<object>), typeof(HiddenEntryView), default(Action<object>), defaultBindingMode: BindingMode.TwoWay);
+            nameof(UnfocusAction), typeof(Action<object>), typeof(HiddenEntry), default(Action<object>), defaultBindingMode: BindingMode.TwoWay);
 
         public static readonly BindableProperty IsDateProperty = BindableProperty.Create(
-            nameof(IsDate), typeof(bool), typeof(HiddenEntryView), default(bool), defaultBindingMode: BindingMode.TwoWay);
+            nameof(IsDate), typeof(bool), typeof(HiddenEntry), default(bool), defaultBindingMode: BindingMode.TwoWay);
         
         public static readonly BindableProperty IsReadOnlyProperty = BindableProperty.Create(
-            nameof(IsReadOnly), typeof(bool), typeof(HiddenEntryView), default(bool), defaultBindingMode: BindingMode.TwoWay);
+            nameof(IsReadOnly), typeof(bool), typeof(HiddenEntry), default(bool), defaultBindingMode: BindingMode.TwoWay);
 
         public static readonly BindableProperty DateProperty = BindableProperty.Create(
-            nameof(Date), typeof(DateTime), typeof(HiddenEntryView), DateTime.Now.Date, defaultBindingMode: BindingMode.TwoWay);
+            nameof(Date), typeof(DateTime), typeof(HiddenEntry), DateTime.Now.Date, defaultBindingMode: BindingMode.TwoWay);
 
 
 
-        public HiddenEntryView()
+        public HiddenEntry()
         {
             InitializeComponent();
 

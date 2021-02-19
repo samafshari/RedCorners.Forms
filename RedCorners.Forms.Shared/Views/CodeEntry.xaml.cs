@@ -192,6 +192,7 @@ namespace RedCorners.Forms
 
         void BuildUI()
         {
+            if (stack == null || BoxType == null) return;
             stack.Children.Clear();
             stack.Spacing = Spacing;
             for (int i = 0; i < Length; i++)

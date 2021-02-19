@@ -6,7 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:rf="clr-namespace:RedCorners.Forms"
     mc:Ignorable="d"
-    x:Class="RedCorners.Forms.HiddenEntryView">
+    x:Class="RedCorners.Forms.HiddenEntry">
     <Grid>
         <Label 
             x:Name="label" 
