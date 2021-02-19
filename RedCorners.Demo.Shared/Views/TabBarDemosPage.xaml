@@ -49,14 +49,14 @@
         HasShadow="False">
         <rf:TabbedContentView.Background>
             <rf:TitledContentView>
-                <rf:TitledContentView.TitleBackground>
+                <rf:TitledContentView.TitleBackgroundView>
                     <Image 
                     Source="https://freefrontend.com/assets/img/css-background-patterns/simple-pattern-with-css3.png"
                     HorizontalOptions="Fill"
                     VerticalOptions="Fill"
                     Aspect="AspectFill"
                     HeightRequest="1" />
-                </rf:TitledContentView.TitleBackground>
+                </rf:TitledContentView.TitleBackgroundView>
             </rf:TitledContentView>
         </rf:TabbedContentView.Background>
 

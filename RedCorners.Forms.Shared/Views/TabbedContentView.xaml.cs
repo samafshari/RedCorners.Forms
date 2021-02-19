@@ -220,6 +220,12 @@ namespace RedCorners.Forms
             set => SetValue(HasShadowProperty, value);
         }
 
+        public double TabButtonsSpacing
+        {
+            get => (double)GetValue(TabButtonsSpacingProperty);
+            set => SetValue(TabButtonsSpacingProperty, value);
+        }
+
         public static readonly BindableProperty FixTabBarPaddingProperty = BindableProperty.Create(
             propertyName: nameof(FixTabBarPadding),
             returnType: typeof(bool),
@@ -362,6 +368,19 @@ namespace RedCorners.Forms
             typeof(TabbedContentView),
             70.0,
             BindingMode.TwoWay,
+            propertyChanged: (bindable, oldVal, newVal) =>
+            {
+                if (bindable is TabbedContentView page)
+                    page.UpdateTabBarSizeRequest();
+            });
+        
+        public static readonly BindableProperty TabButtonsSpacingProperty =
+            BindableProperty.Create(
+            nameof(TabButtonsSpacing),
+            typeof(double),
+            typeof(TabbedContentView),
+            0.0,
+            BindingMode.OneWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
                 if (bindable is TabbedContentView page)
@@ -594,6 +613,7 @@ namespace RedCorners.Forms
         void UpdateTabBarSizeRequest()
         {
             if (tabbar == null) return;
+            tabbar.HorizontalSpacing = TabButtonsSpacing;
 
             if (TabBarPosition == TabBarPositions.Left || TabBarPosition == TabBarPositions.Right)
             {

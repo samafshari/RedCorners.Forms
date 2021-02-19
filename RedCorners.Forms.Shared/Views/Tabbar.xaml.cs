@@ -128,6 +128,13 @@ namespace RedCorners.Forms
             set => SetValue(SpacingProperty, value);
         }
 
+        public double HorizontalSpacing
+        {
+            get => (double)GetValue(HorizontalSpacingProperty);
+            set => SetValue(HorizontalSpacingProperty, value);
+        }
+
+
         public ImageButtonOrientations ItemOrientation
         {
             get => (ImageButtonOrientations)GetValue(ItemOrientationProperty);
@@ -318,6 +325,14 @@ namespace RedCorners.Forms
             (double)0,
             BindingMode.TwoWay,
             propertyChanged: UpdateItemsOnPropertyChanged);
+        
+        public static readonly BindableProperty HorizontalSpacingProperty = BindableProperty.Create(
+            nameof(HorizontalSpacing),
+            typeof(double),
+            typeof(TabBar),
+            (double)0,
+            BindingMode.OneWay,
+            propertyChanged: UpdateItemsOnPropertyChanged);
 
         static void UpdateItemsOnPropertyChanged(BindableObject bindable, object oldVal, object newVal)
         {
@@ -347,6 +362,7 @@ namespace RedCorners.Forms
             content.Children.Clear();
             content.ColumnDefinitions.Clear();
             content.RowDefinitions.Clear();
+            content.ColumnSpacing = HorizontalSpacing;
 
             int c = 0;
             foreach (var item in Items as IList<TabBarItem>)

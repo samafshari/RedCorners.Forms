@@ -20,10 +20,10 @@ namespace RedCorners.Forms.Converters
 
             foreach (var value in values)
             {
-                if (!(value is bool b) || !b)
-                {
+                if (value is bool b && !b)
                     return false;
-                }
+                if (!HasValueConverter.HasValue(value))
+                    return false;
             }
             return true;
         }

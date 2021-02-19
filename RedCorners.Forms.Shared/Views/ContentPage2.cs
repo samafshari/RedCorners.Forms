@@ -14,9 +14,9 @@ namespace RedCorners.Forms
     public enum UIStatusBarStyles
     {
         Default = 0,
-        //BlackTranslucent = 1,
         LightContent = 1,
         BlackOpaque = 2,
+        DarkContent = 3
     }
 
     [Obsolete("AliveContentPage is renamed to ContentPage2. Use ContentPage2 instead.")]
