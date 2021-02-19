@@ -21,9 +21,9 @@ namespace RedCorners.Forms.Converters
             foreach (var value in values)
             {
                 if (value is bool b && b)
-                {
                     return true;
-                }
+                else if (HasValueConverter.HasValue(value))
+                    return true;
             }
             return false;
         }

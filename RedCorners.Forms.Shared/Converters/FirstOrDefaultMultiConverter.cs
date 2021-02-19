@@ -18,11 +18,11 @@ namespace RedCorners.Forms.Converters
                 foreach (var value in values)
                 {
                     if (HasValueConverter.HasValue(value))
-                        return true;
+                        return value;
                 }
             }
 
-            return false;
+            return parameter;
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
