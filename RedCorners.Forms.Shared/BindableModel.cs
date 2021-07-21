@@ -9,6 +9,7 @@ using Xamarin.Forms;
 using RedCorners.Forms;
 using System.Windows.Input;
 using System.Reflection;
+using System.Threading.Tasks;
 
 #if WINDOWS
 using System.Windows;
@@ -35,14 +36,25 @@ namespace RedCorners.Forms
     public partial class BindableModel : INotifyPropertyChanged
     {
         protected readonly static Random Random = new Random();
+
         public virtual bool IsModal { get; set; } = true;
+
+        public bool RaisePropertyChangeOnUI { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
         [Obsolete("Use RaisePropertyChanged instead.")]
         public void OnPropertyChanged([CallerMemberName] string m = null) =>
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(m));
+            RaisePropertyChanged(m);
+        
         public void RaisePropertyChanged([CallerMemberName] string m = null) =>
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(m));
+            RaisePropertyChanged(RaisePropertyChangeOnUI, m);
+        
+        public void RaisePropertyChanged(bool onUI, [CallerMemberName] string m = null)
+        {
+            void Raise() => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(m));
+            if (onUI) Device.BeginInvokeOnMainThread(Raise);
+            else Raise();
+        }
 
         public event EventHandler<string> OnLog;
 
@@ -103,7 +115,12 @@ namespace RedCorners.Forms
 
         public virtual void Refresh()
         {
+            Task.Run(RefreshAsync);
+        }
 
+        public virtual Task RefreshAsync()
+        {
+            return Task.CompletedTask;
         }
 
         public void Log(string message = null, [CallerMemberName] string method = null)
@@ -136,7 +153,7 @@ namespace RedCorners.Forms
                     if (item.PropertyType.IsAssignableFrom(typeof(ICommand)) && !item.GetCustomAttributes(typeof(Updates), true).Any())
                         continue;
 
-                    RaisePropertyChanged(item.Name);
+                    RaisePropertyChanged(onUI: false, item.Name);
                 }
             });
         }
@@ -146,7 +163,7 @@ namespace RedCorners.Forms
             Device.BeginInvokeOnMainThread(() =>
             {
                 foreach (var item in names)
-                    RaisePropertyChanged(item);
+                    RaisePropertyChanged(onUI: false, item);
             });
         }
 
