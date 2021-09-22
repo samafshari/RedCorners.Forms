@@ -425,6 +425,7 @@ namespace RedCorners.Forms
 
         public static ImageSource BackButtonImageOverride = null;
         public static ImageSource MenuButtonImageOverride = null;
+        public static Size? BackButtonSizeOverride = null;
 
         void UpdateButton()
         {
@@ -441,6 +442,12 @@ namespace RedCorners.Forms
                 backImage.Source = BackButtonImageOverride ?? ImageSource.FromResource($"RedCorners.Forms.leftarrow{darkSuffix}.png", typeof(TitleBar).GetTypeInfo().Assembly);
             else
                 backImage.Source = MenuButtonImageOverride ?? ImageSource.FromResource($"RedCorners.Forms.menu{darkSuffix}.png", typeof(TitleBar).GetTypeInfo().Assembly);
+        
+            if (BackButtonSizeOverride != null)
+            {
+                backImage.WidthRequest = BackButtonSizeOverride.Value.Width;
+                backImage.HeightRequest = BackButtonSizeOverride.Value.Height;
+            }
         }
 
         void UpdateToolBar()
