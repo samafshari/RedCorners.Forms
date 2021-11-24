@@ -859,7 +859,7 @@ namespace RedCorners.Forms
             Children[SelectedIndex].Opacity = 1;
             Children[SelectedIndex].TranslationX = 0;
             Children[SelectedIndex].TranslationY = 0;
-
+            
             //Hide (we do it after "show" to avoid flickering)
             for (int i = 0; i < Children.Count(); i++)
             {
@@ -883,6 +883,8 @@ namespace RedCorners.Forms
             }
 
             isAnimating = false;
+            if (!Children[SelectedIndex].IsFocused)
+                Children[SelectedIndex].Focus();
         }
 
         async void StartCrossFadeTransition(View oldChild, View newChild)
