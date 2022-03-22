@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>RedCorners.Forms</id>
-    <version>63.2.0</version>
+    <version>65</version>
     <title>RedCorners.Forms</title>
     <authors>NeatCapital OÜ</authors>
     <owners>NeatCapital OÜ</owners>
@@ -10,7 +10,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Side Bar, Tabbed View and more for your Xamarin.Forms projects.</description>
     <releaseNotes>Side Bar, Tabbed View and more for your Xamarin.Forms projects.</releaseNotes>
-    <copyright>Copyright 2019-2021 NeatCapital OÜ</copyright>
+    <copyright>Copyright 2019-2022 NeatCapital OÜ</copyright>
     <tags>Xamarin.Forms UI SideBar TabBar TitleBar Status Bar Padding Components Controls</tags>
 
     <dependencies>
@@ -19,13 +19,13 @@
           <dependency id="RedCorners" version="8.0.0" />
       </group>
 	  
-	  <group targetFramework="MonoAndroid100">
+	  <group targetFramework="MonoAndroid">
           <dependency id="Xamarin.Android.Support.v7.AppCompat" version="28.0.0.3" />
           <dependency id="Xamarin.Forms" version="5.0.0.2012" />
           <dependency id="RedCorners" version="8.0.0" />
       </group>
 	  
-	  <group targetFramework="Xamarin.iOS10">
+	  <group targetFramework="Xamarin.iOS">
 		  <dependency id="Xamarin.Forms" version="5.0.0.2012" />
           <dependency id="RedCorners" version="8.0.0" />
 	  </group>
@@ -44,7 +44,7 @@
 	  
 	<file 
       src="RedCorners.Forms.Droid\bin\Release\RedCorners.Forms.dll" 
-      target="lib\MonoAndroid100\RedCorners.Forms.dll" />
+      target="lib\MonoAndroid120\RedCorners.Forms.dll" />
 	  
     <file 
       src="RedCorners.Forms.iOS\bin\Release\RedCorners.Forms.dll" 

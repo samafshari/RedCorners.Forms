@@ -124,23 +124,23 @@ namespace RedCorners.Forms
         public void ShowPage(Page page, bool isModal = false) =>
             RunOnUI(async () => await ShowPageAsync(page, isModal));
 
-        public void RunOnUI(Action a)
+        public virtual void RunOnUI(Action a)
         {
             Device.BeginInvokeOnMainThread(a);
         }
 
-        public void PopModal()
+        public virtual void PopModal()
         {
             MainPage?.Navigation.PopModalAsync();
         }
 
-        public async Task ShowModalPageAsync(Page page) =>
+        public virtual async Task ShowModalPageAsync(Page page) =>
             await ShowPageAsync(page, true);
 
-        public void ShowModalPage(Page page) =>
+        public virtual void ShowModalPage(Page page) =>
             ShowPage(page, true);
 
-        public void DisplayAlert(string title, string message, string button)
+        public virtual void DisplayAlert(string title, string message, string button)
         {
             RunOnUI(() =>
             {
@@ -148,14 +148,22 @@ namespace RedCorners.Forms
             });
         }
 
-        public async Task DisplayAlertAsync(string title, string message, string button)
+        public virtual async Task DisplayAlertAsync(string title, string message, string button)
         {
-            await MainPage?.DisplayAlert(title, message, button);
+            await Device.InvokeOnMainThreadAsync(async () =>
+            {
+                await MainPage?.DisplayAlert(title, message, button);
+            });
         }
 
-        public async Task<bool> DisplayAlertAsync(string title, string message, string accept, string cancel)
+        public virtual async Task<bool> DisplayAlertAsync(string title, string message, string accept, string cancel)
         {
-            return await MainPage?.DisplayAlert(title, message, accept, cancel);
+            bool result = false;
+            await Device.InvokeOnMainThreadAsync(async () =>
+            {
+                result = await MainPage?.DisplayAlert(title, message, accept, cancel);
+            });
+            return result;
         }
 
         protected override void OnStart()
