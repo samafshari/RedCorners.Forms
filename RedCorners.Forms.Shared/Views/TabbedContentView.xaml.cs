@@ -427,7 +427,7 @@ namespace RedCorners.Forms
             BindingMode.TwoWay,
             propertyChanged: (bindable, oldVal, newVal) =>
             {
-                if (bindable is TabGroup page)
+                if (bindable is TabGroup page && page.tabbarContainer != null)
                     page.tabbarContainer.IsVisible = (bool)newVal;
             });
 
