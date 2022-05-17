@@ -131,7 +131,14 @@ namespace RedCorners.Forms
 
         public virtual void PopModal()
         {
-            MainPage?.Navigation.PopModalAsync();
+            if ((MainPage?.Navigation?.ModalStack?.Count ?? 0) > 0)
+                MainPage.Navigation.PopModalAsync();
+        }
+
+        public virtual async Task PopModalAsync()
+        {
+            if ((MainPage?.Navigation?.ModalStack?.Count ?? 0) > 0)
+                await MainPage.Navigation.PopModalAsync();
         }
 
         public virtual async Task ShowModalPageAsync(Page page) =>
