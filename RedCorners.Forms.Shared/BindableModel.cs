@@ -197,8 +197,19 @@ namespace RedCorners.Forms
 
         public virtual Command GoBackCommand => new Command(() =>
         {
-            Signals.RunOnUI.Signal<Action>(() => OnBack());
+            GoBack();
         });
+
+        public virtual void GoBack()
+        {
+            Task.Run(GoBackAsync);
+        }
+
+        public virtual Task GoBackAsync()
+        {
+            Device.BeginInvokeOnMainThread(() => Signals.RunOnUI.Signal<Action>(() => OnBack()));
+            return Task.CompletedTask;
+        }
 
         protected bool backed = false;
         public virtual bool OnBack()
