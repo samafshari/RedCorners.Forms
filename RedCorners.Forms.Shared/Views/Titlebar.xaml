@@ -10,7 +10,6 @@
     BackgroundColor="#333333"
     HorizontalOptions="Fill"
     VerticalOptions="StartAndExpand"
-    HeightRequest="44"
     mc:Ignorable="d">
     <rf:ContentView2.Content>
         <Grid
