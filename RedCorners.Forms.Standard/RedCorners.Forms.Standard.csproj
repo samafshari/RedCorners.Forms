@@ -12,7 +12,7 @@
   <Import Project="..\RedCorners.Forms.Shared\RedCorners.Forms.Shared.projitems" Label="Shared" />
 
   <ItemGroup>
-    <PackageReference Include="RedCorners" Version="8.0.0" />
+    <PackageReference Include="RedCorners" Version="13.0.0" />
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2083" />
   </ItemGroup>
 
