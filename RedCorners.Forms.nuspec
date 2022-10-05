@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>RedCorners.Forms</id>
-    <version>73</version>
+    <version>77</version>
     <title>RedCorners.Forms</title>
     <authors>NeatCapital OÜ</authors>
     <owners>NeatCapital OÜ</owners>
@@ -15,19 +15,22 @@
 
     <dependencies>
       <group targetFramework="netstandard2.0">
-          <dependency id="Xamarin.Forms" version="5.0.0.2012" />
-          <dependency id="RedCorners" version="13.0.0" />
+          <dependency id="Xamarin.Forms" version="5.0.0.2478" />
+          <dependency id="RedCorners" version="14.0.0" />
+          <dependency id="Newtonsoft.Json" version="13.0.1" />
       </group>
 	  
 	  <group targetFramework="MonoAndroid">
           <dependency id="Xamarin.Android.Support.v7.AppCompat" version="28.0.0.3" />
-          <dependency id="Xamarin.Forms" version="5.0.0.2012" />
-          <dependency id="RedCorners" version="13.0.0" />
+          <dependency id="Xamarin.Forms" version="5.0.0.2478" />
+          <dependency id="RedCorners" version="14.0.0" />
+          <dependency id="Newtonsoft.Json" version="13.0.1" />
       </group>
 	  
 	  <group targetFramework="Xamarin.iOS">
-		  <dependency id="Xamarin.Forms" version="5.0.0.2012" />
-          <dependency id="RedCorners" version="13.0.0" />
+          <dependency id="Xamarin.Forms" version="5.0.0.2478" />
+          <dependency id="RedCorners" version="14.0.0" />
+          <dependency id="Newtonsoft.Json" version="13.0.1" />
 	  </group>
     </dependencies>
     

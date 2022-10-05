@@ -21,6 +21,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)BindableModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ChainCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Colors.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Components\Persistent.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\CountConverters.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\FirstOrDefaultMultiConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\AndMultiConverter.cs" />
@@ -34,6 +35,12 @@
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\FormsExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\LogExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions\MessagingExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\ResourceExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\BenchmarkService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\ContainerService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\RandomService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\ResourceService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\SettingsServiceBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SwitchCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FocusCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Signals.cs" />
