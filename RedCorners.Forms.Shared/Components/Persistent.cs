@@ -12,7 +12,8 @@ namespace RedCorners.Forms.Services
     {
         public static Func<string> DefaultBasePath = () => Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
         public static Action<string> DefaultLogAction = (message) => Debug.WriteLine(message);
-
+        public static Func<string, T> DeserializeFunction;
+        public static Func<T, string> SerializeFunction;
         public Action<string> LogAction = null;
         public void Log(string message)
         {
@@ -56,7 +57,10 @@ namespace RedCorners.Forms.Services
                 if (File.Exists(FilePath))
                 {
                     var json = File.ReadAllText(FilePath);
-                    Data = JsonConvert.DeserializeObject<T>(json, SerializerSettings);
+                    if (DeserializeFunction == null)
+                        Data = JsonConvert.DeserializeObject<T>(json, SerializerSettings);
+                    else
+                        Data = DeserializeFunction(json);
                 }
             }
             finally
@@ -91,7 +95,11 @@ namespace RedCorners.Forms.Services
         {
             lock (saveLock)
             {
-                var json = JsonConvert.SerializeObject(Data, SerializerSettings);
+                string json;
+                if (SerializeFunction != null)
+                    json = SerializeFunction(Data);
+                else
+                    json = JsonConvert.SerializeObject(Data, SerializerSettings);
                 File.WriteAllText(FilePath, json);
             }
         }
