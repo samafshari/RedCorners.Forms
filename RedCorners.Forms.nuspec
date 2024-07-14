@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>RedCorners.Forms</id>
-    <version>78</version>
+    <version>90</version>
     <title>RedCorners.Forms</title>
     <authors>NeatCapital OÜ</authors>
     <owners>NeatCapital OÜ</owners>
@@ -10,27 +10,26 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Side Bar, Tabbed View and more for your Xamarin.Forms projects.</description>
     <releaseNotes>Side Bar, Tabbed View and more for your Xamarin.Forms projects.</releaseNotes>
-    <copyright>Copyright 2019-2022 NeatCapital OÜ</copyright>
+    <copyright>Copyright 2019-2024 NeatCapital OÜ</copyright>
     <tags>Xamarin.Forms UI SideBar TabBar TitleBar Status Bar Padding Components Controls</tags>
 
     <dependencies>
       <group targetFramework="netstandard2.0">
-          <dependency id="Xamarin.Forms" version="5.0.0.2478" />
-          <dependency id="RedCorners" version="14.0.0" />
-          <dependency id="Newtonsoft.Json" version="13.0.1" />
+          <dependency id="Xamarin.Forms" version="5.0.0.2662" />
+          <dependency id="RedCorners" version="18.0.0" />
+          <dependency id="Newtonsoft.Json" version="13.0.3" />
       </group>
 	  
 	  <group targetFramework="MonoAndroid">
-          <dependency id="Xamarin.Android.Support.v7.AppCompat" version="28.0.0.3" />
-          <dependency id="Xamarin.Forms" version="5.0.0.2478" />
-          <dependency id="RedCorners" version="14.0.0" />
-          <dependency id="Newtonsoft.Json" version="13.0.1" />
+          <dependency id="Xamarin.Forms" version="5.0.0.2662" />
+          <dependency id="RedCorners" version="18.0.0" />
+          <dependency id="Newtonsoft.Json" version="13.0.3" />
       </group>
 	  
 	  <group targetFramework="Xamarin.iOS">
-          <dependency id="Xamarin.Forms" version="5.0.0.2478" />
-          <dependency id="RedCorners" version="14.0.0" />
-          <dependency id="Newtonsoft.Json" version="13.0.1" />
+          <dependency id="Xamarin.Forms" version="5.0.0.2662" />
+          <dependency id="RedCorners" version="18.0.0" />
+          <dependency id="Newtonsoft.Json" version="13.0.3" />
 	  </group>
     </dependencies>
     
