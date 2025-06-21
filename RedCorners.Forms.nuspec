@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>RedCorners.Forms</id>
-    <version>90</version>
+    <version>91</version>
     <title>RedCorners.Forms</title>
     <authors>NeatCapital OÜ</authors>
     <owners>NeatCapital OÜ</owners>
@@ -10,7 +10,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Side Bar, Tabbed View and more for your Xamarin.Forms projects.</description>
     <releaseNotes>Side Bar, Tabbed View and more for your Xamarin.Forms projects.</releaseNotes>
-    <copyright>Copyright 2019-2024 NeatCapital OÜ</copyright>
+    <copyright>Copyright 2019-2025 NeatCapital OÜ</copyright>
     <tags>Xamarin.Forms UI SideBar TabBar TitleBar Status Bar Padding Components Controls</tags>
 
     <dependencies>

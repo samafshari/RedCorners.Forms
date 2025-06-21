@@ -14,7 +14,7 @@ namespace RedCorners.Forms
     {
         Thickness? originalPadding;
         bool parentWasNull = true;
-        WeakReference<ContentPage2> pagePointer = null;
+        ContentPage2 m_page = null;
 
         public string Title
         {
@@ -140,7 +140,7 @@ namespace RedCorners.Forms
                 if (page != null)
                 {
                     parentWasNull = false;
-                    pagePointer = new WeakReference<ContentPage2>(page);
+                    m_page = page; 
                     page.OnAppeared += Page_OnAppeared;
                     page.OnDisappeared += Page_OnDisappeared;
                     TriggerStart();
@@ -148,8 +148,8 @@ namespace RedCorners.Forms
             }
             else if (!parentWasNull && Parent == null)
             {
-                if (pagePointer.TryGetTarget(out var lastPage))
-                {
+                var lastPage = m_page;
+                if (lastPage != null) {
                     lastPage.OnDisappeared -= Page_OnDisappeared;
                     lastPage.OnAppeared -= Page_OnAppeared;
                 }
